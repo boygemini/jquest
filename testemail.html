@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Contact Form</title>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css"
+		/>
+		<style>
+			#contact-form {
+				background-color: red;
+			}
+		</style>
+		<script
+			type="text/javascript"
+			src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+		></script>
+
+		<script src="https://smtpjs.com/v3/smtp.js"></script>
+		<script type="text/javascript">
+			// const formData = require("form-data");
+			// const Mailgun = require("mailgun.js");
+			// const mailgun = new Mailgun(formData);
+			// const mg = mailgun.client({
+			// 	username: "api",
+			// 	key: process.env.MAILGUN_API_KEY || "key-yourkeyhere",
+			// });
+
+			// mg.messages
+			// 	.create("sandbox-123.mailgun.org", {
+			// 		from: "Excited User <mailgun@sandbox-123.mailgun.org>",
+			// 		to: ["gbadebojubril@gmail.com"],
+			// 		subject: "Hello",
+			// 		text: "Testing some Mailgun awesomness!",
+			// 		html: "<h1>Testing some Mailgun awesomness!</h1>",
+			// 	})
+			// 	.then((msg) => console.log(msg)) // logs response data
+			// 	.catch((err) => console.error(err)); // logs any erro
+			// fetch("https://emailapi.netcorecloud.net/v5.1/mail/send", {
+			// 	method: "POST",
+			// 	headers: {
+			// 		"Content-Type": "application/json",
+			// 		api_key: "",
+			// 	},
+			// 	body: {},
+			// });
+		</script>
+	</head>
+	<body>
+		<!-- <form id="contact-form">
+			<input type="hidden" name="contact_number" />
+			<label>Name</label>
+			<input type="text" name="user_name" />
+			<label>Email</label>
+			<input type="email" name="user_email" />
+			<label>Password</label>
+			<input type="password" name="user_pass" />
+			<label>Message</label>
+			<textarea name="message"></textarea>
+			<input type="submit" value="Send" />
+		</form> -->
+	</body>
+</html>
