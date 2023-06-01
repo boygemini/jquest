@@ -1,0 +1,169 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	transition: all 0.34s ease;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	column-gap: 40px;
+}
+
+.text-imgbox {
+	width: auto;
+	height: 370px;
+	border-radius: 10px;
+	/* box-shadow: 0px 0px 0px 5px rgba(2, 27, 43, 0.058); */
+	overflow: hidden;
+	position: relative;
+}
+
+.text-imgbox::before {
+	content: "";
+	width: 100%;
+	height: 100%;
+	/* background-color: rgba(255, 0, 0, 0.138); */
+	position: absolute;
+	top: 0;
+	/* background: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.372) 1%,
+		transparent 100%
+	); */
+}
+
+.image-container,
+.image-container2 {
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.image-container2 {
+	width: 100%;
+	height: 75%;
+	background-image: url("/jquest/src/imgs/JBL_Flip_6_product_image_2.webp");
+	position: relative;
+}
+
+.image-container {
+	width: 100%;
+	height: 85%;
+	background-image: url("/jquest/src/imgs/use2.webp");
+}
+
+.checker {
+	width: 50px;
+	height: 50px;
+	border: 5px solid blueviolet;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	border-radius: 5px;
+	background-position: center;
+	background-size: 70%;
+	background-repeat: no-repeat;
+}
+
+.checked {
+	background-color: blueviolet;
+	border-color: none;
+	transform: scale(1.4);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23FFFFFF' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+.checker2 {
+	width: 70px;
+	height: 70px;
+	border: 2px solid transparent;
+	position: absolute;
+	border-radius: 100%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -70%);
+	z-index: 3;
+	background-position: center;
+	background-size: 70%;
+	background-repeat: no-repeat;
+	transition: all 0.3s cubic-bezier(0.5, -0.75, 0.7, 2);
+}
+
+.checked2 {
+	width: 120px;
+	height: 120px;
+	background-color: rgb(137, 43, 226);
+	position: absolute;
+	transform-origin: center;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23FFFFFF' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+.border {
+	box-shadow: 0px 0px 0px 7px rgba(137, 43, 226, 0.301);
+	transform: scale(1.08);
+	transition: all 0.3s cubic-bezier(0.5, -0.75, 0.7, 2);
+}
+
+.shade {
+	background-color: rgba(8, 1, 15, 0.486);
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.ans-text {
+	padding: 10px;
+}
+
+*::before,
+*::after,
+* {
+	box-sizing: border-box;
+}
+
+.textonlybox {
+	width: auto;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	column-gap: 20px;
+	box-shadow: 0px 0px 0px 3px rgba(128, 128, 128, 0.38);
+	padding: 35px 20px;
+	border-radius: 5px;
+}
+
+.text-checker {
+	width: 40px;
+	height: 40px;
+	border: 5px solid blueviolet;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.text-checked {
+	background-color: rgb(137, 43, 226);
+	transform-origin: center;
+	background-position: center;
+	background-size: 90%;
+	background-repeat: no-repeat;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23FFFFFF' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+.content {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	flex-shrink: 1;
+	flex-grow: 1;
+}
+
+.content p {
+	font-size: 1em;
+}

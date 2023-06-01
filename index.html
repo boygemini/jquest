@@ -5,10 +5,15 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
-		<link rel="stylesheet" href="index.css" />
-		<script src="script.js" type="module" defer></script>
-		<script src="questions" type="module"></script>
-		<script src="/textscript.js" type="module"></script>
+		<link rel="stylesheet" href="/jquest/src/styles/frames.css" />
+		<link rel="stylesheet" href="/jquest/src/styles/index.css" />
+
+		<script
+			type="text/javascript"
+			src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+		></script>
+		<script src="/jquest/src/js/script.js" type="module" defer></script>
+		<script src="/jquest/src/js/questions.js" type="module"></script>
 	</head>
 	<body>
 		<h1 class="logo" id="logo">JQuest</h1>
@@ -29,6 +34,7 @@
 					class="text-field"
 					name="email"
 					id="email"
+					value="ericdan12301@gmail.com"
 					type="email"
 					required
 					autocomplete="off"
@@ -74,6 +80,7 @@
 			></text>
 		</svg>
 
+		<!-- <button onclick="debounce()" id="btn">Click</button> -->
 		<div class="main-Q-container">
 			<h1 class="Question"></h1>
 			<p class="selection-rule"></p>
@@ -82,9 +89,13 @@
 
 		<div class="result"></div>
 
+		<div class="loader">
+			<p class="sent-message"></p>
+		</div>
+
 		<div class="thank-you">
 			<h1 class="big-thankyou">
-				<img src="/IMAGES/falling-star.png" alt="" />
+				<img src="/jquest/src/imgs/falling-star.png" alt="" />
 				<div class="thanks-message">
 					<h1>You are a star!</h1>
 					<p>
@@ -115,6 +126,6 @@
 			</button>
 		</dic>
 
-		<footer>Made by Jubril</footer>
+		<!-- <footer>Made by Jubril</footer> -->
 	</body>
 </html>
