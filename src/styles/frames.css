@@ -17,7 +17,7 @@ body {
 
 .text-imgbox {
 	width: auto;
-	height: 370px;
+	height: 150px;
 	border-radius: 10px;
 	/* box-shadow: 0px 0px 0px 5px rgba(2, 27, 43, 0.058); */
 	overflow: hidden;
@@ -47,7 +47,7 @@ body {
 
 .image-container2 {
 	width: 100%;
-	height: 75%;
+	height: 100%;
 	background-image: url("/jquest/src/imgs/JBL_Flip_6_product_image_2.webp");
 	position: relative;
 }
@@ -79,24 +79,31 @@ body {
 }
 
 .checker2 {
-	width: 70px;
-	height: 70px;
+	width: 120px;
+	height: 120px;
 	border: 2px solid transparent;
 	position: absolute;
 	border-radius: 100%;
-	top: 50%;
+	right: 10px;
+	top: 10px;
+	/*top: 50%;
 	left: 50%;
 	transform: translate(-50%, -70%);
-	z-index: 3;
+	*/
+	z-index: 1;
 	background-position: center;
 	background-size: 70%;
 	background-repeat: no-repeat;
 	transition: all 0.3s cubic-bezier(0.5, -0.75, 0.7, 2);
+	-webkit-transition: all 0.3s cubic-bezier(0.5, -0.75, 0.7, 2);
+	-moz-transition: all 0.3s cubic-bezier(0.5, -0.75, 0.7, 2);
+	-ms-transition: all 0.3s cubic-bezier(0.5, -0.75, 0.7, 2);
+	-o-transition: all 0.3s cubic-bezier(0.5, -0.75, 0.7, 2);
 }
 
 .checked2 {
-	width: 120px;
-	height: 120px;
+	width: 50px;
+	height: 50px;
 	background-color: rgb(137, 43, 226);
 	position: absolute;
 	transform-origin: center;
@@ -116,10 +123,25 @@ body {
 	width: 100%;
 	height: 100%;
 	position: relative;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
 }
 
 .ans-text {
 	padding: 10px;
+	font-size: 16px;
+}
+
+.img-ans-text {
+	background-color: white;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
 }
 
 *::before,
@@ -129,34 +151,49 @@ body {
 }
 
 .textonlybox {
-	width: auto;
+	width: 100%;
 	height: 50px;
 	display: flex;
 	align-items: center;
 	column-gap: 20px;
-	box-shadow: 0px 0px 0px 3px rgba(128, 128, 128, 0.38);
+	box-shadow: 0px 0px 0px 2px black;
 	padding: 35px 20px;
 	border-radius: 5px;
 }
 
+.textonlybox:hover {
+	box-shadow: 0px 0px 0px 2px blueviolet,
+		0px 20px 20px -10px rgba(23, 2, 43, 0.328);
+}
+
+/* .textonlybox:hover .text-checker {
+	border: 2px solid blueviolet;
+} */
+
 .text-checker {
 	width: 40px;
 	height: 40px;
-	border: 5px solid blueviolet;
+	border: 2px solid black;
 	border-radius: 5px;
 	overflow: hidden;
+	transform-origin: center;
+	background-position: center;
+	background-size: 80%;
+	background-repeat: no-repeat;
 }
 
 .text-checked {
-	background-color: rgb(137, 43, 226);
-	transform-origin: center;
-	background-position: center;
-	background-size: 90%;
-	background-repeat: no-repeat;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23FFFFFF' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E");
+	background-color: white;
+	border: 2px solid white;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='blueviolet' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='blueviolet' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E");
 }
 
-.content {
+.box-text {
+	transition-duration: 0ms;
+	transition-delay: 0ms;
+}
+
+.textcontainer-checked .content {
 	height: 100%;
 	display: flex;
 	align-items: center;
@@ -166,4 +203,28 @@ body {
 
 .content p {
 	font-size: 1em;
+}
+
+.textcontainer-checked {
+	background-color: blueviolet;
+	color: white;
+	box-shadow: 0px 0px 0px 2px blueviolet,
+		0px 20px 20px -10px rgba(23, 2, 43, 0.328);
+	transform: scale(1);
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transition: all 0.3s cubic-bezier(0.25, 0.1, 0.5, 1);
+	-webkit-transition: all 0.3s cubic-bezier(0.25, 0.1, 0.5, 1);
+	-moz-transition: all 0.3s cubic-bezier(0.25, 0.1, 0.5, 1);
+	-ms-transition: all 0.3s cubic-bezier(0.25, 0.1, 0.5, 1);
+	-o-transition: all 0.3s cubic-bezier(0.25, 0.1, 0.5, 1);
+}
+
+.tools-ans-checked {
+	background-color: blueviolet !important;
+	box-shadow: 0px 0px 0px 2px blueviolet,
+		0px 20px 20px -10px rgba(23, 2, 43, 0.328) !important;
+	color: white;
 }

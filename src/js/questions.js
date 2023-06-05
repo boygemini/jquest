@@ -5,24 +5,24 @@ const Questions = [
 		answers: [
 			{
 				text: "Software Engineer<button class='sfrontend end'>Frontend</button>",
-				img: "/jquest/src/imgs/mobilefront.jpg",
+				img: "/jquest/src/imgs/mobilefront.webp",
 			},
 			{
 				text: "Software Engineer<button class='sbackend end'>Backend</button>",
-				img: "/jquest/src/imgs/mobileback.jpeg",
+				img: "/jquest/src/imgs/mobileback.webp",
 			},
 			{
 				text: "Web Developer<button class='wfrontend end'>Frontend</button>",
-				img: "/jquest/src/imgs/webback.jpeg",
+				img: "/jquest/src/imgs/webback.webp",
 			},
 			{
 				text: "Web Developer<button class='wbackend end'>Backend</button>",
-				img: "/jquest/src/imgs/webfronted.jpg",
+				img: "/jquest/src/imgs/webfronted.webp",
 			},
-			{ text: "UI/UX Developer", img: "/jquest/src/imgs//ui.jpg" },
-			{ text: "Graphic Designer", img: "/jquest/src/imgs/graphics.jpg" },
-			{ text: "Data Scientist", img: "/jquest/src/imgs/data.jpg" },
-			{ text: "CyberSecurity Engineer", img: "/jquest/src/imgs/cyber.jpg" },
+			{ text: "UI/UX Developer", img: "/jquest/src/imgs//ui.webp" },
+			{ text: "Graphic Designer", img: "/jquest/src/imgs/graphics.webp" },
+			{ text: "Data Scientist", img: "/jquest/src/imgs/data.webp" },
+			{ text: "CyberSecurity Engineer", img: "/jquest/src/imgs/cyber.webp" },
 		],
 	},
 	{
@@ -275,19 +275,19 @@ const Questions = [
 			{ text: "Going for a run", img: "/jquest/src/imgs/run.jpeg" },
 			{
 				text: "Reading a book",
-				img: "/jquest/src/imgs/pexels-nappy-936133.jpg",
+				img: "/jquest/src/imgs/pexels-nappy-936133.webp",
 			},
 			{
 				text: "Playing video games",
-				img: "/jquest/src/imgs/pexels-tima-miroshnichenko-7046701.jpg",
+				img: "/jquest/src/imgs/pexels-tima-miroshnichenko-7046701.webp",
 			},
 			{
 				text: "Watching TV",
-				img: "/jquest/src/imgs/pexels-andrea-piacquadio-3811867.jpg",
+				img: "/jquest/src/imgs/pexels-andrea-piacquadio-3811867.webp",
 			},
 			{
 				text: "No, I don't unwind, I'm a workaholic",
-				img: "/jquest/src/imgs/pexels-andrea-piacquadio-3760810.jpg",
+				img: "/jquest/src/imgs/pexels-andrea-piacquadio-3760810.webp",
 			},
 		],
 	},
@@ -296,11 +296,11 @@ const Questions = [
 		answers: [
 			{
 				text: "Virtual Reality Headset",
-				img: "/jquest/src/imgs/pexels-artem-podrez-7773810.jpg",
+				img: "/jquest/src/imgs/pexels-artem-podrez-7773810.webp",
 			},
 			{
 				text: "Streaming Device",
-				img: "/jquest/src/imgs/Apple-TV-4K-hero-221018_big.jpg.large.jpg",
+				img: "/jquest/src/imgs/Apple-TV-4K-hero-221018_big.jpg.large.webp",
 			},
 			{
 				text: "Smart Speaker",
@@ -308,23 +308,23 @@ const Questions = [
 			},
 			{
 				text: "Wireless Headphones",
-				img: "/jquest/src/imgs/pexels-tima-miroshnichenko-5702391.jpg",
+				img: "/jquest/src/imgs/pexels-tima-miroshnichenko-5702391.webp",
 			},
 			{
 				text: "Gaming Console",
-				img: "/jquest/src/imgs/pexels-bruno-henrique-1666759.jpg",
+				img: "/jquest/src/imgs/pexels-bruno-henrique-1666759.webp",
 			},
 			{
 				text: "Fitness Tracker",
-				img: "/jquest/src/imgs/pexels-ketut-subiyanto-4429141.jpg",
+				img: "/jquest/src/imgs/pexels-ketut-subiyanto-4429141.webp",
 			},
 			{
 				text: "Smartwatch",
-				img: "/jquest/src/imgs/pexels-brett-sayles-1080745.jpg",
+				img: "/jquest/src/imgs/pexels-brett-sayles-1080745.webp",
 			},
 			{
 				text: "Tablet",
-				img: "/jquest/src/imgs/pexels-nubia-navarro-(nubikini)-1110355.jpg",
+				img: "/jquest/src/imgs/pexels-roberto-nickson-3082341.webp",
 			},
 			{ text: "Laptop", img: "/jquest/src/imgs/img-6368.webp" },
 			{
@@ -347,23 +347,27 @@ const Questions = [
 		],
 	},
 	{
-		question: "Which one of the following operating systems do you prefer ?",
+		question: "How do you manage your workload when facing tight deadlines ?",
 		answers: [
 			{
-				text: "Ubuntu",
-				img: "/jquest/src/imgs/Ubuntu-Logo-Transparent-PNG.png",
+				text: "Prioritize tasks and focus on high-impact activities",
+				img: "",
 			},
 			{
-				text: "Kali Linux",
-				img: "/jquest/src/imgs/Kali_Linux_2.0_wordmark.svg (1).png",
+				text: "Seek assistance or delegate tasks to colleagues",
+				img: "",
 			},
 			{
-				text: "MacOS",
-				img: "/jquest/src/imgs/del3rk1-177dea3e-01d6-4c32-bcfd-8927b7bc8364.png",
+				text: "Communicate with stakeholders to manage expectations",
+				img: "",
 			},
 			{
-				text: "Windows",
-				img: "/jquest/src/imgs/microsoft-windows-22-logo.png",
+				text: "Put in extra hours to meet the deadline",
+				img: "",
+			},
+			{
+				text: "I struggle to manage my workload during tight deadlines",
+				img: "",
 			},
 		],
 	},

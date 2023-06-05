@@ -124,7 +124,6 @@ let id, id2;
 function debounce(func, time) {
 	if (id) {
 		clearTimeout(id);
-		console.log("cleared");
 	}
 
 	id = setTimeout(func, time);
@@ -133,7 +132,6 @@ function debounce(func, time) {
 function debounce2(func, time) {
 	if (id2) {
 		clearTimeout(id2);
-		console.log("cleared");
 	}
 
 	id2 = setTimeout(func, time);
@@ -201,7 +199,6 @@ function animateErrorMessage(
 function showSending(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH) {
 	successText.innerText = MESSAGE;
 	const errorMessageNodeWidth = loaderDOM.offsetWidth;
-	console.log(errorMessageNodeWidth, loaderDOM);
 
 	// Remove the reove-error-message and add show-error-message class to show the error message
 	loaderDOM.classList.remove("remove");
@@ -339,8 +336,6 @@ function sendEmail(email) {
 
 		let y = "";
 		let xa = "";
-
-		console.log(nArr);
 
 		const see = (i) => {
 			if (i === 2 || i === 3) {
@@ -544,8 +539,6 @@ function gotoNextStep(step, question) {
 
 	// Animate progress forwards
 	animateProgress(stepCounter);
-
-	// console.log("Forward > ", `Step : ${step}`, `StepCounter : ${stepCounter}`);
 }
 
 function gotoPreviousStep(step, question) {
@@ -581,8 +574,6 @@ function gotoPreviousStep(step, question) {
 		// Display Answers
 		displayAnswersInteractively(answersField, step, question);
 	}
-
-	// console.log("Backward > ", `Step : ${step}`, `StepCounter : ${stepCounter}`);
 }
 
 function markAlreadyChosenSelections(step) {
@@ -592,7 +583,21 @@ function markAlreadyChosenSelections(step) {
 	answers.forEach((ans) => {
 		chosen.filter((ch) => {
 			if (ans.dataset.id === ch) {
-				ans.classList.add("picked");
+				if (ans.classList.value.includes("textonlybox")) {
+					addCheckAnimationForTextBoxOnly(ans.children[0], ans);
+				}
+
+				if (ans.classList.value.includes("text-imgbox")) {
+					addCheckAnimationForImgTextBox(ans.children[0], ans);
+				}
+
+				if (ans.classList.value.includes("bare-ans")) {
+					addCheckAnimationForIconAndText(ans.children[0], ans);
+				}
+
+				if (ans.classList.value.includes("two-ans")) {
+					addCheckAnimationForTwoAns(ans.children[0], ans);
+				}
 			}
 		});
 	});
@@ -628,30 +633,25 @@ function displayAnswersInteractively(answersField, step, question) {
 				case 1:
 				case 9:
 				case 10:
-				case 12:
 					answersField.innerHTML += `
 					<div class="text-imgbox ans-box" id="ss" data-answer="${ans.text}" data-id="${index}">
 						<div class="checker2" data-answer="${ans.text}" data-id="${index}" ></div>
-						<div class="image-container2" data-answer="${ans.text}" data-id="${index}">
-							<div class="shade" data-answer="${ans.text}" data-id="${index}"></div>
+						<div class="image-container2" style="background-image:url(${ans.img})" data-answer="${ans.text}" data-id="${index}">
+							<div class="shade" data-answer="${ans.text}" data-id="${index}">
+								<h2 class="ans-text img-ans-text"  data-answer="${ans.text}" data-id="${index}">${ans.text}</</h2>
+							</div>
 						</div>
-						<h2 class="ans-text"  data-answer="${ans.text}" data-id="${index}">${ans.text}</</h2>
+
 					</div>`;
 					break;
 
 				// 2-Options Only
 				case 11:
 					answersField.classList.add("ans-with-2options");
-					answersField.innerHTML += `<div class="checkbox ans-box" data-answer="${ans.text}" data-id="${index}">
-						<label class="checkbox-wrapper" data-answer="${ans.text}" data-id="${index}">
-							<input type="checkbox" class="checkbox-input" data-answer="${ans.text}" data-id="${index}">
-							<span class="checkbox-tile" data-answer="${ans.text}" data-id="${index}">
-								<div class="two-box" data-answer="${ans.text}" data-id="${index}">
-									<img src="${ans.img}" data-answer="${ans.text}" data-id="${index}"/>
-									<p data-answer="${ans.text}" data-id="${index}">${ans.text}</p>
-								</div>
-							</span>
-						</label>
+					answersField.innerHTML += `<div class="two-ans ans-box" id="two-ans-box" data-answer="${ans.text}" data-id="${index}">
+					<div class="tools-ans-checker"></div>
+					<div id ="two-ans-logo-disp" style='background-image:url("${ans.img}")'  class="ans-logo" data-answer="${ans.text}" data-id="${index}"></div>
+						<p class="textt" data-answer="${ans.text}" data-id="${index}"> ${ans.text}</p>
 					</div>`;
 					break;
 
@@ -670,6 +670,7 @@ function displayAnswersInteractively(answersField, step, question) {
 				case 18:
 				case 19:
 				case 20:
+				case 12:
 					answersField.innerHTML += `
 					<div class="textonlybox ans-box" data-answer="${ans.text}" data-id="${index}">
 						<div class="text-checker" data-answer="${ans.text}" data-id="${index}"></div>
@@ -683,6 +684,7 @@ function displayAnswersInteractively(answersField, step, question) {
 				case 3:
 					answersField.innerHTML += `
 					<div class="bare-ans ans-box" data-answer="${ans.text}" data-id="${index}">
+					<div class="tools-ans-checker"></div>
 					<div id ="logo-disp" style='background-image:url("${ans.img}")'  class="ans-logo" data-answer="${ans.text}" data-id="${index}"></div>
 						<p data-answer="${ans.text}" data-id="${index}"> ${ans.text}</p>
 					</div>`;
@@ -698,13 +700,15 @@ function displayAnswersInteractively(answersField, step, question) {
 				case 1:
 				case 9:
 				case 10:
-				case 12:
 					answersField.classList.add("eight-ans-grid");
 					break;
 
 				case 3:
+					answersField.classList.add("icon-text-ans");
+					break;
+
 				case 13:
-					answersField.classList.add("vbare-ans");
+					answersField.classList.add("continous-two");
 					break;
 
 				case 4:
@@ -717,17 +721,10 @@ function displayAnswersInteractively(answersField, step, question) {
 					answersField.classList.add("ans-with-4ans-textonly");
 					break;
 
-				// case 11:
-				// 	const allBox1 = document.querySelectorAll(".ans-box");
-				// 	allBox1.forEach((box) => {
-				// 		console.log(box);
-				// 		box.classList.add("two-ans-box");
-				// 	});
-				// 	break;
-
 				case 16:
 				case 17:
 				case 18:
+				case 12:
 					const allBox2 = document.querySelectorAll(".ans-box");
 					allBox2.forEach((box) => box.classList.add("five-texts-ans"));
 					answersField.classList.add("ans-with-5option-textonly");
@@ -745,7 +742,7 @@ function displayAnswersInteractively(answersField, step, question) {
 
 			// Handling the Answer clicks
 			handleAnswers(step);
-		}, 10);
+		}, 0);
 	}
 
 	if (question[step].answers[0].text) {
@@ -756,12 +753,9 @@ function displayAnswersInteractively(answersField, step, question) {
 	}
 
 	if (!question[step].answers[0].text) {
-		console.log(Object.values(REVIEW));
 		let primaryAreaOfExpertise = parseInt(Object.keys(REVIEW[1])[0]);
 
-		// console.log(question[step].answers[0].text);
 		function returnMatchingAnswers(aIndex) {
-			console.log(question[step].answers[aIndex]);
 			question[step].answers[aIndex].forEach((ans, index) => {
 				display(index, ans);
 			});
@@ -794,25 +788,61 @@ function displayAnswersInteractively(answersField, step, question) {
 	}
 }
 
-const controlCheckAnimationForImgTextBox = (checkerDir, containerDir) => {
+const addCheckAnimationForImgTextBox = (checkerDir, containerDir) => {
 	let checker = checkerDir;
 	let container = containerDir;
-	checker.classList.toggle("checked2");
+	checker.classList.add("checked2");
 	// container.classList.toggle("border");
 };
 
-const controlCheckAnimationForTextBoxOnly = (checkDir) => {
-	let checker = checkDir;
-	checker.classList.toggle("checked");
+const removeCheckAnimationForImgTextBox = (checkerDir, containerDir) => {
+	let checker = checkerDir;
+	let container = containerDir;
+	checker.classList.remove("checked2");
 };
 
-function addClass(e) {
-	let boxType = () => {
-		let target = e.target;
-		if (target.classList.value.includes()) {
-		}
-	};
+const addCheckAnimationForTextBoxOnly = (checkDir, containerDir) => {
+	let checker = checkDir;
+	let container = containerDir;
+	checker.classList.add("text-checked");
+	container.classList.add("textcontainer-checked");
+};
 
+const removeCheckAnimationForTextBoxOnly = (checkDir, containerDir) => {
+	let checker = checkDir;
+	let container = containerDir;
+	checker.classList.remove("text-checked");
+	container.classList.remove("textcontainer-checked");
+};
+
+const addCheckAnimationForIconAndText = (checkDir, containerDir) => {
+	let checker = checkDir;
+	let container = containerDir;
+	checker.classList.add("opacity");
+	container.classList.add("tools-ans-checked");
+};
+
+const removeCheckAnimationForIconAndText = (checkDir, containerDir) => {
+	let checker = checkDir;
+	let container = containerDir;
+	checker.classList.remove("opacity");
+	container.classList.remove("tools-ans-checked");
+};
+
+const addCheckAnimationForTwoAns = (checkDir, containerDir) => {
+	let checker = checkDir;
+	let container = containerDir;
+	checker.classList.add("opacity");
+	container.classList.add("two-ans-container-checked");
+};
+
+const removeCheckAnimationForTwoAns = (checkDir, containerDir) => {
+	let checker = checkDir;
+	let container = containerDir;
+	checker.classList.remove("opacity");
+	container.classList.remove("two-ans-container-checked");
+};
+function addClass(e) {
 	let boxlist = [
 		e.target,
 		e.target.parentElement,
@@ -822,44 +852,54 @@ function addClass(e) {
 
 	for (let i in boxlist) {
 		if (boxlist[i].classList.value.includes("text-imgbox")) {
-			if (e.target.classList.value.includes("text-imgbox"))
-				controlCheckAnimationForImgTextBox(e.target.children[0], e.target);
-
-			if (e.target.classList.value.includes("checker2"))
-				controlCheckAnimationForImgTextBox(e.target, e.target.offsetParent);
-
-			if (e.target.classList.value.includes("image-container2"))
-				controlCheckAnimationForImgTextBox(
-					e.target.offsetParent.children[0],
-					e.target.offsetParent
-				);
-
-			if (e.target.classList.value.includes("shade"))
-				controlCheckAnimationForImgTextBox(
-					e.target.parentElement.offsetParent.children[0],
-					e.target.offsetParent.offsetParent
-				);
-			return;
+			addCheckAnimationForImgTextBox(boxlist[i].children[0], boxlist[i]);
+			break;
 		}
 
 		if (boxlist[i].classList.value.includes("textonlybox")) {
-			if (e.target.classList.value.includes("textonlybox")) {
-				controlCheckAnimationForTextBoxOnly(e.target.children[0]);
-			}
+			addCheckAnimationForTextBoxOnly(boxlist[i].children[0], boxlist[i]);
+			break;
+		}
 
-			if (e.target.parentElement.classList.value.includes("textonlybox")) {
-				controlCheckAnimationForTextBoxOnly(e.target.parentElement.children[0]);
-			}
+		if (boxlist[i].classList.value.includes("bare-ans")) {
+			addCheckAnimationForIconAndText(boxlist[i].children[0], boxlist[i]);
+			break;
+		}
 
-			if (
-				e.target.parentElement.parentElement.classList.value.includes(
-					"textonlybox"
-				)
-			) {
-				controlCheckAnimationForTextBoxOnly(
-					e.target.parentElement.parentElement.children[0]
-				);
-			}
+		if (boxlist[i].classList.value.includes("two-ans")) {
+			addCheckAnimationForTwoAns(boxlist[i].children[0], boxlist[i]);
+			break;
+		}
+	}
+}
+
+function removeClass(e) {
+	let boxlist = [
+		e.target,
+		e.target.parentElement,
+		e.target.parentElement.parentElement,
+		e.target.parentElement.parentElement.parentElement,
+	];
+
+	for (let i in boxlist) {
+		if (boxlist[i].classList.value.includes("text-imgbox")) {
+			removeCheckAnimationForImgTextBox(boxlist[i].children[0], boxlist[i]);
+			break;
+		}
+
+		if (boxlist[i].classList.value.includes("textonlybox")) {
+			removeCheckAnimationForTextBoxOnly(boxlist[i].children[0], boxlist[i]);
+			break;
+		}
+
+		if (boxlist[i].classList.value.includes("bare-ans")) {
+			removeCheckAnimationForIconAndText(boxlist[i].children[0], boxlist[i]);
+			break;
+		}
+
+		if (boxlist[i].classList.value.includes("two-ans")) {
+			removeCheckAnimationForTwoAns(boxlist[i].children[0], boxlist[i]);
+			break;
 		}
 	}
 }
@@ -872,7 +912,23 @@ function markAndSaveSelections(bool, answers, step) {
 				let pickedAnswer = e.target; // To get the ans ID and text
 
 				answers.forEach((ans) => {
-					ans.children[0].classList.remove("checked2");
+					if (ans.classList.value.includes("text-imgbox")) {
+						removeCheckAnimationForImgTextBox(ans.children[0], ans);
+						return;
+					}
+
+					if (ans.classList.value.includes("textonlybox")) {
+						removeCheckAnimationForTextBoxOnly(ans.children[0], ans);
+						return;
+					}
+
+					if (ans.classList.value.includes("bare-ans")) {
+						removeCheckAnimationForIconAndText(ans.children[0], ans);
+					}
+
+					if (ans.classList.value.includes("two-ans")) {
+						removeCheckAnimationForTwoAns(ans.children[0], ans);
+					}
 					// ans.classList.remove("border");
 				});
 
@@ -897,19 +953,59 @@ function markAndSaveSelections(bool, answers, step) {
 		selectionChoice.innerText = "You can select as many as you wish.";
 		answers.forEach((ans) => {
 			ans.addEventListener("click", (e) => {
-				let pickedAnswer = e.target || e.target.parentElement;
+				let pickedAnswer = [
+					e.target,
+					e.target.parentElement,
+					e.target.parentElement.parentElement,
+					e.target.parentElement.parentElement.parentElement,
+				];
 
-				if (pickedAnswer.classList.contains("picked")) {
-					pickedAnswer.classList.remove("picked");
-					removeAnswerToPersonObject(pickedAnswer.dataset.id, step);
-				} else {
-					addClass(e);
-					addAnswerToPersonObject(
-						bool,
-						pickedAnswer.dataset.id,
-						pickedAnswer.dataset.answer,
-						step
-					);
+				for (let i in pickedAnswer) {
+					if (
+						(pickedAnswer[i].classList.value.includes("text-imgbox") &&
+							pickedAnswer[i].children[0].classList.value.includes(
+								"checked2"
+							)) ||
+						(pickedAnswer[i].classList.value.includes("textonlybox") &&
+							pickedAnswer[i].children[0].classList.value.includes(
+								"text-checked"
+							)) ||
+						(pickedAnswer[i].classList.value.includes("bare-ans") &&
+							pickedAnswer[i].children[0].classList.value.includes(
+								"opacity"
+							)) ||
+						(pickedAnswer[i].classList.value.includes("two-ans") &&
+							pickedAnswer[i].children[0].classList.value.includes("opacity"))
+					) {
+						removeClass(e);
+						removeAnswerToPersonObject(pickedAnswer[i].dataset.id, step);
+						break;
+					}
+
+					if (
+						(pickedAnswer[i].classList.value.includes("bare-ans") &&
+							!pickedAnswer[i].children[0].classList.value.includes(
+								"opacity"
+							)) ||
+						(pickedAnswer[i].classList.value.includes("textonlybox") &&
+							!pickedAnswer[i].children[0].classList.value.includes(
+								"text-checked"
+							)) ||
+						(pickedAnswer[i].classList.value.includes("text-imgbox") &&
+							!pickedAnswer[i].children[0].classList.value.includes(
+								"checked2"
+							)) ||
+						(pickedAnswer[i].classList.value.includes("two-ans") &&
+							pickedAnswer[i].children[0].classList.value.includes("opacity"))
+					) {
+						addClass(e);
+						addAnswerToPersonObject(
+							bool,
+							pickedAnswer[i].dataset.id,
+							pickedAnswer[i].dataset.answer,
+							step
+						);
+					}
 				}
 			});
 		});
@@ -1001,7 +1097,6 @@ BackButton.addEventListener("click", (e) => {
 });
 
 function keydownHandler(e) {
-	console.log(stepCounter, Object.values(REVIEW).length);
 	if (stepCounter <= Object.values(REVIEW).length) {
 		if (e.key === "Enter" || e.key === "ArrowRight") {
 			gotoNextStep(stepCounter, Questions);
