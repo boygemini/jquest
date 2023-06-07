@@ -22,6 +22,24 @@ const userEmail = document.getElementById("email");
 const userEmail2 = document.querySelector(".email");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 
+console.log(window);
+if (window.screen.availWidth <= 480) {
+	// let circlePath = document.getElementById("circlePath");
+	// progressSVG.cx.baseVal.value = 50;
+	// progressSVG.cy.baseVal.value = 50;
+	// progressSVG.r.baseVal.value = 40;
+	// circlePath.cx.baseVal.value = 50;
+	// circlePath.cy.baseVal.value = 50;
+	// circlePath.r.baseVal.value = 40;
+	// progress.x.baseVal[0].value = 50;
+	// progress.y.baseVal[0].value = 50;
+	currentStage.x.baseVal[0].value = 100;
+	currentStage.y.baseVal[0].value = 145;
+	ContinueButton.classList.add("widen");
+
+	console.log(progress.x);
+}
+
 let REVIEW = new Object({
 	1: {},
 	2: {},
@@ -445,12 +463,13 @@ function sendEmail(email) {
 function gotoNextStep(step, question) {
 	const answersField = document.querySelector(".answer-field");
 	const questionElement = document.querySelector(".Question");
-
+	console.log("Next", step);
 	// Proceed to QA if email address field is filled
 	if (step === 0) {
 		starterPage.style.display = "flex";
 		startQuestion.style.display = "none";
 		BackButton.style.display = "none";
+		ContinueButton.classList.add("widen");
 
 		// Save User's email is inputed
 		let emailIsEmpty = userEmail.value.trim().length === 0;
@@ -503,6 +522,7 @@ function gotoNextStep(step, question) {
 		thankYou.style.display = "none";
 		ContinueButton.style.display = "flex";
 		BackButton.style.display = "flex";
+		ContinueButton.classList.remove("widen");
 
 		// Show error message is no option is selected
 		try {
@@ -544,6 +564,9 @@ function gotoNextStep(step, question) {
 function gotoPreviousStep(step, question) {
 	const answersField = document.querySelector(".answer-field");
 	const questionElement = document.querySelector(".Question");
+	setTimeout(() => {
+		console.log("Prev", step);
+	}, 1000);
 
 	step--;
 	if (step <= 0) {
@@ -560,6 +583,7 @@ function gotoPreviousStep(step, question) {
 		thankYou.style.display = "none";
 		starterPage.style.display = "flex";
 		BackButton.style.display = "none";
+		ContinueButton.classList.add("widen");
 		return;
 	}
 
@@ -1113,5 +1137,5 @@ function keydownHandler(e) {
 window.addEventListener("keydown", keydownHandler);
 
 // gotoNextStep(0, Questions);
-animateProgress(0);
+// animateProgress(0);
 export default REVIEW;

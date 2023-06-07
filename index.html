@@ -46,15 +46,16 @@
 			<p class="error-text"></p>
 		</div>
 
-		<svg id="circle" width="200" height="200">
+		<svg id="circle" viewBox="0 0 200 200">
 			<circle
+				id="circlePath"
 				cx="100"
 				cy="100"
 				r="80"
 				stroke="#ddd"
 				stroke-width="5"
 				fill="none"
-			/>
+			></circle>
 			<circle
 				class="progress"
 				cx="100"
@@ -67,7 +68,7 @@
 				stroke-dashoffset="502"
 				transform="rotate(-90, 100, 100)"
 				stroke-linecap="round"
-			/>
+			></circle>
 			<text class="percentage" x="100" y="110" text-anchor="middle" fill="#555">
 				0%
 			</text>
