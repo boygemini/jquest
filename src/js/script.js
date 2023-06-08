@@ -7,6 +7,7 @@ const textFieldLabels = document.querySelectorAll("label");
 const selectionChoice = document.querySelector(".selection-rule");
 const ContinueButton = document.getElementById("continue");
 const BackButton = document.querySelector(".back-button");
+const svgCircle = document.getElementById("circle");
 const progressSVG = document.querySelector(".progress");
 const progress = document.querySelector(".percentage");
 const currentStage = document.querySelector(".current-stage");
@@ -22,7 +23,7 @@ const userEmail = document.getElementById("email");
 const userEmail2 = document.querySelector(".email");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 
-console.log(window);
+svgCircle.style.opacity = "0";
 if (window.screen.availWidth <= 480) {
 	// let circlePath = document.getElementById("circlePath");
 	// progressSVG.cx.baseVal.value = 50;
@@ -493,6 +494,7 @@ function gotoNextStep(step, question) {
 		startQuestion.style.display = "none";
 		BackButton.style.display = "none";
 		ContinueButton.classList.add("widen");
+		svgCircle.style.opacity = "0";
 
 		// Save User's email is inputed
 		let emailIsEmpty = userEmail.value.trim().length === 0;
@@ -546,6 +548,7 @@ function gotoNextStep(step, question) {
 		ContinueButton.style.display = "flex";
 		BackButton.style.display = "flex";
 		ContinueButton.classList.remove("widen");
+		svgCircle.style.opacity = "1";
 
 		// Show error message is no option is selected
 		try {
@@ -607,11 +610,13 @@ function gotoPreviousStep(step, question) {
 		starterPage.style.display = "flex";
 		BackButton.style.display = "none";
 		ContinueButton.classList.add("widen");
+		svgCircle.style.opacity = "0";
 		return;
 	}
 
 	if (step > 0) {
 		ContinueButton.style.display = "flex";
+		svgCircle.style.opacity = "1";
 
 		// Display Question
 		questionElement.innerHTML =
