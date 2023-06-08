@@ -10,6 +10,11 @@
 	*/ /*font-weight: 400;
 	*/
 	outline: none;
+	transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
 }
 
 :root {
@@ -1084,6 +1089,10 @@ footer {
 		font-size: 0.55em;
 	}
 
+	.back-button {
+		color: #cc5500;
+	}
+
 	#email {
 		width: 100%;
 		margin: auto;
@@ -1102,6 +1111,7 @@ footer {
 
 	.svg-container {
 		padding: 20px;
+		position: relative;
 	}
 
 	.progress {
@@ -1110,7 +1120,9 @@ footer {
 	}
 
 	.show-error-message,
-	.show-reset-message {
+	.show-reset-message,
+	.show,
+	.loader {
 		top: 0px;
 		width: 100% !important;
 		border-radius: 0;
@@ -1119,6 +1131,7 @@ footer {
 		-ms-border-radius: 0;
 		-o-border-radius: 0;
 		opacity: 1;
+		z-index: 768903876428934762839437568239475464823947568923479;
 	}
 
 	.error-text,
@@ -1129,7 +1142,8 @@ footer {
 	}
 
 	.remove-error-message,
-	.remove-reset-message {
+	.remove-reset-message,
+	.remove {
 		top: -6rem;
 		opacity: 1;
 		border-radius: 0;

@@ -45,48 +45,40 @@
 			<p class="error-text"></p>
 		</div>
 
-		<div class="svg-container">
-			<svg id="circle" viewBox="0 0 200 200">
-				<circle
-					id="circlePath"
-					cx="100"
-					cy="100"
-					r="80"
-					stroke="#ddd"
-					stroke-width="5"
-					fill="none"
-				></circle>
-				<circle
-					class="progress"
-					cx="100"
-					cy="100"
-					r="80"
-					stroke="#ff8800"
-					stroke-width="5"
-					fill="none"
-					stroke-dasharray="502"
-					stroke-dashoffset="502"
-					transform="rotate(-90, 100, 100)"
-					stroke-linecap="round"
-				></circle>
-				<text
-					class="percentage"
-					x="100"
-					y="110"
-					text-anchor="middle"
-					fill="#555"
-				>
-					0%
-				</text>
-				<text
-					class="current-stage"
-					x="100"
-					y="140"
-					text-anchor="middle"
-					fill="#555"
-				></text>
-			</svg>
-		</div>
+		<svg id="circle" viewBox="0 0 200 200">
+			<circle
+				id="circlePath"
+				cx="100"
+				cy="100"
+				r="80"
+				stroke="#ddd"
+				stroke-width="5"
+				fill="none"
+			></circle>
+			<circle
+				class="progress"
+				cx="100"
+				cy="100"
+				r="80"
+				stroke="#ff8800"
+				stroke-width="5"
+				fill="none"
+				stroke-dasharray="502"
+				stroke-dashoffset="502"
+				transform="rotate(-90, 100, 100)"
+				stroke-linecap="round"
+			></circle>
+			<text class="percentage" x="100" y="110" text-anchor="middle" fill="#555">
+				0%
+			</text>
+			<text
+				class="current-stage"
+				x="100"
+				y="140"
+				text-anchor="middle"
+				fill="#555"
+			></text>
+		</svg>
 
 		<!-- <button onclick="debounce()" id="btn">Click</button> -->
 		<div class="main-Q-container">
