@@ -1161,7 +1161,7 @@ footer {
 	.loader {
 		margin: auto;
 		top: 10px;
-		width: 90% !important;
+		width: 95% !important;
 		border-radius: 5px;
 		-webkit-border-radius: 5px;
 		-moz-border-radius: 5px;
@@ -1193,7 +1193,7 @@ footer {
 
 	.error-message {
 		margin: auto;
-		width: 90% !important;
+		width: 95% !important;
 		border: 0;
 	}
 
