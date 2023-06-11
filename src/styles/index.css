@@ -1159,6 +1159,7 @@ footer {
 	.show-reset-message,
 	.show,
 	.loader {
+		margin: auto;
 		top: 10px;
 		width: 90% !important;
 		border-radius: 5px;
@@ -1180,6 +1181,7 @@ footer {
 	.remove-error-message,
 	.remove-reset-message,
 	.remove {
+		margin: auto;
 		top: -9rem;
 		opacity: 1;
 		border-radius: 0;
@@ -1190,6 +1192,7 @@ footer {
 	}
 
 	.error-message {
+		margin: auto;
 		width: 90% !important;
 		border: 0;
 	}
