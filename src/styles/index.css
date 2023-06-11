@@ -1160,7 +1160,7 @@ footer {
 	.show,
 	.loader {
 		top: 10px;
-		width: 95% !important;
+		width: 90% !important;
 		border-radius: 5px;
 		-webkit-border-radius: 5px;
 		-moz-border-radius: 5px;
@@ -1190,7 +1190,7 @@ footer {
 	}
 
 	.error-message {
-		width: 95% !important;
+		width: 90% !important;
 		border: 0;
 	}
 
