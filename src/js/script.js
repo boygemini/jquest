@@ -23,7 +23,14 @@ const userEmail = document.getElementById("email");
 const userEmail2 = document.querySelector(".email");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 
-svgCircle.style.opacity = "0";
+const showCircleSVG = (bool) => {
+	bool
+		? svgCircle.classList.add("showCircle")
+		: svgCircle.classList.remove("showCircle");
+};
+
+showCircleSVG(false);
+
 if (window.screen.availWidth <= 480) {
 	// let circlePath = document.getElementById("circlePath");
 	// progressSVG.cx.baseVal.value = 50;
@@ -447,40 +454,40 @@ function sendEmail(email) {
 			showSending("Submitting Form...", 20);
 		}, 100);
 
-		// let htmlTemplate = {
-		// 	my_html: html,
-		// 	user: email,
-		// };
+		let htmlTemplate = {
+			my_html: html,
+			user: email,
+		};
 
-		// debounce2(() => {
-		// 	emailjs
-		// 		.send(
-		// 			"service_pdhenpp",
-		// 			"template_ycrd2hk",
-		// 			htmlTemplate,
-		// 			"ahF420mDtaLElyWqn"
-		// 		)
-		// 		.then(
-		// 			function (response) {
-		// 				starterPage.style.display = "none";
-		// 				startQuestion.style.display = "none";
-		// 				ContinueButton.style.display = "none";
-		// 				thankYou.style.display = "flex";
-		// 				showSent("Form Submitted Successfully", 20, 3000);
-		// 			},
-		// 			function (error) {
-		// 				removeMessage();
-		// 				animateErrorMessage(
-		// 					10000,
-		// 					600,
-		// 					20,
-		// 					`An Error Occurred : ${error.text}`,
-		// 					"show-error-message",
-		// 					"remove-error-message"
-		// 				);
-		// 			}
-		// 		);
-		// }, 2000);
+		debounce2(() => {
+			showSent("Form Submitted Successfully", 20, 7000);
+			emailjs.send(
+				"service_pdhenpp",
+				"template_ycrd2hk",
+				htmlTemplate,
+				"ahF420mDtaLElyWqn"
+			);
+			// .then(
+			// 	function (response) {
+			// 		starterPage.style.display = "none";
+			// 		startQuestion.style.display = "none";
+			// 		ContinueButton.style.display = "none";
+			// 		thankYou.style.display = "flex";
+			// 		// showSent("Form Submitted Successfully", 20, 3000);
+			// 	},
+			// 	function (error) {
+			// 		removeMessage();
+			// 		animateErrorMessage(
+			// 			10000,
+			// 			600,
+			// 			20,
+			// 			`An Error Occurred : ${error.text}`,
+			// 			"show-error-message",
+			// 			"remove-error-message"
+			// 		);
+			// 	}
+			// );
+		}, 2000);
 	}
 }
 
@@ -494,7 +501,7 @@ function gotoNextStep(step, question) {
 		startQuestion.style.display = "none";
 		BackButton.style.display = "none";
 		ContinueButton.classList.add("widen");
-		svgCircle.style.opacity = "0";
+		showCircleSVG(false);
 
 		// Save User's email is inputed
 		let emailIsEmpty = userEmail.value.trim().length === 0;
@@ -548,7 +555,7 @@ function gotoNextStep(step, question) {
 		ContinueButton.style.display = "flex";
 		BackButton.style.display = "flex";
 		ContinueButton.classList.remove("widen");
-		svgCircle.style.opacity = "1";
+		showCircleSVG(true);
 
 		// Show error message is no option is selected
 		try {
@@ -610,13 +617,13 @@ function gotoPreviousStep(step, question) {
 		starterPage.style.display = "flex";
 		BackButton.style.display = "none";
 		ContinueButton.classList.add("widen");
-		svgCircle.style.opacity = "0";
+		showCircleSVG(false);
 		return;
 	}
 
 	if (step > 0) {
 		ContinueButton.style.display = "flex";
-		svgCircle.style.opacity = "1";
+		showCircleSVG(true);
 
 		// Display Question
 		questionElement.innerHTML =

@@ -33,7 +33,6 @@
 	-moz-border-radius: 100%;
 	-ms-border-radius: 100%;
 	-o-border-radius: 100%;
-	opacity: 0;
 }
 
 .progress {
@@ -482,10 +481,6 @@ footer {
 .text-checker {
 	width: 40px;
 	height: 40px;
-	min-width: 40px;
-	min-height: 40px;
-	max-width: 40px;
-	max-height: 40px;
 }
 
 .tools-ans-checker {
@@ -1090,6 +1085,23 @@ footer {
 		font-size: 0.55em;
 	}
 
+	.textonlybox {
+		padding: 30px 20px;
+		box-shadow: 0px 0px 0px 1px black;
+		background-color: whitesmoke;
+	}
+
+	.text-checker {
+		width: 37px !important;
+		height: 37px !important;
+		min-width: 37px !important;
+		min-height: 37px !important;
+		max-width: 37px !important;
+		max-height: 37px !important;
+		box-shadow: 0px 0px 0px 0px black !important;
+		border: 1px solid black;
+	}
+
 	.back-button {
 		color: #cc5500;
 	}
@@ -1102,12 +1114,30 @@ footer {
 	#circle {
 		width: 100px;
 		height: 100px;
-		box-shadow: 0px 0px 0px 3px blueviolet;
+		box-shadow: 0px 0px 30px -20px rgb(9, 9, 9),
+			0px 0px 30px -15px rgba(14, 3, 39, 0.535);
 		border-radius: 100%;
 		-webkit-border-radius: 100%;
 		-moz-border-radius: 100%;
 		-ms-border-radius: 100%;
 		-o-border-radius: 100%;
+		transform: scale(0);
+		-webkit-transform: scale(0);
+		-moz-transform: scale(0);
+		-ms-transform: scale(0);
+		-o-transform: scale(0);
+	}
+
+	.progress {
+		stroke-width: 10px;
+	}
+
+	.showCircle {
+		transform: scale(1) !important;
+		-webkit-transform: scale(1) !important;
+		-moz-transform: scale(1) !important;
+		-ms-transform: scale(1) !important;
+		-o-transform: scale(1) !important;
 	}
 
 	.svg-container {
@@ -1124,13 +1154,13 @@ footer {
 	.show-reset-message,
 	.show,
 	.loader {
-		top: 0px;
-		width: 100% !important;
-		border-radius: 0;
-		-webkit-border-radius: 0;
-		-moz-border-radius: 0;
-		-ms-border-radius: 0;
-		-o-border-radius: 0;
+		top: 10px;
+		width: 95% !important;
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-ms-border-radius: 5px;
+		-o-border-radius: 5px;
 		opacity: 1;
 		z-index: 768903876428934762839437568239475464823947568923479;
 	}
@@ -1155,7 +1185,7 @@ footer {
 	}
 
 	.error-message {
-		width: 100%;
+		width: 95% !important;
 		border: 0;
 	}
 
@@ -1193,6 +1223,22 @@ footer {
 
 	.q-container {
 		margin-top: 35px;
+	}
+
+	.textonlybox {
+		padding: 15px;
+		box-shadow: 0px 0px 0px 1px black;
+		background-color: whitesmoke;
+	}
+
+	.text-checker {
+		width: 30px !important;
+		height: 30px !important;
+		min-width: 30px !important;
+		min-height: 30px !important;
+		max-width: 30px !important;
+		max-height: 30px !important;
+		box-shadow: 0px 0px 0px -12px black !important;
 	}
 }
 
