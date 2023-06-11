@@ -33,6 +33,19 @@
 	-moz-border-radius: 100%;
 	-ms-border-radius: 100%;
 	-o-border-radius: 100%;
+	transform: scale(0);
+	-webkit-transform: scale(0);
+	-moz-transform: scale(0);
+	-ms-transform: scale(0);
+	-o-transform: scale(0);
+}
+
+.showCircle {
+	transform: scale(1) !important;
+	-webkit-transform: scale(1) !important;
+	-moz-transform: scale(1) !important;
+	-ms-transform: scale(1) !important;
+	-o-transform: scale(1) !important;
 }
 
 .progress {
@@ -1086,9 +1099,10 @@ footer {
 	}
 
 	.textonlybox {
-		padding: 30px 20px;
+		padding: 10px 20px;
 		box-shadow: 0px 0px 0px 1px black;
 		background-color: whitesmoke;
+		height: auto;
 	}
 
 	.text-checker {
@@ -1099,7 +1113,6 @@ footer {
 		max-width: 37px !important;
 		max-height: 37px !important;
 		box-shadow: 0px 0px 0px 0px black !important;
-		border: 1px solid black;
 	}
 
 	.back-button {
@@ -1130,14 +1143,6 @@ footer {
 
 	.progress {
 		stroke-width: 10px;
-	}
-
-	.showCircle {
-		transform: scale(1) !important;
-		-webkit-transform: scale(1) !important;
-		-moz-transform: scale(1) !important;
-		-ms-transform: scale(1) !important;
-		-o-transform: scale(1) !important;
 	}
 
 	.svg-container {
@@ -1175,7 +1180,7 @@ footer {
 	.remove-error-message,
 	.remove-reset-message,
 	.remove {
-		top: -6rem;
+		top: -9rem;
 		opacity: 1;
 		border-radius: 0;
 		-webkit-border-radius: 0;
