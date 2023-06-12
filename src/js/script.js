@@ -471,7 +471,6 @@ function sendEmail(email) {
 		};
 
 		debounce2(() => {
-			showSent("Form Submitted Successfully", 20, 7000);
 			emailjs
 				.send(
 					"service_pdhenpp",
@@ -485,7 +484,7 @@ function sendEmail(email) {
 						startQuestion.style.display = "none";
 						ContinueButton.style.display = "none";
 						thankYou.style.display = "flex";
-						// showSent("Form Submitted Successfully", 20, 3000);
+						showSent("Form Submitted Successfully", 20, 5000);
 					},
 					function (error) {
 						removeMessage();
