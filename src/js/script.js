@@ -1153,10 +1153,9 @@ const buttonDebounce = (func) => {
 };
 
 // Continue button
-ContinueButton.addEventListener(
-	"click",
-	buttonDebounce(gotoNextStep(stepCounter, Questions))
-);
+ContinueButton.addEventListener("click", (e) => {
+	gotoNextStep(stepCounter, Questions);
+});
 
 BackButton.addEventListener("click", (e) => {
 	gotoPreviousStep(stepCounter, Questions);
