@@ -1588,11 +1588,11 @@ footer {
 		margin: auto;
 		border: 0;
 	}
-}
 
-.error-text,
-.sent-message {
-	opacity: 0;
-	overflow: hidden;
-	white-space: nowrap;
+	.error-text,
+	.sent-message {
+		opacity: 0;
+		overflow: hidden;
+		white-space: nowrap;
+	}
 }
