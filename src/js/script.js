@@ -145,7 +145,7 @@ if (textInputFields[0].value.length > 0) {
 	textInputFields[0].offsetParent.firstElementChild.classList += " move-up";
 }
 
-let id, id2;
+let id, id2, bd;
 function debounce(func, time) {
 	if (id) {
 		clearTimeout(id);
@@ -162,6 +162,13 @@ function debounce2(func, time) {
 	id2 = setTimeout(func, time);
 }
 
+function buttonDebounce(func) {
+	if (bd) {
+		clearTimeout(bd);
+	}
+	bd = setTimeout(func, 500);
+}
+
 // Error Message Animation
 function animateErrorMessage(
 	ERROR_MESSAGE_DURATION,
@@ -171,77 +178,82 @@ function animateErrorMessage(
 	SHOW_ERROR_CLASS,
 	REMOVE_ERROR_CLASS
 ) {
-	// Turns the email field bg color to red
-	userEmail.classList.add("empty-email-field");
-	errorText.innerText = "";
+	buttonDebounce(() => {
+		// Turns the email field bg color to red
+		userEmail.classList.add("empty-email-field");
+		errorText.innerText = "";
 
-	if (errorText.innerText.length === 0) {
-		errorText.innerText = ERROR_MESSAGE;
-		const errorMessageNodeWidth = errorMessage.offsetWidth;
+		if (errorText.innerText.length === 0) {
+			errorText.innerText = ERROR_MESSAGE;
+			const errorMessageNodeWidth = errorMessage.offsetWidth;
 
-		// Remove the reove-error-message and add show-error-message class to show the error message
-		let showErrorName = ["remove-error-message", "remove-reset-message"];
-		for (let className of showErrorName) {
-			errorMessage.classList.remove(className);
-		}
-		errorMessage.classList.add(SHOW_ERROR_CLASS);
-
-		// Set the Error Message Container width to 20px
-		if (window.screen.availWidth >= 1024) {
-			errorMessage.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
-		}
-
-		if (window.screen.availWidth < 1024) {
-			errorMessage.style.width = "100%";
-		}
-
-		// After 300 millisecs set the Error Message container width to its full width
-		setTimeout(() => {
-			if (window.screen.availWidth >= 1024) {
-				errorMessage.style.width = errorMessageNodeWidth + "px";
-				return;
+			// Remove the reove-error-message and add show-error-message class to show the error message
+			let showErrorName = ["remove-error-message", "remove-reset-message"];
+			for (let className of showErrorName) {
+				errorMessage.classList.remove(className);
 			}
+			errorMessage.classList.add(SHOW_ERROR_CLASS);
 
-			errorMessage.style.width = "100%";
-		}, ERROR_MESSAGE_ANIMATION_DURATION / 2);
-
-		// After 600 millisecs make the error message text obvious
-		setTimeout(() => {
-			errorText.style.opacity = "1";
-		}, ERROR_MESSAGE_ANIMATION_DURATION);
-
-		// After 3secs Remove the Error Message
-		setTimeout(() => {
-			let errorMessageClassLists = ["show-error-message", "show-reset-message"];
-
+			// Set the Error Message Container width to 20px
 			if (window.screen.availWidth >= 1024) {
 				errorMessage.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
-			}
-
-			errorText.style.opacity = "0";
-
-			setTimeout(() => {
-				for (let className of errorMessageClassLists) {
-					errorMessage.classList.remove(className);
-				}
-				errorMessage.classList.add(REMOVE_ERROR_CLASS);
-			}, ERROR_MESSAGE_ANIMATION_DURATION / 2);
-		}, ERROR_MESSAGE_DURATION);
-
-		// After 3+ millsecs reset the Error Message container and text container
-		setTimeout(() => {
-			if (window.screen.availWidth >= 1024) {
-				errorMessage.style.width = "auto";
 			}
 
 			if (window.screen.availWidth < 1024) {
 				errorMessage.style.width = "100%";
 			}
 
-			// errorText.innerText = "";
-			userEmail.classList.remove("empty-email-field");
-		}, ERROR_MESSAGE_DURATION + ERROR_MESSAGE_ANIMATION_DURATION);
-	}
+			// After 300 millisecs set the Error Message container width to its full width
+			setTimeout(() => {
+				if (window.screen.availWidth >= 1024) {
+					errorMessage.style.width = errorMessageNodeWidth + "px";
+					return;
+				}
+
+				errorMessage.style.width = "100%";
+			}, ERROR_MESSAGE_ANIMATION_DURATION / 2);
+
+			// After 600 millisecs make the error message text obvious
+			setTimeout(() => {
+				errorText.style.opacity = "1";
+			}, ERROR_MESSAGE_ANIMATION_DURATION);
+
+			// After 3secs Remove the Error Message
+			setTimeout(() => {
+				let errorMessageClassLists = [
+					"show-error-message",
+					"show-reset-message",
+				];
+
+				if (window.screen.availWidth >= 1024) {
+					errorMessage.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
+				}
+
+				errorText.style.opacity = "0";
+
+				setTimeout(() => {
+					for (let className of errorMessageClassLists) {
+						errorMessage.classList.remove(className);
+					}
+					errorMessage.classList.add(REMOVE_ERROR_CLASS);
+				}, ERROR_MESSAGE_ANIMATION_DURATION / 2);
+			}, ERROR_MESSAGE_DURATION);
+
+			// After 3+ millsecs reset the Error Message container and text container
+			setTimeout(() => {
+				if (window.screen.availWidth >= 1024) {
+					errorMessage.style.width = "auto";
+				}
+
+				if (window.screen.availWidth < 1024) {
+					errorMessage.style.width = "100%";
+				}
+
+				// errorText.innerText = "";
+				userEmail.classList.remove("empty-email-field");
+			}, ERROR_MESSAGE_DURATION + ERROR_MESSAGE_ANIMATION_DURATION);
+		}
+	});
 }
 
 function showSending(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH) {
@@ -1145,12 +1157,6 @@ function addAnswerToPersonObject(
 		};
 	}
 }
-
-let bd;
-const buttonDebounce = (func) => {
-	clearTimeout(bd);
-	bd = setTimeout(func, 2000);
-};
 
 // Continue button
 ContinueButton.addEventListener("click", (e) => {
