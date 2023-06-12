@@ -1041,6 +1041,9 @@ footer {
 		-o-border-radius: 5px;
 		bottom: 10px;
 		overflow: hidden;
+		box-shadow: 0px 70px 0px 40px white;
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10%);
 	}
 
 	.field-container {
@@ -1578,6 +1581,10 @@ footer {
 		min-height: 40px;
 		max-height: 40px;
 	}
+
+	.control-buttons {
+		height: 90px;
+	}
 }
 
 /** Extra wide screens **/
@@ -1627,5 +1634,9 @@ footer {
 		max-width: 40px;
 		min-height: 40px;
 		max-height: 40px;
+	}
+
+	.control-buttons {
+		height: 90px;
 	}
 }
