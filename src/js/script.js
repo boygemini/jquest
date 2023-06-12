@@ -33,15 +33,6 @@ showCircleSVG(false);
 ContinueButton.classList.add("widen");
 
 if (window.screen.availWidth <= 480) {
-	// let circlePath = document.getElementById("circlePath");
-	// progressSVG.cx.baseVal.value = 50;
-	// progressSVG.cy.baseVal.value = 50;
-	// progressSVG.r.baseVal.value = 40;
-	// circlePath.cx.baseVal.value = 50;
-	// circlePath.cy.baseVal.value = 50;
-	// circlePath.r.baseVal.value = 40;
-	// progress.x.baseVal[0].value = 50;
-	// progress.y.baseVal[0].value = 50;
 	currentStage.x.baseVal[0].value = 100;
 	currentStage.y.baseVal[0].value = 145;
 	ContinueButton.classList.add("widen");
@@ -492,7 +483,7 @@ function sendEmail(email) {
 							10000,
 							600,
 							20,
-							`An Error Occurred : ${error.text}`,
+							`An Error Occurred : ${error.text || "No internet connection"}`,
 							"show-error-message",
 							"remove-error-message"
 						);
