@@ -463,7 +463,7 @@ function sendEmail(email) {
 
 		debounce(() => {
 			showSending("Submitting Form...", 20);
-		}, 100);
+		}, 500);
 
 		let htmlTemplate = {
 			my_html: html,
@@ -503,10 +503,10 @@ function sendEmail(email) {
 }
 
 function gotoNextStep(step, question) {
-	console.log("clicked");
 	const answersField = document.querySelector(".answer-field");
 	const questionElement = document.querySelector(".Question");
-	// console.log("Next", step);
+	console.log(step);
+
 	// Proceed to QA if email address field is filled
 	if (step === 0) {
 		starterPage.style.display = "flex";
@@ -559,7 +559,7 @@ function gotoNextStep(step, question) {
 	}
 
 	// Start QA on the Condition
-	if (step <= question.length - 1 && step > 0) {
+	if (step <= question.length && step > 0) {
 		// Put off the welcome page and put on the QA page
 		startQuestion.style.display = "flex";
 		starterPage.style.display = "none";
@@ -596,9 +596,7 @@ function gotoNextStep(step, question) {
 		displayAnswersInteractively(answersField, step, question);
 	}
 
-	if (step >= question.length) {
-		step = question.length;
-	}
+	if (step >= question.length) step = question.length;
 
 	stepCounter = step;
 
@@ -1168,7 +1166,7 @@ BackButton.addEventListener("click", (e) => {
 });
 
 function keydownHandler(e) {
-	if (stepCounter <= Object.values(REVIEW).length) {
+	if (stepCounter <= Object.values(REVIEW).length + 1) {
 		if (e.key === "Enter" || e.key === "ArrowRight") {
 			gotoNextStep(stepCounter, Questions);
 		}
@@ -1177,12 +1175,11 @@ function keydownHandler(e) {
 			gotoPreviousStep(stepCounter, Questions);
 		}
 	}
-	return;
 }
 
 // Continue to Next Step On Press Enter
 window.addEventListener("keydown", keydownHandler);
 
 // gotoNextStep(0, Questions);
-// animateProgress(0);
+animateProgress(0);
 export default REVIEW;

@@ -186,7 +186,7 @@ body {
 .continue-btn,
 .back-button {
 	width: 50%;
-	height: 100px;
+	height: 100%;
 	border: none;
 
 	color: white;
@@ -1028,9 +1028,19 @@ footer {
 	}
 
 	.control-buttons {
-		/* background-color: red; */
-		width: 100%;
+		/*background-color: red;
+		*/
+		height: 65px;
+		margin: auto;
+		width: 95%;
 		left: 0;
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-ms-border-radius: 5px;
+		-o-border-radius: 5px;
+		bottom: 10px;
+		overflow: hidden;
 	}
 
 	.field-container {
@@ -1097,8 +1107,8 @@ footer {
 
 	.continue-btn,
 	.back-button {
-		height: 75px;
-		font-size: 0.55em;
+		height: 100%;
+		font-size: 0.52em;
 	}
 
 	.textonlybox {
@@ -1507,7 +1517,8 @@ footer {
 	}
 }
 
-@media screen and (min-width: 1025px) and (max-width: 1200px) {
+/** Laptops **/
+@media screen and (min-width: 1025px) and (max-width: 1300px) {
 	.main-Q-container {
 		width: 100%;
 	}
@@ -1527,11 +1538,11 @@ footer {
 	.loader {
 		margin: auto;
 		top: 20px;
-		border-radius: 10px;
-		-webkit-border-radius: 10px;
-		-moz-border-radius: 10px;
-		-ms-border-radius: 10px;
-		-o-border-radius: 10px;
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-ms-border-radius: 5px;
+		-o-border-radius: 5px;
 		opacity: 1;
 		z-index: 768903876428934762839437568239475464823947568923479;
 	}
@@ -1553,9 +1564,24 @@ footer {
 		margin: auto;
 		border: none;
 	}
+
+	.error-text,
+	.sent-message {
+		opacity: 0;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+
+	.text-checker {
+		min-width: 40px;
+		max-width: 40px;
+		min-height: 40px;
+		max-height: 40px;
+	}
 }
 
-@media screen and (min-width: 1201px) {
+/** Extra wide screens **/
+@media screen and (min-width: 1301px) {
 	.show-error-message,
 	.show-reset-message,
 	.show,
@@ -1577,11 +1603,11 @@ footer {
 		margin: auto;
 		top: -9rem;
 		opacity: 1;
-		border-radius: 10px;
-		-webkit-border-radius: 10px;
-		-moz-border-radius: 10px;
-		-ms-border-radius: 10px;
-		-o-border-radius: 10px;
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-ms-border-radius: 5px;
+		-o-border-radius: 5px;
 	}
 
 	.error-message {
@@ -1594,5 +1620,12 @@ footer {
 		opacity: 0;
 		overflow: hidden;
 		white-space: nowrap;
+	}
+
+	.text-checker {
+		min-width: 40px;
+		max-width: 40px;
+		min-height: 40px;
+		max-height: 40px;
 	}
 }

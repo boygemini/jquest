@@ -453,7 +453,6 @@ const Questions = [
 			{ text: "Never", img: "" },
 			{ text: "Rarely", img: "" },
 			{ text: "Once a month", img: "" },
-			{ text: "Every other weekend", img: "" },
 			{ text: "Every weekend", img: "" },
 		],
 	},
