@@ -1024,7 +1024,7 @@ footer {
 
 	.q-container {
 		padding: 0px;
-		margin-top: 150px;
+		margin-top: 130px;
 	}
 
 	.control-buttons {
@@ -1033,6 +1033,7 @@ footer {
 		height: 65px;
 		margin: auto;
 		width: 95%;
+		/* padding: 0px 20px; */
 		left: 0;
 		border-radius: 5px;
 		-webkit-border-radius: 5px;
