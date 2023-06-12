@@ -30,6 +30,7 @@ const showCircleSVG = (bool) => {
 };
 
 showCircleSVG(false);
+ContinueButton.classList.add("widen");
 
 if (window.screen.availWidth <= 480) {
 	// let circlePath = document.getElementById("circlePath");
@@ -44,8 +45,6 @@ if (window.screen.availWidth <= 480) {
 	currentStage.x.baseVal[0].value = 100;
 	currentStage.y.baseVal[0].value = 145;
 	ContinueButton.classList.add("widen");
-
-	console.log(progress.x);
 }
 
 let REVIEW = new Object({
@@ -492,9 +491,10 @@ function sendEmail(email) {
 }
 
 function gotoNextStep(step, question) {
+	console.log("clicked");
 	const answersField = document.querySelector(".answer-field");
 	const questionElement = document.querySelector(".Question");
-	console.log("Next", step);
+	// console.log("Next", step);
 	// Proceed to QA if email address field is filled
 	if (step === 0) {
 		starterPage.style.display = "flex";
@@ -1146,10 +1146,17 @@ function addAnswerToPersonObject(
 	}
 }
 
+let bd;
+const buttonDebounce = (func) => {
+	clearTimeout(bd);
+	bd = setTimeout(func, 2000);
+};
+
 // Continue button
-ContinueButton.addEventListener("click", () => {
-	gotoNextStep(stepCounter, Questions);
-});
+ContinueButton.addEventListener(
+	"click",
+	buttonDebounce(gotoNextStep(stepCounter, Questions))
+);
 
 BackButton.addEventListener("click", (e) => {
 	gotoPreviousStep(stepCounter, Questions);
