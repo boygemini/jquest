@@ -478,26 +478,26 @@ function sendEmail(email) {
 				htmlTemplate,
 				"ahF420mDtaLElyWqn"
 			);
-			// .then(
-			// 	function (response) {
-			// 		starterPage.style.display = "none";
-			// 		startQuestion.style.display = "none";
-			// 		ContinueButton.style.display = "none";
-			// 		thankYou.style.display = "flex";
-			// 		// showSent("Form Submitted Successfully", 20, 3000);
-			// 	},
-			// 	function (error) {
-			// 		removeMessage();
-			// 		animateErrorMessage(
-			// 			10000,
-			// 			600,
-			// 			20,
-			// 			`An Error Occurred : ${error.text}`,
-			// 			"show-error-message",
-			// 			"remove-error-message"
-			// 		);
-			// 	}
-			// );
+			.then(
+				function (response) {
+					starterPage.style.display = "none";
+					startQuestion.style.display = "none";
+					ContinueButton.style.display = "none";
+					thankYou.style.display = "flex";
+					// showSent("Form Submitted Successfully", 20, 3000);
+				},
+				function (error) {
+					removeMessage();
+					animateErrorMessage(
+						10000,
+						600,
+						20,
+						`An Error Occurred : ${error.text}`,
+						"show-error-message",
+						"remove-error-message"
+					);
+				}
+			);
 		}, 2000);
 	}
 }
