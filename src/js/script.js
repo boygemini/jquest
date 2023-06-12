@@ -556,7 +556,7 @@ function gotoNextStep(step, question) {
 		sendEmail(localStorage.getItem("usersEmailAddress"));
 
 		stepCounter = step;
-		animateProgress(stepCounter);
+		animateProgress(20);
 	}
 
 	// Start QA on the Condition
