@@ -1009,12 +1009,13 @@ footer {
 @media screen and (max-width: 767px) {
 	body {
 		width: 100%;
-		height: 100%;
-		position: relative;
+		height: 100% !important;
+		position: unset !important;
 	}
 
 	html {
 		overflow-x: hidden;
+		position: relative !important;
 	}
 
 	.main-Q-container {
@@ -1293,7 +1294,6 @@ footer {
 
 	.thank-you {
 		width: 100%;
-		height: 100%;
 		padding: 0px;
 	}
 
@@ -1305,7 +1305,16 @@ footer {
 		align-items: center;
 		gap: 10px;
 		justify-self: flex-end;
-		margin-top: calc(100% - 120px);
+		margin-top: 10px;
+		position: absolute;
+		bottom: 200px;
+		left: 50%;
+		transform: translate(-50%, 100px);
+		width: 90%;
+		-webkit-transform: translate(-50%, 100px);
+		-moz-transform: translate(-50%, 100px);
+		-ms-transform: translate(-50%, 100px);
+		-o-transform: translate(-50%, 100px);
 	}
 
 	.changetext {
@@ -1371,6 +1380,23 @@ footer {
 
 	.text-checked {
 		border: 1px solid white !important;
+	}
+
+	.big-thankyou img {
+		width: 4rem !important;
+		height: 4rem !important;
+	}
+
+	.big-thankyou h1 {
+		font-size: 1.15rem;
+	}
+
+	.big-thankyou p {
+		font-size: 0.8rem;
+	}
+
+	.thank-you {
+		margin-top: -30px;
 	}
 }
 
