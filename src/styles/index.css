@@ -1868,6 +1868,7 @@ footer {
 }
 
 .remove-change-email-modal {
+	display: none !important;
 	animation: fadeoutmodal 0.2s ease-in forwards;
 	-webkit-animation: fadeoutmodal 0.2s ease-in forwards;
 }
@@ -1912,7 +1913,6 @@ footer {
 
 	to {
 		opacity: 0;
-		/* display: none; */
 	}
 }
 

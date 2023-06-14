@@ -29,7 +29,7 @@ const emojis = document.querySelector(".emojis");
 const userEmail = document.getElementById("email");
 const userEmail2 = document.querySelector(".email");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
-let usersEmailAddress = "";
+let usersEmailAddress = false;
 
 const showCircleSVG = (bool) => {
 	bool
@@ -144,7 +144,7 @@ if (textInputFields[0].value.length > 0) {
 	textInputFields[0].offsetParent.firstElementChild.classList += " move-up";
 }
 
-let id, id2, bd;
+let id, id2, id3, id4, bd;
 function debounce(func, time) {
 	if (id) {
 		clearTimeout(id);
@@ -159,6 +159,22 @@ function debounce2(func, time) {
 	}
 
 	id2 = setTimeout(func, time);
+}
+
+function debounce4(func, time) {
+	if (id4) {
+		clearTimeout(id4);
+	}
+
+	id4 = setTimeout(func, time);
+}
+
+function debounce3(func, time) {
+	if (id3) {
+		clearTimeout(id3);
+	}
+
+	id3 = setTimeout(func, time);
 }
 
 function buttonDebounce(func) {
@@ -255,27 +271,29 @@ function animateErrorMessage(
 	});
 }
 
-function showSending(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH) {
-	successText.innerText = MESSAGE;
-	const errorMessageNodeWidth = loaderDOM.offsetWidth;
+function showSending(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH, STAY_TIME) {
+	debounce3(() => {
+		successText.innerText = MESSAGE;
+		const errorMessageNodeWidth = loaderDOM.offsetWidth;
 
-	// Remove the reove-error-message and add show-error-message class to show the error message
-	loaderDOM.classList.remove("remove");
-	loaderDOM.classList.add("show");
-	loaderDOM.style.backgroundColor = "orange";
+		// Remove the reove-error-message and add show-error-message class to show the error message
+		loaderDOM.classList.remove("remove");
+		loaderDOM.classList.add("show");
+		loaderDOM.style.backgroundColor = "orange";
 
-	// Set the Error Message Container width to 20px
-	loaderDOM.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
+		// Set the Error Message Container width to 20px
+		loaderDOM.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
 
-	// After 300 millisecs set the Error Message container width to its full width
-	setTimeout(() => {
-		loaderDOM.style.width = errorMessageNodeWidth + "px";
-	}, 300);
+		// After 300 millisecs set the Error Message container width to its full width
+		setTimeout(() => {
+			loaderDOM.style.width = errorMessageNodeWidth + "px";
+		}, 300);
 
-	// After 600 millisecs make the error message text obvious
-	setTimeout(() => {
-		successText.style.opacity = "1";
-	}, 600);
+		// After 600 millisecs make the error message text obvious
+		setTimeout(() => {
+			successText.style.opacity = "1";
+		}, STAY_TIME);
+	}, STAY_TIME);
 }
 
 function showSent(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH, STAY_TIME) {
@@ -343,7 +361,7 @@ function validateEmail(userEmail, step) {
 
 	if (emailRegex.test(email)) {
 		// Save the user's email address to the local storage
-		usersEmailAddress = userEmail.value;
+		usersEmailAddress = usersEmailAddress || email;
 
 		// Go to next stage
 		if (step <= Questions.length - 1) {
@@ -463,7 +481,7 @@ function sendEmail(email) {
 		// result.innerHTML = html;
 
 		debounce(() => {
-			showSending("Submitting Form...", 20);
+			showSending("Submitting Form...", 20, 600);
 		}, 500);
 
 		let htmlTemplate = {
@@ -544,10 +562,7 @@ function gotoNextStep(step, question) {
 			if (!validateEmail(userEmail, step)) {
 				return;
 			}
-
-			if (validateEmail(userEmail, step)) {
-				validateEmail(userEmail, step);
-			}
+			validateEmail(userEmail, step);
 		}
 	}
 
@@ -564,7 +579,6 @@ function gotoNextStep(step, question) {
 		// });
 
 		inner.innerText = usersEmailAddress;
-
 		sendEmail(usersEmailAddress);
 
 		stepCounter = step;
@@ -1227,6 +1241,7 @@ inner.onblur = () => {
 changeEmail.onclick = () => {
 	usersEmailAddress = editfield.innerText;
 	sendEmail(usersEmailAddress);
+	console.log(usersEmailAddress);
 	changeEmailContainer.classList.add("remove-change-email-modal");
 };
 
