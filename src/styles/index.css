@@ -1307,14 +1307,8 @@ footer {
 		justify-self: flex-end;
 		margin-top: 10px;
 		position: absolute;
-		bottom: 200px;
-		left: 50%;
-		transform: translate(-50%, 100px);
 		width: 90%;
-		-webkit-transform: translate(-50%, 100px);
-		-moz-transform: translate(-50%, 100px);
-		-ms-transform: translate(-50%, 100px);
-		-o-transform: translate(-50%, 100px);
+		bottom: 100px;
 	}
 
 	.changetext {
