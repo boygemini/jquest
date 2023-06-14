@@ -1278,6 +1278,11 @@ footer {
 		justify-content: space-between;
 	}
 
+	.big-thankyou img {
+		width: 6.2rem;
+		height: 6.2rem;
+	}
+
 	.thanks-message {
 		text-align: center;
 	}
