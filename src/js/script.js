@@ -7,12 +7,19 @@ const textFieldLabels = document.querySelectorAll("label");
 const selectionChoice = document.querySelector(".selection-rule");
 const ContinueButton = document.getElementById("continue");
 const BackButton = document.querySelector(".back-button");
+const ChangeEmailButton = document.getElementById("changeemail");
 const svgCircle = document.getElementById("circle");
 const progressSVG = document.querySelector(".progress");
 const progress = document.querySelector(".percentage");
 const currentStage = document.querySelector(".current-stage");
 const errorMessage = document.querySelector(".error-message");
 const loaderDOM = document.querySelector(".loader");
+const changeEmailContainer = document.querySelector(".change-email");
+const emailBox = document.getElementById("emailchange");
+const editfield = document.getElementById("edit");
+const cancel = document.querySelector(".cancel");
+const changeEmail = document.querySelector(".saveemail");
+const inner = document.querySelector(".inner");
 const successText = document.querySelector(".sent-message");
 const errorText = document.querySelector(".error-text");
 const starterPage = document.querySelector(".q-container");
@@ -22,6 +29,7 @@ const emojis = document.querySelector(".emojis");
 const userEmail = document.getElementById("email");
 const userEmail2 = document.querySelector(".email");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+let usersEmailAddress = "";
 
 const showCircleSVG = (bool) => {
 	bool
@@ -318,8 +326,8 @@ function removeMessage() {
 	}, 1000);
 }
 
-function validateEmail(step) {
-	let email = userEmail.value.trim();
+function validateEmail(userEmail, step) {
+	let email = userEmail.innerText || userEmail.value.trim();
 
 	if (!emailRegex.test(email)) {
 		animateErrorMessage(
@@ -335,10 +343,12 @@ function validateEmail(step) {
 
 	if (emailRegex.test(email)) {
 		// Save the user's email address to the local storage
-		localStorage.setItem("usersEmailAddress", userEmail.value);
+		usersEmailAddress = userEmail.value;
 
 		// Go to next stage
-		step + 1;
+		if (step <= Questions.length - 1) {
+			step + 1;
+		}
 
 		return true;
 	}
@@ -464,18 +474,20 @@ function sendEmail(email) {
 		debounce2(() => {
 			emailjs
 				.send(
-					"service_pdhenpp",
-					"template_ycrd2hk",
+					"service_3h0lr65",
+					"template_gs6av1n",
 					htmlTemplate,
-					"ahF420mDtaLElyWqn"
+					"qoYJeEIRhN5Ew9lRk"
 				)
 				.then(
 					function (response) {
 						starterPage.style.display = "none";
 						startQuestion.style.display = "none";
 						ContinueButton.style.display = "none";
+						BackButton.classList.add("widen");
 						thankYou.style.display = "flex";
 						showSent("Form Submitted Successfully", 20, 5000);
+						showCircleSVG(false);
 					},
 					function (error) {
 						removeMessage();
@@ -504,6 +516,11 @@ function gotoNextStep(step, question) {
 		startQuestion.style.display = "none";
 		BackButton.style.display = "none";
 		ContinueButton.classList.add("widen");
+
+		try {
+			ChangeEmailButton.style.display = "none";
+		} catch (error) {}
+
 		showCircleSVG(false);
 
 		// Save User's email is inputed
@@ -524,12 +541,12 @@ function gotoNextStep(step, question) {
 
 		// Proceed to validate user's email
 		if (!emailIsEmpty) {
-			if (!validateEmail(step)) {
+			if (!validateEmail(userEmail, step)) {
 				return;
 			}
 
-			if (validateEmail(step)) {
-				validateEmail(step);
+			if (validateEmail(userEmail, step)) {
+				validateEmail(userEmail, step);
 			}
 		}
 	}
@@ -537,14 +554,18 @@ function gotoNextStep(step, question) {
 	// Control the form steps
 	step++;
 	if (step >= question.length) {
-		emojis.innerHTML = "";
-		feedBacks.forEach((fb, index) => {
-			emojis.innerHTML += `<div class="ans-box" data-id="${index}">${fb}</div>`;
-		});
+		try {
+			ChangeEmailButton.style.display = "flex";
+		} catch (error) {}
 
-		userEmail2.innerText = localStorage.getItem("usersEmailAddress");
+		// emojis.innerHTML = "";
+		// feedBacks.forEach((fb, index) => {
+		// 	emojis.innerHTML += `<div class="ans-box" data-id="${index}">${fb}</div>`;
+		// });
 
-		sendEmail(localStorage.getItem("usersEmailAddress"));
+		inner.innerText = usersEmailAddress;
+
+		sendEmail(usersEmailAddress);
 
 		stepCounter = step;
 		animateProgress(20);
@@ -559,7 +580,12 @@ function gotoNextStep(step, question) {
 		ContinueButton.style.display = "flex";
 		BackButton.style.display = "flex";
 		ContinueButton.classList.remove("widen");
+		BackButton.classList.remove("widen");
 		showCircleSVG(true);
+
+		try {
+			ChangeEmailButton.style.display = "none";
+		} catch (error) {}
 
 		// Show error message is no option is selected
 		try {
@@ -625,6 +651,9 @@ function gotoPreviousStep(step, question) {
 
 	if (step > 0) {
 		ContinueButton.style.display = "flex";
+		BackButton.style.display = "flex";
+		BackButton.classList.remove("widen");
+		ContinueButton.classList.remove("widen");
 		showCircleSVG(true);
 
 		// Display Question
@@ -1172,6 +1201,35 @@ function keydownHandler(e) {
 // Continue to Next Step On Press Enter
 window.addEventListener("keydown", keydownHandler);
 
-// gotoNextStep(0, Questions);
 animateProgress(0);
 export default REVIEW;
+
+changeEmailContainer.style.display = "none";
+
+inner.onfocus = () => {
+	const inemail = document.querySelector(".email");
+	inemail.style.overflow = "scroll";
+	inner.classList.remove("turndot", "turndot");
+};
+
+inner.onblur = () => {
+	const inemail = document.querySelector(".email");
+	inner.classList.add("turndot");
+	inemail.style.overflow = "hidden";
+	if (editfield.innerText !== usersEmailAddress) {
+		if (validateEmail(editfield)) {
+			changeEmailContainer.classList.remove("remove-change-email-modal");
+			changeEmailContainer.classList.add("show-change-email-modal");
+		}
+	}
+};
+
+changeEmail.onclick = () => {
+	usersEmailAddress = editfield.innerText;
+	sendEmail(usersEmailAddress);
+	changeEmailContainer.classList.add("remove-change-email-modal");
+};
+
+cancel.onclick = () => {
+	changeEmailContainer.classList.add("remove-change-email-modal");
+};

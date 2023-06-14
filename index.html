@@ -102,20 +102,23 @@
 				<div class="thanks-message">
 					<h1>You are a star!</h1>
 					<p>
-						Thank you for taking my survey 😀 ;
-						<span class="whispers">*whispers*</span> just for fun 😂
+						Thank you for taking my survey 😀
+						<span class="whispers">whispers</span> just for fun 😂
 					</p>
 				</div>
 			</h1>
-			<p class="email-sent">
+			<div class="email-sent">
 				Your responses has just been sent to
-				<span class="email">gbadebojubril@gmail.com</span>
-			</p>
+				<div class="email">
+					<p class="changetext">click to change email</p>
+					<p class="inner turndot" id="edit" contenteditable="true">kkk@d.d</p>
+				</div>
+			</div>
 
-			<div class="feedback">
+			<!-- <div class="feedback">
 				<h1 class="give-emo">Give this survey and emoji</h1>
 				<div class="emojis"></div>
-			</div>
+			</div> -->
 		</div>
 
 		<dic class="control-buttons">
@@ -127,7 +130,26 @@
 				<p class="continue-text">Continue</p>
 				<p class="press-enter">Press Enter</p>
 			</button>
+			<!-- <button class="continue-btn" id="changeemail">
+				<p class="continue-text">Change email</p>
+			</button> -->
 		</dic>
+
+		<div class="change-email">
+			<div class="change-top">
+				<p>Change Email</p>
+				<div class="cancel">x</div>
+			</div>
+			<!-- <input
+				type="email"
+				name=""
+				id="emailchange"
+				placeholder="example@you.com"
+			/> -->
+			<button type="submit" class="saveemail">
+				Save email and resubmit form
+			</button>
+		</div>
 
 		<!-- <footer>Made by Jubril</footer> -->
 	</body>
