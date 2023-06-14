@@ -1269,6 +1269,7 @@ footer {
 		padding: 0px;
 		flex-direction: column;
 		row-gap: 20px;
+		margin-top: -70px;
 	}
 
 	.thanks-message {
