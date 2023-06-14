@@ -83,6 +83,10 @@ body {
 	overflow-x: hidden;
 }
 
+html {
+	height: 100vh !important;
+}
+
 #logo {
 	font-family: "PT Sans", sans-serif;
 	align-self: flex-start;
@@ -1111,6 +1115,7 @@ footer {
 
 	.answer-field {
 		margin-top: 50px;
+		padding-bottom: 100px;
 	}
 
 	.press-enter {
