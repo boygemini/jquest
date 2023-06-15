@@ -1390,6 +1390,7 @@ footer {
 	.big-thankyou img {
 		width: 4.5rem !important;
 		height: 4.5rem !important;
+		display: none;
 	}
 
 	.big-thankyou h1 {
@@ -1402,6 +1403,10 @@ footer {
 
 	.thank-you {
 		margin-top: -30px;
+	}
+
+	.thanks-message {
+		margin-top: 40px;
 	}
 }
 
