@@ -272,6 +272,7 @@ function animateErrorMessage(
 }
 
 function showSending(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH, STAY_TIME) {
+	clearTimeout(id4);
 	debounce3(() => {
 		successText.innerText = MESSAGE;
 		const errorMessageNodeWidth = loaderDOM.offsetWidth;
@@ -297,6 +298,7 @@ function showSending(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH, STAY_TIME) {
 }
 
 function showSent(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH, STAY_TIME) {
+	clearTimeout(id3);
 	successText.style.opacity = "0";
 
 	setTimeout(() => {
@@ -309,7 +311,7 @@ function showSent(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH, STAY_TIME) {
 		successText.style.opacity = "1";
 	}, 300);
 
-	setTimeout(() => {
+	debounce4(() => {
 		successText.style.opacity = "0";
 
 		setTimeout(() => {
@@ -492,10 +494,10 @@ function sendEmail(email) {
 		debounce2(() => {
 			emailjs
 				.send(
-					"service_3h0lr65",
-					"template_gs6av1n",
+					"service_p2qgmh6",
+					"template_7m3cnp9",
 					htmlTemplate,
-					"qoYJeEIRhN5Ew9lRk"
+					"o4O_xFoK52q_F2IdV"
 				)
 				.then(
 					function (response) {

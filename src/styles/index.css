@@ -1036,6 +1036,10 @@ footer {
 		margin-top: 0px;
 	}
 
+	.question {
+		margin-top: -7rem;
+	}
+
 	.control-buttons {
 		/*background-color: red;
 		*/
@@ -1314,6 +1318,7 @@ footer {
 		position: fixed !important;
 		width: 90%;
 		bottom: 100px;
+		color: #2260ff;
 	}
 
 	.changetext {
