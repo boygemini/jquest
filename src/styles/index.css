@@ -1334,6 +1334,7 @@ footer {
 		max-width: 500px !important;
 		width: 100% !important;
 		scrollbar-width: 0px;
+		box-shadow: 0px 15px 15px -15px rgba(9, 0, 18, 0.328);
 	}
 
 	.email::-webkit-scrollbar {
