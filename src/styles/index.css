@@ -1033,7 +1033,7 @@ footer {
 
 	.q-container {
 		padding: 0px;
-		margin-top: 110px;
+		margin-top: 0px;
 	}
 
 	.control-buttons {
@@ -1311,7 +1311,7 @@ footer {
 		gap: 10px;
 		justify-self: flex-end;
 		margin-top: 10px;
-		position: absolute;
+		position: fixed !important;
 		width: 90%;
 		bottom: 100px;
 	}
@@ -1356,7 +1356,7 @@ footer {
 	}
 
 	.q-container {
-		margin-top: 35px;
+		margin-top: 0px;
 	}
 
 	.textonlybox {
