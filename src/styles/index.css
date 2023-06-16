@@ -1029,10 +1029,15 @@ footer {
 		width: 100%;
 	}
 
+	.answer-field {
+		padding-bottom: 40px !important;
+	}
+
 	.main-Q-container {
 		width: 100%;
 		padding: 20px 0px;
-		margin-top: 0rem;
+		margin: 0rem;
+		padding-bottom: 0px !important;
 	}
 
 	.q-heading {
@@ -1049,7 +1054,7 @@ footer {
 	}
 
 	.question {
-		margin-top: 7rem;
+		margin-top: 8rem;
 	}
 
 	.control-buttons {
@@ -1410,6 +1415,10 @@ footer {
 
 	.main-Q-container {
 		margin-top: 0rem;
+	}
+
+	.question {
+		margin-top: 2rem;
 	}
 
 	.logo {
