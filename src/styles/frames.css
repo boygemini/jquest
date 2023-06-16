@@ -231,13 +231,17 @@ body {
 	color: black;
 }
 
-.tools-ans-checked p {
-	background-color: blueviolet;
-	padding: 10px 15px;
+.bare-ans p {
+	padding: 5px 10px;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-ms-border-radius: 5px;
 	-o-border-radius: 5px;
+	color: black;
+}
+
+.tools-ans-checked p {
+	background-color: blueviolet;
 	color: white;
 }
