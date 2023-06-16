@@ -211,7 +211,7 @@ body {
 	color: white !important;
 	box-shadow: 0px 0px 0px 2px blueviolet,
 		0px 20px 20px -10px rgba(23, 2, 43, 0.328),
-		5px 2px 10px -3px #00000059 inset, -5px -5px 5px -3px #0000001a inset !important;
+		5px 2px 10px -3px #00000059 inset, -5px -5px 5px -1.5px #433d464d inset !important;
 	transform: scale(1) !important;
 	-webkit-transform: scale(1);
 	-moz-transform: scale(1);
@@ -222,6 +222,7 @@ body {
 	-moz-transition: all 0.3s cubic-bezier(0.25, 0.1, 0.5, 1);
 	-ms-transition: all 0.3s cubic-bezier(0.25, 0.1, 0.5, 1);
 	-o-transition: all 0.3s cubic-bezier(0.25, 0.1, 0.5, 1);
+	border: none !important;
 }
 
 .tools-ans-checked {
