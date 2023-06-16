@@ -1019,6 +1019,8 @@ footer {
 		overflow-x: hidden;
 		position: relative !important;
 		height: 100% !important;
+		min-height: 100vh !important;
+		height: auto !important;
 	}
 
 	.logo {
