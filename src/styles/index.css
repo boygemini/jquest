@@ -1013,7 +1013,8 @@ footer {
 		width: 100%;
 		min-height: 100% !important;
 		height: 100% !important;
-
+		align-items: flex-start;
+		justify-content: flex-start;
 		position: auto !important;
 	}
 
@@ -1026,7 +1027,6 @@ footer {
 
 	.logo {
 		position: relative;
-		margin-top: -40px;
 		height: auto;
 		width: 100%;
 	}
@@ -1411,7 +1411,6 @@ footer {
 	}
 
 	.logo {
-		margin-top: 0px;
 	}
 
 	.textonlybox {
