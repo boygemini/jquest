@@ -4,19 +4,19 @@ const Questions = [
 		question: "What is your primary area of expertise in tech ?",
 		answers: [
 			{
-				text: "Software Engineer<button class='sfrontend end'>Frontend</button>",
+				text: "Software Engineer <button class='sfrontend end'>Frontend</button>",
 				img: "/jquest/src/imgs/mobilefront.webp",
 			},
 			{
-				text: "Software Engineer<button class='sbackend end'>Backend</button>",
+				text: "Software Engineer <button class='sbackend end'>Backend</button>",
 				img: "/jquest/src/imgs/mobileback.webp",
 			},
 			{
-				text: "Web Developer<button class='wfrontend end'>Frontend</button>",
+				text: "Web Developer <button class='wfrontend end'>Frontend</button>",
 				img: "/jquest/src/imgs/webback.webp",
 			},
 			{
-				text: "Web Developer<button class='wbackend end'>Backend</button>",
+				text: "Web Developer <button class='wbackend end'>Backend</button>",
 				img: "/jquest/src/imgs/webfronted.webp",
 			},
 			{ text: "UI/UX Developer", img: "/jquest/src/imgs//ui.webp" },
