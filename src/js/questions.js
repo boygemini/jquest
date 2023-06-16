@@ -149,7 +149,7 @@ const Questions = [
 				},
 				{
 					text: "Piktochart",
-					img: "/jquest/src/imgs/640px-Piktochart_logo.jpeg",
+					img: "/jquest/src/imgs/640px-Piktochart_logo.webp",
 				},
 			],
 			[
@@ -157,7 +157,7 @@ const Questions = [
 				{ text: "R", img: "/jquest/src/imgs/R_logo.svg.png" },
 				{ text: "SQL", img: "/jquest/src/imgs/sql-server.png" },
 				{ text: "Tableau", img: "/jquest/src/imgs/800px-Tableau_Logo.png" },
-				{ text: "Jupyter Notebook", img: "/jquest/src/imgs/jupyter.jpeg" },
+				{ text: "Jupyter Notebook", img: "/jquest/src/imgs/jupyter.webp" },
 				{ text: "Apache Spark", img: "/jquest/src/imgs/apache_spark-ar21.png" },
 				{ text: "TensorFlow", img: "/jquest/src/imgs/TensorFlow_logo.svg.png" },
 				{
@@ -167,7 +167,7 @@ const Questions = [
 				{ text: "Apache Kafka", img: "/jquest/src/imgs/Apache_kafka.svg.png" },
 				{
 					text: "Hadoop",
-					img: "/jquest/src/imgs/imgbin-apache-hadoop-logo-hadoop-distributed-file-system-hadoop-distributed-filesystem-big-data-hue-hadoop-s75N5awXMX0NFjBXgP1hqxm2t.jpeg",
+					img: "/jquest/src/imgs/imgbin-apache-hadoop-logo-hadoop-distributed-file-system-hadoop-distributed-filesystem-big-data-hue-hadoop-s75N5awXMX0NFjBXgP1hqxm2t.webp",
 				},
 				{
 					text: "Scikit-learn",
@@ -214,7 +214,7 @@ const Questions = [
 				{ text: "Nikto", img: "/jquest/src/imgs/nikto-logo.svg" },
 				{ text: "Hydra", img: "/jquest/src/imgs/hydra-logo.svg" },
 				{ text: "Hashcat", img: "/jquest/src/imgs/hashcat.png" },
-				{ text: "OWASP ZAP", img: "/jquest/src/imgs/OWASP ZAP.jpeg" },
+				{ text: "OWASP ZAP", img: "/jquest/src/imgs/OWASP ZAP.webp" },
 			],
 		],
 	},
@@ -272,7 +272,7 @@ const Questions = [
 		question:
 			"How do you like to unwind after a long day of building/working ?",
 		answers: [
-			{ text: "Going for a run", img: "/jquest/src/imgs/run.jpeg" },
+			{ text: "Going for a run", img: "/jquest/src/imgs/run.webp" },
 			{
 				text: "Reading a book",
 				img: "/jquest/src/imgs/pexels-nappy-936133.webp",
@@ -329,7 +329,7 @@ const Questions = [
 			{ text: "Laptop", img: "/jquest/src/imgs/img-6368.webp" },
 			{
 				text: "Smartphone",
-				img: "/jquest/src/imgs/iPhone_13_vs_Galaxy_S22asdfcasi-w810h462.jpeg",
+				img: "/jquest/src/imgs/iPhone_13_vs_Galaxy_S22asdfcasi-w810h462.webp",
 			},
 		],
 	},
