@@ -1011,7 +1011,9 @@ footer {
 @media screen and (max-width: 767px) {
 	body {
 		width: 100%;
+		min-height: 100% !important;
 		height: 100% !important;
+
 		position: auto !important;
 	}
 
@@ -1019,8 +1021,7 @@ footer {
 		overflow-x: hidden;
 		position: relative !important;
 		height: 100% !important;
-		min-height: 100vh !important;
-		height: auto !important;
+		min-height: 100vh;
 	}
 
 	.logo {
