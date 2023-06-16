@@ -1093,6 +1093,10 @@ footer {
 		font-size: 25px;
 	}
 
+	.bare-ans {
+		padding: 20px 0px !important;
+	}
+
 	.selection-rule {
 		font-size: 1em;
 	}
