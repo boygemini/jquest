@@ -1016,6 +1016,7 @@ footer {
 		align-items: flex-start;
 		justify-content: flex-start;
 		position: auto !important;
+		overflow: auto;
 	}
 
 	html {

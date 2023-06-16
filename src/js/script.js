@@ -510,12 +510,15 @@ function sendEmail(email) {
 						showCircleSVG(false);
 					},
 					function (error) {
+						let message =
+							error.status === 412
+								? "please try again later. Thank you." : error.status === 429 ? alert("Quota"): error.text;
 						removeMessage();
 						animateErrorMessage(
 							10000,
 							600,
 							20,
-							`An Error Occurred : ${error.text || "No internet connection"}`,
+							`Error occurred, ${message || "no internet connection"}`,
 							"show-error-message",
 							"remove-error-message"
 						);
