@@ -1097,6 +1097,10 @@ footer {
 		padding: 20px 0px !important;
 	}
 
+	.img-ans-text {
+		line-height: 19px !important;
+	}
+
 	.selection-rule {
 		font-size: 1em;
 	}
@@ -1517,6 +1521,13 @@ footer {
 		width: 100%;
 	}
 
+	.img-ans-text {
+		backdrop-filter: blur(5px);
+		-webkit-backdrop-filter: blur(5px);
+		text-shadow: -2px 5px 10px rgba(0, 0, 0, 0.751);
+		background-color: rgba(0, 0, 0, 0.194);
+	}
+
 	.qnumbering {
 		font-size: 40px;
 	}
@@ -1840,6 +1851,13 @@ footer {
 		line-height: 40px;
 		font-size: 0.9rem;
 	}
+
+	.img-ans-text {
+		backdrop-filter: blur(5px);
+		-webkit-backdrop-filter: blur(5px);
+		text-shadow: -2px 5px 10px rgba(0, 0, 0, 0.751);
+		background-color: rgba(0, 0, 0, 0.194);
+	}
 }
 
 /** Extra wide screens **/
@@ -1893,6 +1911,13 @@ footer {
 
 	.control-buttons {
 		height: 90px;
+	}
+
+	.img-ans-text {
+		backdrop-filter: blur(5px);
+		-webkit-backdrop-filter: blur(5px);
+		text-shadow: -2px 5px 10px rgba(0, 0, 0, 0.751);
+		background-color: rgba(0, 0, 0, 0.194);
 	}
 }
 
