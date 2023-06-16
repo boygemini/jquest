@@ -1012,18 +1012,15 @@ footer {
 	body {
 		width: 100%;
 		min-height: 100% !important;
-		height: 100% !important;
+		height: auto !important;
 		align-items: flex-start;
 		justify-content: flex-start;
 		position: auto !important;
-		overflow: auto;
 	}
 
 	html {
-		overflow-x: hidden;
 		position: relative !important;
 		height: 100% !important;
-		min-height: 100vh;
 	}
 
 	.logo {
@@ -1052,7 +1049,7 @@ footer {
 	}
 
 	.question {
-		margin-top: -7rem;
+		margin-top: 7rem;
 	}
 
 	.control-buttons {
@@ -1199,8 +1196,8 @@ footer {
 	}
 
 	#circle {
-		width: 100px;
-		height: 100px;
+		width: 120px;
+		height: 120px;
 		box-shadow: 0px 0px 30px -20px rgb(9, 9, 9),
 			0px 0px 30px -15px rgba(14, 3, 39, 0.535);
 		border-radius: 100%;
@@ -1218,6 +1215,10 @@ footer {
 		z-index: 100;
 		top: 20px;
 		right: 20px;
+	}
+
+	.percentage {
+		font-size: 47px !important;
 	}
 
 	.progress {
