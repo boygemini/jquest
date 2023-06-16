@@ -210,9 +210,8 @@ body {
 	background-color: blueviolet !important;
 	color: white !important;
 	box-shadow: 0px 0px 0px 2px blueviolet,
-		0px 20px 20px -10px rgba(23, 2, 43, 0.328) !important;
-	/* box-shadow: 5px 5px 10px -3px #0000001a inset,
-		-5px -5px 5px -3px #0000001a inset !important; */
+		0px 20px 20px -10px rgba(23, 2, 43, 0.328),
+		5px 5px 10px -3px #0000001a inset, -5px -5px 5px -3px #0000001a inset !important;
 	transform: scale(1) !important;
 	-webkit-transform: scale(1);
 	-moz-transform: scale(1);
