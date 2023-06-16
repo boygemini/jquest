@@ -134,6 +134,7 @@ body {
 .ans-text {
 	padding: 10px;
 	font-size: 16px;
+	line-height: 5px;
 }
 
 .img-ans-text {
@@ -143,6 +144,8 @@ body {
 	-moz-border-radius: 10px;
 	-ms-border-radius: 10px;
 	-o-border-radius: 10px;
+	color: white;
+	line-height: 25px;
 }
 
 *::before,

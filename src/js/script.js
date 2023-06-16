@@ -512,7 +512,10 @@ function sendEmail(email) {
 					function (error) {
 						let message =
 							error.status === 412
-								? "please try again later. Thank you." : error.status === 429 ? alert("Quota"): error.text;
+								? "please try again later. Thank you."
+								: error.status === 429
+								? alert("Quota")
+								: error.text;
 						removeMessage();
 						animateErrorMessage(
 							10000,
