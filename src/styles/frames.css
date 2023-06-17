@@ -212,8 +212,10 @@ body {
 .textcontainer-checked {
 	background-color: blueviolet !important;
 	color: white !important;
-	box-shadow: inset -5px -5px 4px #faf4fd35,
-		inset 5px 5px 4px rgba(62, 71, 89, 0.335) !important;
+	/* box-shadow: inset -5px -5px 4px #faf4fd35,
+		inset 5px 5px 4px rgba(62, 71, 89, 0.335) !important; */
+	box-shadow: 0px 0px 0px 2px blueviolet,
+		0px 20px 20px -10px rgba(23, 2, 43, 0.328) !important;
 	transform: scale(1) !important;
 	-webkit-transform: scale(1);
 	-moz-transform: scale(1);

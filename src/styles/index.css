@@ -71,25 +71,42 @@
 }
 
 body {
+	z-index: 1;
 	width: 100vw;
-	height: auto;
-	/*background-color: rgba(137, 43, 226, 0.046);
-	*/
+	height: 100%;
+
 	display: flex;
 	flex-direction: column;
 	row-gap: 50px;
 	padding: 20px;
 	position: relative;
 	overflow-x: hidden;
+	background-color: transparent;
 }
 
 html {
-	height: 100vh;
+	height: auto;
+	min-height: 100vh;
+	/* background-color: rgba(137, 43, 226, 0.046) !important; */
+	background-image: url(/jquest/src/imgs/pexels-jakub-novacek-924824.jpg) !important;
+	background-position: center !important;
+	background-size: cover !important;
+	background-repeat: no-repeat !important;
+	background-attachment: fixed;
+}
+
+.background {
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	z-index: 0;
 }
 
 #logo {
 	font-family: "PT Sans", sans-serif;
 	align-self: flex-start;
+	color: white;
 }
 
 .q-container {
@@ -116,10 +133,11 @@ html {
 	font-size: 35px;
 	font-weight: bold;
 	font-family: "Merriweather", serif;
+	color: #ff7b4b;
 }
 
 .q-subtext {
-	color: #000000b6;
+	color: #f5f5f591;
 }
 
 .field-container {
@@ -140,16 +158,19 @@ html {
 	max-width: 550px;
 	width: 100%;
 	height: 100%;
-	border: 1px solid transparent;
-	border-radius: inherit;
-	-webkit-border-radius: inherit;
-	-moz-border-radius: inherit;
-	-ms-border-radius: inherit;
-	-o-border-radius: inherit;
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	-ms-border-radius: 0px;
+	-o-border-radius: 0px;
 	padding: 15px;
-	background-color: rgba(137, 43, 226, 0.046);
+	border: none;
+	border-bottom: 1px solid blueviolet;
+	background-color: transparent;
 	text-align: center;
 	font-size: 15px;
+	position: relative;
+	color: #f5f5f591;
 }
 
 .empty-email-field {
@@ -158,33 +179,27 @@ html {
 }
 
 .text-label {
-	text-align: center;
+	text-align: left;
 	width: 100%;
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	-webkit-transform: translate(-50%, -50%);
-	-moz-transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-	-o-transform: translate(-50%, -50%);
 	transition: all 0.3s ease-in-out;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
 	-ms-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	color: #faebe69e;
 }
 
 .move-up {
-	top: 0%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	-webkit-transform: translate(-50%, -50%);
-	-moz-transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-	-o-transform: translate(-50%, -50%);
-	font-size: 12px;
+	font-size: 15px;
 	color: blueviolet;
+	top: 0%;
 }
 
 .continue-btn,
@@ -275,7 +290,7 @@ html {
 .remove-error-message {
 	top: 1rem;
 	opacity: 0;
-	background-color: rgb(255, 0, 0);
+	background-color: #ff0000f0;
 }
 
 .show-error-message {
@@ -283,14 +298,14 @@ html {
 	opacity: 1;
 	overflow: hidden;
 	width: 20px;
-	background-color: rgb(255, 0, 0);
+	background-color: #ff0000f0;
 	box-shadow: 0px 20px 20px -10px rgba(37, 43, 48, 0.24);
 }
 
 .remove-reset-message {
 	top: 4rem;
 	opacity: 0;
-	background-color: blue;
+	background-color: #0000ffec;
 }
 
 .show-reset-message {
@@ -298,7 +313,7 @@ html {
 	opacity: 1;
 	overflow: hidden;
 	width: 20px;
-	background-color: blue;
+	background-color: #0000ffec;
 	box-shadow: 0px 20px 20px -10px rgba(37, 43, 48, 0.24);
 }
 
@@ -1011,11 +1026,10 @@ footer {
 @media screen and (max-width: 767px) {
 	body {
 		width: 100%;
-		min-height: 100% !important;
 		height: auto !important;
 		align-items: flex-start;
 		justify-content: flex-start;
-		position: auto !important;
+		position: none !important;
 	}
 
 	html {
@@ -1072,7 +1086,6 @@ footer {
 		-o-border-radius: 5px;
 		bottom: 10px;
 		overflow: hidden;
-		box-shadow: 0px 70px 0px 40px white;
 		backdrop-filter: blur(10px);
 		-webkit-backdrop-filter: blur(10%);
 		gap: 10px;
@@ -1759,6 +1772,10 @@ footer {
 
 /** Laptops **/
 @media screen and (min-width: 1025px) and (max-width: 1300px) {
+	body {
+		height: 100% !important;
+	}
+
 	.main-Q-container {
 		width: 100%;
 	}
@@ -1858,6 +1875,10 @@ footer {
 		text-shadow: -2px 5px 10px rgba(0, 0, 0, 0.751);
 		background-color: rgba(0, 0, 0, 0.194);
 	}
+
+	.q-container {
+		margin-top: 0;
+	}
 }
 
 /** Extra wide screens **/
@@ -1918,6 +1939,10 @@ footer {
 		-webkit-backdrop-filter: blur(5px);
 		text-shadow: -2px 5px 10px rgba(0, 0, 0, 0.751);
 		background-color: rgba(0, 0, 0, 0.194);
+	}
+
+	.q-container {
+		margin-top: 0;
 	}
 }
 

@@ -2,6 +2,11 @@
 
 import Questions, { feedBacks } from "./questions.js";
 
+const body = document.querySelector("#body");
+const logo = document.querySelector("#logo");
+const controlButtons = document.querySelector(".control-buttons");
+const qContainer = document.querySelector(".qcontainer");
+
 const textInputFields = document.querySelectorAll("input[type=email]");
 const textFieldLabels = document.querySelectorAll("label");
 const selectionChoice = document.querySelector(".selection-rule");
@@ -534,7 +539,6 @@ function sendEmail(email) {
 function gotoNextStep(step, question) {
 	const answersField = document.querySelector(".answer-field");
 	const questionElement = document.querySelector(".Question");
-	console.log(step);
 
 	// Proceed to QA if email address field is filled
 	if (step === 0) {
@@ -542,6 +546,8 @@ function gotoNextStep(step, question) {
 		startQuestion.style.display = "none";
 		BackButton.style.display = "none";
 		ContinueButton.classList.add("widen");
+		logo.style.color = "white";
+		body.style.backgroundColor = "";
 
 		try {
 			ChangeEmailButton.style.display = "none";
@@ -596,6 +602,9 @@ function gotoNextStep(step, question) {
 	// Start QA on the Condition
 	if (step <= question.length && step > 0) {
 		// Put off the welcome page and put on the QA page
+		logo.style.color = "black";
+		body.style.backgroundColor = "#ffffffdd";
+		controlButtons.style.boxShadow = "0px 70px 0px 40px white";
 		startQuestion.style.display = "flex";
 		starterPage.style.display = "none";
 		thankYou.style.display = "none";
@@ -667,6 +676,9 @@ function gotoPreviousStep(step, question) {
 		starterPage.style.display = "flex";
 		BackButton.style.display = "none";
 		ContinueButton.classList.add("widen");
+		logo.style.color = "";
+		body.style.backgroundColor = "";
+		controlButtons.style.boxShadow = "none";
 		showCircleSVG(false);
 		return;
 	}
@@ -1199,33 +1211,6 @@ function addAnswerToPersonObject(
 	}
 }
 
-// Continue button
-ContinueButton.addEventListener("click", (e) => {
-	gotoNextStep(stepCounter, Questions);
-});
-
-BackButton.addEventListener("click", (e) => {
-	gotoPreviousStep(stepCounter, Questions);
-});
-
-function keydownHandler(e) {
-	if (stepCounter <= Object.values(REVIEW).length + 1) {
-		if (e.key === "Enter" || e.key === "ArrowRight") {
-			gotoNextStep(stepCounter, Questions);
-		}
-
-		if (e.key === "ArrowLeft") {
-			gotoPreviousStep(stepCounter, Questions);
-		}
-	}
-}
-
-// Continue to Next Step On Press Enter
-window.addEventListener("keydown", keydownHandler);
-
-animateProgress(0);
-export default REVIEW;
-
 changeEmailContainer.style.display = "none";
 
 inner.onfocus = () => {
@@ -1256,3 +1241,30 @@ changeEmail.onclick = () => {
 cancel.onclick = () => {
 	changeEmailContainer.classList.add("remove-change-email-modal");
 };
+
+// Continue button
+ContinueButton.addEventListener("click", (e) => {
+	gotoNextStep(stepCounter, Questions);
+});
+
+BackButton.addEventListener("click", (e) => {
+	gotoPreviousStep(stepCounter, Questions);
+});
+
+function keydownHandler(e) {
+	if (stepCounter <= Object.values(REVIEW).length + 1) {
+		if (e.key === "Enter" || e.key === "ArrowRight") {
+			gotoNextStep(stepCounter, Questions);
+		}
+
+		if (e.key === "ArrowLeft") {
+			gotoPreviousStep(stepCounter, Questions);
+		}
+	}
+}
+
+// Continue to Next Step On Press Enter
+window.addEventListener("keydown", keydownHandler);
+
+animateProgress(0);
+export default REVIEW;
