@@ -95,12 +95,18 @@ body {
 }
 
 .soft {
-	background-image: linear-gradient(
+	/* background-image: linear-gradient(
 		to top,
 		#f3e7e9ec 0%,
 		#e3eeffec 99%,
 		#f5f9ffef 100%
-	) !important;
+	) !important; */
+
+	background: linear-gradient(to top, #1fa7e34d 0%, #ffffff 99%, #f5f9ff 100%);
+}
+
+.csoft {
+	background-color: #1fa7e34d;
 }
 
 /* .hard {
@@ -132,6 +138,7 @@ html {
 #logo {
 	font-family: "PT Sans", sans-serif;
 	align-self: flex-start;
+	/* color: #344754; */
 	color: #344754;
 }
 
@@ -162,6 +169,7 @@ html {
 	text-transform: uppercase;
 	color: #344754;
 	/* text-shadow: 0px 5px 10px black; */
+	/* color: #ff7b4b; */
 }
 
 .q-subtext {
@@ -195,7 +203,7 @@ html {
 	-o-border-radius: 0px;
 	padding: 15px 0px;
 	border: none;
-	border-bottom: 1px solid #ff7b4b;
+	border-bottom: 1px solid #344754;
 	background-color: transparent;
 	font-size: 15px;
 	position: relative;
@@ -223,7 +231,7 @@ html {
 	-moz-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	-o-transform: translateY(-50%);
-	color: #ff7b4b;
+	color: #344754;
 	width: auto;
 	left: 0;
 	padding: 2px 7px;
