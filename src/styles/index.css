@@ -173,8 +173,8 @@ html {
 	background-color: transparent;
 	font-size: 15px;
 	position: relative;
-	/* color: #f5f5f591; */
-	color: #8a2be2;
+	color: #f5f5f591;
+	font-weight: 800 !important;
 }
 
 .empty-email-field {
@@ -202,8 +202,12 @@ html {
 
 .move-up {
 	font-size: 13px;
-	color: blueviolet;
+	color: #2260ff;
 	top: 0%;
+	background-color: #2261ff32;
+	width: auto;
+	left: 0;
+	padding: 2px 7px;
 }
 
 .continue-btn,
@@ -1040,6 +1044,7 @@ footer {
 	html {
 		position: relative !important;
 		height: 100% !important;
+		background-attachment: fixed;
 	}
 
 	.logo {

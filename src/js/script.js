@@ -129,7 +129,7 @@ let stepCounter = 0;
 
 				if (e.target.nodeName === "INPUT") {
 					e.target.offsetParent.children[1].style.borderBottom =
-						"1px solid blueviolet";
+						"1px solid #2260ff";
 					e.target.offsetParent.firstElementChild.classList += " move-up";
 				}
 			});
@@ -150,7 +150,7 @@ let stepCounter = 0;
 
 if (textInputFields[0].value.length > 0) {
 	textInputFields[0].offsetParent.firstElementChild.classList += " move-up";
-	e.target.offsetParent.children[1].style.borderBottom = "1px solid blueviolet";
+	e.target.offsetParent.children[1].style.borderBottom = "1px solid #2260ff";
 }
 
 let id, id2, id3, id4, bd;
