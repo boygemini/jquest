@@ -22,7 +22,7 @@
 			.particles-js-canvas-el {
 				position: fixed;
 				top: 0;
-				z-index: 0;
+				z-index: -2 !important;
 			}
 		</style>
 
@@ -35,8 +35,8 @@
 				background-position: center;
 				background-repeat: no-repeat;
 				top: 0;
-				position: absolute;
-				z-index: 0;
+				position: fixed;
+				z-index: -2 !important;
 			}
 		</style>
 	</head>
@@ -205,7 +205,7 @@ particlesJS.load('particles-js', 'particles.json', function() {
 							},
 						},
 						opacity: {
-							value: 0.6,
+							value: 1,
 							random: false,
 							anim: {
 								enable: false,

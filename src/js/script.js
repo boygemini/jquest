@@ -128,6 +128,8 @@ let stepCounter = 0;
 				}
 
 				if (e.target.nodeName === "INPUT") {
+					e.target.offsetParent.children[1].style.borderBottom =
+						"1px solid blueviolet";
 					e.target.offsetParent.firstElementChild.classList += " move-up";
 				}
 			});
@@ -139,6 +141,7 @@ let stepCounter = 0;
 			if (e.target.nodeName === "INPUT") {
 				if (e.target.value.trim().length === 0) {
 					e.target.offsetParent.firstElementChild.classList.remove("move-up");
+					e.target.offsetParent.children[1].style.borderBottom = "";
 				}
 			}
 		});
@@ -147,6 +150,7 @@ let stepCounter = 0;
 
 if (textInputFields[0].value.length > 0) {
 	textInputFields[0].offsetParent.firstElementChild.classList += " move-up";
+	e.target.offsetParent.children[1].style.borderBottom = "1px solid blueviolet";
 }
 
 let id, id2, id3, id4, bd;
@@ -546,7 +550,7 @@ function gotoNextStep(step, question) {
 		startQuestion.style.display = "none";
 		BackButton.style.display = "none";
 		ContinueButton.classList.add("widen");
-		logo.style.color = "white";
+		// logo.style.color = "white";
 		body.style.backgroundColor = "";
 
 		try {
@@ -602,9 +606,9 @@ function gotoNextStep(step, question) {
 	// Start QA on the Condition
 	if (step <= question.length && step > 0) {
 		// Put off the welcome page and put on the QA page
-		logo.style.color = "black";
+		// logo.style.color = "black";
 		body.style.backgroundColor = "#ffffffdd";
-		controlButtons.style.boxShadow = "0px 70px 0px 40px white";
+		controlButtons.style.boxShadow = "";
 		startQuestion.style.display = "flex";
 		starterPage.style.display = "none";
 		thankYou.style.display = "none";

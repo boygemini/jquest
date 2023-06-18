@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather+Sans:wght@400;500;600;700&family=Merriweather:wght@400;700;900&family=Montserrat:wght@500;600;700&family=Nunito:wght@500;700&family=PT+Sans+Caption:wght@400;700&family=PT+Sans:wght@400;700&family=Playfair+Display+SC:wght@400;700&family=Playfair+Display:wght@500;600;700&family=Roboto+Slab:wght@400&family=Roboto:wght@400&family=Source+Sans+Pro:ital,wght@0,600;0,700;1,400&family=Ubuntu:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
 
 * {
 	box-sizing: border-box;
@@ -71,24 +72,24 @@
 }
 
 body {
-	z-index: 1;
+	z-index: 3876543456789 !important;
 	width: 100vw;
 	height: 100%;
-
+	/* background-color: #090111ad; */
+	background-color: #ffffffdd;
 	display: flex;
 	flex-direction: column;
 	row-gap: 50px;
 	padding: 20px;
 	position: relative;
 	overflow-x: hidden;
-	background-color: transparent;
 }
 
 html {
 	height: auto;
 	min-height: 100vh;
 	/* background-color: rgba(137, 43, 226, 0.046) !important; */
-	background-image: url(/jquest/src/imgs/pexels-jakub-novacek-924824.jpg) !important;
+	background-image: url(/jquest/src/imgs/pexels-eberhard-grossgasteiger-1624438.jpg) !important;
 	background-position: center !important;
 	background-size: cover !important;
 	background-repeat: no-repeat !important;
@@ -106,7 +107,7 @@ html {
 #logo {
 	font-family: "PT Sans", sans-serif;
 	align-self: flex-start;
-	color: white;
+	/* color: white; */
 }
 
 .q-container {
@@ -132,12 +133,15 @@ html {
 .q-heading {
 	font-size: 35px;
 	font-weight: bold;
-	font-family: "Merriweather", serif;
-	color: #ff7b4b;
+	font-family: "Viga", sans-serif;
+	text-transform: uppercase;
+	color: #008080;
+	/* text-shadow: 0px 5px 10px black; */
 }
 
 .q-subtext {
-	color: #f5f5f591;
+	/* color: #d3d3d3; */
+	color: rgba(0, 0, 0, 0.77);
 }
 
 .field-container {
@@ -165,12 +169,13 @@ html {
 	-o-border-radius: 0px;
 	padding: 15px;
 	border: none;
-	border-bottom: 1px solid blueviolet;
+	border-bottom: 1px solid #ff7b4b;
 	background-color: transparent;
 	text-align: center;
 	font-size: 15px;
 	position: relative;
-	color: #f5f5f591;
+	/* color: #f5f5f591; */
+	color: blueviolet;
 }
 
 .empty-email-field {
@@ -193,7 +198,7 @@ html {
 	-moz-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	-o-transform: translateY(-50%);
-	color: #faebe69e;
+	color: #ff7b4b;
 }
 
 .move-up {
@@ -1026,10 +1031,11 @@ footer {
 @media screen and (max-width: 767px) {
 	body {
 		width: 100%;
+		min-height: 100% !important;
 		height: auto !important;
 		align-items: flex-start;
 		justify-content: flex-start;
-		position: none !important;
+		position: static !important;
 	}
 
 	html {
@@ -1059,7 +1065,7 @@ footer {
 	}
 
 	.q-subtext {
-		font-size: 1em;
+		font-size: 0.9em;
 	}
 
 	.q-container {
@@ -1086,8 +1092,8 @@ footer {
 		-o-border-radius: 5px;
 		bottom: 10px;
 		overflow: hidden;
-		backdrop-filter: blur(10px);
-		-webkit-backdrop-filter: blur(10%);
+		/* backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10%); */
 		gap: 10px;
 	}
 
