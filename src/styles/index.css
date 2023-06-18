@@ -72,6 +72,9 @@
 }
 
 body {
+	/* background: linear-gradient(145deg, #ffffff, #cfd1d4) !important; */
+	box-shadow: inset 9.91px 9.91px 19px #d1d3d7,
+		inset -9.91px -9.91px 19px #ffffff !important;
 	z-index: 3876543456789 !important;
 	width: 100vw;
 	height: 100%;
@@ -126,6 +129,9 @@ html {
 	background-size: cover !important;
 	background-repeat: no-repeat !important;
 	background-attachment: fixed !important;
+	background: linear-gradient(145deg, #ffffff, #cfd1d4) !important;
+	box-shadow: inset 9.91px 9.91px 19px #d1d3d7,
+		inset -9.91px -9.91px 19px #ffffff !important;
 }
 
 .background {
