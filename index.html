@@ -23,12 +23,17 @@
 				position: fixed;
 				top: 0;
 				z-index: -2 !important;
-				background-color: red !important;
-				background-image: url(/jquest/src/imgs/pexels-aleksandar-pasaric-2603464.jpg);
-				background-position: center;
-				background-size: cover;
-				background-repeat: no-repeat;
-				background-attachment: fixed;
+				/* background-image: url(/jquest/src/imgs/pexels-aleksandar-pasaric-2603464.jpg); */
+				background-position: center !important;
+				background-size: cover !important;
+				background-repeat: no-repeat !important;
+				background-attachment: fixed !important;
+				background: linear-gradient(
+					to top,
+					#f3e7e9 0%,
+					#e3eeff 99%,
+					#f5f9ff 100%
+				);
 			}
 		</style>
 
@@ -193,7 +198,7 @@ particlesJS.load('particles-js', 'particles.json', function() {
 							},
 						},
 						color: {
-							value: "#ffffff",
+							value: "#344754",
 						},
 						shape: {
 							type: "circle",
@@ -233,7 +238,7 @@ particlesJS.load('particles-js', 'particles.json', function() {
 						line_linked: {
 							enable: true,
 							distance: 150,
-							color: "#ffffff",
+							color: "#344754",
 							opacity: 0.4,
 							width: 1,
 						},

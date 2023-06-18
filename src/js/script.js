@@ -7,6 +7,7 @@ const logo = document.querySelector("#logo");
 const html = document.getElementsByTagName("html");
 const controlButtons = document.querySelector(".control-buttons");
 const qContainer = document.querySelector(".qcontainer");
+const pTicle = document.querySelector(".particles-js-canvas-el");
 
 const textInputFields = document.querySelectorAll("input[type=email]");
 const textFieldLabels = document.querySelectorAll("label");
@@ -552,7 +553,7 @@ function gotoNextStep(step, question) {
 		BackButton.style.display = "none";
 		ContinueButton.classList.add("widen");
 		logo.style.color = "white";
-		body.style.backgroundColor = "";
+		body.classList.remove("soft");
 
 		try {
 			ChangeEmailButton.style.display = "none";
@@ -609,9 +610,9 @@ function gotoNextStep(step, question) {
 		// Put off the welcome page and put on the QA page
 		logo.style.color = "black";
 		// body.style.backgroundColor = "#ffffffdd";
-		html[0].style.backgroundImage =
-			"url(/jquest/src/imgs/pexels-aleksandar-pasaric-2603464.jpg)";
 		body.classList.add("soft");
+		pTicle.style.backgroundImage =
+			"url(/jquest/src/imgs/pexels-aleksandar-pasaric-2603464.webp)";
 		controlButtons.classList.add("soft");
 		startQuestion.style.display = "flex";
 		starterPage.style.display = "none";
@@ -686,7 +687,7 @@ function gotoPreviousStep(step, question) {
 		ContinueButton.classList.add("widen");
 		logo.style.color = "";
 		body.classList.remove("soft");
-		html[0].style.backgroundImage = "none";
+		pTicle.style.backgroundImage = "";
 		controlButtons.classList.remove("soft");
 		showCircleSVG(false);
 		return;
