@@ -610,10 +610,10 @@ function gotoNextStep(step, question) {
 		// Put off the welcome page and put on the QA page
 		logo.style.color = "black";
 		// body.style.backgroundColor = "#ffffffdd";
-		body.classList.add("soft");
-		pTicle.style.backgroundImage =
-			"url(/jquest/src/imgs/pexels-aleksandar-pasaric-2603464.webp)";
-		controlButtons.classList.add("csoft");
+		// body.classList.add("soft");
+		// pTicle.style.backgroundImage =
+		// 	"url(/jquest/src/imgs/pexels-aleksandar-pasaric-2603464.webp)";
+		// controlButtons.classList.add("csoft");
 		startQuestion.style.display = "flex";
 		starterPage.style.display = "none";
 		thankYou.style.display = "none";
@@ -686,7 +686,7 @@ function gotoPreviousStep(step, question) {
 		BackButton.style.display = "none";
 		ContinueButton.classList.add("widen");
 		logo.style.color = "";
-		body.classList.remove("soft");
+		// body.classList.remove("soft");
 		pTicle.style.backgroundImage = "";
 		controlButtons.classList.remove("csoft");
 		showCircleSVG(false);

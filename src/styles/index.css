@@ -203,7 +203,7 @@ html {
 	-o-border-radius: 0px;
 	padding: 15px 0px;
 	border: none;
-	border-bottom: 1px solid #344754;
+	border-bottom: 1px solid #cc5500;
 	background-color: transparent;
 	font-size: 15px;
 	position: relative;
@@ -231,7 +231,7 @@ html {
 	-moz-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	-o-transform: translateY(-50%);
-	color: #344754;
+	color: #cc5500;
 	width: auto;
 	left: 0;
 	padding: 2px 7px;
@@ -1248,7 +1248,8 @@ footer {
 
 	.textonlybox {
 		padding: 10px 15px;
-		box-shadow: 0px 0px 0px 1px #00000030;
+		/* box-shadow: 0px 0px 0px 1px #00000030; */
+		box-shadow: none;
 		border: none;
 		background-color: whitesmoke;
 		height: auto;
