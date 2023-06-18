@@ -611,8 +611,7 @@ function gotoNextStep(step, question) {
 		logo.style.color = "black";
 		// body.style.backgroundColor = "#ffffffdd";
 		// body.classList.add("soft");
-		// pTicle.style.backgroundImage =
-		// 	"url(/jquest/src/imgs/pexels-aleksandar-pasaric-2603464.webp)";
+		pTicle.classList.add("soft");
 		controlButtons.classList.add("csoft");
 		startQuestion.style.display = "flex";
 		starterPage.style.display = "none";
@@ -687,7 +686,7 @@ function gotoPreviousStep(step, question) {
 		ContinueButton.classList.add("widen");
 		logo.style.color = "";
 		// body.classList.remove("soft");
-		pTicle.style.backgroundImage = "";
+		pTicle.classList.remove("soft");
 		controlButtons.classList.remove("csoft");
 		showCircleSVG(false);
 		return;

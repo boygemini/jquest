@@ -94,20 +94,21 @@ body {
 	overflow-x: hidden;
 }
 
-.soft {
-	/* background-image: linear-gradient(
+.soft,
+.csoft {
+	background-image: linear-gradient(
 		to top,
-		#f3e7e9ec 0%,
-		#e3eeffec 99%,
-		#f5f9ffef 100%
-	) !important; */
-	backdrop-filter: blur(10px) !important;
-	-webkit-backdrop-filter: blur(10px) !important;
+		#d5d4d0 0%,
+		#d5d4d0 1%,
+		#eeeeec 31%,
+		#efeeec 75%,
+		#e9e9e7 100%
+	) !important;
 }
-
+/*
 .csoft {
 	background-color: white;
-}
+} */
 
 /* .hard {
 	background-image: linear-gradient(
