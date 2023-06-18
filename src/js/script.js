@@ -4,6 +4,7 @@ import Questions, { feedBacks } from "./questions.js";
 
 const body = document.querySelector("#body");
 const logo = document.querySelector("#logo");
+const html = document.getElementsByTagName("html");
 const controlButtons = document.querySelector(".control-buttons");
 const qContainer = document.querySelector(".qcontainer");
 
@@ -550,7 +551,7 @@ function gotoNextStep(step, question) {
 		startQuestion.style.display = "none";
 		BackButton.style.display = "none";
 		ContinueButton.classList.add("widen");
-		// logo.style.color = "white";
+		logo.style.color = "white";
 		body.style.backgroundColor = "";
 
 		try {
@@ -606,9 +607,12 @@ function gotoNextStep(step, question) {
 	// Start QA on the Condition
 	if (step <= question.length && step > 0) {
 		// Put off the welcome page and put on the QA page
-		// logo.style.color = "black";
-		body.style.backgroundColor = "#ffffffdd";
-		controlButtons.style.boxShadow = "";
+		logo.style.color = "black";
+		// body.style.backgroundColor = "#ffffffdd";
+		html[0].style.backgroundImage =
+			"url(/jquest/src/imgs/pexels-aleksandar-pasaric-2603464.jpg)";
+		body.classList.add("soft");
+		controlButtons.style.backgroundColor = "#ffffffdd";
 		startQuestion.style.display = "flex";
 		starterPage.style.display = "none";
 		thankYou.style.display = "none";
@@ -681,8 +685,9 @@ function gotoPreviousStep(step, question) {
 		BackButton.style.display = "none";
 		ContinueButton.classList.add("widen");
 		logo.style.color = "";
-		body.style.backgroundColor = "";
-		controlButtons.style.boxShadow = "none";
+		body.classList.remove("soft");
+		html[0].style.backgroundImage = "";
+		controlButtons.style.backgroundColor = "transparent";
 		showCircleSVG(false);
 		return;
 	}
