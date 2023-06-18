@@ -542,11 +542,11 @@ footer {
 }
 
 .two-ans-container-checked {
-	box-shadow: 0px 0px 0px 2px blueviolet, 0px 0px 10px 5px rgba(19, 1, 35, 0.22) !important;
+	box-shadow: 0px 0px 0px 2px #344754, 0px 0px 10px 5px rgba(19, 1, 35, 0.22) !important;
 }
 
 .two-ans-container-checked p {
-	background-color: blueviolet;
+	background-color: #344754;
 	padding: 10px 15px;
 	color: white;
 	border-radius: 5px;
