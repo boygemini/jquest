@@ -612,7 +612,7 @@ function gotoNextStep(step, question) {
 		html[0].style.backgroundImage =
 			"url(/jquest/src/imgs/pexels-aleksandar-pasaric-2603464.jpg)";
 		body.classList.add("soft");
-		controlButtons.style.backgroundColor = "#ffffffdd";
+		controlButtons.classList.add("soft");
 		startQuestion.style.display = "flex";
 		starterPage.style.display = "none";
 		thankYou.style.display = "none";
@@ -686,8 +686,8 @@ function gotoPreviousStep(step, question) {
 		ContinueButton.classList.add("widen");
 		logo.style.color = "";
 		body.classList.remove("soft");
-		html[0].style.backgroundImage = "";
-		controlButtons.style.backgroundColor = "transparent";
+		html[0].style.backgroundImage = "none";
+		controlButtons.classList.remove("soft");
 		showCircleSVG(false);
 		return;
 	}
