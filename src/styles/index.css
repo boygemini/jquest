@@ -101,12 +101,12 @@ body {
 		#e3eeffec 99%,
 		#f5f9ffef 100%
 	) !important; */
-
-	background: linear-gradient(to top, #1fa7e34d 0%, #ffffff 99%, #f5f9ff 100%);
+	backdrop-filter: blur(10px) !important;
+	-webkit-backdrop-filter: blur(10px) !important;
 }
 
 .csoft {
-	background-color: #1fa7e34d;
+	background-color: white;
 }
 
 /* .hard {
@@ -1145,7 +1145,7 @@ footer {
 		-moz-border-radius: 5px !important;
 		-ms-border-radius: 5px !important;
 		-o-border-radius: 5px !important;
-		box-shadow: 0px 15px 15px -10px rgba(3, 0, 5, 0.328) !important;
+		box-shadow: 0px 10px 10px -5px rgba(3, 0, 5, 0.277) !important;
 	}
 
 	.back-button,
@@ -1248,8 +1248,8 @@ footer {
 
 	.textonlybox {
 		padding: 10px 15px;
-		/* box-shadow: 0px 0px 0px 1px #00000030; */
-		box-shadow: none !important;
+		box-shadow: 0px 0px 0px 0.5px #00000030;
+		/* box-shadow: none !important; */
 		border: none !important;
 		background-color: whitesmoke;
 		height: auto;

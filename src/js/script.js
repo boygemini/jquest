@@ -613,7 +613,7 @@ function gotoNextStep(step, question) {
 		// body.classList.add("soft");
 		// pTicle.style.backgroundImage =
 		// 	"url(/jquest/src/imgs/pexels-aleksandar-pasaric-2603464.webp)";
-		// controlButtons.classList.add("csoft");
+		controlButtons.classList.add("csoft");
 		startQuestion.style.display = "flex";
 		starterPage.style.display = "none";
 		thankYou.style.display = "none";
