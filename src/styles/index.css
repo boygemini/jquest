@@ -295,7 +295,8 @@ html {
 	cursor: pointer;
 	width: 50%; */
 	display: none;
-	background-color: white;
+	background-color: #cc5500;
+	color: white !important;
 }
 
 /* .back-button:hover {
@@ -1164,7 +1165,7 @@ footer {
 	.back-button,
 	.back-text {
 		/* background-color: #cc5500; */
-		color: #cc5500 !important;
+		color: white !important;
 	}
 
 	.field-container {
@@ -1286,7 +1287,7 @@ footer {
 	}
 
 	.back-button {
-		color: #cc5500;
+		color: white !important;
 	}
 
 	#email {
@@ -1696,9 +1697,10 @@ footer {
 		border: 1px solid white !important;
 	}
 
-	.back-button {
-		color: #cc5500;
-		background-color: transparent !important;
+	.back-button,
+	.back-text {
+		color: white !important;
+		/* background-color: transparent !important; */
 	}
 
 	#email {
