@@ -608,10 +608,10 @@ function gotoNextStep(step, question) {
 	// Start QA on the Condition
 	if (step <= question.length && step > 0) {
 		// Put off the welcome page and put on the QA page
-		logo.style.color = "black";
+		logo.style.color = "";
 		// body.style.backgroundColor = "#ffffffdd";
 		// body.classList.add("soft");
-		pTicle.classList.add("soft");
+		pTicle.classList.remove("soft");
 		controlButtons.classList.add("csoft");
 		startQuestion.style.display = "flex";
 		starterPage.style.display = "none";
@@ -686,7 +686,7 @@ function gotoPreviousStep(step, question) {
 		ContinueButton.classList.add("widen");
 		logo.style.color = "";
 		// body.classList.remove("soft");
-		pTicle.classList.remove("soft");
+		pTicle.classList.add("soft");
 		controlButtons.classList.remove("csoft");
 		showCircleSVG(false);
 		return;

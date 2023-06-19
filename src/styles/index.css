@@ -105,9 +105,14 @@ body {
 	border-bottom-right-radius: 5px;
 }
 
-.soft,
-.csoft {
-	background-color: white !important;
+.soft {
+	/* background-color: white !important; */
+	background: linear-gradient(
+		45deg,
+		#1fa7e34d 0%,
+		#ffffff 60%,
+		#f5f9ff 100%
+	) !important;
 	/* background-image: linear-gradient(
 		to top,
 		#d5d4d0 0%,
@@ -117,10 +122,10 @@ body {
 		#e9e9e7 100%
 	) !important; */
 }
-/*
+
 .csoft {
 	background-color: white;
-} */
+}
 
 /* .hard {
 	background-image: linear-gradient(
@@ -295,8 +300,8 @@ html {
 	cursor: pointer;
 	width: 50%; */
 	display: none;
-	background-color: #cc5500;
-	color: white !important;
+	background-color: #f2c744;
+	color: #344754 !important;
 }
 
 /* .back-button:hover {
@@ -1165,7 +1170,6 @@ footer {
 	.back-button,
 	.back-text {
 		/* background-color: #cc5500; */
-		color: white !important;
 	}
 
 	.field-container {
