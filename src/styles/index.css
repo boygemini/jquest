@@ -295,7 +295,7 @@ html {
 	cursor: pointer;
 	width: 50%; */
 	display: none;
-	background-color: whitesmoke;
+	background-color: white;
 }
 
 /* .back-button:hover {
@@ -1158,13 +1158,13 @@ footer {
 		-moz-border-radius: 5px !important;
 		-ms-border-radius: 5px !important;
 		-o-border-radius: 5px !important;
-		box-shadow: 0px 10px 10px -5px rgba(3, 0, 5, 0.277) !important;
+		/* box-shadow: 0px 10px 10px -5px rgba(3, 0, 5, 0.277) !important; */
 	}
 
 	.back-button,
 	.back-text {
-		background-color: #cc5500;
-		color: white !important;
+		/* background-color: #cc5500; */
+		color: #cc5500 !important;
 	}
 
 	.field-container {
@@ -1698,6 +1698,7 @@ footer {
 
 	.back-button {
 		color: #cc5500;
+		background-color: transparent !important;
 	}
 
 	#email {
