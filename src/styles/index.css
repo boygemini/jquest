@@ -103,18 +103,18 @@ body {
 	left: 0%;
 	top: 0%;
 	border-bottom-right-radius: 5px;
-	opacity: 1;
+	opacity: 0;
 }
 
 .soft {
 	/* background-color: white !important; */
 
-	background: linear-gradient(
+	/* background: linear-gradient(
 		-360deg,
 		#f2c744 0%,
 		transparent 30%,
 		transparent 30%
-	) !important;
+	) !important; */
 
 	/* background: linear-gradient(
 		-360deg,
@@ -179,7 +179,7 @@ html {
 .q-container {
 	width: 100%;
 	height: 80%;
-	display: flex;
+	display: none;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -762,10 +762,9 @@ footer {
 /** THANK YOU **/
 
 .thank-you {
-	display: none;
+	display: flex;
 	height: 80%;
 	width: 50%;
-	margin: auto;
 	flex-direction: column;
 	row-gap: 50px;
 	padding: 2rem;
@@ -1441,12 +1440,13 @@ footer {
 
 	.thanks-message h1 {
 		font-size: 1.6rem;
+		color: #344754;
 	}
 
 	.thanks-message p {
 		font-size: 0.9rem;
 		max-width: 320px;
-		color: #cc5500;
+		color: #344754;
 	}
 
 	.thank-you {
@@ -1466,7 +1466,20 @@ footer {
 		position: fixed !important;
 		width: 90%;
 		bottom: 100px;
-		color: #2260ff;
+		color: #344854;
+		background-color: transparent;
+	}
+
+	.change-email p {
+		font-family: "PT Sans", sans-serif !important;
+		font-weight: 800;
+		width: 90% !important;
+		color: #344854;
+	}
+
+	.saveemail {
+		background-color: #f2c744 !important;
+		color: #344754 !important;
 	}
 
 	.changetext {
@@ -1476,6 +1489,8 @@ footer {
 
 	.inner {
 		margin-top: 0px !important;
+		font-weight: 700;
+		color: #344754;
 	}
 
 	.email {
@@ -1483,6 +1498,8 @@ footer {
 		width: 100% !important;
 		scrollbar-width: 0px;
 		box-shadow: 0px 10px 10px -10px rgba(9, 0, 18, 0.328);
+		background-color: #f2c64459;
+		-webkit-backdrop-filter: blur(10px);
 	}
 
 	.email::-webkit-scrollbar {
@@ -1560,7 +1577,6 @@ footer {
 	.big-thankyou img {
 		width: 4.5rem !important;
 		height: 4.5rem !important;
-		display: none;
 	}
 
 	.big-thankyou h1 {
@@ -1576,7 +1592,7 @@ footer {
 	}
 
 	.thanks-message {
-		margin-top: 40px;
+		margin-top: 0px;
 	}
 }
 
@@ -2180,7 +2196,6 @@ footer {
 
 .email {
 	border: none;
-	background-color: #faf4fd;
 	padding: 15px 10px;
 	width: 100% !important;
 	scrollbar-width: 0px;
