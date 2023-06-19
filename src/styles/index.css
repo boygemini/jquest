@@ -110,8 +110,8 @@ body {
 	/* background-color: white !important; */
 
 	background: linear-gradient(
-		250deg,
-		#b5c9fc59 15%,
+		-360deg,
+		#ffffff 15%,
 		transparent 30%,
 		transparent 30%
 	) !important;
