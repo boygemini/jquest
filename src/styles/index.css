@@ -109,12 +109,12 @@ body {
 .soft {
 	/* background-color: white !important; */
 
-	/* background: linear-gradient(
+	background: linear-gradient(
 		-360deg,
 		#f2c744 0%,
 		transparent 30%,
 		transparent 30%
-	) !important; */
+	) !important;
 
 	/* background: linear-gradient(
 		-360deg,
