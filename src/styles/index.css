@@ -111,9 +111,9 @@ body {
 
 	background: linear-gradient(
 		-360deg,
-		#f2c744 0%,
-		transparent 30%,
-		transparent 30%
+		white 10%,
+		transparent 25%,
+		transparent 25%
 	) !important;
 
 	/* background: linear-gradient(
