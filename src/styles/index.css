@@ -1104,9 +1104,8 @@ footer {
 @media screen and (max-width: 767px) {
 	body {
 		width: 100%;
-		min-height: 100% !important;
-		min-height: 100vh !important;
 		height: auto !important;
+		min-height: 100% !important;
 		align-items: flex-start;
 		justify-content: flex-start;
 		position: static !important;
