@@ -8,6 +8,7 @@ const html = document.getElementsByTagName("html");
 const controlButtons = document.querySelector(".control-buttons");
 const qContainer = document.querySelector(".qcontainer");
 const pTicle = document.querySelector(".particles-js-canvas-el");
+const backCircle = document.querySelector(".backcircle");
 
 const textInputFields = document.querySelectorAll("input[type=email]");
 const textFieldLabels = document.querySelectorAll("label");
@@ -37,6 +38,8 @@ const userEmail = document.getElementById("email");
 const userEmail2 = document.querySelector(".email");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 let usersEmailAddress = false;
+
+body.classList.add("soft");
 
 const showCircleSVG = (bool) => {
 	bool
@@ -554,6 +557,7 @@ function gotoNextStep(step, question) {
 		ContinueButton.classList.add("widen");
 		logo.style.color = "white";
 		body.classList.remove("soft");
+		backCircle.style.opacity = "";
 
 		try {
 			ChangeEmailButton.style.display = "none";
@@ -611,7 +615,8 @@ function gotoNextStep(step, question) {
 		logo.style.color = "";
 		// body.style.backgroundColor = "#ffffffdd";
 		// body.classList.add("soft");
-		pTicle.classList.remove("soft");
+		body.classList.remove("soft");
+		backCircle.style.opacity = "0";
 		controlButtons.classList.add("csoft");
 		startQuestion.style.display = "flex";
 		starterPage.style.display = "none";
@@ -619,6 +624,7 @@ function gotoNextStep(step, question) {
 		ContinueButton.style.display = "flex";
 		BackButton.style.display = "flex";
 		ContinueButton.classList.remove("widen");
+		ContinueButton.children[0].innerText = "Continue";
 		BackButton.classList.remove("widen");
 		showCircleSVG(true);
 
@@ -686,7 +692,8 @@ function gotoPreviousStep(step, question) {
 		ContinueButton.classList.add("widen");
 		logo.style.color = "";
 		// body.classList.remove("soft");
-		pTicle.classList.add("soft");
+		body.classList.add("soft");
+		backCircle.style.opacity = "";
 		controlButtons.classList.remove("csoft");
 		showCircleSVG(false);
 		return;
