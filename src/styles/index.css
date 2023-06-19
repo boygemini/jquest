@@ -110,10 +110,10 @@ body {
 	/* background-color: white !important; */
 
 	background: linear-gradient(
-		-360deg,
-		white 10%,
-		transparent 25%,
-		transparent 25%
+		250deg,
+		#b5c9fc59 15%,
+		transparent 30%,
+		transparent 30%
 	) !important;
 
 	/* background: linear-gradient(
@@ -235,7 +235,7 @@ html {
 	-moz-border-radius: 0px;
 	-ms-border-radius: 0px;
 	-o-border-radius: 0px;
-	padding: 15px 0px;
+	padding: 15px 10px;
 	border: none;
 	border-bottom: 1px solid #344754;
 	background-color: transparent;
