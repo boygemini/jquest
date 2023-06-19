@@ -108,9 +108,9 @@ body {
 .soft {
 	/* background-color: white !important; */
 	background: linear-gradient(
-		45deg,
+		-360deg,
 		#f2c744 0%,
-		#ffffff 35%,
+		#ffffff 40%,
 		#ffffff 100%
 	) !important;
 	/* background-image: linear-gradient(
