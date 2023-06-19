@@ -103,7 +103,7 @@ body {
 	left: 0%;
 	top: 0%;
 	border-bottom-right-radius: 5px;
-	opacity: 0;
+	opacity: 1;
 }
 
 .soft {
@@ -179,7 +179,7 @@ html {
 .q-container {
 	width: 100%;
 	height: 80%;
-	display: none;
+	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -762,7 +762,7 @@ footer {
 /** THANK YOU **/
 
 .thank-you {
-	display: flex;
+	display: none;
 	height: 80%;
 	width: 50%;
 	flex-direction: column;
