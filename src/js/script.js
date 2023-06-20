@@ -6,7 +6,7 @@ const body = document.querySelector("#body");
 const logo = document.querySelector("#logo");
 const html = document.getElementsByTagName("html");
 const controlButtons = document.querySelector(".control-buttons");
-const qContainer = document.querySelector(".qcontainer");
+const qContainer = document.querySelector(".q-container");
 const pTicle = document.querySelector(".particles-js-canvas-el");
 const backCircle = document.querySelector(".backcircle");
 
@@ -39,7 +39,16 @@ const userEmail2 = document.querySelector(".email");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 let usersEmailAddress = false;
 
-body.classList.add("soft");
+// body.classList.add("soft");
+
+// qContainer.classList.value = "magictime vanishIn";
+
+ContinueButton.classList.add("magictime", "slideDownReturn");
+// qContainer.addEventListener("animationend", (e) => {
+// 	console.log("Hey");
+// 	qContainer.classList.value = "magictime vanishOut";
+// 	// ContinueButton.classList.value = "magictime tinDownOut"
+// });
 
 const showCircleSVG = (bool) => {
 	bool
