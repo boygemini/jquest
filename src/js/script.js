@@ -11,7 +11,8 @@ const controlButtons = document.querySelector(".control-buttons");
 const pTicle = document.querySelector(".particles-js-canvas-el");
 const backCircle = document.querySelector(".backcircle");
 const emailTextField = document.querySelector(".field-container");
-const introText = document.querySelector(".introtext");
+const introText = document.querySelector(".introtext")
+const rule = document.querySelector(".selection-rule")
 
 const textInputFields = document.querySelectorAll("input[type=email]");
 const textFieldLabels = document.querySelectorAll("label");
@@ -71,8 +72,9 @@ function welcomeAnimation() {
 
 	animDebounce(() => {
 		introText.classList.remove("animate__fadeInLeftBig");
-	}, 500);
+	}, 1000);
 }
+welcomeAnimation();
 
 function goingOutOfWelcome(home, start) {
 	home.classList.add("animate__fadeOutLeft");
@@ -98,7 +100,25 @@ function backToWelcome(home, start) {
 	}, 500);
 }
 
-welcomeAnimation();
+function continueDuringSurvey(question, answer) {
+	question.classList.add("animate__fadeOutUp")
+	rule.classList.add("animate__fadeOutUp")
+	answer.classList.add("animate__fadeOutDown")
+
+
+
+	animDebounce(() => {
+		question.classList.replace("animate__fadeOutUp", "animate__fadeInDown")
+		rule.classList.replace("animate__fadeOutUp", "animate__fadeInDown")
+		answer.classList.remove("animate__fadeOutDown")
+		setTimeout(() => {
+			answer.classList.add("animate__fadeInUp")
+		}, 1)
+	}, 500);
+
+}
+
+
 
 const showCircleSVG = (bool) => {
 	bool
@@ -667,6 +687,7 @@ function gotoNextStep(step, question) {
 	}
 
 	// Start QA on the Condition
+
 	if (step <= question.length && step > 0) {
 		// Put off the welcome page and put on the QA page
 		// body.style.backgroundColor = "#ffffffdd";
@@ -709,6 +730,11 @@ function gotoNextStep(step, question) {
 			}
 		} catch (error) {}
 
+
+		if (step <= question.length && step > 1) {
+			continueDuringSurvey(questionElement, answersField)
+		}
+
 		setTimeout(() => {
 			// Display Question
 			questionElement.innerHTML =
@@ -741,6 +767,8 @@ function gotoPreviousStep(step, question) {
 	// Animate progress backwards
 	animateProgress(stepCounter);
 
+
+
 	if (step <= 0) {
 		thankYou.style.display = "none";
 		starterPage.style.display = "flex";
@@ -767,13 +795,17 @@ function gotoPreviousStep(step, question) {
 		ContinueButton.classList.remove("widen");
 		showCircleSVG(true);
 
-		// Display Question
-		questionElement.innerHTML =
-			`<h1 class="qnumbering">${step}</h1>` +
-			askQuestionsInteractively(step, question);
+		continueDuringSurvey(questionElement, answersField)
 
-		// Display Answers
-		displayAnswersInteractively(answersField, step, question);
+		setTimeout(()=>{
+			// Display Question
+			questionElement.innerHTML =
+				`<h1 class="qnumbering">${step}</h1>` +
+				askQuestionsInteractively(step, question);
+
+			// Display Answers
+			displayAnswersInteractively(answersField, step, question);
+		},500)
 	}
 }
 
@@ -826,7 +858,7 @@ function displayAnswersInteractively(answersField, step, question) {
 		// Empty the Answers Field/Container
 		answersField.innerHTML = "";
 		answersField.classList = "";
-		answersField.classList.add("answer-field");
+		answersField.classList.add("answer-field", "animate__animated");
 
 		setTimeout(() => {
 			switch (step) {
