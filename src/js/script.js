@@ -6,9 +6,10 @@ const body = document.querySelector("#body");
 const logo = document.querySelector("#logo");
 const html = document.getElementsByTagName("html");
 const controlButtons = document.querySelector(".control-buttons");
-const qContainer = document.querySelector(".q-container");
 const pTicle = document.querySelector(".particles-js-canvas-el");
 const backCircle = document.querySelector(".backcircle");
+const emailTextField = document.querySelector(".field-container");
+const introText = document.querySelector(".introtext");
 
 const textInputFields = document.querySelectorAll("input[type=email]");
 const textFieldLabels = document.querySelectorAll("label");
@@ -41,14 +42,59 @@ let usersEmailAddress = false;
 
 // body.classList.add("soft");
 
-// qContainer.classList.value = "magictime vanishIn";
+// starterPage.classList.value = "magictime vanishIn";
+// var typed = new Typed("#q-heading", {
+// 	strings: ["Let's Do a Little Fun Questionnaire"],
+// 	typeSpeed: 50,
+// });
 
-ContinueButton.classList.add("magictime", "slideDownReturn");
-// qContainer.addEventListener("animationend", (e) => {
-// 	console.log("Hey");
-// 	qContainer.classList.value = "magictime vanishOut";
+// ContinueButton.classList.add("magictime", "slideDownReturn");
+// starterPage.addEventListener("animationend", (e) => {
+// 	starterPage.classList.value = "magictime vanishOut";
 // 	// ContinueButton.classList.value = "magictime tinDownOut"
 // });
+
+let anim;
+function animDebounce(func, time) {
+	if (anim) {
+		clearTimeout(anim);
+	}
+	anim = setTimeout(func, time);
+}
+
+function welcomeAnimation() {
+	introText.classList.add("animate__fadeInLeftBig");
+	controlButtons.classList.add("animate__fadeInUp");
+
+	animDebounce(() => {
+		introText.classList.remove("animate__fadeInLeftBig");
+	}, 500);
+}
+
+function goingOutOfWelcome(home, start) {
+	home.classList.add("animate__fadeOutLeft");
+	start.classList.add("animate__fadeInRight");
+	emailTextField.classList.add("animate__fadeOutDown");
+
+	animDebounce(() => {
+		emailTextField.classList.remove("animate__fadeOutDown");
+		home.classList.remove("animate__fadeOutLeft");
+	}, 500);
+}
+
+function backToWelcome(home, start) {
+	// console.log(start.classList);
+	home.classList.remove("animate__fadeOutLeft");
+	home.classList.add("animate__fadeInLeft");
+	emailTextField.classList.add("animate__fadeInDown");
+	start.classList.add("animate__fadeOutRight");
+
+	animDebounce(() => {
+		start.classList.remove("animate__fadeOutRight");
+	}, 500);
+}
+
+welcomeAnimation();
 
 const showCircleSVG = (bool) => {
 	bool
@@ -560,16 +606,12 @@ function gotoNextStep(step, question) {
 
 	// Proceed to QA if email address field is filled
 	if (step === 0) {
-		starterPage.style.display = "flex";
-		startQuestion.style.display = "none";
-		BackButton.style.display = "none";
-		ContinueButton.classList.add("widen");
-		body.classList.remove("soft");
-		backCircle.style.opacity = "";
-
-		try {
-			ChangeEmailButton.style.display = "none";
-		} catch (error) {}
+		// starterPage.style.display = "flex";
+		// startQuestion.style.display = "none";
+		// BackButton.style.display = "none";
+		// ContinueButton.classList.add("widen");
+		// body.classList.remove("soft");
+		// backCircle.style.opacity = "";
 
 		showCircleSVG(false);
 
@@ -595,6 +637,7 @@ function gotoNextStep(step, question) {
 				return;
 			}
 			validateEmail(userEmail, step);
+			goingOutOfWelcome(introText, startQuestion);
 		}
 	}
 
@@ -625,14 +668,17 @@ function gotoNextStep(step, question) {
 		body.classList.remove("soft");
 		backCircle.style.opacity = "0";
 		controlButtons.classList.add("csoft");
-		startQuestion.style.display = "flex";
-		starterPage.style.display = "none";
 		thankYou.style.display = "none";
-		ContinueButton.style.display = "flex";
-		BackButton.style.display = "flex";
-		ContinueButton.classList.remove("widen");
-		ContinueButton.children[0].innerText = "Continue";
-		BackButton.classList.remove("widen");
+		debounce3(() => {
+			ContinueButton.children[0].innerText = "Continue";
+			ContinueButton.style.display = "flex";
+			BackButton.style.display = "flex";
+			ContinueButton.classList.remove("widen");
+			BackButton.classList.remove("widen");
+			// startQuestion.style.display = "flex";
+			// starterPage.style.display = "none";
+		}, 500);
+
 		showCircleSVG(true);
 
 		try {
@@ -657,13 +703,15 @@ function gotoNextStep(step, question) {
 			}
 		} catch (error) {}
 
-		// Display Question
-		questionElement.innerHTML =
-			`<h1 class="qnumbering">${step}</h1>` +
-			askQuestionsInteractively(step, question);
+		setTimeout(() => {
+			// Display Question
+			questionElement.innerHTML =
+				`<h1 class="qnumbering">${step}</h1>` +
+				askQuestionsInteractively(step, question);
 
-		// Display Answers
-		displayAnswersInteractively(answersField, step, question);
+			// Display Answers
+			displayAnswersInteractively(answersField, step, question);
+		}, 500);
 	}
 
 	if (step >= question.length) step = question.length;
@@ -677,9 +725,6 @@ function gotoNextStep(step, question) {
 function gotoPreviousStep(step, question) {
 	const answersField = document.querySelector(".answer-field");
 	const questionElement = document.querySelector(".Question");
-	setTimeout(() => {
-		console.log("Prev", step);
-	}, 1000);
 
 	step--;
 	if (step <= 0) {
@@ -687,20 +732,24 @@ function gotoPreviousStep(step, question) {
 	}
 
 	stepCounter = step;
-
 	// Animate progress backwards
 	animateProgress(stepCounter);
 
 	if (step <= 0) {
-		startQuestion.style.display = "none";
 		thankYou.style.display = "none";
 		starterPage.style.display = "flex";
-		BackButton.style.display = "none";
-		ContinueButton.classList.add("widen");
-		// body.classList.remove("soft");
-		body.classList.add("soft");
+
+		debounce3(() => {
+			BackButton.style.display = "none";
+			ContinueButton.classList.add("widen");
+			controlButtons.classList.remove("csoft");
+			startQuestion.style.display = "none";
+		}, 500);
+
+		console.log(introText.classList);
+		backToWelcome(introText, startQuestion);
+
 		backCircle.style.opacity = "";
-		controlButtons.classList.remove("csoft");
 		showCircleSVG(false);
 		return;
 	}
@@ -1256,7 +1305,6 @@ inner.onblur = () => {
 changeEmail.onclick = () => {
 	usersEmailAddress = editfield.innerText;
 	sendEmail(usersEmailAddress);
-	console.log(usersEmailAddress);
 	changeEmailContainer.classList.add("remove-change-email-modal");
 };
 
@@ -1267,10 +1315,76 @@ cancel.onclick = () => {
 // Continue button
 ContinueButton.addEventListener("click", (e) => {
 	gotoNextStep(stepCounter, Questions);
+
+	// if (stepCounter - 1 > 0) {
+	// 	controlButtons.classList.value = "control-buttons csoft";
+	// 	return;
+	// }
+
+	// if (stepCounter === 0) {
+	// 	return;
+	// }
+
+	// if (stepCounter - 1 === 0) {
+	// 	controlButtons.classList.remove("animate__animated", "animate__fadeInUp");
+	// 	emailTextField.classList.remove("animate__animated", "animate__fadeInUp");
+	// 	//
+	// 	//
+	// 	//
+	// 	setTimeout(() => {
+	// 		controlButtons.classList.add("animate__animated", "animate__fadeOutDown");
+	// 		emailTextField.classList.add("animate__animated", "animate__fadeOutDown");
+	// 	}, 10);
+
+	// 	setTimeout(() => {
+	// 		controlButtons.classList.remove(
+	// 			"animate__animated",
+	// 			"animate__fadeOutDown"
+	// 		);
+	// 		emailTextField.classList.remove(
+	// 			"animate__animated",
+	// 			"animate__fadeOutDown"
+	// 		);
+
+	// 		controlButtons.classList.add("animate__animated", "animate__fadeInUp");
+	// 		emailTextField.classList.add("animate__animated", "animate__fadeInUp");
+	// 	}, 1000);
+	// }
 });
 
 BackButton.addEventListener("click", (e) => {
 	gotoPreviousStep(stepCounter, Questions);
+
+	// if (stepCounter <= 0) {
+	// 	introText.classList.remove("animate__animated", "animate__fadeInLeftBig");
+	// 	controlButtons.classList.remove("animate__animated", "animate__fadeInUp");
+	// 	//
+	// 	//
+	// 	//
+	// 	setTimeout(() => {
+	// 		introText.classList.add("animate__animated", "animate__fadeOutLeftBig");
+	// 		controlButtons.classList.add("animate__animated", "animate__fadeOutDown");
+	// 	}, 10);
+
+	// 	setTimeout(() => {
+	// 		introText.classList.remove(
+	// 			"animate__animated",
+	// 			"animate__fadeOutLeftBig"
+	// 		);
+
+	// 		controlButtons.classList.remove(
+	// 			"animate__animated",
+	// 			"animate__fadeOutDown"
+	// 		);
+	// 		emailTextField.classList.remove(
+	// 			"animate__animated",
+	// 			"animate__fadeOutDown"
+	// 		);
+
+	// 		introText.classList.add("animate__animated", "animate__fadeInLeftBig");
+	// 		controlButtons.classList.add("animate__animated", "animate__fadeInUp");
+	// 	}, 500);
+	// }
 });
 
 function keydownHandler(e) {

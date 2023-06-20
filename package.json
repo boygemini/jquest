@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "animate.css": "^4.1.1",
     "particles.js": "^2.0.0",
-    "particlesjs": "^2.2.3"
+    "particlesjs": "^2.2.3",
+    "typed.js": "^2.0.16"
   }
 }

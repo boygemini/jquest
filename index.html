@@ -8,10 +8,13 @@
 			content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
 		/>
 		<title>Document</title>
+
 		<link rel="stylesheet" href="/jquest/src/styles/frames.css" />
 		<link rel="stylesheet" href="/jquest/src/styles/index.css" />
+
 		<link rel="stylesheet" href="/jquest/magic-master/dist/magic.css" />
 		<link rel="stylesheet" href="/node_modules/magic.css/dist/magic.css" />
+		<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 
 		<script
 			type="text/javascript"
@@ -20,6 +23,15 @@
 
 		<script src="/jquest/src/js/script.js" type="module" defer></script>
 		<script src="/jquest/src/js/questions.js" type="module"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+		/>
+
+		<link
+			rel="stylesheet"
+			href="/jquest/node_modules/animate.css/animate.min.css"
+		/>
 		<style>
 			.particles-js-canvas-el {
 				position: fixed;
@@ -106,15 +118,17 @@
 				fill="#555"
 			></text>
 		</svg>
-		<div class="q-container magictime vanishIn">
-			<article class="question">
-				<h1 class="q-heading">Let's Do a Little Fun Questionnaire</h1>
+		<div class="q-container">
+			<article class="question introtext animate__animated">
+				<h1 class="q-heading" id="q-heading">
+					Let's Do a Little Fun Questionnaire
+				</h1>
 				<p class="q-subtext">
 					You will receive an email with all your responses at the end of the
 					session.
 				</p>
 			</article>
-			<div class="field-container">
+			<div class="field-container animate__animated">
 				<label class="text-label" for="email"
 					>Please enter your email address</label
 				>
@@ -134,7 +148,7 @@
 		</div>
 
 		<!-- <button style="padding: 15px 10px" id="btn">Click Me</button> -->
-		<div class="main-Q-container">
+		<div class="main-Q-container animate__animated">
 			<h1 class="Question"></h1>
 			<p class="selection-rule"></p>
 			<div class="answer-field"></div>
@@ -324,7 +338,7 @@ particlesJS.load('particles-js', 'particles.json', function() {
 			);
 		</script>
 	</body>
-	<dic class="control-buttons">
+	<dic class="control-buttons animate__animated">
 		<button class="back-button">
 			<p class="continue-text back-text">Back</p>
 			<p class="press-enter back-text">Press Arrow-Left Key</p>

@@ -16,6 +16,7 @@
 	-moz-transition: all 0.3s ease-in-out;
 	-ms-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
+	animation-fill-mode: forwards !important;
 }
 
 :root {
@@ -27,6 +28,10 @@
 	animation-duration: 1s !important;
 } */
 
+.typed-cursor {
+	display: none;
+}
+
 .magictime.vanishOut {
 	animation-delay: 2s;
 }
@@ -34,6 +39,11 @@
 .magictime.slideDownReturn {
 	animation-delay: 0.5s;
 	-webkit-animation-duration: 0.5s !important;
+	animation-duration: 0.5s !important;
+}
+
+.animate__animated {
+	animation-delay: 0s !important;
 	animation-duration: 0.5s !important;
 }
 
@@ -216,6 +226,7 @@ html {
 	font-weight: bold;
 	font-family: "Viga", sans-serif;
 	text-transform: uppercase;
+	text-align: left !important;
 	color: #344754;
 	/* text-shadow: 0px 5px 10px black; */
 	/* color: #ff7b4b; */
@@ -239,6 +250,7 @@ html {
 	position: relative;
 	border: none;
 	margin-top: 50px;
+	animation-delay: 0s !important;
 }
 
 .text-field {
@@ -381,7 +393,6 @@ html {
 	-ms-border-radius: 10px;
 	-o-border-radius: 10px;
 	padding: 1rem;
-	opacity: 0 !important;
 }
 
 .remove-error-message {
