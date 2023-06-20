@@ -42,10 +42,10 @@
 	animation-duration: 0.5s !important;
 }
 
-.animate__animated {
+/* .animate__animated {
 	animation-delay: 0s !important;
 	animation-duration: 0.5s !important;
-}
+} */
 
 #circle {
 	width: 200px;

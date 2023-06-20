@@ -1,6 +1,8 @@
 "use strict";
 
-import Questions, { feedBacks } from "./questions.js";
+import Questions, {
+	feedBacks
+} from "./questions.js";
 
 const body = document.querySelector("#body");
 const logo = document.querySelector("#logo");
@@ -55,6 +57,7 @@ let usersEmailAddress = false;
 // });
 
 let anim;
+
 function animDebounce(func, time) {
 	if (anim) {
 		clearTimeout(anim);
@@ -74,6 +77,7 @@ function welcomeAnimation() {
 function goingOutOfWelcome(home, start) {
 	home.classList.add("animate__fadeOutLeft");
 	start.classList.add("animate__fadeInRight");
+
 	emailTextField.classList.add("animate__fadeOutDown");
 
 	animDebounce(() => {
@@ -83,12 +87,12 @@ function goingOutOfWelcome(home, start) {
 }
 
 function backToWelcome(home, start) {
-	// console.log(start.classList);
 	home.classList.remove("animate__fadeOutLeft");
 	home.classList.add("animate__fadeInLeft");
-	emailTextField.classList.add("animate__fadeInDown");
-	start.classList.add("animate__fadeOutRight");
 
+	emailTextField.classList.add("animate__fadeInUp");
+
+	start.classList.add("animate__fadeOutRight");
 	animDebounce(() => {
 		start.classList.remove("animate__fadeOutRight");
 	}, 500);
@@ -98,8 +102,9 @@ welcomeAnimation();
 
 const showCircleSVG = (bool) => {
 	bool
-		? svgCircle.classList.add("showCircle")
-		: svgCircle.classList.remove("showCircle");
+		?
+		svgCircle.classList.add("showCircle") :
+		svgCircle.classList.remove("showCircle");
 };
 
 showCircleSVG(false);
@@ -214,6 +219,7 @@ if (textInputFields[0].value.length > 0) {
 }
 
 let id, id2, id3, id4, bd;
+
 function debounce(func, time) {
 	if (id) {
 		clearTimeout(id);
@@ -456,9 +462,9 @@ function animateProgress(step) {
 	progressSVG.style.strokeDashoffset = 502 - svgPercentage;
 	progress.innerHTML = `${completedPercentage}%`;
 
-	step >= Questions.length
-		? (currentStage.innerHTML = `${step - 1} / ${totalQuestions}`)
-		: (currentStage.innerHTML = `${step} / ${totalQuestions}`);
+	step >= Questions.length ?
+		(currentStage.innerHTML = `${step - 1} / ${totalQuestions}`) :
+		(currentStage.innerHTML = `${step} / ${totalQuestions}`);
 }
 
 function sendEmail(email) {
@@ -476,8 +482,8 @@ function sendEmail(email) {
 				nArr = [
 					...nArr,
 					Object.values(file[i])
-						.map((list) => list.answerText)
-						.join(", "),
+					.map((list) => list.answerText)
+					.join(", "),
 				];
 			} else {
 				nArr = [...nArr, Object.values(file[i])[0].answerText];
@@ -580,11 +586,11 @@ function sendEmail(email) {
 					},
 					function (error) {
 						let message =
-							error.status === 412
-								? "please try again later. Thank you."
-								: error.status === 429
-								? alert("Quota")
-								: error.text;
+							error.status === 412 ?
+							"please try again later. Thank you." :
+							error.status === 429 ?
+							alert("Quota") :
+							error.text;
 						removeMessage();
 						animateErrorMessage(
 							10000,
@@ -840,7 +846,7 @@ function displayAnswersInteractively(answersField, step, question) {
 					</div>`;
 					break;
 
-				// 2-Options Only
+					// 2-Options Only
 				case 11:
 					answersField.classList.add("ans-with-2options");
 					answersField.innerHTML += `<div class="two-ans ans-box" id="two-ans-box" data-answer="${ans.text}" data-id="${index}">
@@ -850,7 +856,7 @@ function displayAnswersInteractively(answersField, step, question) {
 					</div>`;
 					break;
 
-				// Text Only
+					// Text Only
 				case 2:
 				case 4:
 				case 5:
@@ -875,7 +881,7 @@ function displayAnswersInteractively(answersField, step, question) {
 					</div>`;
 					break;
 
-				// With software logo and text
+					// With software logo and text
 				case 3:
 					answersField.innerHTML += `
 					<div class="bare-ans ans-box" data-answer="${ans.text}" data-id="${index}">
@@ -1037,6 +1043,7 @@ const removeCheckAnimationForTwoAns = (checkDir, containerDir) => {
 	checker.classList.remove("opacity");
 	container.classList.remove("two-ans-container-checked");
 };
+
 function addClass(e) {
 	let boxlist = [
 		e.target,
