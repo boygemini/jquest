@@ -13,6 +13,8 @@ const backCircle = document.querySelector(".backcircle");
 const emailTextField = document.querySelector(".field-container");
 const introText = document.querySelector(".introtext")
 const rule = document.querySelector(".selection-rule")
+const emailSent = document.querySelector(".email-sent")
+const starBoy = document.querySelector(".big-thankyou")
 
 const textInputFields = document.querySelectorAll("input[type=email]");
 const textFieldLabels = document.querySelectorAll("label");
@@ -88,6 +90,14 @@ function goingOutOfWelcome(home, start) {
 	start.classList.add("animate__fadeInRight");
 	start.style.setProperty("--animate-duration", ".4s")
 
+	controlButtons.classList.remove("animate__fadeInUp")
+	controlButtons.classList.add("animate__fadeOutDown")
+	controlButtons.style.setProperty("--animate-duration", ".5s")
+	setTimeout(() => {
+		controlButtons.classList.remove("animate__fadeOutDown")
+		controlButtons.classList.add("animate__fadeInUp")
+	}, 500)
+
 	emailTextField.classList.add("animate__fadeOutDown");
 
 	animDebounce(() => {
@@ -102,6 +112,12 @@ function backToWelcome(home, start) {
 	home.style.setProperty("--animate-duration", ".4s")
 
 	emailTextField.classList.add("animate__fadeInUp");
+
+	controlButtons.classList.add("animate__fadeOutDown")
+	setTimeout(() => {
+		controlButtons.classList.remove("animate__fadeOutDown")
+		controlButtons.classList.add("animate__fadeInUp")
+	}, 500)
 
 	start.classList.add("animate__fadeOutRight");
 	start.style.setProperty("--animate-duration", ".4s")
@@ -129,6 +145,45 @@ function continueDuringSurvey(question, answer) {
 
 }
 
+function submitingForm(home, start) {
+	home.classList.add("animate__fadeOutLeft");
+	animDebounce(() => {
+		home.classList.remove("animate__fadeOutLeft");
+	}, 500);
+
+	start.classList.add("animate__fadeInRight");
+
+	controlButtons.classList.remove("animate__fadeInUp")
+	controlButtons.classList.add("animate__fadeOutDown")
+	controlButtons.style.setProperty("--animate-duration", ".5s")
+	setTimeout(() => {
+		controlButtons.classList.remove("animate__fadeOutDown")
+		controlButtons.classList.add("animate__fadeInUp")
+	}, 400)
+
+	emailSent.classList.add("animate__fadeInUp")
+	emailSent.style.setProperty("--animation-delay", "5s")
+
+	starBoy.classList.remove("animate__fadeOut")
+	starBoy.classList.add("animate__heartBeat")
+	starBoy.style.setProperty("--animation-duration", ".3s")
+	// starBoy.style.setProperty("--animation-delay", "1s")
+}
+
+function backToForm(home, start) {
+	controlButtons.classList.remove("animate__fadeInUp")
+	controlButtons.classList.add("animate__fadeOutDown")
+	controlButtons.style.setProperty("--animate-duration", ".5s")
+	setTimeout(() => {
+		controlButtons.classList.remove("animate__fadeOutDown")
+		controlButtons.classList.add("animate__fadeInUp")
+	}, 500)
+
+	starBoy.classList.remove("animate__heartBeat")
+	starBoy.classList.add("animate__fadeOut")
+	starBoy.style.setProperty("--animation-duration", ".5s")
+}
+
 
 
 const showCircleSVG = (bool) => {
@@ -150,24 +205,24 @@ if (window.screen.availWidth <= 480) {
 let REVIEW = new Object({
 	1: {},
 	2: {},
-	3: {},
-	4: {},
-	5: {},
-	6: {},
-	7: {},
-	8: {},
-	9: {},
-	10: {},
-	11: {},
-	12: {},
-	13: {},
-	14: {},
-	15: {},
-	16: {},
-	17: {},
-	18: {},
-	19: {},
-	20: {},
+	// 3: {},
+	// 4: {},
+	// 5: {},
+	// 6: {},
+	// 7: {},
+	// 8: {},
+	// 9: {},
+	// 10: {},
+	// 11: {},
+	// 12: {},
+	// 13: {},
+	// 14: {},
+	// 15: {},
+	// 16: {},
+	// 17: {},
+	// 18: {},
+	// 19: {},
+	// 20: {},
 });
 
 function reset() {
@@ -188,24 +243,24 @@ function reset() {
 		REVIEW = {
 			1: {},
 			2: {},
-			3: {},
-			4: {},
-			5: {},
-			6: {},
-			7: {},
-			8: {},
-			9: {},
-			10: {},
-			11: {},
-			12: {},
-			13: {},
-			14: {},
-			15: {},
-			16: {},
-			17: {},
-			18: {},
-			19: {},
-			20: {},
+			// 3: {},
+			// 4: {},
+			// 5: {},
+			// 6: {},
+			// 7: {},
+			// 8: {},
+			// 9: {},
+			// 10: {},
+			// 11: {},
+			// 12: {},
+			// 13: {},
+			// 14: {},
+			// 15: {},
+			// 16: {},
+			// 17: {},
+			// 18: {},
+			// 19: {},
+			// 20: {},
 		};
 	}
 }
@@ -607,13 +662,20 @@ function sendEmail(email) {
 				)
 				.then(
 					function (response) {
-						starterPage.style.display = "none";
-						startQuestion.style.display = "none";
-						ContinueButton.style.display = "none";
-						BackButton.classList.add("widen");
-						thankYou.style.display = "flex";
 						showSent("Form Submitted Successfully", 20, 5000);
 						showCircleSVG(false);
+						submitingForm(starterPage, startQuestion)
+
+						setTimeout(() => {
+							ContinueButton.style.display = "none";
+							BackButton.classList.add("widen")
+						}, 400)
+
+						setTimeout(() => {
+							thankYou.style.display = "flex";
+							starterPage.style.display = "none";
+							startQuestion.style.display = "none";
+						}, 600)
 					},
 					function (error) {
 						let message =
@@ -742,7 +804,7 @@ function gotoNextStep(step, question) {
 		} catch (error) {}
 
 
-		if (step <= question.length && step > 1) {
+		if (step <= question.length - 1 && step > 1) {
 			continueDuringSurvey(questionElement, answersField)
 		}
 
@@ -780,6 +842,11 @@ function gotoPreviousStep(step, question) {
 
 
 
+	if (step === parseInt(Object.keys(REVIEW).length)) {
+		backToForm(thankYou, startQuestion)
+
+	}
+
 	if (step <= 0) {
 		thankYou.style.display = "none";
 
@@ -800,10 +867,12 @@ function gotoPreviousStep(step, question) {
 	}
 
 	if (step > 0) {
-		ContinueButton.style.display = "flex";
-		BackButton.style.display = "flex";
-		BackButton.classList.remove("widen");
-		ContinueButton.classList.remove("widen");
+		setTimeout(() => {
+			ContinueButton.style.display = "flex";
+			BackButton.style.display = "flex";
+			BackButton.classList.remove("widen");
+			ContinueButton.classList.remove("widen");
+		}, 500)
 		showCircleSVG(true);
 
 		continueDuringSurvey(questionElement, answersField)
@@ -1367,71 +1436,45 @@ ContinueButton.addEventListener("click", (e) => {
 	gotoNextStep(stepCounter, Questions);
 
 	// if (stepCounter - 1 > 0) {
-	// 	controlButtons.classList.value = "control-buttons csoft";
-	// 	return;
-	// }
+	// 		controlButtons.classList.value = "control-buttons csoft";
+	// 		return;
+	// 	}
 
-	// if (stepCounter === 0) {
-	// 	return;
-	// }
+	// 	if (stepCounter === 0) {
+	// 		return;
+	// 	}
 
-	// if (stepCounter - 1 === 0) {
-	// 	controlButtons.classList.remove("animate__animated", "animate__fadeInUp");
-	// 	emailTextField.classList.remove("animate__animated", "animate__fadeInUp");
-	// 	//
-	// 	//
-	// 	//
-	// 	setTimeout(() => {
-	// 		controlButtons.classList.add("animate__animated", "animate__fadeOutDown");
-	// 		emailTextField.classList.add("animate__animated", "animate__fadeOutDown");
-	// 	}, 10);
+	// 	if (stepCounter - 1 === 0) {
+	// 		controlButtons.classList.remove("animate__animated", "animate__fadeInUp");
+	// 		setTimeout(() => {
+	// 			controlButtons.classList.add("animate__animated", "animate__fadeOutDown");
+	// 		}, 10);
 
-	// 	setTimeout(() => {
-	// 		controlButtons.classList.remove(
-	// 			"animate__animated",
-	// 			"animate__fadeOutDown"
-	// 		);
-	// 		emailTextField.classList.remove(
-	// 			"animate__animated",
-	// 			"animate__fadeOutDown"
-	// 		);
+	// 		setTimeout(() => {
+	// 			controlButtons.classList.remove(
+	// 				"animate__animated",
+	// 				"animate__fadeOutDown"
+	// 			);
 
-	// 		controlButtons.classList.add("animate__animated", "animate__fadeInUp");
-	// 		emailTextField.classList.add("animate__animated", "animate__fadeInUp");
-	// 	}, 1000);
-	// }
+	// 			controlButtons.classList.add("animate__animated", "animate__fadeInUp");
+	// 		}, 1000);
+	// 	}
 });
 
 BackButton.addEventListener("click", (e) => {
 	gotoPreviousStep(stepCounter, Questions);
 
 	// if (stepCounter <= 0) {
-	// 	introText.classList.remove("animate__animated", "animate__fadeInLeftBig");
 	// 	controlButtons.classList.remove("animate__animated", "animate__fadeInUp");
-	// 	//
-	// 	//
-	// 	//
 	// 	setTimeout(() => {
-	// 		introText.classList.add("animate__animated", "animate__fadeOutLeftBig");
 	// 		controlButtons.classList.add("animate__animated", "animate__fadeOutDown");
 	// 	}, 10);
 
 	// 	setTimeout(() => {
-	// 		introText.classList.remove(
-	// 			"animate__animated",
-	// 			"animate__fadeOutLeftBig"
-	// 		);
-
 	// 		controlButtons.classList.remove(
 	// 			"animate__animated",
 	// 			"animate__fadeOutDown"
 	// 		);
-	// 		emailTextField.classList.remove(
-	// 			"animate__animated",
-	// 			"animate__fadeOutDown"
-	// 		);
-
-	// 		introText.classList.add("animate__animated", "animate__fadeInLeftBig");
 	// 		controlButtons.classList.add("animate__animated", "animate__fadeInUp");
 	// 	}, 500);
 	// }

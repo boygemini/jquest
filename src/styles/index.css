@@ -354,9 +354,9 @@ html {
 	background-color: #cc5500;
 } */
 
-.back-button:hover .back-text {
+/* .back-button:hover .back-text {
 	color: #cc5500;
-}
+} */
 
 .control-buttons {
 	width: 100%;
@@ -1325,7 +1325,7 @@ footer {
 		max-width: 37px !important;
 		max-height: 37px !important;
 		box-shadow: none;
-		border: 1px solid black;
+		border: 1px solid #344754;
 	}
 
 	.text-checked {
@@ -1514,12 +1514,13 @@ footer {
 	.changetext {
 		box-shadow: 0px 1px 1px -1px black;
 		padding: 10px 0px;
+		color: white !important;
 	}
 
 	.inner {
 		margin-top: 0px !important;
 		font-weight: 700;
-		color: #344754;
+		color: whitesmoke;
 	}
 
 	.email {
@@ -1527,7 +1528,7 @@ footer {
 		width: 100% !important;
 		scrollbar-width: 0px;
 		box-shadow: 0px 10px 10px -10px rgba(9, 0, 18, 0.328);
-		background-color: #f2c64459;
+		background-color: #344754;
 		-webkit-backdrop-filter: blur(10px);
 	}
 
@@ -1596,7 +1597,7 @@ footer {
 		max-width: 37px !important;
 		max-height: 37px !important;
 		box-shadow: none;
-		border: 1px solid black !important;
+		border: 1px solid #344754 !important;
 	}
 
 	.text-checked {
@@ -1755,7 +1756,7 @@ footer {
 		max-width: 37px !important;
 		max-height: 37px !important;
 		box-shadow: none;
-		border: 1px solid black;
+		border: 1px solid #344754;
 	}
 
 	.text-checked {
