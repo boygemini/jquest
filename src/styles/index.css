@@ -2,6 +2,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
 
+:root {
+	--animate-duration: 1s;
+	--animate-delay: 0s;
+}
+
 * {
 	box-sizing: border-box;
 	padding: 0;
@@ -43,10 +48,6 @@
 	animation-duration: 0.5s !important;
 }
 
-.animate__animated {
-	animation-delay: 0s !important;
-	animation-duration: 0.5s !important;
-}
 
 #circle {
 	width: 200px;
@@ -251,7 +252,6 @@ html {
 	position: relative;
 	border: none;
 	margin-top: 50px;
-	animation-delay: 0s !important;
 }
 
 .text-field {

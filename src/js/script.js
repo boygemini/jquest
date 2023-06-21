@@ -68,7 +68,12 @@ function animDebounce(func, time) {
 
 function welcomeAnimation() {
 	introText.classList.add("animate__fadeInLeftBig");
+	introText.style.setProperty("--animate-duration", "1s")
+
 	controlButtons.classList.add("animate__fadeInUp");
+
+	emailTextField.classList.add("animate__fadeInUp");
+	emailTextField.style.setProperty("--animate-duration", ".5s")
 
 	animDebounce(() => {
 		introText.classList.remove("animate__fadeInLeftBig");
@@ -78,7 +83,10 @@ welcomeAnimation();
 
 function goingOutOfWelcome(home, start) {
 	home.classList.add("animate__fadeOutLeft");
+	home.style.setProperty("--animate-duration", ".6s")
+
 	start.classList.add("animate__fadeInRight");
+	start.style.setProperty("--animate-duration", ".4s")
 
 	emailTextField.classList.add("animate__fadeOutDown");
 
@@ -91,12 +99,15 @@ function goingOutOfWelcome(home, start) {
 function backToWelcome(home, start) {
 	home.classList.remove("animate__fadeOutLeft");
 	home.classList.add("animate__fadeInLeft");
+	home.style.setProperty("--animate-duration", ".4s")
 
 	emailTextField.classList.add("animate__fadeInUp");
 
 	start.classList.add("animate__fadeOutRight");
+	start.style.setProperty("--animate-duration", ".4s")
 	animDebounce(() => {
 		start.classList.remove("animate__fadeOutRight");
+		console.log(start.classList)
 	}, 500);
 }
 
@@ -771,16 +782,16 @@ function gotoPreviousStep(step, question) {
 
 	if (step <= 0) {
 		thankYou.style.display = "none";
-		starterPage.style.display = "flex";
+
 
 		debounce3(() => {
 			BackButton.style.display = "none";
 			ContinueButton.classList.add("widen");
 			controlButtons.classList.remove("csoft");
 			startQuestion.style.display = "none";
+			starterPage.style.display = "flex";
 		}, 500);
 
-		console.log(introText.classList);
 		backToWelcome(introText, startQuestion);
 
 		backCircle.style.opacity = "";
@@ -797,7 +808,7 @@ function gotoPreviousStep(step, question) {
 
 		continueDuringSurvey(questionElement, answersField)
 
-		setTimeout(()=>{
+		setTimeout(() => {
 			// Display Question
 			questionElement.innerHTML =
 				`<h1 class="qnumbering">${step}</h1>` +
@@ -805,7 +816,7 @@ function gotoPreviousStep(step, question) {
 
 			// Display Answers
 			displayAnswersInteractively(answersField, step, question);
-		},500)
+		}, 500)
 	}
 }
 
