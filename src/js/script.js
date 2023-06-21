@@ -524,7 +524,7 @@ function validateEmail(userEmail, step) {
 
 	if (emailRegex.test(email)) {
 		// Save the user's email address to the local storage
-		sessionStorage.setItem("userEmail", usersEmailAddress)
+		sessionStorage.setItem("userEmail", email)
 
 		// Go to next stage
 		if (step <= Questions.length - 1) {
