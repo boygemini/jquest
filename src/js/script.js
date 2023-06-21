@@ -1414,11 +1414,11 @@ cancel.onclick = () => {
 
 // Continue button
 ContinueButton.addEventListener("click", (e) => {
-	gotoNextStep(stepCounter, Questions);
+	debounce4(() => gotoNextStep(stepCounter, Questions), 100)
 });
 
 BackButton.addEventListener("click", (e) => {
-	gotoPreviousStep(stepCounter, Questions);
+	debounce4(() => gotoPreviousStep(stepCounter, Questions), 200)
 });
 
 function keydownHandler(e) {
