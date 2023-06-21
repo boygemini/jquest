@@ -111,7 +111,6 @@ function backToWelcome(home, start) {
 	start.style.setProperty("--animate-duration", ".5s")
 	animDebounce(() => {
 		start.classList.remove("animate__fadeOutRight");
-		console.log(start.classList)
 	}, 500);
 }
 
