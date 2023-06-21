@@ -205,24 +205,24 @@ if (window.screen.availWidth <= 480) {
 let REVIEW = new Object({
 	1: {},
 	2: {},
-	// 3: {},
-	// 4: {},
-	// 5: {},
-	// 6: {},
-	// 7: {},
-	// 8: {},
-	// 9: {},
-	// 10: {},
-	// 11: {},
-	// 12: {},
-	// 13: {},
-	// 14: {},
-	// 15: {},
-	// 16: {},
-	// 17: {},
-	// 18: {},
-	// 19: {},
-	// 20: {},
+	3: {},
+	4: {},
+	5: {},
+	6: {},
+	7: {},
+	8: {},
+	9: {},
+	10: {},
+	11: {},
+	12: {},
+	13: {},
+	14: {},
+	15: {},
+	16: {},
+	17: {},
+	18: {},
+	19: {},
+	20: {},
 });
 
 function reset() {
@@ -243,24 +243,24 @@ function reset() {
 		REVIEW = {
 			1: {},
 			2: {},
-			// 3: {},
-			// 4: {},
-			// 5: {},
-			// 6: {},
-			// 7: {},
-			// 8: {},
-			// 9: {},
-			// 10: {},
-			// 11: {},
-			// 12: {},
-			// 13: {},
-			// 14: {},
-			// 15: {},
-			// 16: {},
-			// 17: {},
-			// 18: {},
-			// 19: {},
-			// 20: {},
+			3: {},
+			4: {},
+			5: {},
+			6: {},
+			7: {},
+			8: {},
+			9: {},
+			10: {},
+			11: {},
+			12: {},
+			13: {},
+			14: {},
+			15: {},
+			16: {},
+			17: {},
+			18: {},
+			19: {},
+			20: {},
 		};
 	}
 }
@@ -524,7 +524,7 @@ function validateEmail(userEmail, step) {
 
 	if (emailRegex.test(email)) {
 		// Save the user's email address to the local storage
-		sessionStorage.setItem("userEmail", email)
+		usersEmailAddress = usersEmailAddress || email;
 
 		// Go to next stage
 		if (step <= Questions.length - 1) {
@@ -714,32 +714,30 @@ function gotoNextStep(step, question) {
 
 		showCircleSVG(false);
 
+		// Save User's email is inputed
+		let emailIsEmpty = userEmail.value.trim().length === 0;
 
-	}
-
-	// Save User's email is inputed
-	let emailIsEmpty = userEmail.value.trim().length === 0;
-
-	// Show Error Message if the email field is empty
-	if (emailIsEmpty) {
-		animateErrorMessage(
-			3000,
-			600,
-			20,
-			"Please enter your email address to continue.",
-			"show-error-message",
-			"remove-error-message"
-		);
-		return;
-	}
-
-	// Proceed to validate user's email
-	if (!emailIsEmpty) {
-		if (!validateEmail(userEmail, step)) {
+		// Show Error Message if the email field is empty
+		if (emailIsEmpty) {
+			animateErrorMessage(
+				3000,
+				600,
+				20,
+				"Please enter your email address to continue.",
+				"show-error-message",
+				"remove-error-message"
+			);
 			return;
 		}
-		validateEmail(userEmail, step);
-		goingOutOfWelcome(introText, startQuestion);
+
+		// Proceed to validate user's email
+		if (!emailIsEmpty) {
+			if (!validateEmail(userEmail, step)) {
+				return;
+			}
+			validateEmail(userEmail, step);
+			goingOutOfWelcome(introText, startQuestion);
+		}
 	}
 
 	// Control the form steps
@@ -754,8 +752,8 @@ function gotoNextStep(step, question) {
 		// 	emojis.innerHTML += `<div class="ans-box" data-id="${index}">${fb}</div>`;
 		// });
 
-		inner.innerText = sessionStorage.getItem("userEmail");
-		sendEmail(sessionStorage.getItem("userEmail"));
+		inner.innerText = usersEmailAddress;
+		sendEmail(usersEmailAddress);
 
 		stepCounter = step;
 		animateProgress(20);
@@ -1415,7 +1413,7 @@ inner.onblur = () => {
 	const inemail = document.querySelector(".email");
 	inner.classList.add("turndot");
 	inemail.style.overflow = "hidden";
-	if (editfield.innerText !== sessionStorage.getItem("userEmail")) {
+	if (editfield.innerText !== usersEmailAddress) {
 		if (validateEmail(editfield)) {
 			changeEmailContainer.classList.remove("remove-change-email-modal");
 			changeEmailContainer.classList.add("show-change-email-modal");
@@ -1424,8 +1422,8 @@ inner.onblur = () => {
 };
 
 changeEmail.onclick = () => {
-	sessionStorage.setItem("userEmail", editfield.innerText)
-	sendEmail(sessionStorage.getItem("userEmail"));
+	usersEmailAddress = editfield.innerText;
+	sendEmail(usersEmailAddress);
 	changeEmailContainer.classList.add("remove-change-email-modal");
 };
 
