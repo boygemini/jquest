@@ -389,11 +389,11 @@ html {
 	-ms-transform: translateX(-50%);
 	-o-transform: translateX(-50%);
 	color: white;
-	border-radius: 10px;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	-ms-border-radius: 10px;
-	-o-border-radius: 10px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
 	padding: 1rem;
 }
 
@@ -1296,6 +1296,7 @@ footer {
 
 	.box-text {
 		font-size: 14px !important;
+
 	}
 
 	.continue-btn,
@@ -1331,6 +1332,7 @@ footer {
 
 	.text-checked {
 		border: 1px solid white !important;
+
 		/* box-shadow: 5px 5px 10px -1px rgba(7, 0, 12, 0.445),
 			-5px -5px 10px -1px #faf4fd42; */
 	}
@@ -2038,12 +2040,28 @@ footer {
 	}
 
 	.progress {
-		stroke-width: 8px;
+		stroke-width: 20px;
+	}
+
+	.percentage {
+		font-size: 47px !important;
+	}
+
+	.svg-container {
+		padding: 20px;
+		position: relative;
 	}
 
 	#circle {
 		width: 170px;
 		height: 170px;
+		box-shadow: 0px 0px 5px -1px #344754;
+		/* background-color: rgba(255, 255, 255, 0.688); */
+		/* background-color: #34475480; */
+	}
+
+	.control-buttons{
+		height: 100px !important;
 	}
 
 	.show-error-message,
@@ -2263,6 +2281,27 @@ footer {
 		position: relative !important;
 		height: 100% !important;
 		max-width: 100px !important;
+	}
+
+	.progress {
+		stroke-width: 20px;
+	}
+
+	.percentage {
+		font-size: 47px !important;
+	}
+
+	.svg-container {
+		padding: 20px;
+		position: relative;
+	}
+
+	#circle {
+		width: 200px;
+		height: 200px;
+		box-shadow: 0px 0px 5px -1px #344754;
+		/* background-color: rgba(255, 255, 255, 0.688); */
+		/* background-color: #34475480; */
 	}
 
 	.show-error-message,
