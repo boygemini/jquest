@@ -102,6 +102,7 @@ body {
 	z-index: 3876543456789 !important;
 	width: 100vw !important;
 	height: 100% !important;
+
 	/* background-color: #090111a8; */
 	/* -webkit-backdrop-filter: blur(5px) !important;
 	backdrop-filter: blur(5px) !important ; */
@@ -119,6 +120,11 @@ body {
 	padding: 20px;
 	position: relative;
 	overflow-x: hidden;
+}
+
+.blurbody{
+	-webkit-backdrop-filter: blur(15px) !important;
+	backdrop-filter: blur(15px) !important;
 }
 
 .backcircle {
@@ -1129,6 +1135,11 @@ footer {
 	min-width: 100% !important;
 }
 
+.saveemail{
+	font-weight: 400 !important;
+}
+
+
 /** Mobile */
 @media screen and (max-width: 767px) {
 	body {
@@ -1502,16 +1513,20 @@ footer {
 		background-color: transparent;
 	}
 
+	.change-email{
+		width: 90% !important;
+	}
+
 	.change-email p {
 		font-family: "PT Sans", sans-serif !important;
 		font-weight: 800;
 		width: 90% !important;
-		color: #344854;
+		color: #344754;
 	}
 
 	.saveemail {
 		background-color: #f2c744 !important;
-		color: #344754 !important;
+		color: #090d10 !important;
 	}
 
 	.changetext {
@@ -1973,7 +1988,7 @@ footer {
 
 	.saveemail {
 		background-color: #f2c744 !important;
-		color: #344754 !important;
+		color: #090d10 !important;
 	}
 
 	.changetext {
@@ -2220,7 +2235,7 @@ footer {
 
 	.saveemail {
 		background-color: #f2c744 !important;
-		color: #344754 !important;
+		color: #090d10 !important;
 	}
 
 	.changetext {

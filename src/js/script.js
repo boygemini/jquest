@@ -41,7 +41,7 @@ const startQuestion = document.querySelector(".main-Q-container");
 const thankYou = document.querySelector(".thank-you");
 const emojis = document.querySelector(".emojis");
 const userEmail = document.getElementById("email");
-const userEmail2 = document.querySelector(".email");
+const changeEmailBox = document.querySelector(".email");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 let usersEmailAddress = false;
 
@@ -137,17 +137,25 @@ function continueDuringSurvey(question, answer) {
 		setTimeout(() => {
 			answer.classList.add("animate__fadeInUp")
 		}, 1)
+
+		animDebounce(()=>{
+			question.classList.remove("animate__fadeInDown")
+			rule.classList.remove("animate__fadeInDown")
+			answer.classList.remove("animate__fadeOutDown")
+			console.log(question.classList)
+			setTimeout(() => {
+				answer.classList.remove("animate__fadeInUp")
+			}, 1)
+		}, 500)
 	}, 500);
 
 }
 
 function submitingForm(home, start) {
-	home.classList.add("animate__fadeOutLeft");
-	animDebounce(() => {
-		home.classList.remove("animate__fadeOutLeft");
-	}, 500);
 
-	start.classList.add("animate__fadeInRight");
+
+	home.classList.add("animate__fadeOut");
+	animDebounce(() => { home.classList.remove("animate__fadeOut") }, 600);
 
 	controlButtons.classList.remove("animate__fadeInUp")
 	controlButtons.classList.add("animate__fadeOutDown")
@@ -166,7 +174,8 @@ function submitingForm(home, start) {
 	starBoy.style.setProperty("--animation-delay", "1s")
 }
 
-function backToForm(home, start) {
+function backToForm(home, question, answer) {
+	body.classList.remove("blurbody")
 	controlButtons.classList.remove("animate__fadeInUp")
 	controlButtons.classList.add("animate__fadeOutDown")
 	controlButtons.style.setProperty("--animate-duration", ".5s")
@@ -178,8 +187,23 @@ function backToForm(home, start) {
 	starBoy.classList.remove("animate__fadeIn")
 	starBoy.classList.add("animate__fadeOut")
 	starBoy.style.setProperty("--animation-duration", ".5s")
+
+	// question.classList.replace("animate__fadeOutUp", "animate__fadeInDown")
+	// rule.classList.replace("animate__fadeOutUp", "animate__fadeInDown")
+	// answer.classList.remove("animate__fadeOutDown")
+	// setTimeout(() => {
+	// 	answer.classList.add("animate__fadeInUp")
+	// }, 1)
+
+	home.classList.add("animate__fadeIn");
+	animDebounce(() => {
+		home.classList.remove("animate__fadeIn")
+	}, 600);
 }
 
+changeEmailBox.addEventListener("click", (e)=>{
+	editfield.focus()
+})
 
 
 const showCircleSVG = (bool) => {
@@ -200,25 +224,25 @@ if (window.screen.availWidth <= 480) {
 
 let REVIEW = new Object({
 	1: {},
-	2: {},
-	3: {},
-	4: {},
-	5: {},
-	6: {},
-	7: {},
-	8: {},
-	9: {},
-	10: {},
-	11: {},
-	12: {},
-	13: {},
-	14: {},
-	15: {},
-	16: {},
-	17: {},
-	18: {},
-	19: {},
-	20: {},
+	// 2: {},
+	// 3: {},
+	// 4: {},
+	// 5: {},
+	// 6: {},
+	// 7: {},
+	// 8: {},
+	// 9: {},
+	// 10: {},
+	// 11: {},
+	// 12: {},
+	// 13: {},
+	// 14: {},
+	// 15: {},
+	// 16: {},
+	// 17: {},
+	// 18: {},
+	// 19: {},
+	// 20: {},
 });
 
 function reset() {
@@ -238,25 +262,25 @@ function reset() {
 
 		REVIEW = {
 			1: {},
-			2: {},
-			3: {},
-			4: {},
-			5: {},
-			6: {},
-			7: {},
-			8: {},
-			9: {},
-			10: {},
-			11: {},
-			12: {},
-			13: {},
-			14: {},
-			15: {},
-			16: {},
-			17: {},
-			18: {},
-			19: {},
-			20: {},
+			// 2: {},
+			// 3: {},
+			// 4: {},
+			// 5: {},
+			// 6: {},
+			// 7: {},
+			// 8: {},
+			// 9: {},
+			// 10: {},
+			// 11: {},
+			// 12: {},
+			// 13: {},
+			// 14: {},
+			// 15: {},
+			// 16: {},
+			// 17: {},
+			// 18: {},
+			// 19: {},
+			// 20: {},
 		};
 	}
 }
@@ -649,48 +673,64 @@ function sendEmail(email) {
 		};
 
 		debounce2(() => {
-			emailjs
-				.send(
-					"service_7e6832l",
-					"template_72qo6da",
-					htmlTemplate,
-					"nBCyRCnTpya5flZa7"
-				)
-				.then(
-					function (response) {
-						showSent("Form Submitted Successfully", 20, 5000);
-						showCircleSVG(false);
-						submitingForm(starterPage, startQuestion)
+			showSent("Form Submitted Successfully", 20, 2000);
+
+						submitingForm(startQuestion)
 
 						setTimeout(() => {
 							ContinueButton.style.display = "none";
 							BackButton.classList.add("widen")
+							showCircleSVG(false);
 						}, 400)
 
 						setTimeout(() => {
 							thankYou.style.display = "flex";
 							starterPage.style.display = "none";
 							startQuestion.style.display = "none";
+							body.classList.add("blurbody")
 						}, 600)
-					},
-					function (error) {
-						let message =
-							error.status === 412 ?
-							"please try again later. Thank you." :
-							error.status === 429 ?
-							alert("Quota") :
-							error.text;
-						removeMessage();
-						animateErrorMessage(
-							10000,
-							600,
-							20,
-							`Error occurred, ${message || "no internet connection"}`,
-							"show-error-message",
-							"remove-error-message"
-						);
-					}
-				);
+			// emailjs
+			// 	.send(
+			// 		"service_7e6832l",
+			// 		"template_72qo6da",
+			// 		htmlTemplate,
+			// 		"nBCyRCnTpya5flZa7"
+			// 	)
+			// 	.then(
+			// 		function (response) {
+			// 			showSent("Form Submitted Successfully", 20, 5000);
+			// 			showCircleSVG(false);
+			// 			submitingForm(starterPage, startQuestion)
+
+			// 			setTimeout(() => {
+			// 				ContinueButton.style.display = "none";
+			// 				BackButton.classList.add("widen")
+			// 			}, 400)
+
+			// 			setTimeout(() => {
+			// 				thankYou.style.display = "flex";
+			// 				starterPage.style.display = "none";
+			// 				startQuestion.style.display = "none";
+			// 			}, 600)
+			// 		},
+			// 		function (error) {
+			// 			let message =
+			// 				error.status === 412 ?
+			// 				"please try again later. Thank you." :
+			// 				error.status === 429 ?
+			// 				alert("Quota") :
+			// 				error.text;
+			// 			removeMessage();
+			// 			animateErrorMessage(
+			// 				10000,
+			// 				600,
+			// 				20,
+			// 				`Error occurred, ${message || "no internet connection"}`,
+			// 				"show-error-message",
+			// 				"remove-error-message"
+			// 			);
+			// 		}
+			// 	);
 		}, 2000);
 	}
 }
@@ -732,10 +772,6 @@ function gotoNextStep(step, question) {
 	// Control the form steps
 	step++;
 	if (step >= question.length) {
-		try {
-			ChangeEmailButton.style.display = "flex";
-		} catch (error) {}
-
 		// emojis.innerHTML = "";
 		// feedBacks.forEach((fb, index) => {
 		// 	emojis.innerHTML += `<div class="ans-box" data-id="${index}">${fb}</div>`;
@@ -832,8 +868,7 @@ function gotoPreviousStep(step, question) {
 
 
 	if (step === parseInt(Object.keys(REVIEW).length)) {
-		backToForm(thankYou, startQuestion)
-
+		backToForm(startQuestion, questionElement, answersField)
 	}
 
 	if (step <= 0) {
@@ -915,11 +950,17 @@ function askQuestionsInteractively(step, question) {
 				answers.push(REVIEW[1][i].answerText);
 			}
 
-			return `${question[step].question} ${answers[0]} ?`;
+			if (question[step]) {
+				`${question[step].question} ${answers[0]} ?`
+			}
+			return
 
 		default:
-			return question[step].question;
-	}
+			if (question[step]) {
+				return question[step].question;
+			}
+			break;
+
 }
 
 function displayAnswersInteractively(answersField, step, question) {
@@ -1047,14 +1088,14 @@ function displayAnswersInteractively(answersField, step, question) {
 		}, 0);
 	}
 
-	if (question[step].answers[0].text) {
+	if (question[step] && question[step].answers[0].text) {
 		question[step].answers.forEach((ans, index) => {
 			// Fill up the Answers Field
 			display(index, ans);
 		});
 	}
 
-	if (!question[step].answers[0].text) {
+	if (question[step] && !question[step].answers[0].text) {
 		let primaryAreaOfExpertise = parseInt(Object.keys(REVIEW[1])[0]);
 
 		function returnMatchingAnswers(aIndex) {
