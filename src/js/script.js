@@ -77,7 +77,7 @@ window.onload = () => welcomeAnimation()
 
 function goingOutOfWelcome(home, start) {
 	home.classList.add("animate__fadeOutLeft");
-	home.style.setProperty("--animate-duration", ".5s")
+	home.style.setProperty("--animate-duration", "1s")
 
 	start.classList.add("animate__fadeInRight");
 	start.style.setProperty("--animate-duration", ".5s")
@@ -122,6 +122,11 @@ function continueDuringSurvey(question, answer) {
 	question.classList.add("animate__fadeOutUp")
 	rule.classList.add("animate__fadeOutUp")
 	answer.classList.add("animate__fadeOutDown")
+	try {
+		[question, rule, answer].forEach(element => element.style.addProperty("--animate-duration", ".5s"))
+	} catch (error) {
+
+	}
 
 
 
