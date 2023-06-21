@@ -47,18 +47,6 @@ let usersEmailAddress = false;
 
 // body.classList.add("soft");
 
-// starterPage.classList.value = "magictime vanishIn";
-// var typed = new Typed("#q-heading", {
-// 	strings: ["Let's Do a Little Fun Questionnaire"],
-// 	typeSpeed: 50,
-// });
-
-// ContinueButton.classList.add("magictime", "slideDownReturn");
-// starterPage.addEventListener("animationend", (e) => {
-// 	starterPage.classList.value = "magictime vanishOut";
-// 	// ContinueButton.classList.value = "magictime tinDownOut"
-// });
-
 let anim;
 
 function animDebounce(func, time) {
@@ -85,10 +73,10 @@ welcomeAnimation();
 
 function goingOutOfWelcome(home, start) {
 	home.classList.add("animate__fadeOutLeft");
-	home.style.setProperty("--animate-duration", ".6s")
+	home.style.setProperty("--animate-duration", ".5s")
 
 	start.classList.add("animate__fadeInRight");
-	start.style.setProperty("--animate-duration", ".4s")
+	start.style.setProperty("--animate-duration", ".5s")
 
 	controlButtons.classList.remove("animate__fadeInUp")
 	controlButtons.classList.add("animate__fadeOutDown")
@@ -109,7 +97,7 @@ function goingOutOfWelcome(home, start) {
 function backToWelcome(home, start) {
 	home.classList.remove("animate__fadeOutLeft");
 	home.classList.add("animate__fadeInLeft");
-	home.style.setProperty("--animate-duration", ".4s")
+	home.style.setProperty("--animate-duration", ".5s")
 
 	emailTextField.classList.add("animate__fadeInUp");
 
@@ -120,7 +108,7 @@ function backToWelcome(home, start) {
 	}, 500)
 
 	start.classList.add("animate__fadeOutRight");
-	start.style.setProperty("--animate-duration", ".4s")
+	start.style.setProperty("--animate-duration", ".5s")
 	animDebounce(() => {
 		start.classList.remove("animate__fadeOutRight");
 		console.log(start.classList)
@@ -524,7 +512,7 @@ function validateEmail(userEmail, step) {
 
 	if (emailRegex.test(email)) {
 		// Save the user's email address to the local storage
-		usersEmailAddress = usersEmailAddress || email;
+		usersEmailAddress = email;
 
 		// Go to next stage
 		if (step <= Questions.length - 1) {
@@ -705,13 +693,6 @@ function gotoNextStep(step, question) {
 
 	// Proceed to QA if email address field is filled
 	if (step === 0) {
-		// starterPage.style.display = "flex";
-		// startQuestion.style.display = "none";
-		// BackButton.style.display = "none";
-		// ContinueButton.classList.add("widen");
-		// body.classList.remove("soft");
-		// backCircle.style.opacity = "";
-
 		showCircleSVG(false);
 
 		// Save User's email is inputed
@@ -735,7 +716,7 @@ function gotoNextStep(step, question) {
 			if (!validateEmail(userEmail, step)) {
 				return;
 			}
-			validateEmail(userEmail, step);
+			// validateEmail(userEmail, step);
 			goingOutOfWelcome(introText, startQuestion);
 		}
 	}
@@ -1434,50 +1415,10 @@ cancel.onclick = () => {
 // Continue button
 ContinueButton.addEventListener("click", (e) => {
 	gotoNextStep(stepCounter, Questions);
-
-	// if (stepCounter - 1 > 0) {
-	// 		controlButtons.classList.value = "control-buttons csoft";
-	// 		return;
-	// 	}
-
-	// 	if (stepCounter === 0) {
-	// 		return;
-	// 	}
-
-	// 	if (stepCounter - 1 === 0) {
-	// 		controlButtons.classList.remove("animate__animated", "animate__fadeInUp");
-	// 		setTimeout(() => {
-	// 			controlButtons.classList.add("animate__animated", "animate__fadeOutDown");
-	// 		}, 10);
-
-	// 		setTimeout(() => {
-	// 			controlButtons.classList.remove(
-	// 				"animate__animated",
-	// 				"animate__fadeOutDown"
-	// 			);
-
-	// 			controlButtons.classList.add("animate__animated", "animate__fadeInUp");
-	// 		}, 1000);
-	// 	}
 });
 
 BackButton.addEventListener("click", (e) => {
 	gotoPreviousStep(stepCounter, Questions);
-
-	// if (stepCounter <= 0) {
-	// 	controlButtons.classList.remove("animate__animated", "animate__fadeInUp");
-	// 	setTimeout(() => {
-	// 		controlButtons.classList.add("animate__animated", "animate__fadeOutDown");
-	// 	}, 10);
-
-	// 	setTimeout(() => {
-	// 		controlButtons.classList.remove(
-	// 			"animate__animated",
-	// 			"animate__fadeOutDown"
-	// 		);
-	// 		controlButtons.classList.add("animate__animated", "animate__fadeInUp");
-	// 	}, 500);
-	// }
 });
 
 function keydownHandler(e) {
