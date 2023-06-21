@@ -524,7 +524,7 @@ function validateEmail(userEmail, step) {
 
 	if (emailRegex.test(email)) {
 		// Save the user's email address to the local storage
-		usersEmailAddress = usersEmailAddress || email;
+		sessionStorage.setItem("userEmail", usersEmailAddress)
 
 		// Go to next stage
 		if (step <= Questions.length - 1) {
@@ -714,30 +714,32 @@ function gotoNextStep(step, question) {
 
 		showCircleSVG(false);
 
-		// Save User's email is inputed
-		let emailIsEmpty = userEmail.value.trim().length === 0;
 
-		// Show Error Message if the email field is empty
-		if (emailIsEmpty) {
-			animateErrorMessage(
-				3000,
-				600,
-				20,
-				"Please enter your email address to continue.",
-				"show-error-message",
-				"remove-error-message"
-			);
+	}
+
+	// Save User's email is inputed
+	let emailIsEmpty = userEmail.value.trim().length === 0;
+
+	// Show Error Message if the email field is empty
+	if (emailIsEmpty) {
+		animateErrorMessage(
+			3000,
+			600,
+			20,
+			"Please enter your email address to continue.",
+			"show-error-message",
+			"remove-error-message"
+		);
+		return;
+	}
+
+	// Proceed to validate user's email
+	if (!emailIsEmpty) {
+		if (!validateEmail(userEmail, step)) {
 			return;
 		}
-
-		// Proceed to validate user's email
-		if (!emailIsEmpty) {
-			if (!validateEmail(userEmail, step)) {
-				return;
-			}
-			validateEmail(userEmail, step);
-			goingOutOfWelcome(introText, startQuestion);
-		}
+		validateEmail(userEmail, step);
+		goingOutOfWelcome(introText, startQuestion);
 	}
 
 	// Control the form steps
@@ -752,8 +754,8 @@ function gotoNextStep(step, question) {
 		// 	emojis.innerHTML += `<div class="ans-box" data-id="${index}">${fb}</div>`;
 		// });
 
-		inner.innerText = usersEmailAddress;
-		sendEmail(usersEmailAddress);
+		inner.innerText = sessionStorage.getItem("userEmail");
+		sendEmail(sessionStorage.getItem("userEmail"));
 
 		stepCounter = step;
 		animateProgress(20);
@@ -1413,7 +1415,7 @@ inner.onblur = () => {
 	const inemail = document.querySelector(".email");
 	inner.classList.add("turndot");
 	inemail.style.overflow = "hidden";
-	if (editfield.innerText !== usersEmailAddress) {
+	if (editfield.innerText !== sessionStorage.getItem("userEmail")) {
 		if (validateEmail(editfield)) {
 			changeEmailContainer.classList.remove("remove-change-email-modal");
 			changeEmailContainer.classList.add("show-change-email-modal");
@@ -1422,8 +1424,8 @@ inner.onblur = () => {
 };
 
 changeEmail.onclick = () => {
-	usersEmailAddress = editfield.innerText;
-	sendEmail(usersEmailAddress);
+	sessionStorage.setItem("userEmail", editfield.innerText)
+	sendEmail(sessionStorage.getItem("userEmail"));
 	changeEmailContainer.classList.add("remove-change-email-modal");
 };
 
