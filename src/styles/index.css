@@ -212,6 +212,7 @@ html {
 	align-items: center;
 	padding: 20px;
 	margin-top: 100px;
+	opacity: 0;
 }
 
 .question {
@@ -366,6 +367,7 @@ html {
 	right: 0;
 	display: flex;
 	justify-content: flex-end;
+	opacity: 0;
 	/* border-top-left-radius: 10px; */
 	/* justify-content: space-between; */
 }

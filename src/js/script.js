@@ -63,13 +63,17 @@ function welcomeAnimation() {
 	controlButtons.classList.add("animate__fadeInUp");
 
 	emailTextField.classList.add("animate__fadeInUp");
-	emailTextField.style.setProperty("--animate-duration", ".5s")
+	emailTextField.style.setProperty("--animate-duration", ".4s")
 
 	animDebounce(() => {
 		introText.classList.remove("animate__fadeInLeftBig");
 	}, 1000);
+
+	starterPage.style.setProperty("opacity", "1")
+	controlButtons.style.setProperty("opacity", "1")
 }
-welcomeAnimation();
+
+window.onload = () => welcomeAnimation()
 
 function goingOutOfWelcome(home, start) {
 	home.classList.add("animate__fadeOutLeft");
