@@ -161,9 +161,9 @@ function submitingForm(home, start) {
 	emailSent.style.setProperty("--animation-delay", "5s")
 
 	starBoy.classList.remove("animate__fadeOut")
-	starBoy.classList.add("animate__heartBeat")
+	starBoy.classList.add("animate__fadeIn")
 	starBoy.style.setProperty("--animation-duration", ".3s")
-	// starBoy.style.setProperty("--animation-delay", "1s")
+	starBoy.style.setProperty("--animation-delay", "1s")
 }
 
 function backToForm(home, start) {
@@ -175,7 +175,7 @@ function backToForm(home, start) {
 		controlButtons.classList.add("animate__fadeInUp")
 	}, 500)
 
-	starBoy.classList.remove("animate__heartBeat")
+	starBoy.classList.remove("animate__fadeIn")
 	starBoy.classList.add("animate__fadeOut")
 	starBoy.style.setProperty("--animation-duration", ".5s")
 }
@@ -651,10 +651,10 @@ function sendEmail(email) {
 		debounce2(() => {
 			emailjs
 				.send(
-					"service_p2qgmh6",
-					"template_7m3cnp9",
+					"service_7e6832l",
+					"template_72qo6da",
 					htmlTemplate,
-					"o4O_xFoK52q_F2IdV"
+					"nBCyRCnTpya5flZa7"
 				)
 				.then(
 					function (response) {
