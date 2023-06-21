@@ -95,7 +95,7 @@ function goingOutOfWelcome(home, start) {
 	animDebounce(() => {
 		emailTextField.classList.remove("animate__fadeOutDown");
 		home.classList.remove("animate__fadeOutLeft");
-	}, 500);
+	}, 1000);
 }
 
 function backToWelcome(home, start) {
