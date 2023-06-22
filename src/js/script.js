@@ -120,25 +120,63 @@ function backToWelcome(home, start) {
 }
 
 function continueDuringSurvey(question, answer) {
-	question.classList.add("animate__fadeOutUp")
+	// console.log(answer.classList)
+
+	// question.style.setProperty("--animate-duration", ".5s")
+	// answer.style.setProperty("--animate-duration", ".5s")
+	// rule.style.setProperty("--animate-duration", ".5s")
+
+	// question.classList.remove("animate__fadeInDown")
+	// rule.classList.remove("animate__fadeInDown")
+	// answer.classList.remove("animate__fadeInUp")
+
+
+
 	rule.classList.add("animate__fadeOutUp")
+	question.classList.add("animate__fadeOutUp")
 	answer.classList.add("animate__fadeOutDown")
-	try {
-		[question, rule, answer].forEach(element => element.style.addProperty("--animate-duration", ".5s"))
-	} catch (error) {
-
-	}
-
+	// setTimeout(()=>{
+	// 	answer.classList.add("animate__fadeOutDown")
+	// 	console.log("Herw--------------", answer.classList)
+	// },500)
 
 
-	animDebounce(() => {
-		question.classList.replace("animate__fadeOutUp", "animate__fadeInDown")
-		rule.classList.replace("animate__fadeOutUp", "animate__fadeInDown")
+	animDebounce(()=>{
+		rule.classList.remove("animate__fadeOutUp")
+		question.classList.remove("animate__fadeOutUp")
 		answer.classList.remove("animate__fadeOutDown")
-		setTimeout(() => {
-			answer.classList.add("animate__fadeInUp")
-		}, 1)
-	}, 500);
+
+		answer.classList.add("animate__fadeInUp")
+		question.classList.add("animate__fadeInDown")
+		rule.classList.add("animate__fadeInDown")
+	}, 500)
+
+	// setTimeout(()=>{
+	// 	answer.classList.add("animate__fadeOutDown")
+
+	// }, 1000)
+
+
+
+
+
+	// animDebounce(() => {
+	// 	question.classList.remove("animate__fadeOutUp")
+	// 	rule.classList.remove("animate__fadeOutUp")
+	// 	answer.classList.remove("animate__fadeOutDown")
+
+
+
+	// 	// answer.classList.add("animate__fadeInUp")
+	// 	// 	question.classList.add("animate__fadeInDown")
+	// 	// 	rule.classList.add("animate__fadeInDown")
+
+	// 	// setTimeout(() => {
+	// 	// 	answer.classList.add("animate__fadeInUp")
+	// 	// 	question.classList.add("animate__fadeInDown")
+	// 	// 	rule.classList.add("animate__fadeInDown")
+	// 	// }, 1)
+	// }, 5);
 
 }
 
@@ -203,8 +241,6 @@ function keydownHandler(e) {
 }
 
 function enterKeyPressHandler(e) {
-
-	console.log(stepCounter)
 		if (stepCounter < Object.values(REVIEW).length + 1) {
 			if (e.key === "Enter") {
 				gotoNextStep(stepCounter, Questions);
@@ -236,24 +272,24 @@ if (window.screen.availWidth <= 480) {
 let REVIEW = new Object({
 	1: {},
 	2: {},
-	// 3: {},
-	// 4: {},
-	// 5: {},
-	// 6: {},
-	// 7: {},
-	// 8: {},
-	// 9: {},
-	// 10: {},
-	// 11: {},
-	// 12: {},
-	// 13: {},
-	// 14: {},
-	// 15: {},
-	// 16: {},
-	// 17: {},
-	// 18: {},
-	// 19: {},
-	// 20: {},
+	3: {},
+	4: {},
+	5: {},
+	6: {},
+	7: {},
+	8: {},
+	9: {},
+	10: {},
+	11: {},
+	12: {},
+	13: {},
+	14: {},
+	15: {},
+	16: {},
+	17: {},
+	18: {},
+	19: {},
+	20: {},
 });
 
 function reset() {
@@ -274,24 +310,24 @@ function reset() {
 		REVIEW = {
 			1: {},
 			2: {},
-			// 3: {},
-			// 4: {},
-			// 5: {},
-			// 6: {},
-			// 7: {},
-			// 8: {},
-			// 9: {},
-			// 10: {},
-			// 11: {},
-			// 12: {},
-			// 13: {},
-			// 14: {},
-			// 15: {},
-			// 16: {},
-			// 17: {},
-			// 18: {},
-			// 19: {},
-			// 20: {},
+			3: {},
+			4: {},
+			5: {},
+			6: {},
+			7: {},
+			8: {},
+			9: {},
+			10: {},
+			11: {},
+			12: {},
+			13: {},
+			14: {},
+			15: {},
+			16: {},
+			17: {},
+			18: {},
+			19: {},
+			20: {},
 		};
 	}
 }
@@ -868,7 +904,7 @@ function gotoNextStep(step, question) {
 			// Display Question
 			questionElement.innerHTML =
 				`<h1 class="qnumbering">${step}</h1>` +
-				askQuestionsInteractively(step, question);
+				askQuestionsInteractively(questionElement, step, question);
 
 			// Display Answers
 			displayAnswersInteractively(answersField, step, question);
@@ -937,7 +973,8 @@ function gotoPreviousStep(step, question) {
 			// Display Question
 			questionElement.innerHTML =
 				`<h1 class="qnumbering">${step}</h1>` +
-				askQuestionsInteractively(step, question);
+				askQuestionsInteractively(questionElement, step, question);
+				console.log(questionElement.classList)
 
 			// Display Answers
 			displayAnswersInteractively(answersField, step, question);
@@ -972,7 +1009,8 @@ function markAlreadyChosenSelections(step) {
 	});
 }
 
-function askQuestionsInteractively(step, question) {
+function askQuestionsInteractively(questionElement, step, question) {
+	// console.log(questionElement.classList)
 	switch (step) {
 		case 2:
 		case 3:
@@ -990,12 +1028,17 @@ function askQuestionsInteractively(step, question) {
 }
 
 function displayAnswersInteractively(answersField, step, question) {
+	console.log(answersField.classList.value)
+	let listCl = ["eight-ans-grid", "icon-text-ans", "continous-two", "ans-with-4ans-textonly", "ans-with-5option-textonly", "straight-ans", "ans-with-2options"]
+			listCl.forEach(a => {
+				if (answersField.classList.value.includes(a)) {
+					answersField.classList.remove(a)
+					console.log(answersField.classList.value)
+				}
+			})
 	function display(index, ans) {
 		// Empty the Answers Field/Container
 		answersField.innerHTML = "";
-		answersField.classList = "";
-		answersField.classList.add("answer-field", "animate__animated");
-
 		setTimeout(() => {
 			switch (step) {
 				// Text and big image
