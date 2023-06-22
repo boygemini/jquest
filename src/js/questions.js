@@ -353,22 +353,25 @@ export default [
 	// 		text: "Keeping everything in my head",
 	// 		img: ""
 	// 	}]
-	// }, {
-	// 	question: "What is the most important factor to you when choosing a new job in the tech industry ?",
-	// 	answers: [{
-	// 		text: "Salary",
-	// 		img: ""
-	// 	}, {
-	// 		text: "Company culture",
-	// 		img: ""
-	// 	}, {
-	// 		text: "Work-life balance",
-	// 		img: ""
-	// 	}, {
-	// 		text: "Opportunity for growth",
-	// 		img: ""
-	// 	}]
-	// }, {
+	// },
+	{
+	 	question: "What is the most important factor to you when choosing a new job in the tech industry ?",
+		answers: [{
+			text: "Salary",
+			img: ""
+		}, {
+			text: "Company culture",
+			img: ""
+		}, {
+			text: "Work-life balance",
+			img: ""
+		}, {
+			text: "Opportunity for growth",
+			img: ""
+		}]
+	},
+
+	// {
 	// 	question: "What is your preferred method of staying up to date with industry news and trends ?",
 	// 	answers: [{
 	// 		text: "Reading tech blogs and news sites",

@@ -16,7 +16,7 @@ const rule = document.querySelector(".selection-rule")
 const emailSent = document.querySelector(".email-sent")
 const starBoy = document.querySelector(".big-thankyou")
 
-const textInputFields = document.querySelectorAll("input[type=email]");
+const textInputFields = document.querySelectorAll(".ads");
 const textFieldLabels = document.querySelectorAll("label");
 const selectionChoice = document.querySelector(".selection-rule");
 const ContinueButton = document.getElementById("continue");
@@ -44,6 +44,7 @@ const userEmail = document.getElementById("email");
 const changeEmailBox = document.querySelector(".email");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 let usersEmailAddress = false;
+let stepCounter = 0;
 
 // body.classList.add("soft");
 
@@ -137,25 +138,15 @@ function continueDuringSurvey(question, answer) {
 		setTimeout(() => {
 			answer.classList.add("animate__fadeInUp")
 		}, 1)
-
-		animDebounce(()=>{
-			question.classList.remove("animate__fadeInDown")
-			rule.classList.remove("animate__fadeInDown")
-			answer.classList.remove("animate__fadeOutDown")
-			console.log(question.classList)
-			setTimeout(() => {
-				answer.classList.remove("animate__fadeInUp")
-			}, 1)
-		}, 500)
 	}, 500);
 
 }
 
 function submitingForm(home, start) {
-
-
 	home.classList.add("animate__fadeOut");
-	animDebounce(() => { home.classList.remove("animate__fadeOut") }, 600);
+	animDebounce(() => {
+		home.classList.remove("animate__fadeOut")
+	}, 600);
 
 	controlButtons.classList.remove("animate__fadeInUp")
 	controlButtons.classList.add("animate__fadeOutDown")
@@ -165,6 +156,7 @@ function submitingForm(home, start) {
 		controlButtons.classList.add("animate__fadeInUp")
 	}, 400)
 
+	emailSent.classList.remove("animate__fadeOutDown")
 	emailSent.classList.add("animate__fadeInUp")
 	emailSent.style.setProperty("--animation-delay", "5s")
 
@@ -172,9 +164,14 @@ function submitingForm(home, start) {
 	starBoy.classList.add("animate__fadeIn")
 	starBoy.style.setProperty("--animation-duration", ".3s")
 	starBoy.style.setProperty("--animation-delay", "1s")
+
+	startQuestion.classList.remove("animate__fadeInRight")
 }
 
 function backToForm(home, question, answer) {
+	startQuestion.classList.add("animate__fadeIn");
+	startQuestion.style.setProperty("--animate-duration", ".5s")
+
 	body.classList.remove("blurbody")
 	controlButtons.classList.remove("animate__fadeInUp")
 	controlButtons.classList.add("animate__fadeOutDown")
@@ -184,24 +181,38 @@ function backToForm(home, question, answer) {
 		controlButtons.classList.add("animate__fadeInUp")
 	}, 500)
 
+	emailSent.classList.remove("animate__fadeInUp")
+	emailSent.classList.add("animate__fadeOutDown")
+	emailSent.style.setProperty("--animation-delay", "0s")
+
 	starBoy.classList.remove("animate__fadeIn")
 	starBoy.classList.add("animate__fadeOut")
 	starBoy.style.setProperty("--animation-duration", ".5s")
-
-	// question.classList.replace("animate__fadeOutUp", "animate__fadeInDown")
-	// rule.classList.replace("animate__fadeOutUp", "animate__fadeInDown")
-	// answer.classList.remove("animate__fadeOutDown")
-	// setTimeout(() => {
-	// 	answer.classList.add("animate__fadeInUp")
-	// }, 1)
-
-	home.classList.add("animate__fadeIn");
-	animDebounce(() => {
-		home.classList.remove("animate__fadeIn")
-	}, 600);
 }
 
-changeEmailBox.addEventListener("click", (e)=>{
+function keydownHandler(e) {
+	if (stepCounter <= Object.values(REVIEW).length + 1) {
+		if (e.key === "ArrowRight") {
+			gotoNextStep(stepCounter, Questions);
+		}
+
+		if (e.key === "ArrowLeft") {
+			gotoPreviousStep(stepCounter, Questions);
+		}
+	}
+}
+
+function enterKeyPressHandler(e) {
+
+	console.log(stepCounter)
+		if (stepCounter < Object.values(REVIEW).length + 1) {
+			if (e.key === "Enter") {
+				gotoNextStep(stepCounter, Questions);
+			}
+		}
+}
+
+changeEmailBox.addEventListener("click", (e) => {
 	editfield.focus()
 })
 
@@ -224,7 +235,7 @@ if (window.screen.availWidth <= 480) {
 
 let REVIEW = new Object({
 	1: {},
-	// 2: {},
+	2: {},
 	// 3: {},
 	// 4: {},
 	// 5: {},
@@ -262,7 +273,7 @@ function reset() {
 
 		REVIEW = {
 			1: {},
-			// 2: {},
+			2: {},
 			// 3: {},
 			// 4: {},
 			// 5: {},
@@ -285,7 +296,7 @@ function reset() {
 	}
 }
 
-let stepCounter = 0;
+
 
 // Controlling the Email Field's onfocus and onblur events
 [textFieldLabels, textInputFields].forEach((element) => {
@@ -302,18 +313,38 @@ let stepCounter = 0;
 					e.target.offsetParent.children[1].style.borderBottom =
 						"1px solid #2260ff";
 					e.target.offsetParent.firstElementChild.classList += " move-up";
+
+
+				}
+
+				if (e.target.classList.value.includes("ads")) {
+					window.removeEventListener("keydown", keydownHandler, {
+						capture: false
+					})
 				}
 			});
+
+
+
 		});
 	});
 
 	element.forEach((el) => {
 		el.addEventListener("blur", (e) => {
-			if (e.target.nodeName === "INPUT") {
-				if (e.target.value.trim().length === 0) {
+			if (e.target.classList.value.includes("ads")) {
+				try {
+					if (e.target.value.trim().length === 0) {
 					e.target.offsetParent.firstElementChild.classList.remove("move-up");
 					e.target.offsetParent.children[1].style.borderBottom = "";
 				}
+				} catch (error) {
+
+				}
+
+				window.addEventListener("keydown", keydownHandler)
+				// if (e.target.classList.value.includes("inner")) {
+				// 	gotoNextStep(stepCounter, Questions);
+				// }
 			}
 		});
 	});
@@ -675,20 +706,20 @@ function sendEmail(email) {
 		debounce2(() => {
 			showSent("Form Submitted Successfully", 20, 2000);
 
-						submitingForm(startQuestion)
+			submitingForm(startQuestion)
 
-						setTimeout(() => {
-							ContinueButton.style.display = "none";
-							BackButton.classList.add("widen")
-							showCircleSVG(false);
-						}, 400)
+			setTimeout(() => {
+				ContinueButton.style.display = "none";
+				BackButton.classList.add("widen")
+				showCircleSVG(false);
+			}, 400)
 
-						setTimeout(() => {
-							thankYou.style.display = "flex";
-							starterPage.style.display = "none";
-							startQuestion.style.display = "none";
-							body.classList.add("blurbody")
-						}, 600)
+			setTimeout(() => {
+				thankYou.style.display = "flex";
+				starterPage.style.display = "none";
+				startQuestion.style.display = "none";
+				body.classList.add("blurbody")
+			}, 600)
 			// emailjs
 			// 	.send(
 			// 		"service_7e6832l",
@@ -891,6 +922,7 @@ function gotoPreviousStep(step, question) {
 	}
 
 	if (step > 0) {
+		continueDuringSurvey(questionElement, answersField)
 		setTimeout(() => {
 			ContinueButton.style.display = "flex";
 			BackButton.style.display = "flex";
@@ -899,7 +931,7 @@ function gotoPreviousStep(step, question) {
 		}, 500)
 		showCircleSVG(true);
 
-		continueDuringSurvey(questionElement, answersField)
+
 
 		setTimeout(() => {
 			// Display Question
@@ -950,17 +982,11 @@ function askQuestionsInteractively(step, question) {
 				answers.push(REVIEW[1][i].answerText);
 			}
 
-			if (question[step]) {
-				`${question[step].question} ${answers[0]} ?`
-			}
-			return
+			return `${question[step].question} ${answers[0]} ?`
 
 		default:
-			if (question[step]) {
-				return question[step].question;
-			}
-			break;
-
+			return question[step].question;
+	}
 }
 
 function displayAnswersInteractively(answersField, step, question) {
@@ -1088,14 +1114,14 @@ function displayAnswersInteractively(answersField, step, question) {
 		}, 0);
 	}
 
-	if (question[step] && question[step].answers[0].text) {
+	if (question[step].answers[0].text) {
 		question[step].answers.forEach((ans, index) => {
 			// Fill up the Answers Field
 			display(index, ans);
 		});
 	}
 
-	if (question[step] && !question[step].answers[0].text) {
+	if (!question[step].answers[0].text) {
 		let primaryAreaOfExpertise = parseInt(Object.keys(REVIEW[1])[0]);
 
 		function returnMatchingAnswers(aIndex) {
@@ -1470,20 +1496,11 @@ BackButton.addEventListener("click", (e) => {
 	debounce4(() => gotoPreviousStep(stepCounter, Questions), 200)
 });
 
-function keydownHandler(e) {
-	if (stepCounter <= Object.values(REVIEW).length + 1) {
-		if (e.key === "Enter" || e.key === "ArrowRight") {
-			gotoNextStep(stepCounter, Questions);
-		}
 
-		if (e.key === "ArrowLeft") {
-			gotoPreviousStep(stepCounter, Questions);
-		}
-	}
-}
 
 // Continue to Next Step On Press Enter
 window.addEventListener("keydown", keydownHandler);
+window.addEventListener("keydown", enterKeyPressHandler)
 
 animateProgress(0);
 export default REVIEW;
