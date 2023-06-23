@@ -835,6 +835,7 @@ footer {}
 
 .email-sent {
 	font-size: 1rem;
+	opacity: 0;
 }
 
 .big-thankyou {

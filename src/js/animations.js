@@ -153,47 +153,47 @@ function backToWelcome() {
 }
 
 function continueDuringSurvey() {
-            // Slideout
-            animate.fromTo(".Question", {
-                y: 0,
-                opacity: 1
-            }, {
-                y: -200,
-                opacity: 0
-            })
+    // Slideout
+    animate.fromTo(".Question", {
+        y: 0,
+        opacity: 1
+    }, {
+        y: -200,
+        opacity: 0
+    })
 
-            animate.fromTo(".selection-rule", {
-                y: 0,
-                opacity: 1
-            }, {
-                y: -100,
-                opacity: 0
-            }, "<")
+    animate.fromTo(".selection-rule", {
+        y: 0,
+        opacity: 1
+    }, {
+        y: -100,
+        opacity: 0
+    }, "<")
 
-            animate.fromTo(".answer-field", {
-                y: 0,
-                opacity: 1
-            }, {
-                y: 200,
-                opacity: 0
-            }, "<")
+    animate.fromTo(".answer-field", {
+        y: 0,
+        opacity: 1
+    }, {
+        y: 200,
+        opacity: 0
+    }, "<")
 
-            // Slidin
-            animate.to(".Question", {
-                y: 0,
-                opacity: 1,
-                duration: 0.5
-            }, ">")
+    // Slidin
+    animate.to(".Question", {
+        y: 0,
+        opacity: 1,
+        duration: 0.5
+    }, ">")
 
-            animate.to(".selection-rule", {
-                y: 0,
-                opacity: 1
-            }, "<")
+    animate.to(".selection-rule", {
+        y: 0,
+        opacity: 1
+    }, "<")
 
-            animate.to(".answer-field", {
-                y: 0,
-                opacity: 1
-            }, "<")
+    animate.to(".answer-field", {
+        y: 0,
+        opacity: 1
+    }, "<")
 }
 
 function submitingForm() {
@@ -204,10 +204,10 @@ function submitingForm() {
         opacity: 0,
     })
 
-     animate.to(".control-buttons", {
-         opacity: 0,
-         y: 100,
-     }, "<20%");
+    animate.to(".control-buttons", {
+        opacity: 0,
+        y: 100,
+    }, "<20%");
 
 
     // Fadein
@@ -221,30 +221,36 @@ function submitingForm() {
         opacity: 1,
         y: 0,
     }, "<75%");
+
+    animate.fromTo(".email-sent", {
+        opacity: 0,
+        y: 500,
+    }, {
+        opacity: 1,
+        y: 0,
+    }, "<50%");
 }
 
 function backToForm() {
     // Fadeout
-     animate.fromTo(".thank-you", {
-         opacity: 1,
-     }, {
-         opacity: 0,
-     }, ">")
+    animate.fromTo(".thank-you", {
+        opacity: 1,
+    }, {
+        opacity: 0,
+    }, ">")
 
-     animate.to(".control-buttons", {
-         opacity: 1,
-         y: 100,
-     }, "<20%");
+    animate.to(".control-buttons", {
+        opacity: 1,
+        y: 100,
+    }, "<20%");
 
     // Fadein
-      animate.to(".main-Q-container",{
-          opacity: 1,
-      }, ">")
+    animate.to(".main-Q-container", {
+        opacity: 1,
+    }, ">")
 
-      animate.to(".control-buttons", {
-          opacity: 1,
-          y: 0,
-      }, "<20%");
-
-    console.log("Here")
+    animate.to(".control-buttons", {
+        opacity: 1,
+        y: 0,
+    }, "<20%");
 }
