@@ -3,37 +3,35 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="description" content="Survey app for the tech community">
+		<meta name="description" content="Survey app for the tech community" />
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
 		/>
 		<title>Document</title>
 
-		<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+		<!-- <link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+		/> -->
 		<!-- <link
 			rel="stylesheet"
 			href="node_modules/animate.css/animate.min.css"
 		/> -->
 
-		<link rel="stylesheet" href="./src/styles/frames.css"/>
-		<link rel="stylesheet" href="./src/styles/index.css"/>
+		<link rel="stylesheet" href="./src/styles/frames.css" />
+		<link rel="stylesheet" href="./src/styles/index.css" />
 
 		<!-- <link rel="stylesheet" href="./node_modules/magic.css/dist/magic.css" />
 		<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script> -->
 
 		<script
-
 			type="text/javascript"
 			src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
 		></script>
 
 		<script src="./src/js/script.js" type="module" defer></script>
 		<script src="./src/js/questions.js" type="module" defer></script>
-
 
 		<!-- <link
 			rel="stylesheet"
@@ -89,10 +87,11 @@
 		</style>
 	</head>
 	<div class="backcircle"></div>
+
 	<body id="body">
 		<h1 class="logo" id="logo">JQuest</h1>
 
-		<svg id="circle" viewBox="0 0 200 200">
+		<svg id="circle" class="circle-progress" viewBox="0 0 200 200">
 			<circle
 				id="circlePath"
 				cx="100"
@@ -125,7 +124,7 @@
 			></text>
 		</svg>
 		<div class="q-container">
-			<article class="question introtext animate__animated">
+			<article class="question introtext">
 				<h1 class="q-heading" id="q-heading">
 					Let's Do a Little Fun Questionnaire
 				</h1>
@@ -134,7 +133,7 @@
 					session.
 				</p>
 			</article>
-			<div class="field-container animate__animated">
+			<div class="field-container">
 				<label class="text-label" for="email"
 					>Please enter your email address</label
 				>
@@ -154,10 +153,10 @@
 		</div>
 
 		<!-- <button style="padding: 15px 10px" id="btn">Click Me</button> -->
-		<div class="main-Q-container animate__animated">
-			<h1 class="Question animate__animated"></h1>
-			<p class="selection-rule animate__animated"></p>
-			<div class="answer-field animate__animated"></div>
+		<div class="main-Q-container">
+			<h1 class="Question"></h1>
+			<p class="selection-rule"></p>
+			<div class="answer-field"></div>
 		</div>
 
 		<div class="result"></div>
@@ -167,7 +166,7 @@
 		</div>
 
 		<div class="thank-you">
-			<h1 class="big-thankyou animate__animated">
+			<h1 class="big-thankyou">
 				<img src="/jquest/src/imgs/falling-star.png" alt="" />
 				<div class="thanks-message">
 					<h1>You are a star!</h1>
@@ -177,11 +176,13 @@
 					</p>
 				</div>
 			</h1>
-			<div class="email-sent animate__animated">
+			<div class="email-sent">
 				Your responses has just been sent to
-				<div class="email ">
+				<div class="email">
 					<p class="changetext">click to change email</p>
-					<p class="inner turndot ads" id="edit" contenteditable="true">kkk@d.d</p>
+					<p class="inner turndot ads" id="edit" contenteditable="true">
+						kkk@d.d
+					</p>
 				</div>
 			</div>
 
@@ -207,22 +208,15 @@
 			</button>
 		</div>
 
-		<!-- <div id="particles-js"></div> -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js"
+			integrity="sha512-qF6akR/fsZAB4Co1QDDnUXWnaQseLGXoniuSuSlPQK6+aWhlMZcHzkasCSlnWoe+TJuudlka1/IQ01Dnhgq95g=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script src="src/js/animations.js"></script>
 		<script src="particles.min.js"></script>
 		<script>
-			/* -----------------------------------------------
-/* How to use? : Check the GitHub README
-/* ----------------------------------------------- */
-
-			/* To load a config file (particles.json) you need to host this demo (MAMP/WAMP/local)... */
-			/*
-particlesJS.load('particles-js', 'particles.json', function() {
-  console.log('particles.js loaded - callback');
-});
-*/
-
-			/* Otherwise just put the config content (json): */
-
 			particlesJS(
 				"particles-js",
 
@@ -344,7 +338,7 @@ particlesJS.load('particles-js', 'particles.json', function() {
 			);
 		</script>
 	</body>
-	<dic class="control-buttons animate__animated">
+	<dic class="control-buttons">
 		<button class="back-button">
 			<p class="continue-text back-text">Back</p>
 			<p class="press-enter back-text">Press Arrow-Left Key</p>

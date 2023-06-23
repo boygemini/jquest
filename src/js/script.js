@@ -46,6 +46,12 @@ const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 let usersEmailAddress = false;
 let stepCounter = 0;
 
+const animate = gsap.timeline({
+	defaults: {
+		duration: 0.5
+	}
+})
+
 // body.classList.add("soft");
 
 let anim;
@@ -57,175 +63,125 @@ function animDebounce(func, time) {
 	anim = setTimeout(func, time);
 }
 
-function welcomeAnimation() {
-	introText.classList.add("animate__fadeInLeftBig");
-	introText.style.setProperty("--animate-duration", "1s")
+let id1, id2, id3, id4, id5, id6, id7, id8, id9, id10, id11, id12, id13, bd;
 
-	controlButtons.classList.add("animate__fadeInUp");
+function debounce1(func, time) {
+	if (id1) {
+		clearTimeout(id1);
+	}
 
-	emailTextField.classList.add("animate__fadeInUp");
-	emailTextField.style.setProperty("--animate-duration", ".4s")
-
-	animDebounce(() => {
-		introText.classList.remove("animate__fadeInLeftBig");
-	}, 1000);
-
-	starterPage.style.setProperty("opacity", "1")
-	controlButtons.style.setProperty("opacity", "1")
+	id1 = setTimeout(func, time);
 }
 
-window.onload = () => welcomeAnimation()
+function debounce2(func, time) {
+	if (id2) {
+		clearTimeout(id2);
+	}
 
-function goingOutOfWelcome(home, start) {
-	home.classList.add("animate__fadeOutLeft");
-	home.style.setProperty("--animate-duration", "1s")
-
-	start.classList.add("animate__fadeInRight");
-	start.style.setProperty("--animate-duration", ".5s")
-
-	controlButtons.classList.remove("animate__fadeInUp")
-	controlButtons.classList.add("animate__fadeOutDown")
-	controlButtons.style.setProperty("--animate-duration", ".5s")
-	setTimeout(() => {
-		controlButtons.classList.remove("animate__fadeOutDown")
-		controlButtons.classList.add("animate__fadeInUp")
-	}, 500)
-
-	emailTextField.classList.add("animate__fadeOutDown");
-
-	animDebounce(() => {
-		emailTextField.classList.remove("animate__fadeOutDown");
-		home.classList.remove("animate__fadeOutLeft");
-	}, 1000);
+	id2 = setTimeout(func, time);
 }
 
-function backToWelcome(home, start) {
-	home.classList.remove("animate__fadeOutLeft");
-	home.classList.add("animate__fadeInLeft");
-	home.style.setProperty("--animate-duration", ".5s")
+function debounce3(func, time) {
+	if (id3) {
+		clearTimeout(id3);
+	}
 
-	emailTextField.classList.add("animate__fadeInUp");
-
-	controlButtons.classList.add("animate__fadeOutDown")
-	setTimeout(() => {
-		controlButtons.classList.remove("animate__fadeOutDown")
-		controlButtons.classList.add("animate__fadeInUp")
-	}, 500)
-
-	start.classList.add("animate__fadeOutRight");
-	start.style.setProperty("--animate-duration", ".5s")
-	animDebounce(() => {
-		start.classList.remove("animate__fadeOutRight");
-	}, 500);
+	id3 = setTimeout(func, time);
 }
 
-function continueDuringSurvey(question, answer) {
-	// console.log(answer.classList)
+function debounce4(func, time) {
+	if (id4) {
+		clearTimeout(id4);
+	}
 
-	// question.style.setProperty("--animate-duration", ".5s")
-	// answer.style.setProperty("--animate-duration", ".5s")
-	// rule.style.setProperty("--animate-duration", ".5s")
-
-	// question.classList.remove("animate__fadeInDown")
-	// rule.classList.remove("animate__fadeInDown")
-	// answer.classList.remove("animate__fadeInUp")
-
-
-
-	rule.classList.add("animate__fadeOutUp")
-	question.classList.add("animate__fadeOutUp")
-	answer.classList.add("animate__fadeOutDown")
-	// setTimeout(()=>{
-	// 	answer.classList.add("animate__fadeOutDown")
-	// 	console.log("Herw--------------", answer.classList)
-	// },500)
-
-
-	animDebounce(()=>{
-		rule.classList.remove("animate__fadeOutUp")
-		question.classList.remove("animate__fadeOutUp")
-		answer.classList.remove("animate__fadeOutDown")
-
-		answer.classList.add("animate__fadeInUp")
-		question.classList.add("animate__fadeInDown")
-		rule.classList.add("animate__fadeInDown")
-	}, 500)
-
-	// setTimeout(()=>{
-	// 	answer.classList.add("animate__fadeOutDown")
-
-	// }, 1000)
-
-
-
-
-
-	// animDebounce(() => {
-	// 	question.classList.remove("animate__fadeOutUp")
-	// 	rule.classList.remove("animate__fadeOutUp")
-	// 	answer.classList.remove("animate__fadeOutDown")
-
-
-
-	// 	// answer.classList.add("animate__fadeInUp")
-	// 	// 	question.classList.add("animate__fadeInDown")
-	// 	// 	rule.classList.add("animate__fadeInDown")
-
-	// 	// setTimeout(() => {
-	// 	// 	answer.classList.add("animate__fadeInUp")
-	// 	// 	question.classList.add("animate__fadeInDown")
-	// 	// 	rule.classList.add("animate__fadeInDown")
-	// 	// }, 1)
-	// }, 5);
-
+	id4 = setTimeout(func, time);
 }
 
-function submitingForm(home, start) {
-	home.classList.add("animate__fadeOut");
-	animDebounce(() => {
-		home.classList.remove("animate__fadeOut")
-	}, 600);
 
-	controlButtons.classList.remove("animate__fadeInUp")
-	controlButtons.classList.add("animate__fadeOutDown")
-	controlButtons.style.setProperty("--animate-duration", ".5s")
-	setTimeout(() => {
-		controlButtons.classList.remove("animate__fadeOutDown")
-		controlButtons.classList.add("animate__fadeInUp")
-	}, 400)
 
-	emailSent.classList.remove("animate__fadeOutDown")
-	emailSent.classList.add("animate__fadeInUp")
-	emailSent.style.setProperty("--animation-delay", "5s")
 
-	starBoy.classList.remove("animate__fadeOut")
-	starBoy.classList.add("animate__fadeIn")
-	starBoy.style.setProperty("--animation-duration", ".3s")
-	starBoy.style.setProperty("--animation-delay", "1s")
 
-	startQuestion.classList.remove("animate__fadeInRight")
+function debounce5(func, time) {
+	if (id5) {
+		clearTimeout(id5);
+	}
+
+	id5 = setTimeout(func, time);
 }
 
-function backToForm(home, question, answer) {
-	startQuestion.classList.add("animate__fadeIn");
-	startQuestion.style.setProperty("--animate-duration", ".5s")
+function debounce6(func, time) {
+	if (id6) {
+		clearTimeout(id6);
+	}
 
-	body.classList.remove("blurbody")
-	controlButtons.classList.remove("animate__fadeInUp")
-	controlButtons.classList.add("animate__fadeOutDown")
-	controlButtons.style.setProperty("--animate-duration", ".5s")
-	setTimeout(() => {
-		controlButtons.classList.remove("animate__fadeOutDown")
-		controlButtons.classList.add("animate__fadeInUp")
-	}, 500)
+	id6 = setTimeout(func, time);
+}
 
-	emailSent.classList.remove("animate__fadeInUp")
-	emailSent.classList.add("animate__fadeOutDown")
-	emailSent.style.setProperty("--animation-delay", "0s")
+function debounce7(func, time) {
+	if (id7) {
+		clearTimeout(id7);
+	}
 
-	starBoy.classList.remove("animate__fadeIn")
-	starBoy.classList.add("animate__fadeOut")
-	starBoy.style.setProperty("--animation-duration", ".5s")
+	id7 = setTimeout(func, time);
+}
+
+function debounce8(func, time) {
+	if (id8) {
+		clearTimeout(id8);
+	}
+
+	id8 = setTimeout(func, time);
+}
+
+
+
+
+function debounce9(func, time) {
+	if (id9) {
+		clearTimeout(id9);
+	}
+
+	id9 = setTimeout(func, time);
+}
+
+function debounce10(func, time) {
+	if (id10) {
+		clearTimeout(id10);
+	}
+
+	id10 = setTimeout(func, time);
+}
+
+function debounce11(func, time) {
+	if (id11) {
+		clearTimeout(id11);
+	}
+
+	id11 = setTimeout(func, time);
+}
+
+function debounce12(func, time) {
+	if (id12) {
+		clearTimeout(id12);
+	}
+
+	id12 = setTimeout(func, time);
+}
+
+function debounce13(func, time) {
+	if (id13) {
+		clearTimeout(id13);
+	}
+
+	id13 = setTimeout(func, time);
+}
+
+
+function buttonDebounce(func) {
+	if (bd) {
+		clearTimeout(bd);
+	}
+	bd = setTimeout(func, 500);
 }
 
 function keydownHandler(e) {
@@ -241,11 +197,11 @@ function keydownHandler(e) {
 }
 
 function enterKeyPressHandler(e) {
-		if (stepCounter < Object.values(REVIEW).length + 1) {
-			if (e.key === "Enter") {
-				gotoNextStep(stepCounter, Questions);
-			}
+	if (stepCounter < Object.values(REVIEW).length + 1) {
+		if (e.key === "Enter") {
+			gotoNextStep(stepCounter, Questions);
 		}
+	}
 }
 
 changeEmailBox.addEventListener("click", (e) => {
@@ -370,9 +326,9 @@ function reset() {
 			if (e.target.classList.value.includes("ads")) {
 				try {
 					if (e.target.value.trim().length === 0) {
-					e.target.offsetParent.firstElementChild.classList.remove("move-up");
-					e.target.offsetParent.children[1].style.borderBottom = "";
-				}
+						e.target.offsetParent.firstElementChild.classList.remove("move-up");
+						e.target.offsetParent.children[1].style.borderBottom = "";
+					}
 				} catch (error) {
 
 				}
@@ -391,46 +347,7 @@ if (textInputFields[0].value.length > 0) {
 	e.target.offsetParent.children[1].style.borderBottom = "1px solid #2260ff";
 }
 
-let id, id2, id3, id4, bd;
 
-function debounce(func, time) {
-	if (id) {
-		clearTimeout(id);
-	}
-
-	id = setTimeout(func, time);
-}
-
-function debounce2(func, time) {
-	if (id2) {
-		clearTimeout(id2);
-	}
-
-	id2 = setTimeout(func, time);
-}
-
-function debounce4(func, time) {
-	if (id4) {
-		clearTimeout(id4);
-	}
-
-	id4 = setTimeout(func, time);
-}
-
-function debounce3(func, time) {
-	if (id3) {
-		clearTimeout(id3);
-	}
-
-	id3 = setTimeout(func, time);
-}
-
-function buttonDebounce(func) {
-	if (bd) {
-		clearTimeout(bd);
-	}
-	bd = setTimeout(func, 500);
-}
 
 // Error Message Animation
 function animateErrorMessage(
@@ -520,8 +437,8 @@ function animateErrorMessage(
 }
 
 function showSending(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH, STAY_TIME) {
-	clearTimeout(id4);
-	debounce3(() => {
+	clearTimeout(id7);
+	debounce6(() => {
 		successText.innerText = MESSAGE;
 		const errorMessageNodeWidth = loaderDOM.offsetWidth;
 
@@ -546,7 +463,7 @@ function showSending(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH, STAY_TIME) {
 }
 
 function showSent(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH, STAY_TIME) {
-	clearTimeout(id3);
+	clearTimeout(id6);
 	successText.style.opacity = "0";
 
 	setTimeout(() => {
@@ -559,7 +476,7 @@ function showSent(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH, STAY_TIME) {
 		successText.style.opacity = "1";
 	}, 300);
 
-	debounce4(() => {
+	debounce7(() => {
 		successText.style.opacity = "0";
 
 		setTimeout(() => {
@@ -730,7 +647,7 @@ function sendEmail(email) {
 
 		// result.innerHTML = html;
 
-		debounce(() => {
+		debounce8(() => {
 			showSending("Submitting Form...", 20, 600);
 		}, 500);
 
@@ -739,7 +656,7 @@ function sendEmail(email) {
 			user: email,
 		};
 
-		debounce2(() => {
+		debounce9(() => {
 			showSent("Form Submitted Successfully", 20, 2000);
 
 			submitingForm(startQuestion)
@@ -832,7 +749,7 @@ function gotoNextStep(step, question) {
 				return;
 			}
 			// validateEmail(userEmail, step);
-			goingOutOfWelcome(introText, startQuestion);
+			goingOutOfWelcome();
 		}
 	}
 
@@ -857,11 +774,11 @@ function gotoNextStep(step, question) {
 		// Put off the welcome page and put on the QA page
 		// body.style.backgroundColor = "#ffffffdd";
 		// body.classList.add("soft");
-		body.classList.remove("soft");
+		body.classList.add("soft");
 		backCircle.style.opacity = "0";
 		controlButtons.classList.add("csoft");
 		thankYou.style.display = "none";
-		debounce3(() => {
+		debounce10(() => {
 			ContinueButton.children[0].innerText = "Continue";
 			ContinueButton.style.display = "flex";
 			BackButton.style.display = "flex";
@@ -900,11 +817,11 @@ function gotoNextStep(step, question) {
 			continueDuringSurvey(questionElement, answersField)
 		}
 
-		setTimeout(() => {
+		debounce13(() => {
 			// Display Question
 			questionElement.innerHTML =
 				`<h1 class="qnumbering">${step}</h1>` +
-				askQuestionsInteractively(questionElement, step, question);
+				askQuestionsInteractively(step, question);
 
 			// Display Answers
 			displayAnswersInteractively(answersField, step, question);
@@ -942,7 +859,7 @@ function gotoPreviousStep(step, question) {
 		thankYou.style.display = "none";
 
 
-		debounce3(() => {
+		debounce11(() => {
 			BackButton.style.display = "none";
 			ContinueButton.classList.add("widen");
 			controlButtons.classList.remove("csoft");
@@ -950,7 +867,7 @@ function gotoPreviousStep(step, question) {
 			starterPage.style.display = "flex";
 		}, 500);
 
-		backToWelcome(introText, startQuestion);
+		backToWelcome();
 
 		backCircle.style.opacity = "";
 		showCircleSVG(false);
@@ -958,7 +875,10 @@ function gotoPreviousStep(step, question) {
 	}
 
 	if (step > 0) {
-		continueDuringSurvey(questionElement, answersField)
+		if (step < parseInt(Object.keys(REVIEW).length)) {
+			continueDuringSurvey(questionElement, answersField)
+		}
+
 		setTimeout(() => {
 			ContinueButton.style.display = "flex";
 			BackButton.style.display = "flex";
@@ -973,13 +893,15 @@ function gotoPreviousStep(step, question) {
 			// Display Question
 			questionElement.innerHTML =
 				`<h1 class="qnumbering">${step}</h1>` +
-				askQuestionsInteractively(questionElement, step, question);
-				console.log(questionElement.classList)
+				askQuestionsInteractively(step, question);
+			console.log(questionElement.classList)
 
 			// Display Answers
 			displayAnswersInteractively(answersField, step, question);
 		}, 500)
 	}
+
+
 }
 
 function markAlreadyChosenSelections(step) {
@@ -1009,7 +931,7 @@ function markAlreadyChosenSelections(step) {
 	});
 }
 
-function askQuestionsInteractively(questionElement, step, question) {
+function askQuestionsInteractively(step, question) {
 	// console.log(questionElement.classList)
 	switch (step) {
 		case 2:
@@ -1028,17 +950,17 @@ function askQuestionsInteractively(questionElement, step, question) {
 }
 
 function displayAnswersInteractively(answersField, step, question) {
-	console.log(answersField.classList.value)
 	let listCl = ["eight-ans-grid", "icon-text-ans", "continous-two", "ans-with-4ans-textonly", "ans-with-5option-textonly", "straight-ans", "ans-with-2options"]
-			listCl.forEach(a => {
-				if (answersField.classList.value.includes(a)) {
-					answersField.classList.remove(a)
-					console.log(answersField.classList.value)
-				}
-			})
+	listCl.forEach(a => {
+		if (answersField.classList.value.includes(a)) {
+			answersField.classList.remove(a)
+		}
+	})
+
 	function display(index, ans) {
 		// Empty the Answers Field/Container
 		answersField.innerHTML = "";
+
 		setTimeout(() => {
 			switch (step) {
 				// Text and big image
@@ -1532,11 +1454,11 @@ cancel.onclick = () => {
 
 // Continue button
 ContinueButton.addEventListener("click", (e) => {
-	debounce4(() => gotoNextStep(stepCounter, Questions), 100)
+	debounce12(() => gotoNextStep(stepCounter, Questions), 100)
 });
 
 BackButton.addEventListener("click", (e) => {
-	debounce4(() => gotoPreviousStep(stepCounter, Questions), 200)
+	debounce13(() => gotoPreviousStep(stepCounter, Questions), 200)
 });
 
 

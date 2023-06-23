@@ -600,7 +600,8 @@ export default [
 			text: "I don't work from home",
 			img: ""
 		}]
-	}, {
+	},
+	{
 		question: "How often do you feel burned out at work ?",
 		answers: [{
 			text: "Rarely",
@@ -618,7 +619,8 @@ export default [
 			text: "Every day",
 			img: ""
 		}]
-	}, {
+	},
+	{
 		question: "How many hours of sleep do you typically get each night during the workweek ?",
 		answers: [{
 			text: "More than 8 hours",
@@ -636,7 +638,8 @@ export default [
 			text: "Less than 5 hours",
 			img: ""
 		}]
-	}, {
+	},
+	{
 		question: "How often do you work on the weekends ?",
 		answers: [{
 			text: "Never",
