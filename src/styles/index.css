@@ -509,6 +509,9 @@ html {
 	margin-left: 10px;
 	display: none;
 	margin-left: 10px;
+	white-space: nowrap !important;
+	overflow: hidden !important;
+	text-overflow: none !important;
 }
 
 .show {
@@ -1461,23 +1464,31 @@ footer {
 	}
 
 	.show-error-message,
-	.show-reset-message,
-	.show,
-	.loader {
-		margin: auto;
-		top: 10px;
+	.show-reset-message {
+
 		width: 95% !important;
 		border-radius: 5px;
 		-webkit-border-radius: 5px;
 		-moz-border-radius: 5px;
 		-ms-border-radius: 5px;
 		-o-border-radius: 5px;
-		opacity: 1;
+
 		z-index: 768903876428934762839437568239475464823947568923479;
 	}
 
-	.error-text,
-	.sent-message {
+	.show,
+	.loader{
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-ms-border-radius: 5px;
+		-o-border-radius: 5px;
+		opacity: 1;
+		margin: auto;
+		top: 20px;
+	}
+
+	.error-text {
 		opacity: 0;
 		white-space: wrap !important;
 		overflow-wrap: normal !important;
@@ -2373,6 +2384,14 @@ footer {
 		/* background-color: rgba(255, 255, 255, 0.688); */
 		/* background-color: #34475480; */
 	}
+/*
+	.logo{
+		position: fixed;
+	} */
+
+	/* .main-Q-container{
+		margin-top: 5rem;
+	} */
 
 	.q-container {
 		position: fixed;
