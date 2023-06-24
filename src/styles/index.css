@@ -428,15 +428,36 @@ html {
 	-ms-border-radius: 5px;
 	-o-border-radius: 5px;
 	padding: 1rem;
+	display: flex;
+	align-items: center;
+	column-gap: 15px;
+	/* top: 50px !important; */
 
 }
 
+.error-text{
+	opacity: 1 !important;
+}
 
+.spinner-svg {
+	border-radius: 100% !important;
+	-webkit-border-radius: 100% !important;
+	-moz-border-radius: 100% !important;
+	-ms-border-radius: 100% !important;
+	-o-border-radius: 100% !important;
+}
+
+@keyframes spinner-z355kx {
+	to {
+		transform: rotate(360deg);
+	}
+}
 
 .remove-error-message {
 	top: 1rem;
 	opacity: 0;
-	background-color: #ff0000f0;
+	background-color: orange;
+	/* background-color: #ff0000f0; */
 }
 
 .show-error-message {
@@ -472,16 +493,22 @@ html {
 	-ms-transform: translateX(-50%);
 	-o-transform: translateX(-50%);
 	color: white;
-	border-radius: 10px;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	-ms-border-radius: 10px;
-	-o-border-radius: 10px;
 	padding: 1rem;
-	top: 4rem;
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center !important;
+}
+
+.sent-message{
+	opacity: 0;
+	transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	margin-left: 10px;
+	display: none;
+	margin-left: 10px;
 }
 
 .show {
@@ -2727,4 +2754,101 @@ footer {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	max-width: 100%;
+}
+
+
+.circle-loader {
+	border: 1px solid rgba(255, 254, 254, 0.548);
+	border-left-color: white;
+	animation: loader-spin .3s infinite linear;
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	border-radius: 50%;
+	min-width: 40px;
+	min-height: 40px;
+	-webkit-animation: loader-spin .3s infinite linear;
+}
+
+.load-complete {
+	-webkit-animation: none;
+	animation: none;
+	border-color: white;
+	transition: border 500ms ease-out;
+}
+
+.checkmark {
+	position: absolute;
+	top: 52.5%;
+	left:22.5%;
+	transform: translate(-50%, -25%) !important;
+	-webkit-transform: translate(-50%, -25%) !important;
+	-moz-transform: translate(-50%, -25%) !important;
+	-ms-transform: translate(-50%, -25%) !important;
+	-o-transform: translate(-50%, -25%) !important;
+	display: none;
+}
+
+.checkmark.draw:after {
+	animation-duration: 400ms;
+	animation-timing-function: ease;
+	animation-name: checkmark;
+	transform: scaleX(-1) rotate(135deg);
+}
+
+.checkmark:after {
+	opacity: 1;
+	height: 20px;
+	/* Adjusted height */
+	width: 10px;
+	/* Adjusted width */
+	transform-origin: left top;
+	border-right: 3px solid white;
+	border-top: 3px solid white;
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@keyframes loader-spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes checkmark {
+	0% {
+		height: 0;
+		width: 0;
+		opacity: 1;
+	}
+
+	20% {
+		height: 0;
+		width: 10px;
+		/* Adjusted width */
+		opacity: 1;
+	}
+
+	40% {
+		height: 20px;
+		/* Adjusted height */
+		width: 10px;
+		/* Adjusted width */
+		opacity: 1;
+	}
+
+	100% {
+		height: 20px;
+		/* Adjusted height */
+		width: 10px;
+		/* Adjusted width */
+		opacity: 1;
+	}
 }

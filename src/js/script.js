@@ -55,6 +55,8 @@ const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 let usersEmailAddress = false;
 let stepCounter = 0;
 let submittedForm = false
+const submitLoader = document.querySelector(".circle-loader")
+const successMark = document.querySelector(".checkmark")
 
 const animate = gsap.timeline({
 	defaults: {
@@ -237,25 +239,25 @@ if (window.screen.availWidth <= 480) {
 
 let REVIEW = new Object({
 	1: {},
-	2: {},
-	3: {},
-	4: {},
-	5: {},
-	6: {},
-	7: {},
-	8: {},
-	9: {},
-	10: {},
-	11: {},
-	12: {},
-	13: {},
-	14: {},
-	15: {},
-	16: {},
-	17: {},
-	18: {},
-	19: {},
-	20: {},
+	// 2: {},
+	// 3: {},
+	// 4: {},
+	// 5: {},
+	// 6: {},
+	// 7: {},
+	// 8: {},
+	// 9: {},
+	// 10: {},
+	// 11: {},
+	// 12: {},
+	// 13: {},
+	// 14: {},
+	// 15: {},
+	// 16: {},
+	// 17: {},
+	// 18: {},
+	// 19: {},
+	// 20: {},
 });
 
 function reset() {
@@ -275,25 +277,25 @@ function reset() {
 
 		REVIEW = {
 			1: {},
-			2: {},
-			3: {},
-			4: {},
-			5: {},
-			6: {},
-			7: {},
-			8: {},
-			9: {},
-			10: {},
-			11: {},
-			12: {},
-			13: {},
-			14: {},
-			15: {},
-			16: {},
-			17: {},
-			18: {},
-			19: {},
-			20: {},
+			// 2: {},
+			// 3: {},
+			// 4: {},
+			// 5: {},
+			// 6: {},
+			// 7: {},
+			// 8: {},
+			// 9: {},
+			// 10: {},
+			// 11: {},
+			// 12: {},
+			// 13: {},
+			// 14: {},
+			// 15: {},
+			// 16: {},
+			// 17: {},
+			// 18: {},
+			// 19: {},
+			// 20: {},
 		};
 	}
 }
@@ -440,59 +442,68 @@ function animateErrorMessage(
 	}, ERROR_MESSAGE_DURATION + ERROR_MESSAGE_ANIMATION_DURATION);
 }
 
-function showSending(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH, STAY_TIME) {
-	successText.innerText = MESSAGE;
-	const errorMessageNodeWidth = successText.scrollWidth + 30;
+function showSending(MESSAGE) {
+	successText.style.opacity = "0"
 
+
+	successText.innerText = MESSAGE
+	loaderDOM.style.width = submitLoader.scrollWidth + 50 + "px";
 	// Remove the reove-error-message and add show-error-message class to show the error message
 	loaderDOM.classList.remove("remove");
 	loaderDOM.classList.add("show");
 	loaderDOM.style.backgroundColor = "orange";
 
-	// Set the Error Message Container width to 20px
-	loaderDOM.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
 
-	// After 300 millisecs set the Error Message container width to its full width
 	debounce6(() => {
-		loaderDOM.style.width = errorMessageNodeWidth + "px";
-	}, 300);
+		successText.style.display = "flex"
+		loaderDOM.style.justifyContent = "flex-start"
+		loaderDOM.style.width = submitLoader.scrollWidth + successText.scrollWidth + 50 + "px";
+	}, 700);
 
 	// After 600 millisecs make the error message text obvious
 	debounce7(() => {
 		successText.style.opacity = "1";
-	}, STAY_TIME);
+	}, 900);
 }
 
-function showSent(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH, STAY_TIME) {
+function showSent(MESSAGE, STAY_TIME) {
 	clearTimeout(id6);
 	successText.style.opacity = "0";
 
 	setTimeout(() => {
 		successText.innerText = MESSAGE;
+		successText.style.display = "none"
+		loaderDOM.style.justifyContent = "center"
+		// loaderDOM.style.backgroundColor = "#11bd05";
+		// loaderDOM.style.width = `${successText.scrollWidth + 50}px`;
+		submitLoader.classList.add("load-complete")
+		successMark.style.display = "block"
 		loaderDOM.style.backgroundColor = "#11bd05";
-		loaderDOM.style.width = `${successText.scrollWidth + 50}px`;
+		loaderDOM.style.width = `${submitLoader.scrollWidth + 50}px`;
 	}, 200);
 
-	setTimeout(() => {
-		successText.style.opacity = "1";
+	debounce4(() => {
+		successText.style.display = "none"
 	}, 300);
 
 	debounce7(() => {
 		successText.style.opacity = "0";
 
 		setTimeout(() => {
-			loaderDOM.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
+			loaderDOM.style.width = `${submitLoader.scrollWidth + 50}px`;
 		}, 300);
 
 		setTimeout(() => {
 			loaderDOM.classList.remove("show");
 			loaderDOM.classList.add("remove");
+			submitLoader.classList.remove("load-complete")
+			successMark.style.display = "none"
 		}, 600);
 
 		setTimeout(() => {
-			loaderDOM.style.width = "auto";
-		}, 1000);
-	}, STAY_TIME);
+			successText.style.display = ""
+		}, 900);
+	}, 1000);
 }
 
 function removeMessage() {
@@ -647,7 +658,7 @@ function sendEmail(email) {
 						</html>`;
 
 
-		showSending("Submitting Form...", 20, 600);
+		showSending("Submitting Form...");
 
 		let htmlTemplate = {
 			my_html: html,
@@ -655,7 +666,7 @@ function sendEmail(email) {
 		};
 
 		debounce9(() => {
-			showSent("Form Submitted Successfully", 20, 2000);
+			showSent("Form Submitted Successfully");
 
 			showThankYouPage(startQuestion)
 
@@ -720,7 +731,6 @@ function sendEmail(email) {
 }
 
 function gotoNextStep(step, question) {
-	console.log(step, stepCounter, question.length)
 	const answersField = document.querySelector(".answer-field");
 	const questionElement = document.querySelector(".Question");
 	let noq = question.length
@@ -755,7 +765,7 @@ function gotoNextStep(step, question) {
 		}
 	}
 
-	// // Control the form steps
+	// Control the form steps
 	step++;
 	if (step >= question.length) {
 		// emojis.innerHTML = "";
@@ -937,6 +947,7 @@ function gotoPreviousStep(step, question) {
 
 
 }
+
 
 function markAlreadyChosenSelections(step) {
 	const answers = document.querySelectorAll(".ans-box");
@@ -1489,22 +1500,23 @@ inner.onblur = () => {
 
 changeEmail.forEach(x => {
 	x.onclick = () => {
-	usersEmailAddress = editfield.innerText;
-	sendEmail(usersEmailAddress);
-	gsap.to(changeEmailContainer, {
-		opacity: 0,
-		duration: 0.3
-	})
+		usersEmailAddress = editfield.innerText;
+		sendEmail(usersEmailAddress);
+		gsap.to(changeEmailContainer, {
+			opacity: 0,
+			duration: 0.3
+		})
 
-	gsap.to(resubmitEmailContainer, {
-		opacity: 0,
-		duration: 0.3
-	})
+		gsap.to(resubmitEmailContainer, {
+			opacity: 0,
+			duration: 0.3
+		})
 
-	debounce2(() => {
-		changeEmailContainer.style.display = "none"
-	}, 300)
-};
+		debounce2(() => {
+			changeEmailContainer.style.display = "none"
+			resubmitEmailContainer.style.display = "none"
+		}, 300)
+	};
 })
 
 cancel.forEach((c) => {
@@ -1518,6 +1530,11 @@ cancel.forEach((c) => {
 			opacity: 0,
 			duration: 0.3
 		})
+
+		debounce2(() => {
+			changeEmailContainer.style.display = "none"
+			resubmitEmailContainer.style.display = "none"
+		}, 300)
 	}
 })
 
