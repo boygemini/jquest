@@ -1196,8 +1196,9 @@ footer {
 	min-width: 100% !important;
 }
 
-.saveemail {
+.saveemail, .no {
 	font-weight: 400 !important;
+	cursor: pointer;
 }
 
 

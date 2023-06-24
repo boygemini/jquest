@@ -65,7 +65,6 @@ const animate = gsap.timeline({
 })
 
 body.classList.add("soft");
-console.log(window.screen)
 let anim;
 
 function animDebounce(func, time) {
@@ -197,7 +196,7 @@ function buttonDebounce(func) {
 }
 
 function keydownHandler(e) {
-	if (stepCounter <= Object.values(REVIEW).length + 1) {
+	if (stepCounter <= Object.values(REVIEW).length + 1 && stepCounter > 0) {
 		if (e.key === "ArrowRight") {
 			gotoNextStep(stepCounter, Questions);
 		}
@@ -683,6 +682,7 @@ function sendEmail(email) {
 				body.classList.add("blurbody")
 			}, 600)
 
+			userEmail.value = usersEmailAddress
 			submittedForm = true;
 			// emailjs
 			// 	.send(
@@ -775,7 +775,6 @@ function gotoNextStep(step, question) {
 
 		inner.innerText = usersEmailAddress;
 		if (submittedForm === true) {
-			console.log("Entered Here still nothing")
 			resubmitEmailContainer.style.display = "flex"
 			gsap.fromTo(resubmitEmailContainer, {
 				opacity: 0
@@ -880,14 +879,12 @@ function gotoNextStep(step, question) {
 function gotoPreviousStep(step, question) {
 	const answersField = document.querySelector(".answer-field");
 	const questionElement = document.querySelector(".Question");
-	console.log(step, stepCounter)
 
 	step--;
 	if (step <= 0) {
 		step = 0;
 	}
 
-	console.log(step, stepCounter)
 
 	stepCounter = step;
 	// Animate progress backwards
@@ -938,7 +935,6 @@ function gotoPreviousStep(step, question) {
 			questionElement.innerHTML =
 				`<h1 class="qnumbering">${step}</h1>` +
 				askQuestionsInteractively(step, question);
-			console.log(questionElement.classList)
 
 			// Display Answers
 			displayAnswersInteractively(answersField, step, question);
@@ -977,7 +973,6 @@ function markAlreadyChosenSelections(step) {
 }
 
 function askQuestionsInteractively(step, question) {
-	// console.log(questionElement.classList)
 	switch (step) {
 		case 2:
 		case 3:
