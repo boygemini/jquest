@@ -8,7 +8,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
 		/>
-		<title>Document</title>
+		<title>jQuest | Survey</title>
 
 		<!-- <link
 			rel="stylesheet"
@@ -29,9 +29,6 @@
 			type="text/javascript"
 			src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
 		></script>
-
-		<script src="./src/js/script.js" type="module" defer></script>
-		<script src="./src/js/questions.js" type="module" defer></script>
 
 		<!-- <link
 			rel="stylesheet"
@@ -144,12 +141,14 @@
 					type="email"
 					required
 					autocomplete="off"
+					value="gbadebojubril@gmail.com"
 				/>
 			</div>
 		</div>
 
 		<div class="error-message remove-error-message">
-			<p class="error-text"></p>
+			<!-- <div class="spinner"></div> -->
+			<p class="error-text">Submitting form</p>
 		</div>
 
 		<!-- <button style="padding: 15px 10px" id="btn">Click Me</button> -->
@@ -197,15 +196,20 @@
 				<p>Change Email</p>
 				<div class="cancel">x</div>
 			</div>
-			<!-- <input
-				type="email"
-				name=""
-				id="emailchange"
-				placeholder="example@you.com"
-			/> -->
 			<button type="submit" class="saveemail">
 				Save email and resubmit form
 			</button>
+		</div>
+
+		<div class="resubmitmodal">
+			<div class="change-top">
+				<p>Do you want to resubmit the form?</p>
+				<div class="cancel">x</div>
+			</div>
+			<div class="resubmit">
+				<button type="submit" class="no">Nope</button>
+				<button type="submit" class="saveemail">Yes, resubmit</button>
+			</div>
 		</div>
 
 		<script
@@ -214,7 +218,10 @@
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
 		></script>
-		<script src="src/js/animations.js"></script>
+		<script src="./src/js/questions.js" type="module"></script>
+		<script src="src/js/animations.js" type="module"></script>
+		<script src="./src/js/script.js" type="module"></script>
+
 		<script src="particles.min.js"></script>
 		<script>
 			particlesJS(

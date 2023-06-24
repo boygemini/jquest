@@ -314,31 +314,31 @@ html {
 .continue-btn {
 	background-color: #344854;
 	background-image: linear-gradient(45deg,
-		hsl(204deg 24% 27%) 0%,
-		hsl(204deg 24% 28%) 14%,
-		hsl(204deg 24% 29%) 26%,
-		hsl(204deg 25% 30%) 37%,
-		hsl(204deg 25% 32%) 47%,
-		hsl(205deg 25% 33%) 55%,
-		hsl(205deg 25% 34%) 64%,
-		hsl(205deg 26% 36%) 72%,
-		hsl(205deg 26% 37%) 82%,
-		hsl(205deg 26% 38%) 100%);
+			hsl(204deg 24% 27%) 0%,
+			hsl(204deg 24% 28%) 14%,
+			hsl(204deg 24% 29%) 26%,
+			hsl(204deg 25% 30%) 37%,
+			hsl(204deg 25% 32%) 47%,
+			hsl(205deg 25% 33%) 55%,
+			hsl(205deg 25% 34%) 64%,
+			hsl(205deg 26% 36%) 72%,
+			hsl(205deg 26% 37%) 82%,
+			hsl(205deg 26% 38%) 100%);
 	/* box-shadow: inset 10px 10px 18px #293842, inset -10px -10px 18px #4c6577; */
 	justify-self: flex-end;
 }
 
-.progress{
+.progress {
 	stroke: #f2c744 !important;
 	background-image: linear-gradient(310deg,
-		#f2c745 0%,
-		#f3c144 33%,
-		#f3bc44 48%,
-		#f4b643 58%,
-		#f4b043 67%,
-		#f3aa44 76%,
-		#f3a444 84%,
-		#f29e45 100%) !important;
+			#f2c745 0%,
+			#f3c144 33%,
+			#f3bc44 48%,
+			#f4b643 58%,
+			#f4b043 67%,
+			#f3aa44 76%,
+			#f3a444 84%,
+			#f29e45 100%) !important;
 }
 
 .back-button {
@@ -351,14 +351,14 @@ html {
 	display: none;
 	background-color: #f2c744;
 	background-image: linear-gradient(310deg,
-		#f2c745 0%,
-		#f3c144 33%,
-		#f3bc44 48%,
-		#f4b643 58%,
-		#f4b043 67%,
-		#f3aa44 76%,
-		#f3a444 84%,
-		#f29e45 100%);
+			#f2c745 0%,
+			#f3c144 33%,
+			#f3bc44 48%,
+			#f4b643 58%,
+			#f4b043 67%,
+			#f3aa44 76%,
+			#f3a444 84%,
+			#f29e45 100%);
 	/* box-shadow: inset 10px 10px 18px #bf9d36, inset -10px -10px 18px #fff152; */
 	color: #344754 !important;
 }
@@ -384,6 +384,8 @@ html {
 	/* justify-content: space-between; */
 }
 
+
+
 .press-enter {
 	font-weight: 500;
 }
@@ -395,8 +397,14 @@ html {
 .error-message,
 .text-label,
 .text-field,
-.icon-text-ans,
-.show, .remove, .bare-ans, .tools-ans-checker, .ans-box,.two-ans, .two-ans-logo-disp, .textt{
+.show,
+.remove,
+.bare-ans,
+.tools-ans-checker,
+.ans-box,
+.two-ans,
+.two-ans-logo-disp,
+.textt {
 	transition: all .3s ease-in-out !important;
 	-webkit-transition: all .3s ease-in-out !important;
 	-moz-transition: all .3s ease-in-out !important;
@@ -422,6 +430,8 @@ html {
 	padding: 1rem;
 
 }
+
+
 
 .remove-error-message {
 	top: 1rem;
@@ -588,6 +598,7 @@ footer {}
 	width: 80px;
 	height: 80px;
 }
+
 
 .bare-ans {
 	width: 100%;
@@ -1158,7 +1169,7 @@ footer {
 	min-width: 100% !important;
 }
 
-.saveemail{
+.saveemail {
 	font-weight: 400 !important;
 }
 
@@ -1537,7 +1548,8 @@ footer {
 		background-color: transparent;
 	}
 
-	.change-email{
+	.change-email,
+	.resubmitmodal {
 		width: 90% !important;
 	}
 
@@ -1602,13 +1614,13 @@ footer {
 }
 
 @media screen and (min-width: 521px) and (max-width: 767px) {
-	.question{
+	.question {
 		width: 100%;
 		justify-content: flex-start !important;
 		align-items: flex-start !important;
 	}
 
-	.big-thankyou{
+	.big-thankyou {
 		position: fixed !important;
 		bottom: 25rem !important;
 		left: 50%;
@@ -1617,7 +1629,7 @@ footer {
 		-moz-transform: translateX(-50%);
 		-ms-transform: translateX(-50%);
 		-o-transform: translateX(-50%);
-}
+	}
 
 }
 
@@ -1836,7 +1848,7 @@ footer {
 		/* width: auto !important; */
 	}
 
-	.field-container{
+	.field-container {
 		width: 500px !important;
 	}
 
@@ -2074,7 +2086,7 @@ footer {
 	}
 
 	.progress {
-		stroke-width: 20px;
+		stroke-width: 12px;
 	}
 
 	.percentage {
@@ -2094,7 +2106,7 @@ footer {
 		/* background-color: #34475480; */
 	}
 
-	.control-buttons{
+	.control-buttons {
 		height: 100px !important;
 	}
 
@@ -2205,7 +2217,7 @@ footer {
 		-moz-transform: translateX(-50%);
 		-ms-transform: translateX(-50%);
 		-o-transform: translateX(-50%);
-}
+	}
 
 	.big-thankyou img {
 		width: 6rem;
@@ -2314,7 +2326,7 @@ footer {
 	}
 
 	.progress {
-		stroke-width: 20px;
+		stroke-width: 15px;
 	}
 
 	.percentage {
@@ -2332,6 +2344,12 @@ footer {
 		box-shadow: 0px 0px 5px -1px #344754;
 		/* background-color: rgba(255, 255, 255, 0.688); */
 		/* background-color: #34475480; */
+	}
+
+	.q-container {
+		position: fixed;
+		margin-top: 0;
+		left: 0;
 	}
 
 	.show-error-message,
@@ -2501,19 +2519,41 @@ footer {
 		margin-top: 5px;
 	}
 
-	.soft{
+	.soft {
 		background-color: #ffffff00;
 		background: linear-gradient(66deg,
-			rgba(242, 199, 69, 0.615) 0%,
-			rgba(246, 206, 96, 0.547) -1%,
-			rgba(249, 212, 118, 0.551) -1%,
-			rgba(253, 219, 140, 0.727) -1%,
-			rgba(255, 226, 164, 0.603) 0%,
-			rgba(255, 234, 189, 0.552) 2%,
-			rgba(255, 240, 209, 0.649) 7%,
-			rgba(255, 249, 235, 0) 20%,
-			rgba(255, 255, 255, 0) 100%);
-			background-attachment: fixed;
+				rgba(242, 199, 69, 0.615) 0%,
+				rgba(246, 206, 96, 0.547) -1%,
+				rgba(249, 212, 118, 0.551) -1%,
+				rgba(253, 219, 140, 0.727) -1%,
+				rgba(255, 226, 164, 0.603) 0%,
+				rgba(255, 234, 189, 0.552) 2%,
+				rgba(255, 240, 209, 0.649) 7%,
+				rgba(255, 249, 235, 0) 20%,
+				rgba(255, 255, 255, 0) 100%);
+		background-attachment: fixed;
+	}
+}
+
+@media screen and (min-width:3000px) {
+	body {
+		height: auto;
+		/* position: relative !important;	 */
+		min-height: 100vh !important;
+		max-width: 3000px;
+		margin: auto;
+		position: unset;
+	}
+
+	html {
+		overflow: scroll !important;
+		position: relative !important;
+	}
+
+	.logo {
+		position: fixed !important;
+		left: 100px !important;
+		top: 100px !important;
 	}
 }
 
@@ -2522,7 +2562,8 @@ footer {
 	color: white;
 }
 
-.change-email {
+.change-email,
+.resubmitmodal {
 	position: fixed;
 	z-index: 34567890987654343546789099786543234354676879809987654343567898898778;
 	top: 50%;
@@ -2546,6 +2587,31 @@ footer {
 	width: 95%;
 	max-width: 500px;
 	opacity: 0;
+}
+
+.resubmit {
+	display: flex;
+	column-gap: 15px;
+	width: 100%;
+}
+
+.no {
+	background-color: #344754 !important;
+	color: white !important;
+}
+
+.no,
+.resubmit .saveemail {
+	width: 50%;
+	cursor: pointer;
+	height: 50px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+	border: none;
+	font-size: 1.05rem;
 }
 
 .changetext {
@@ -2592,18 +2658,6 @@ footer {
 	color: white;
 }
 
-.show-change-email-modal {
-	display: flex !important;
-	animation: fadeinmodal 0.3s ease-in-out forwards;
-	animation-delay: 0.3s;
-	-webkit-animation: fadeinmodal 0.3s ease-in-out forwards;
-}
-
-.remove-change-email-modal {
-	display: none !important;
-	animation: fadeoutmodal 0.2s ease-in forwards;
-	-webkit-animation: fadeoutmodal 0.2s ease-in forwards;
-}
 
 .change-top {
 	display: flex;

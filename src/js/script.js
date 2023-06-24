@@ -3,6 +3,13 @@
 import Questions, {
 	feedBacks
 } from "./questions.js";
+import {
+	showThankYouPage,
+	backToForm,
+	continueDuringSurvey,
+	backToWelcome,
+	goingOutOfWelcome
+} from "./animations.js"
 
 const body = document.querySelector("#body");
 const logo = document.querySelector("#logo");
@@ -29,10 +36,11 @@ const currentStage = document.querySelector(".current-stage");
 const errorMessage = document.querySelector(".error-message");
 const loaderDOM = document.querySelector(".loader");
 const changeEmailContainer = document.querySelector(".change-email");
+const resubmitEmailContainer = document.querySelector(".resubmitmodal");
 const emailBox = document.getElementById("emailchange");
 const editfield = document.getElementById("edit");
-const cancel = document.querySelector(".cancel");
-const changeEmail = document.querySelector(".saveemail");
+const cancel = document.querySelectorAll(".cancel");
+const changeEmail = document.querySelectorAll(".saveemail");
 const inner = document.querySelector(".inner");
 const successText = document.querySelector(".sent-message");
 const errorText = document.querySelector(".error-text");
@@ -42,9 +50,11 @@ const thankYou = document.querySelector(".thank-you");
 const emojis = document.querySelector(".emojis");
 const userEmail = document.getElementById("email");
 const changeEmailBox = document.querySelector(".email");
+const dontResubmitButton = document.querySelector(".no")
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 let usersEmailAddress = false;
 let stepCounter = 0;
+let submittedForm = false
 
 const animate = gsap.timeline({
 	defaults: {
@@ -52,8 +62,8 @@ const animate = gsap.timeline({
 	}
 })
 
-// body.classList.add("soft");
-
+body.classList.add("soft");
+console.log(window.screen)
 let anim;
 
 function animDebounce(func, time) {
@@ -230,22 +240,22 @@ let REVIEW = new Object({
 	2: {},
 	3: {},
 	4: {},
-	// 5: {},
-	// 6: {},
-	// 7: {},
-	// 8: {},
-	// 9: {},
-	// 10: {},
-	// 11: {},
-	// 12: {},
-	// 13: {},
-	// 14: {},
-	// 15: {},
-	// 16: {},
-	// 17: {},
-	// 18: {},
-	// 19: {},
-	// 20: {},
+	5: {},
+	6: {},
+	7: {},
+	8: {},
+	9: {},
+	10: {},
+	11: {},
+	12: {},
+	13: {},
+	14: {},
+	15: {},
+	16: {},
+	17: {},
+	18: {},
+	19: {},
+	20: {},
 });
 
 function reset() {
@@ -268,22 +278,22 @@ function reset() {
 			2: {},
 			3: {},
 			4: {},
-			// 5: {},
-			// 6: {},
-			// 7: {},
-			// 8: {},
-			// 9: {},
-			// 10: {},
-			// 11: {},
-			// 12: {},
-			// 13: {},
-			// 14: {},
-			// 15: {},
-			// 16: {},
-			// 17: {},
-			// 18: {},
-			// 19: {},
-			// 20: {},
+			5: {},
+			6: {},
+			7: {},
+			8: {},
+			9: {},
+			10: {},
+			11: {},
+			12: {},
+			13: {},
+			14: {},
+			15: {},
+			16: {},
+			17: {},
+			18: {},
+			19: {},
+			20: {},
 		};
 	}
 }
@@ -344,7 +354,7 @@ function reset() {
 
 if (textInputFields[0].value.length > 0) {
 	textInputFields[0].offsetParent.firstElementChild.classList += " move-up";
-	e.target.offsetParent.children[1].style.borderBottom = "1px solid #2260ff";
+	textInputFields[0].offsetParent.children[1].style.borderBottom = "1px solid #2260ff";
 }
 
 
@@ -358,107 +368,98 @@ function animateErrorMessage(
 	SHOW_ERROR_CLASS,
 	REMOVE_ERROR_CLASS
 ) {
-	buttonDebounce(() => {
-		// Turns the email field bg color to red
-		userEmail.classList.add("empty-email-field");
-		errorText.innerText = "";
+	// Turns the email field bg color to red
+	userEmail.classList.add("empty-email-field");
+	errorText.innerText = ERROR_MESSAGE;
+	const errorMessageNodeWidth = errorText.scrollWidth + 30;
 
-		if (errorText.innerText.length === 0) {
-			errorText.innerText = ERROR_MESSAGE;
-			const errorMessageNodeWidth = errorMessage.offsetWidth;
+	// Remove the reove-error-message and add show-error-message class to show the error message
+	let showErrorName = ["remove-error-message", "remove-reset-message"];
+	for (let className of showErrorName) {
+		errorMessage.classList.remove(className);
+	}
+	errorMessage.classList.add(SHOW_ERROR_CLASS);
 
-			// Remove the reove-error-message and add show-error-message class to show the error message
-			let showErrorName = ["remove-error-message", "remove-reset-message"];
-			for (let className of showErrorName) {
+	// Set the Error Message Container width to 20px
+	if (window.screen.availWidth >= 1024) {
+		errorMessage.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
+	}
+
+	if (window.screen.availWidth < 1024) {
+		errorMessage.style.width = "100%";
+	}
+
+	// After 300 millisecs set the Error Message container width to its full width
+	debounce1(() => {
+		if (window.screen.availWidth >= 1024) {
+			errorMessage.style.width = errorMessageNodeWidth + "px";
+			return;
+		}
+
+		errorMessage.style.width = "100%";
+	}, ERROR_MESSAGE_ANIMATION_DURATION / 2);
+
+	// After 600 millisecs make the error message text obvious
+	debounce2(() => {
+		errorText.style.opacity = "1";
+	}, ERROR_MESSAGE_ANIMATION_DURATION);
+
+	// After 3secs Remove the Error Message
+	debounce3(() => {
+		let errorMessageClassLists = [
+			"show-error-message",
+			"show-reset-message",
+		];
+
+		if (window.screen.availWidth >= 1024) {
+			errorMessage.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
+		}
+
+		errorText.style.opacity = "0";
+
+		debounce4(() => {
+			for (let className of errorMessageClassLists) {
 				errorMessage.classList.remove(className);
 			}
-			errorMessage.classList.add(SHOW_ERROR_CLASS);
+			errorMessage.classList.add(REMOVE_ERROR_CLASS);
+		}, ERROR_MESSAGE_ANIMATION_DURATION / 2);
+	}, ERROR_MESSAGE_DURATION);
 
-			// Set the Error Message Container width to 20px
-			if (window.screen.availWidth >= 1024) {
-				errorMessage.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
-			}
-
-			if (window.screen.availWidth < 1024) {
-				errorMessage.style.width = "100%";
-			}
-
-			// After 300 millisecs set the Error Message container width to its full width
-			setTimeout(() => {
-				if (window.screen.availWidth >= 1024) {
-					errorMessage.style.width = errorMessageNodeWidth + "px";
-					return;
-				}
-
-				errorMessage.style.width = "100%";
-			}, ERROR_MESSAGE_ANIMATION_DURATION / 2);
-
-			// After 600 millisecs make the error message text obvious
-			setTimeout(() => {
-				errorText.style.opacity = "1";
-			}, ERROR_MESSAGE_ANIMATION_DURATION);
-
-			// After 3secs Remove the Error Message
-			setTimeout(() => {
-				let errorMessageClassLists = [
-					"show-error-message",
-					"show-reset-message",
-				];
-
-				if (window.screen.availWidth >= 1024) {
-					errorMessage.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
-				}
-
-				errorText.style.opacity = "0";
-
-				setTimeout(() => {
-					for (let className of errorMessageClassLists) {
-						errorMessage.classList.remove(className);
-					}
-					errorMessage.classList.add(REMOVE_ERROR_CLASS);
-				}, ERROR_MESSAGE_ANIMATION_DURATION / 2);
-			}, ERROR_MESSAGE_DURATION);
-
-			// After 3+ millsecs reset the Error Message container and text container
-			setTimeout(() => {
-				if (window.screen.availWidth >= 1024) {
-					errorMessage.style.width = "auto";
-				}
-
-				if (window.screen.availWidth < 1024) {
-					errorMessage.style.width = "100%";
-				}
-
-				// errorText.innerText = "";
-				userEmail.classList.remove("empty-email-field");
-			}, ERROR_MESSAGE_DURATION + ERROR_MESSAGE_ANIMATION_DURATION);
+	// After 3+ millsecs reset the Error Message container and text container
+	debounce5(() => {
+		if (window.screen.availWidth >= 1024) {
+			errorMessage.style.width = "auto";
 		}
-	});
+
+		if (window.screen.availWidth < 1024) {
+			errorMessage.style.width = "100%";
+		}
+
+		// errorText.innerText = "";
+		userEmail.classList.remove("empty-email-field");
+	}, ERROR_MESSAGE_DURATION + ERROR_MESSAGE_ANIMATION_DURATION);
 }
 
 function showSending(MESSAGE, INITIAL_ERROR_MESSAGE_WIDTH, STAY_TIME) {
-	clearTimeout(id7);
+	successText.innerText = MESSAGE;
+	const errorMessageNodeWidth = successText.scrollWidth + 30;
+
+	// Remove the reove-error-message and add show-error-message class to show the error message
+	loaderDOM.classList.remove("remove");
+	loaderDOM.classList.add("show");
+	loaderDOM.style.backgroundColor = "orange";
+
+	// Set the Error Message Container width to 20px
+	loaderDOM.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
+
+	// After 300 millisecs set the Error Message container width to its full width
 	debounce6(() => {
-		successText.innerText = MESSAGE;
-		const errorMessageNodeWidth = loaderDOM.offsetWidth;
+		loaderDOM.style.width = errorMessageNodeWidth + "px";
+	}, 300);
 
-		// Remove the reove-error-message and add show-error-message class to show the error message
-		loaderDOM.classList.remove("remove");
-		loaderDOM.classList.add("show");
-		loaderDOM.style.backgroundColor = "orange";
-
-		// Set the Error Message Container width to 20px
-		loaderDOM.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
-
-		// After 300 millisecs set the Error Message container width to its full width
-		setTimeout(() => {
-			loaderDOM.style.width = errorMessageNodeWidth + "px";
-		}, 300);
-
-		// After 600 millisecs make the error message text obvious
-		setTimeout(() => {
-			successText.style.opacity = "1";
-		}, STAY_TIME);
+	// After 600 millisecs make the error message text obvious
+	debounce7(() => {
+		successText.style.opacity = "1";
 	}, STAY_TIME);
 }
 
@@ -645,11 +646,8 @@ function sendEmail(email) {
 						</body>
 						</html>`;
 
-		// result.innerHTML = html;
 
-		debounce8(() => {
-			showSending("Submitting Form...", 20, 600);
-		}, 500);
+		showSending("Submitting Form...", 20, 600);
 
 		let htmlTemplate = {
 			my_html: html,
@@ -659,20 +657,22 @@ function sendEmail(email) {
 		debounce9(() => {
 			showSent("Form Submitted Successfully", 20, 2000);
 
-			submitingForm(startQuestion)
+			showThankYouPage(startQuestion)
 
-			setTimeout(() => {
+			debounce8(() => {
 				ContinueButton.style.display = "none";
 				BackButton.classList.add("widen")
 				showCircleSVG(false);
 			}, 400)
 
-			setTimeout(() => {
+			debounce9(() => {
 				thankYou.style.display = "flex";
 				starterPage.style.display = "none";
 				startQuestion.style.display = "none";
 				body.classList.add("blurbody")
 			}, 600)
+
+			submittedForm = true;
 			// emailjs
 			// 	.send(
 			// 		"service_7e6832l",
@@ -684,7 +684,7 @@ function sendEmail(email) {
 			// 		function (response) {
 			// 			showSent("Form Submitted Successfully", 20, 5000);
 			// 			showCircleSVG(false);
-			// 			submitingForm(starterPage, startQuestion)
+			// 			showThankYouPage(starterPage, startQuestion)
 
 			// 			setTimeout(() => {
 			// 				ContinueButton.style.display = "none";
@@ -720,8 +720,10 @@ function sendEmail(email) {
 }
 
 function gotoNextStep(step, question) {
+	console.log(step, stepCounter, question.length)
 	const answersField = document.querySelector(".answer-field");
 	const questionElement = document.querySelector(".Question");
+	let noq = question.length
 
 	// Proceed to QA if email address field is filled
 	if (step === 0) {
@@ -753,7 +755,7 @@ function gotoNextStep(step, question) {
 		}
 	}
 
-	// Control the form steps
+	// // Control the form steps
 	step++;
 	if (step >= question.length) {
 		// emojis.innerHTML = "";
@@ -762,15 +764,42 @@ function gotoNextStep(step, question) {
 		// });
 
 		inner.innerText = usersEmailAddress;
-		sendEmail(usersEmailAddress);
+		if (submittedForm === true) {
+			console.log("Entered Here still nothing")
+			resubmitEmailContainer.style.display = "flex"
+			gsap.fromTo(resubmitEmailContainer, {
+				opacity: 0
+			}, {
+				opacity: 1,
+				duration: 0.3
+			})
 
-		stepCounter = step;
+			dontResubmitButton.onclick = () => {
+				gsap.fromTo(resubmitEmailContainer, {
+					opacity: 1
+				}, {
+					opacity: 0,
+					duration: 0.3
+				})
+				debounce1(() => {
+					resubmitEmailContainer.style.display = "none"
+				}, 400)
+				step = step - 1
+				stepCounter = step
+			}
+		}
+
+		if (submittedForm === false) {
+			sendEmail(usersEmailAddress)
+		}
+
 		animateProgress(20);
+
 	}
 
 	// Start QA on the Condition
 
-	if (step <= question.length && step > 0) {
+	if (step <= question.length - 1 && step > 0) {
 		// Put off the welcome page and put on the QA page
 		// body.style.backgroundColor = "#ffffffdd";
 		// body.classList.add("soft");
@@ -818,13 +847,15 @@ function gotoNextStep(step, question) {
 		}
 
 		debounce13(() => {
-			// Display Question
-			questionElement.innerHTML =
-				`<h1 class="qnumbering">${step}</h1>` +
-				askQuestionsInteractively(step, question);
+			if (question[step]) {
+				// Display Question
+				questionElement.innerHTML =
+					`<h1 class="qnumbering">${step}</h1>` +
+					askQuestionsInteractively(step, question);
 
-			// Display Answers
-			displayAnswersInteractively(answersField, step, question);
+				// Display Answers
+				displayAnswersInteractively(answersField, step, question);
+			}
 		}, 500);
 	}
 
@@ -839,11 +870,14 @@ function gotoNextStep(step, question) {
 function gotoPreviousStep(step, question) {
 	const answersField = document.querySelector(".answer-field");
 	const questionElement = document.querySelector(".Question");
+	console.log(step, stepCounter)
 
 	step--;
 	if (step <= 0) {
 		step = 0;
 	}
+
+	console.log(step, stepCounter)
 
 	stepCounter = step;
 	// Animate progress backwards
@@ -1423,6 +1457,12 @@ function addAnswerToPersonObject(
 }
 
 changeEmailContainer.style.display = "none";
+resubmitEmailContainer.style.display = "none";
+
+
+dontResubmitButton.onclick = () => {
+	debounce12(() => gotoNextStep(stepCounter, Questions), 100)
+}
 
 inner.onfocus = () => {
 	const inemail = document.querySelector(".email");
@@ -1436,24 +1476,54 @@ inner.onblur = () => {
 	inemail.style.overflow = "hidden";
 	if (editfield.innerText !== usersEmailAddress) {
 		if (validateEmail(editfield)) {
-			changeEmailContainer.classList.remove("remove-change-email-modal");
-			changeEmailContainer.classList.add("show-change-email-modal");
+			changeEmailContainer.style.display = "flex"
+			gsap.fromTo(changeEmailContainer, {
+				opacity: 0
+			}, {
+				opacity: 1,
+				duration: 0.3
+			})
 		}
 	}
 };
 
-changeEmail.onclick = () => {
+changeEmail.forEach(x => {
+	x.onclick = () => {
 	usersEmailAddress = editfield.innerText;
 	sendEmail(usersEmailAddress);
-	changeEmailContainer.classList.add("remove-change-email-modal");
-};
+	gsap.to(changeEmailContainer, {
+		opacity: 0,
+		duration: 0.3
+	})
 
-cancel.onclick = () => {
-	changeEmailContainer.classList.add("remove-change-email-modal");
+	gsap.to(resubmitEmailContainer, {
+		opacity: 0,
+		duration: 0.3
+	})
+
+	debounce2(() => {
+		changeEmailContainer.style.display = "none"
+	}, 300)
 };
+})
+
+cancel.forEach((c) => {
+	c.onclick = () => {
+		gsap.to(changeEmailContainer, {
+			opacity: 0,
+			duration: 0.3
+		})
+
+		gsap.to(resubmitEmailContainer, {
+			opacity: 0,
+			duration: 0.3
+		})
+	}
+})
 
 // Continue button
 ContinueButton.addEventListener("click", (e) => {
+
 	debounce12(() => gotoNextStep(stepCounter, Questions), 100)
 });
 
@@ -1464,8 +1534,17 @@ BackButton.addEventListener("click", (e) => {
 
 
 // Continue to Next Step On Press Enter
-window.addEventListener("keydown", keydownHandler);
-window.addEventListener("keydown", enterKeyPressHandler)
+window.addEventListener("keydown", (e) => {
+	debounce12(() => {
+		keydownHandler(e)
+	}, 200)
+});
+
+window.addEventListener("keydown", (e) => {
+	debounce13(() => {
+		enterKeyPressHandler(e)
+	}, 200)
+})
 
 animateProgress(0);
 export default REVIEW;

@@ -1,4 +1,5 @@
 "use strict"
+import Questions from "./questions.js";
 
 // function welcomeAnimation() {
 
@@ -8,7 +9,8 @@
 
 const animate = gsap.timeline({
     defaults: {
-        duration: 0.5
+        duration: 0.5,
+        ease: "power2.out"
     }
 })
 
@@ -20,13 +22,15 @@ const debounceDemMotherfuckers = (func, time) => {
     a = setTimeout(func, time)
 }
 
+let deviceScreenWidth = screen.width
+
 window.onload = () => {
     animate.fromTo(".q-heading", {
         y: 200,
     }, {
         opacity: 1,
         y: 0,
-        duration: 0.5
+        duration: 1.2
     });
 
     animate.fromTo(".q-subtext", {
@@ -51,7 +55,7 @@ window.onload = () => {
     }, "<");
 }
 
-function goingOutOfWelcome() {
+export function goingOutOfWelcome() {
     animate.to(".control-buttons", {
         opacity: 0,
         y: 100,
@@ -76,7 +80,7 @@ function goingOutOfWelcome() {
 
     /** Sliding In the Question at the start */
     animate.fromTo(".main-Q-container", {
-        x: 1000,
+        x: deviceScreenWidth,
     }, {
         x: 0,
         opacity: 1,
@@ -95,12 +99,13 @@ function goingOutOfWelcome() {
 
 }
 
-function backToWelcome() {
+export function backToWelcome() {
     /** Sliding out the Question at the start */
     animate.to(".main-Q-container", {
-        x: 1000,
+        x: deviceScreenWidth,
         opacity: 0,
-        duration: 0.5
+        duration: 0.45,
+        ease: "power1.in"
     })
 
     animate.fromTo(".control-buttons", {
@@ -114,7 +119,7 @@ function backToWelcome() {
     animate.to(".circle-progress", {
         opacity: 0,
         duration: 0.25
-    }, "<75%");
+    }, "<25%");
 
 
     /** Sliding in the homepage */
@@ -125,7 +130,8 @@ function backToWelcome() {
     }, {
         opacity: 1,
         y: 0,
-    }, "<50%");
+        duration: 1
+    }, ">");
 
     animate.fromTo(".q-subtext", {
         opacity: 0,
@@ -152,7 +158,7 @@ function backToWelcome() {
     }, "<75%");
 }
 
-function continueDuringSurvey() {
+export function continueDuringSurvey() {
     // Slideout
     animate.fromTo(".Question", {
         y: 0,
@@ -196,7 +202,7 @@ function continueDuringSurvey() {
     }, "<")
 }
 
-function submitingForm() {
+export function showThankYouPage() {
     // Fadeout
     animate.fromTo(".main-Q-container", {
         opacity: 1,
@@ -208,6 +214,10 @@ function submitingForm() {
         opacity: 0,
         y: 100,
     }, "<20%");
+
+    animate.to(".circle-progress", {
+        opacity: 0,
+    }, "<");
 
 
     // Fadein
@@ -228,10 +238,12 @@ function submitingForm() {
     }, {
         opacity: 1,
         y: 0,
+        ease: "back.out(1.4)",
+        duration: 1
     }, "<50%");
 }
 
-function backToForm() {
+export function backToForm() {
     // Fadeout
     animate.fromTo(".thank-you", {
         opacity: 1,
@@ -253,4 +265,8 @@ function backToForm() {
         opacity: 1,
         y: 0,
     }, "<20%");
+
+    animate.to(".circle-progress", {
+        opacity: 1,
+    }, "<");
 }
