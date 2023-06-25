@@ -724,6 +724,12 @@ footer {}
 	background-position: center;
 	background-size: contain;
 	background-repeat: no-repeat;
+	overflow: hidden;
+	border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-ms-border-radius: 15px;
+	-o-border-radius: 15px;
 }
 
 #edit,
@@ -1681,11 +1687,15 @@ footer {
 		width: 90% !important;
 	}
 
-	.change-email p {
+	.change-email, .change-top p {
 		font-family: "PT Sans", sans-serif !important;
 		font-weight: 800;
 		width: 90% !important;
 		color: #344754;
+	}
+
+	.no, .saveemail{
+		font-size: 0.95rem !important;
 	}
 
 	.saveemail {
@@ -2808,6 +2818,10 @@ footer {
 	width: 40px;
 	height: 40px;
 	background-color: whitesmoke;
+	background-image: url(/jquest/src/imgs/close.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 50%;
 	border-radius: 100%;
 	-webkit-border-radius: 100%;
 	-moz-border-radius: 100%;
