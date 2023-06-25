@@ -8,6 +8,7 @@ import {
 	backToWelcome,
 	goingOutOfWelcome,
 } from "./animations.js";
+import accountRotator from "./accountrotator.js";
 
 const body = document.querySelector("#body");
 const logo = document.querySelector("#logo");
@@ -314,7 +315,7 @@ function buttonDebounce(func) {
 	}
 	bd = setTimeout(func, 500);
 }
-
+// accountRotator();
 /**
  * Disable Left/Right Arrow buttons when the change email container is focused on
  */
@@ -346,25 +347,25 @@ if (window.screen.availWidth <= 480) {
 
 let REVIEW = new Object({
 	1: {},
-	2: {},
-	3: {},
-	4: {},
-	5: {},
-	6: {},
-	7: {},
-	8: {},
-	9: {},
-	10: {},
-	11: {},
-	12: {},
-	13: {},
-	14: {},
-	15: {},
-	16: {},
-	17: {},
-	18: {},
-	19: {},
-	20: {},
+	// 2: {},
+	// 3: {},
+	// 4: {},
+	// 5: {},
+	// 6: {},
+	// 7: {},
+	// 8: {},
+	// 9: {},
+	// 10: {},
+	// 11: {},
+	// 12: {},
+	// 13: {},
+	// 14: {},
+	// 15: {},
+	// 16: {},
+	// 17: {},
+	// 18: {},
+	// 19: {},
+	// 20: {},
 });
 
 function reset() {
@@ -384,25 +385,25 @@ function reset() {
 
 		REVIEW = {
 			1: {},
-			2: {},
-			3: {},
-			4: {},
-			5: {},
-			6: {},
-			7: {},
-			8: {},
-			9: {},
-			10: {},
-			11: {},
-			12: {},
-			13: {},
-			14: {},
-			15: {},
-			16: {},
-			17: {},
-			18: {},
-			19: {},
-			20: {},
+			// 2: {},
+			// 3: {},
+			// 4: {},
+			// 5: {},
+			// 6: {},
+			// 7: {},
+			// 8: {},
+			// 9: {},
+			// 10: {},
+			// 11: {},
+			// 12: {},
+			// 13: {},
+			// 14: {},
+			// 15: {},
+			// 16: {},
+			// 17: {},
+			// 18: {},
+			// 19: {},
+			// 20: {},
 		};
 	}
 }
@@ -557,43 +558,6 @@ function showSending(MESSAGE) {
 	}
 }
 
-function showSent(MESSAGE, STAY_TIME) {
-	clearTimeout(id6);
-	successText.style.opacity = "0";
-
-	setTimeout(() => {
-		successText.innerText = MESSAGE;
-		successText.style.display = "none";
-		loaderDOM.style.justifyContent = "center";
-		// loaderDOM.style.backgroundColor = "#11bd05";
-		// loaderDOM.style.width = `${successText.scrollWidth + 50}px`;
-
-		submitLoader.classList.add("load-complete");
-		loaderDOM.style.backgroundColor = "#11bd05";
-		loaderDOM.style.width = `${submitLoader.scrollWidth + 50}px`;
-	}, 200);
-
-	debounce8(() => {
-		successMark.style.display = "flex";
-		successText.style.display = "none";
-	}, 300);
-
-	debounce9(() => {
-		successText.style.opacity = "0";
-
-		debounce10(() => {
-			loaderDOM.style.width = `${submitLoader.scrollWidth + 50}px`;
-		}, 300);
-
-		debounce11(() => {
-			loaderDOM.classList.remove("show");
-			loaderDOM.classList.add("remove");
-			submitLoader.classList.remove("load-complete");
-			successMark.style.display = "none";
-		}, 600);
-	}, 1000);
-}
-
 function removeMessage() {
 	successText.style.opacity = "0";
 
@@ -742,76 +706,17 @@ function sendEmail(email) {
 						</body>
 						</html>`;
 
+		gsap.to(".circle-progress", { opacity: 0, duration: 0.25 });
 		showSending("Submitting Form...");
 
 		let htmlTemplate = {
 			my_html: html,
 			user: email,
+			reply_to: "gbadebojubril@gmail.com",
 		};
 
 		debounce12(() => {
-			showSent("Form Submitted Successfully");
-
-			showThankYouPage(startQuestion);
-
-			debounce13(() => {
-				ContinueButton.style.display = "none";
-				BackButton.classList.add("widen");
-				showCircleSVG(false);
-			}, 400);
-
-			debounce14(() => {
-				thankYou.style.display = "flex";
-				starterPage.style.display = "none";
-				startQuestion.style.display = "none";
-				body.classList.add("blurbody");
-			}, 600);
-
-			userEmail.value = usersEmailAddress;
-			submittedForm = true;
-			console.log(REVIEW);
-			// emailjs
-			// 	.send(
-			// 		"service_7e6832l",
-			// 		"template_72qo6da",
-			// 		htmlTemplate,
-			// 		"nBCyRCnTpya5flZa7"
-			// 	)
-			// 	.then(
-			// 		function (response) {
-			// 			showSent("Form Submitted Successfully", 20, 5000);
-			// 			showCircleSVG(false);
-			// 			showThankYouPage(starterPage, startQuestion)
-
-			// 			setTimeout(() => {
-			// 				ContinueButton.style.display = "none";
-			// 				BackButton.classList.add("widen")
-			// 			}, 400)
-
-			// 			setTimeout(() => {
-			// 				thankYou.style.display = "flex";
-			// 				starterPage.style.display = "none";
-			// 				startQuestion.style.display = "none";
-			// 			}, 600)
-			// 		},
-			// 		function (error) {
-			// 			let message =
-			// 				error.status === 412 ?
-			// 				"please try again later. Thank you." :
-			// 				error.status === 429 ?
-			// 				alert("Quota") :
-			// 				error.text;
-			// 			removeMessage();
-			// 			animateErrorMessage(
-			// 				10000,
-			// 				600,
-			// 				20,
-			// 				`Error occurred, ${message || "no internet connection"}`,
-			// 				"show-error-message",
-			// 				"remove-error-message"
-			// 			);
-			// 		}
-			// 	);
+			accountRotator(htmlTemplate);
 		}, 2000);
 	}
 }
