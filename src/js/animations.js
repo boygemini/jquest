@@ -6,7 +6,7 @@ import Questions from "./questions.js";
 // }
 
 
-
+let deviceScreenWidth = screen.width
 const animate = gsap.timeline({
     defaults: {
         duration: 0.5,
@@ -14,15 +14,6 @@ const animate = gsap.timeline({
     }
 })
 
-let a
-const debounceDemMotherfuckers = (func, time) => {
-    if (a) {
-        clearTimeout(a)
-    }
-    a = setTimeout(func, time)
-}
-
-let deviceScreenWidth = screen.width
 
 window.onload = () => {
     animate.fromTo(".q-heading", {

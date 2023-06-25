@@ -1,15 +1,13 @@
 "use strict";
 
-import Questions, {
-	feedBacks
-} from "./questions.js";
+import Questions, { feedBacks } from "./questions.js";
 import {
 	showThankYouPage,
 	backToForm,
 	continueDuringSurvey,
 	backToWelcome,
-	goingOutOfWelcome
-} from "./animations.js"
+	goingOutOfWelcome,
+} from "./animations.js";
 
 const body = document.querySelector("#body");
 const logo = document.querySelector("#logo");
@@ -18,10 +16,10 @@ const controlButtons = document.querySelector(".control-buttons");
 const pTicle = document.querySelector(".particles-js-canvas-el");
 const backCircle = document.querySelector(".backcircle");
 const emailTextField = document.querySelector(".field-container");
-const introText = document.querySelector(".introtext")
-const rule = document.querySelector(".selection-rule")
-const emailSent = document.querySelector(".email-sent")
-const starBoy = document.querySelector(".big-thankyou")
+const introText = document.querySelector(".introtext");
+const rule = document.querySelector(".selection-rule");
+const emailSent = document.querySelector(".email-sent");
+const starBoy = document.querySelector(".big-thankyou");
 
 const textInputFields = document.querySelectorAll(".ads");
 const textFieldLabels = document.querySelectorAll("label");
@@ -50,31 +48,42 @@ const thankYou = document.querySelector(".thank-you");
 const emojis = document.querySelector(".emojis");
 const userEmail = document.getElementById("email");
 const changeEmailBox = document.querySelector(".email");
-const dontResubmitButton = document.querySelector(".no")
+const dontResubmitButton = document.querySelector(".no");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 let usersEmailAddress = false;
 let stepCounter = 0;
-let submittedForm = false
-const submitLoader = document.querySelector(".circle-loader")
-const successMark = document.querySelector(".checkmark")
-
-const animate = gsap.timeline({
-	defaults: {
-		duration: 0.5
-	}
-})
+let submittedForm = false;
+const submitLoader = document.querySelector(".circle-loader");
+const successMark = document.querySelector(".checkmark");
 
 body.classList.add("soft");
-let anim;
 
-function animDebounce(func, time) {
-	if (anim) {
-		clearTimeout(anim);
-	}
-	anim = setTimeout(func, time);
-}
-
-let id1, id2, id3, id4, id5, id6, id7, id8, id9, id10, id11, id12, id13, bd;
+let id1,
+	id2,
+	id3,
+	id4,
+	id5,
+	id6,
+	id7,
+	id8,
+	id9,
+	id10,
+	id11,
+	id12,
+	id13,
+	id14,
+	id15,
+	id16,
+	id17,
+	id18,
+	id19,
+	id20,
+	id21,
+	id22,
+	id23,
+	id24,
+	id25,
+	bd;
 
 function debounce1(func, time) {
 	if (id1) {
@@ -108,10 +117,6 @@ function debounce4(func, time) {
 	id4 = setTimeout(func, time);
 }
 
-
-
-
-
 function debounce5(func, time) {
 	if (id5) {
 		clearTimeout(id5);
@@ -143,9 +148,6 @@ function debounce8(func, time) {
 
 	id8 = setTimeout(func, time);
 }
-
-
-
 
 function debounce9(func, time) {
 	if (id9) {
@@ -187,6 +189,124 @@ function debounce13(func, time) {
 	id13 = setTimeout(func, time);
 }
 
+/////////
+function debounce14(func, time) {
+	if (id14) {
+		clearTimeout(id14);
+	}
+
+	id14 = setTimeout(func, time);
+}
+
+function debounce15(func, time) {
+	if (id15) {
+		clearTimeout(id15);
+	}
+
+	id15 = setTimeout(func, time);
+}
+
+function debounce16(func, time) {
+	if (id16) {
+		clearTimeout(id16);
+	}
+
+	id16 = setTimeout(func, time);
+}
+
+function debounce17(func, time) {
+	if (id17) {
+		clearTimeout(id17);
+	}
+
+	id17 = setTimeout(func, time);
+}
+
+function debounce18(func, time) {
+	if (id18) {
+		clearTimeout(id18);
+	}
+
+	id18 = setTimeout(func, time);
+}
+function debounce19(func, time) {
+	if (id19) {
+		clearTimeout(id19);
+	}
+
+	id19 = setTimeout(func, time);
+}
+
+function debounce20(func, time) {
+	if (id20) {
+		clearTimeout(id20);
+	}
+
+	id20 = setTimeout(func, time);
+}
+
+function debounce21(func, time) {
+	if (id21) {
+		clearTimeout(id21);
+	}
+
+	id21 = setTimeout(func, time);
+}
+
+function debounce22(func, time) {
+	if (id22) {
+		clearTimeout(id22);
+	}
+
+	id22 = setTimeout(func, time);
+}
+
+function debounce23(func, time) {
+	if (id23) {
+		clearTimeout(id23);
+	}
+
+	id23 = setTimeout(func, time);
+}
+function debounce24(func, time) {
+	if (id24) {
+		clearTimeout(id24);
+	}
+
+	id24 = setTimeout(func, time);
+}
+
+function debounce25(func, time) {
+	if (id25) {
+		clearTimeout(id25);
+	}
+
+	id25 = setTimeout(func, time);
+}
+
+function debounce26(func, time) {
+	if (id26) {
+		clearTimeout(id26);
+	}
+
+	id26 = setTimeout(func, time);
+}
+
+function debounce27(func, time) {
+	if (id27) {
+		clearTimeout(id27);
+	}
+
+	id27 = setTimeout(func, time);
+}
+
+function debounce28(func, time) {
+	if (id28) {
+		clearTimeout(id28);
+	}
+
+	id28 = setTimeout(func, time);
+}
 
 function buttonDebounce(func) {
 	if (bd) {
@@ -195,36 +315,24 @@ function buttonDebounce(func) {
 	bd = setTimeout(func, 500);
 }
 
-function keydownHandler(e) {
-	if (stepCounter <= Object.values(REVIEW).length + 1 && stepCounter > 0) {
-		if (e.key === "ArrowRight") {
-			gotoNextStep(stepCounter, Questions);
-		}
+/**
+ * Disable Left/Right Arrow buttons when the change email container is focused on
+ */
+// inner.onfocus = () => {
+// 	window.removeEce
+// }
 
-		if (e.key === "ArrowLeft") {
-			gotoPreviousStep(stepCounter, Questions);
-		}
-	}
-}
-
-function enterKeyPressHandler(e) {
-	if (stepCounter < Object.values(REVIEW).length + 1) {
-		if (e.key === "Enter") {
-			gotoNextStep(stepCounter, Questions);
-		}
-	}
-}
-
+/**
+ * Focus the client on the email change field
+ */
 changeEmailBox.addEventListener("click", (e) => {
-	editfield.focus()
-})
-
+	editfield.focus();
+});
 
 const showCircleSVG = (bool) => {
 	bool
-		?
-		svgCircle.classList.add("showCircle") :
-		svgCircle.classList.remove("showCircle");
+		? svgCircle.classList.add("showCircle")
+		: svgCircle.classList.remove("showCircle");
 };
 
 showCircleSVG(false);
@@ -238,25 +346,25 @@ if (window.screen.availWidth <= 480) {
 
 let REVIEW = new Object({
 	1: {},
-	// 2: {},
-	// 3: {},
-	// 4: {},
-	// 5: {},
-	// 6: {},
-	// 7: {},
-	// 8: {},
-	// 9: {},
-	// 10: {},
-	// 11: {},
-	// 12: {},
-	// 13: {},
-	// 14: {},
-	// 15: {},
-	// 16: {},
-	// 17: {},
-	// 18: {},
-	// 19: {},
-	// 20: {},
+	2: {},
+	3: {},
+	4: {},
+	5: {},
+	6: {},
+	7: {},
+	8: {},
+	9: {},
+	10: {},
+	11: {},
+	12: {},
+	13: {},
+	14: {},
+	15: {},
+	16: {},
+	17: {},
+	18: {},
+	19: {},
+	20: {},
 });
 
 function reset() {
@@ -276,30 +384,28 @@ function reset() {
 
 		REVIEW = {
 			1: {},
-			// 2: {},
-			// 3: {},
-			// 4: {},
-			// 5: {},
-			// 6: {},
-			// 7: {},
-			// 8: {},
-			// 9: {},
-			// 10: {},
-			// 11: {},
-			// 12: {},
-			// 13: {},
-			// 14: {},
-			// 15: {},
-			// 16: {},
-			// 17: {},
-			// 18: {},
-			// 19: {},
-			// 20: {},
+			2: {},
+			3: {},
+			4: {},
+			5: {},
+			6: {},
+			7: {},
+			8: {},
+			9: {},
+			10: {},
+			11: {},
+			12: {},
+			13: {},
+			14: {},
+			15: {},
+			16: {},
+			17: {},
+			18: {},
+			19: {},
+			20: {},
 		};
 	}
 }
-
-
 
 // Controlling the Email Field's onfocus and onblur events
 [textFieldLabels, textInputFields].forEach((element) => {
@@ -316,19 +422,15 @@ function reset() {
 					e.target.offsetParent.children[1].style.borderBottom =
 						"1px solid #2260ff";
 					e.target.offsetParent.firstElementChild.classList += " move-up";
-
-
 				}
 
 				if (e.target.classList.value.includes("ads")) {
+					inner.contentEditable = true;
 					window.removeEventListener("keydown", keydownHandler, {
-						capture: false
-					})
+						capture: false,
+					});
 				}
 			});
-
-
-
 		});
 	});
 
@@ -340,14 +442,7 @@ function reset() {
 						e.target.offsetParent.firstElementChild.classList.remove("move-up");
 						e.target.offsetParent.children[1].style.borderBottom = "";
 					}
-				} catch (error) {
-
-				}
-
-				window.addEventListener("keydown", keydownHandler)
-				// if (e.target.classList.value.includes("inner")) {
-				// 	gotoNextStep(stepCounter, Questions);
-				// }
+				} catch (error) {}
 			}
 		});
 	});
@@ -355,10 +450,9 @@ function reset() {
 
 if (textInputFields[0].value.length > 0) {
 	textInputFields[0].offsetParent.firstElementChild.classList += " move-up";
-	textInputFields[0].offsetParent.children[1].style.borderBottom = "1px solid #2260ff";
+	textInputFields[0].offsetParent.children[1].style.borderBottom =
+		"1px solid #2260ff";
 }
-
-
 
 // Error Message Animation
 function animateErrorMessage(
@@ -407,10 +501,7 @@ function animateErrorMessage(
 
 	// After 3secs Remove the Error Message
 	debounce3(() => {
-		let errorMessageClassLists = [
-			"show-error-message",
-			"show-reset-message",
-		];
+		let errorMessageClassLists = ["show-error-message", "show-reset-message"];
 
 		if (window.screen.availWidth >= 1024) {
 			errorMessage.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
@@ -442,27 +533,28 @@ function animateErrorMessage(
 }
 
 function showSending(MESSAGE) {
-	successText.style.opacity = "0"
+	successText.style.opacity = "0";
 
-
-	successText.innerText = MESSAGE
+	successText.innerText = MESSAGE;
 	loaderDOM.style.width = submitLoader.scrollWidth + 50 + "px";
 	// Remove the reove-error-message and add show-error-message class to show the error message
 	loaderDOM.classList.remove("remove");
 	loaderDOM.classList.add("show");
 	loaderDOM.style.backgroundColor = "orange";
 
+	if (screen.width > 767) {
+		debounce6(() => {
+			successText.style.display = "flex";
+			loaderDOM.style.justifyContent = "flex-start";
+			loaderDOM.style.width =
+				submitLoader.scrollWidth + successText.scrollWidth + 50 + "px";
+		}, 700);
 
-	debounce6(() => {
-		successText.style.display = "flex"
-		loaderDOM.style.justifyContent = "flex-start"
-		loaderDOM.style.width = submitLoader.scrollWidth + successText.scrollWidth + 50 + "px";
-	}, 700);
-
-	// After 600 millisecs make the error message text obvious
-	debounce7(() => {
-		successText.style.opacity = "1";
-	}, 900);
+		// After 600 millisecs make the error message text obvious
+		debounce7(() => {
+			successText.style.opacity = "1";
+		}, 900);
+	}
 }
 
 function showSent(MESSAGE, STAY_TIME) {
@@ -471,37 +563,34 @@ function showSent(MESSAGE, STAY_TIME) {
 
 	setTimeout(() => {
 		successText.innerText = MESSAGE;
-		successText.style.display = "none"
-		loaderDOM.style.justifyContent = "center"
+		successText.style.display = "none";
+		loaderDOM.style.justifyContent = "center";
 		// loaderDOM.style.backgroundColor = "#11bd05";
 		// loaderDOM.style.width = `${successText.scrollWidth + 50}px`;
-		submitLoader.classList.add("load-complete")
-		successMark.style.display = "block"
+
+		submitLoader.classList.add("load-complete");
 		loaderDOM.style.backgroundColor = "#11bd05";
 		loaderDOM.style.width = `${submitLoader.scrollWidth + 50}px`;
 	}, 200);
 
-	debounce4(() => {
-		successText.style.display = "none"
+	debounce8(() => {
+		successMark.style.display = "flex";
+		successText.style.display = "none";
 	}, 300);
 
-	debounce7(() => {
+	debounce9(() => {
 		successText.style.opacity = "0";
 
-		setTimeout(() => {
+		debounce10(() => {
 			loaderDOM.style.width = `${submitLoader.scrollWidth + 50}px`;
 		}, 300);
 
-		setTimeout(() => {
+		debounce11(() => {
 			loaderDOM.classList.remove("show");
 			loaderDOM.classList.add("remove");
-			submitLoader.classList.remove("load-complete")
-			successMark.style.display = "none"
+			submitLoader.classList.remove("load-complete");
+			successMark.style.display = "none";
 		}, 600);
-
-		setTimeout(() => {
-			successText.style.display = ""
-		}, 900);
 	}, 1000);
 }
 
@@ -523,7 +612,7 @@ function removeMessage() {
 }
 
 function validateEmail(userEmail, step) {
-	let email = userEmail.innerText || userEmail.value.trim();
+	let email = userEmail;
 
 	if (!emailRegex.test(email)) {
 		animateErrorMessage(
@@ -538,9 +627,6 @@ function validateEmail(userEmail, step) {
 	}
 
 	if (emailRegex.test(email)) {
-		// Save the user's email address to the local storage
-		usersEmailAddress = email;
-
 		// Go to next stage
 		if (step <= Questions.length - 1) {
 			step + 1;
@@ -563,9 +649,9 @@ function animateProgress(step) {
 	progressSVG.style.strokeDashoffset = 502 - svgPercentage;
 	progress.innerHTML = `${completedPercentage}%`;
 
-	step >= Questions.length ?
-		(currentStage.innerHTML = `${step - 1} / ${totalQuestions}`) :
-		(currentStage.innerHTML = `${step} / ${totalQuestions}`);
+	step >= Questions.length
+		? (currentStage.innerHTML = `${step - 1} / ${totalQuestions}`)
+		: (currentStage.innerHTML = `${step} / ${totalQuestions}`);
 }
 
 function sendEmail(email) {
@@ -583,8 +669,8 @@ function sendEmail(email) {
 				nArr = [
 					...nArr,
 					Object.values(file[i])
-					.map((list) => list.answerText)
-					.join(", "),
+						.map((list) => list.answerText)
+						.join(", "),
 				];
 			} else {
 				nArr = [...nArr, Object.values(file[i])[0].answerText];
@@ -656,7 +742,6 @@ function sendEmail(email) {
 						</body>
 						</html>`;
 
-
 		showSending("Submitting Form...");
 
 		let htmlTemplate = {
@@ -664,26 +749,27 @@ function sendEmail(email) {
 			user: email,
 		};
 
-		debounce9(() => {
+		debounce12(() => {
 			showSent("Form Submitted Successfully");
 
-			showThankYouPage(startQuestion)
+			showThankYouPage(startQuestion);
 
-			debounce8(() => {
+			debounce13(() => {
 				ContinueButton.style.display = "none";
-				BackButton.classList.add("widen")
+				BackButton.classList.add("widen");
 				showCircleSVG(false);
-			}, 400)
+			}, 400);
 
-			debounce9(() => {
+			debounce14(() => {
 				thankYou.style.display = "flex";
 				starterPage.style.display = "none";
 				startQuestion.style.display = "none";
-				body.classList.add("blurbody")
-			}, 600)
+				body.classList.add("blurbody");
+			}, 600);
 
-			userEmail.value = usersEmailAddress
+			userEmail.value = usersEmailAddress;
 			submittedForm = true;
+			console.log(REVIEW);
 			// emailjs
 			// 	.send(
 			// 		"service_7e6832l",
@@ -733,7 +819,7 @@ function sendEmail(email) {
 function gotoNextStep(step, question) {
 	const answersField = document.querySelector(".answer-field");
 	const questionElement = document.querySelector(".Question");
-	let noq = question.length
+	let noq = question.length;
 
 	// Proceed to QA if email address field is filled
 	if (step === 0) {
@@ -757,11 +843,14 @@ function gotoNextStep(step, question) {
 
 		// Proceed to validate user's email
 		if (!emailIsEmpty) {
-			if (!validateEmail(userEmail, step)) {
+			if (!validateEmail(userEmail.value.trim(), step)) {
 				return;
 			}
 			// validateEmail(userEmail, step);
 			goingOutOfWelcome();
+
+			// Save the user's email address to the local storage
+			usersEmailAddress = userEmail.value.trim();
 		}
 	}
 
@@ -775,35 +864,42 @@ function gotoNextStep(step, question) {
 
 		inner.innerText = usersEmailAddress;
 		if (submittedForm === true) {
-			resubmitEmailContainer.style.display = "flex"
-			gsap.fromTo(resubmitEmailContainer, {
-				opacity: 0
-			}, {
-				opacity: 1,
-				duration: 0.3
-			})
+			resubmitEmailContainer.style.display = "flex";
+			gsap.fromTo(
+				resubmitEmailContainer,
+				{
+					opacity: 0,
+				},
+				{
+					opacity: 1,
+					duration: 0.3,
+				}
+			);
 
 			dontResubmitButton.onclick = () => {
-				gsap.fromTo(resubmitEmailContainer, {
-					opacity: 1
-				}, {
-					opacity: 0,
-					duration: 0.3
-				})
-				debounce1(() => {
-					resubmitEmailContainer.style.display = "none"
-				}, 400)
-				step = step - 1
-				stepCounter = step
-			}
+				gsap.fromTo(
+					resubmitEmailContainer,
+					{
+						opacity: 1,
+					},
+					{
+						opacity: 0,
+						duration: 0.3,
+					}
+				);
+				debounce15(() => {
+					resubmitEmailContainer.style.display = "none";
+				}, 400);
+				step = step - 1;
+				stepCounter = step;
+			};
 		}
 
 		if (submittedForm === false) {
-			sendEmail(usersEmailAddress)
+			sendEmail(usersEmailAddress);
 		}
 
 		animateProgress(20);
-
 	}
 
 	// Start QA on the Condition
@@ -816,7 +912,7 @@ function gotoNextStep(step, question) {
 		backCircle.style.opacity = "0";
 		controlButtons.classList.add("csoft");
 		thankYou.style.display = "none";
-		debounce10(() => {
+		debounce16(() => {
 			ContinueButton.children[0].innerText = "Continue";
 			ContinueButton.style.display = "flex";
 			BackButton.style.display = "flex";
@@ -850,12 +946,11 @@ function gotoNextStep(step, question) {
 			}
 		} catch (error) {}
 
-
 		if (step <= question.length - 1 && step > 1) {
-			continueDuringSurvey(questionElement, answersField)
+			continueDuringSurvey(questionElement, answersField);
 		}
 
-		debounce13(() => {
+		debounce17(() => {
 			if (question[step]) {
 				// Display Question
 				questionElement.innerHTML =
@@ -885,22 +980,19 @@ function gotoPreviousStep(step, question) {
 		step = 0;
 	}
 
-
 	stepCounter = step;
 	// Animate progress backwards
 	animateProgress(stepCounter);
 
-
-
 	if (step === parseInt(Object.keys(REVIEW).length)) {
-		backToForm(startQuestion, questionElement, answersField)
+		backToForm(startQuestion, questionElement, answersField);
+		body.classList.remove("blurbody");
 	}
 
 	if (step <= 0) {
 		thankYou.style.display = "none";
 
-
-		debounce11(() => {
+		debounce18(() => {
 			BackButton.style.display = "none";
 			ContinueButton.classList.add("widen");
 			controlButtons.classList.remove("csoft");
@@ -917,7 +1009,7 @@ function gotoPreviousStep(step, question) {
 
 	if (step > 0) {
 		if (step < parseInt(Object.keys(REVIEW).length)) {
-			continueDuringSurvey(questionElement, answersField)
+			continueDuringSurvey(questionElement, answersField);
 		}
 
 		setTimeout(() => {
@@ -925,10 +1017,8 @@ function gotoPreviousStep(step, question) {
 			BackButton.style.display = "flex";
 			BackButton.classList.remove("widen");
 			ContinueButton.classList.remove("widen");
-		}, 500)
+		}, 500);
 		showCircleSVG(true);
-
-
 
 		setTimeout(() => {
 			// Display Question
@@ -938,12 +1028,9 @@ function gotoPreviousStep(step, question) {
 
 			// Display Answers
 			displayAnswersInteractively(answersField, step, question);
-		}, 500)
+		}, 500);
 	}
-
-
 }
-
 
 function markAlreadyChosenSelections(step) {
 	const answers = document.querySelectorAll(".ans-box");
@@ -982,7 +1069,7 @@ function askQuestionsInteractively(step, question) {
 				answers.push(REVIEW[1][i].answerText);
 			}
 
-			return `${question[step].question} ${answers[0]} ?`
+			return `${question[step].question} ${answers[0]} ?`;
 
 		default:
 			return question[step].question;
@@ -990,12 +1077,20 @@ function askQuestionsInteractively(step, question) {
 }
 
 function displayAnswersInteractively(answersField, step, question) {
-	let listCl = ["eight-ans-grid", "icon-text-ans", "continous-two", "ans-with-4ans-textonly", "ans-with-5option-textonly", "straight-ans", "ans-with-2options"]
-	listCl.forEach(a => {
+	let listCl = [
+		"eight-ans-grid",
+		"icon-text-ans",
+		"continous-two",
+		"ans-with-4ans-textonly",
+		"ans-with-5option-textonly",
+		"straight-ans",
+		"ans-with-2options",
+	];
+	listCl.forEach((a) => {
 		if (answersField.classList.value.includes(a)) {
-			answersField.classList.remove(a)
+			answersField.classList.remove(a);
 		}
-	})
+	});
 
 	function display(index, ans) {
 		// Empty the Answers Field/Container
@@ -1019,7 +1114,7 @@ function displayAnswersInteractively(answersField, step, question) {
 					</div>`;
 					break;
 
-					// 2-Options Only
+				// 2-Options Only
 				case 11:
 					answersField.classList.add("ans-with-2options");
 					answersField.innerHTML += `<div class="two-ans ans-box" id="two-ans-box" data-answer="${ans.text}" data-id="${index}">
@@ -1029,7 +1124,7 @@ function displayAnswersInteractively(answersField, step, question) {
 					</div>`;
 					break;
 
-					// Text Only
+				// Text Only
 				case 2:
 				case 4:
 				case 5:
@@ -1054,7 +1149,7 @@ function displayAnswersInteractively(answersField, step, question) {
 					</div>`;
 					break;
 
-					// With software logo and text
+				// With software logo and text
 				case 3:
 					answersField.innerHTML += `
 					<div class="bare-ans ans-box" data-answer="${ans.text}" data-id="${index}">
@@ -1284,42 +1379,96 @@ function markAndSaveSelections(bool, answers, step) {
 		selectionChoice.innerText = "Please select only one.";
 		answers.forEach((ans) => {
 			ans.addEventListener("click", (e) => {
-				let pickedAnswer = e.target; // To get the ans ID and text
+				let pickedAnswer = [
+					e.target,
+					e.target.parentElement,
+					e.target.parentElement.parentElement,
+					e.target.parentElement.parentElement.parentElement,
+				];
 
-				answers.forEach((ans) => {
-					if (ans.classList.value.includes("text-imgbox")) {
-						removeCheckAnimationForImgTextBox(ans.children[0], ans);
-						return;
-					}
+				for (let i in pickedAnswer) {
+					try {
+						if (
+							(pickedAnswer[i].classList.value.includes("text-imgbox") &&
+								pickedAnswer[i].children[0].classList.value.includes(
+									"checked2"
+								)) ||
+							(pickedAnswer[i].classList.value.includes("textonlybox") &&
+								pickedAnswer[i].children[0].classList.value.includes(
+									"text-checked"
+								)) ||
+							(pickedAnswer[i].classList.value.includes("bare-ans") &&
+								pickedAnswer[i].children[0].classList.value.includes(
+									"opacity"
+								)) ||
+							(pickedAnswer[i].classList.value.includes("two-ans") &&
+								pickedAnswer[i].children[0].classList.value.includes(
+									"tools-ans-checked"
+								))
+						) {
+							removeClass(e);
+							removeAnswerToPersonObject(pickedAnswer[i].dataset.id, step);
+							break;
+						}
+					} catch (error) {}
 
-					if (ans.classList.value.includes("textonlybox")) {
-						removeCheckAnimationForTextBoxOnly(ans.children[0], ans);
-						return;
-					}
+					try {
+						if (
+							(pickedAnswer[i].classList.value.includes("bare-ans") &&
+								!pickedAnswer[i].children[0].classList.value.includes(
+									"opacity"
+								)) ||
+							(pickedAnswer[i].classList.value.includes("textonlybox") &&
+								!pickedAnswer[i].children[0].classList.value.includes(
+									"text-checked"
+								)) ||
+							(pickedAnswer[i].classList.value.includes("text-imgbox") &&
+								!pickedAnswer[i].children[0].classList.value.includes(
+									"checked2"
+								)) ||
+							(pickedAnswer[i].classList.value.includes("two-ans") &&
+								!pickedAnswer[i].children[0].classList.value.includes(
+									"tools-ans-checked"
+								))
+						) {
+							answers.forEach((ans) => {
+								pickedAnswer = e.target;
+								if (ans.classList.value.includes("text-imgbox")) {
+									removeCheckAnimationForImgTextBox(ans.children[0], ans);
+									return;
+								}
 
-					if (ans.classList.value.includes("bare-ans")) {
-						removeCheckAnimationForIconAndText(ans.children[0], ans);
-					}
+								if (ans.classList.value.includes("textonlybox")) {
+									removeCheckAnimationForTextBoxOnly(ans.children[0], ans);
+									return;
+								}
 
-					if (ans.classList.value.includes("two-ans")) {
-						removeCheckAnimationForTwoAns(ans.children[0], ans);
-					}
-					// ans.classList.remove("border");
-				});
+								if (ans.classList.value.includes("bare-ans")) {
+									removeCheckAnimationForIconAndText(ans.children[0], ans);
+									return;
+								}
 
-				addClass(e);
+								if (ans.classList.value.includes("two-ans")) {
+									removeCheckAnimationForTwoAns(ans.children[0], ans);
+								}
+							});
 
-				if (step === 1) {
-					// Reset the user's object when their primarey area of expertise has been changed.
-					reset();
+							addClass(e);
+
+							if (step === 1) {
+								// Reset the user's object when their primarey area of expertise has been changed.
+								reset();
+							}
+
+							addAnswerToPersonObject(
+								bool,
+								pickedAnswer.dataset.id,
+								pickedAnswer.dataset.answer,
+								step
+							);
+						}
+					} catch (error) {}
 				}
-
-				addAnswerToPersonObject(
-					bool,
-					pickedAnswer.dataset.id,
-					pickedAnswer.dataset.answer,
-					step
-				);
 			});
 		});
 	}
@@ -1465,98 +1614,160 @@ function addAnswerToPersonObject(
 changeEmailContainer.style.display = "none";
 resubmitEmailContainer.style.display = "none";
 
-
 dontResubmitButton.onclick = () => {
-	debounce12(() => gotoNextStep(stepCounter, Questions), 100)
-}
+	debounce19(() => gotoNextStep(stepCounter, Questions), 100);
+};
 
 inner.onfocus = () => {
 	const inemail = document.querySelector(".email");
 	inemail.style.overflow = "scroll";
 	inner.classList.remove("turndot", "turndot");
+	otfp = true;
 };
 
 inner.onblur = () => {
+	otfp = false;
 	const inemail = document.querySelector(".email");
 	inner.classList.add("turndot");
 	inemail.style.overflow = "hidden";
 	if (editfield.innerText !== usersEmailAddress) {
-		if (validateEmail(editfield)) {
-			changeEmailContainer.style.display = "flex"
-			gsap.fromTo(changeEmailContainer, {
-				opacity: 0
-			}, {
-				opacity: 1,
-				duration: 0.3
-			})
+		if (validateEmail(editfield.innerText)) {
+			changeEmailContainer.style.display = "flex";
+			gsap.fromTo(
+				changeEmailContainer,
+				{
+					opacity: 0,
+				},
+				{
+					opacity: 1,
+					duration: 0.3,
+				}
+			);
+		}
+
+		if (!validateEmail(editfield.innerText))
+			inner.innerText = usersEmailAddress;
+	}
+};
+
+inner.onkeydown = (e) => {
+	otfp = true;
+	if (e.key === "Enter") {
+		editfield.contentEditable = false;
+
+		console.log(editfield.innerText);
+		if (editfield.innerText !== usersEmailAddress) {
+			if (validateEmail(editfield.innerText)) {
+				changeEmailContainer.style.display = "flex";
+				gsap.fromTo(
+					changeEmailContainer,
+					{
+						opacity: 0,
+					},
+					{
+						opacity: 1,
+						duration: 0.3,
+					}
+				);
+			}
+
+			if (!validateEmail(editfield.innerText)) {
+				editfield.contentEditable = true;
+				editfield.innerText = usersEmailAddress;
+				editfield.style.width = "auto";
+			}
 		}
 	}
 };
 
-changeEmail.forEach(x => {
+changeEmail.forEach((x) => {
 	x.onclick = () => {
 		usersEmailAddress = editfield.innerText;
 		sendEmail(usersEmailAddress);
 		gsap.to(changeEmailContainer, {
 			opacity: 0,
-			duration: 0.3
-		})
+			duration: 0.3,
+		});
 
 		gsap.to(resubmitEmailContainer, {
 			opacity: 0,
-			duration: 0.3
-		})
+			duration: 0.3,
+		});
 
-		debounce2(() => {
-			changeEmailContainer.style.display = "none"
-			resubmitEmailContainer.style.display = "none"
-		}, 300)
+		debounce20(() => {
+			changeEmailContainer.style.display = "none";
+			resubmitEmailContainer.style.display = "none";
+		}, 300);
 	};
-})
+});
 
 cancel.forEach((c) => {
-	c.onclick = () => {
+	c.onclick = (e) => {
 		gsap.to(changeEmailContainer, {
 			opacity: 0,
-			duration: 0.3
-		})
+			duration: 0.3,
+		});
 
 		gsap.to(resubmitEmailContainer, {
 			opacity: 0,
-			duration: 0.3
-		})
+			duration: 0.3,
+		});
 
-		debounce2(() => {
-			changeEmailContainer.style.display = "none"
-			resubmitEmailContainer.style.display = "none"
-		}, 300)
-	}
-})
+		debounce21(() => {
+			changeEmailContainer.style.display = "none";
+			resubmitEmailContainer.style.display = "none";
+		}, 300);
+
+		if (e.target.classList.value.includes("c2")) {
+			stepCounter -= 1;
+		}
+	};
+});
 
 // Continue button
 ContinueButton.addEventListener("click", (e) => {
-
-	debounce12(() => gotoNextStep(stepCounter, Questions), 100)
+	debounce22(() => gotoNextStep(stepCounter, Questions), 100);
 });
 
 BackButton.addEventListener("click", (e) => {
-	debounce13(() => gotoPreviousStep(stepCounter, Questions), 200)
+	debounce23(() => gotoPreviousStep(stepCounter, Questions), 200);
 });
-
-
 
 // Continue to Next Step On Press Enter
 window.addEventListener("keydown", (e) => {
-	debounce12(() => {
-		keydownHandler(e)
-	}, 200)
+	debounce24(() => {
+		keydownHandler(e);
+	}, 200);
 });
 
 window.addEventListener("keydown", (e) => {
-	debounce13(() => {
-		enterKeyPressHandler(e)
-	}, 200)
-})
+	debounce25(() => {
+		enterKeyPressHandler(e);
+	}, 200);
+});
+
+let otfp = false;
+function keydownHandler(e) {
+	if (otfp) return;
+
+	if (stepCounter <= Object.values(REVIEW).length + 1 && stepCounter > 0) {
+		if (e.key === "ArrowRight") {
+			gotoNextStep(stepCounter, Questions);
+		}
+
+		if (e.key === "ArrowLeft") {
+			gotoPreviousStep(stepCounter, Questions);
+		}
+	}
+}
+
+function enterKeyPressHandler(e) {
+	if (stepCounter < Object.values(REVIEW).length + 1) {
+		if (e.key === "Enter") {
+			gotoNextStep(stepCounter, Questions);
+		}
+	}
+}
 
 animateProgress(0);
 export default REVIEW;
