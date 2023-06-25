@@ -8,7 +8,7 @@ import {
 	backToWelcome,
 	goingOutOfWelcome,
 } from "./animations.js";
-import accountRotator from "./accountrotator.js";
+import accountRotator, { submittedForm } from "./accountrotator.js";
 
 const body = document.querySelector("#body");
 const logo = document.querySelector("#logo");
@@ -51,9 +51,8 @@ const userEmail = document.getElementById("email");
 const changeEmailBox = document.querySelector(".email");
 const dontResubmitButton = document.querySelector(".no");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
-let usersEmailAddress = false;
+// let usersEmailAddress = sessionStorage.setItem("email", "");
 let stepCounter = 0;
-let submittedForm = false;
 const submitLoader = document.querySelector(".circle-loader");
 const successMark = document.querySelector(".checkmark");
 
@@ -347,9 +346,9 @@ if (window.screen.availWidth <= 480) {
 
 let REVIEW = new Object({
 	1: {},
-	// 2: {},
-	// 3: {},
-	// 4: {},
+	2: {},
+	3: {},
+	4: {},
 	// 5: {},
 	// 6: {},
 	// 7: {},
@@ -385,9 +384,9 @@ function reset() {
 
 		REVIEW = {
 			1: {},
-			// 2: {},
-			// 3: {},
-			// 4: {},
+			2: {},
+			3: {},
+			4: {},
 			// 5: {},
 			// 6: {},
 			// 7: {},
@@ -716,7 +715,10 @@ function sendEmail(email) {
 		};
 
 		debounce12(() => {
-			accountRotator(htmlTemplate);
+			if (accountRotator(htmlTemplate)) {
+				submittedForm = true;
+				console.log("Sent");
+			}
 		}, 2000);
 	}
 }
@@ -755,7 +757,7 @@ function gotoNextStep(step, question) {
 			goingOutOfWelcome();
 
 			// Save the user's email address to the local storage
-			usersEmailAddress = userEmail.value.trim();
+			sessionStorage.setItem("email", userEmail.value.trim());
 		}
 	}
 
@@ -767,7 +769,7 @@ function gotoNextStep(step, question) {
 		// 	emojis.innerHTML += `<div class="ans-box" data-id="${index}">${fb}</div>`;
 		// });
 
-		inner.innerText = usersEmailAddress;
+		inner.innerText = sessionStorage.getItem("email");
 		if (submittedForm === true) {
 			resubmitEmailContainer.style.display = "flex";
 			gsap.fromTo(
@@ -801,7 +803,7 @@ function gotoNextStep(step, question) {
 		}
 
 		if (submittedForm === false) {
-			sendEmail(usersEmailAddress);
+			sendEmail(sessionStorage.getItem("email"));
 		}
 
 		animateProgress(20);
@@ -1535,7 +1537,7 @@ inner.onblur = () => {
 	const inemail = document.querySelector(".email");
 	inner.classList.add("turndot");
 	inemail.style.overflow = "hidden";
-	if (editfield.innerText !== usersEmailAddress) {
+	if (editfield.innerText !== sessionStorage.getItem("email")) {
 		if (validateEmail(editfield.innerText)) {
 			changeEmailContainer.style.display = "flex";
 			gsap.fromTo(
@@ -1551,7 +1553,7 @@ inner.onblur = () => {
 		}
 
 		if (!validateEmail(editfield.innerText))
-			inner.innerText = usersEmailAddress;
+			inner.innerText = sessionStorage.getItem("email");
 	}
 };
 
@@ -1560,8 +1562,7 @@ inner.onkeydown = (e) => {
 	if (e.key === "Enter") {
 		editfield.contentEditable = false;
 
-		console.log(editfield.innerText);
-		if (editfield.innerText !== usersEmailAddress) {
+		if (editfield.innerText !== sessionStorage.getItem("email")) {
 			if (validateEmail(editfield.innerText)) {
 				changeEmailContainer.style.display = "flex";
 				gsap.fromTo(
@@ -1578,7 +1579,7 @@ inner.onkeydown = (e) => {
 
 			if (!validateEmail(editfield.innerText)) {
 				editfield.contentEditable = true;
-				editfield.innerText = usersEmailAddress;
+				editfield.innerText = sessionStorage.getItem("email");
 				editfield.style.width = "auto";
 			}
 		}
@@ -1587,8 +1588,8 @@ inner.onkeydown = (e) => {
 
 changeEmail.forEach((x) => {
 	x.onclick = () => {
-		usersEmailAddress = editfield.innerText;
-		sendEmail(usersEmailAddress);
+		sessionStorage.setItem("email", editfield.innerText);
+		sendEmail(sessionStorage.getItem("email", editfield.innerText));
 		gsap.to(changeEmailContainer, {
 			opacity: 0,
 			duration: 0.3,

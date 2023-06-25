@@ -836,76 +836,76 @@ export default [
 	// 		},
 	// 	],
 	// },
-	// {
-	// 	question: "How often do you feel burned out at work ?",
-	// 	answers: [
-	// 		{
-	// 			text: "Rarely",
-	// 			img: "",
-	// 		},
-	// 		{
-	// 			text: "Once a month",
-	// 			img: "",
-	// 		},
-	// 		{
-	// 			text: "Once a week",
-	// 			img: "",
-	// 		},
-	// 		{
-	// 			text: "A few times a week",
-	// 			img: "",
-	// 		},
-	// 		{
-	// 			text: "Every day",
-	// 			img: "",
-	// 		},
-	// 	],
-	// },
-	// {
-	// 	question:
-	// 		"How many hours of sleep do you typically get each night during the workweek ?",
-	// 	answers: [
-	// 		{
-	// 			text: "More than 8 hours",
-	// 			img: "",
-	// 		},
-	// 		{
-	// 			text: "7 - 8 hours",
-	// 			img: "",
-	// 		},
-	// 		{
-	// 			text: "6 - 7 hours",
-	// 			img: "",
-	// 		},
-	// 		{
-	// 			text: "5 - 6 hours",
-	// 			img: "",
-	// 		},
-	// 		{
-	// 			text: "Less than 5 hours",
-	// 			img: "",
-	// 		},
-	// 	],
-	// },
-	// {
-	// 	question: "How often do you work on the weekends ?",
-	// 	answers: [
-	// 		{
-	// 			text: "Never",
-	// 			img: "",
-	// 		},
-	// 		{
-	// 			text: "Rarely",
-	// 			img: "",
-	// 		},
-	// 		{
-	// 			text: "Once a month",
-	// 			img: "",
-	// 		},
-	// 		{
-	// 			text: "Every weekend",
-	// 			img: "",
-	// 		},
-	// 	],
-	// },
+	{
+		question: "How often do you feel burned out at work ?",
+		answers: [
+			{
+				text: "Rarely",
+				img: "",
+			},
+			{
+				text: "Once a month",
+				img: "",
+			},
+			{
+				text: "Once a week",
+				img: "",
+			},
+			{
+				text: "A few times a week",
+				img: "",
+			},
+			{
+				text: "Every day",
+				img: "",
+			},
+		],
+	},
+	{
+		question:
+			"How many hours of sleep do you typically get each night during the workweek ?",
+		answers: [
+			{
+				text: "More than 8 hours",
+				img: "",
+			},
+			{
+				text: "7 - 8 hours",
+				img: "",
+			},
+			{
+				text: "6 - 7 hours",
+				img: "",
+			},
+			{
+				text: "5 - 6 hours",
+				img: "",
+			},
+			{
+				text: "Less than 5 hours",
+				img: "",
+			},
+		],
+	},
+	{
+		question: "How often do you work on the weekends ?",
+		answers: [
+			{
+				text: "Never",
+				img: "",
+			},
+			{
+				text: "Rarely",
+				img: "",
+			},
+			{
+				text: "Once a month",
+				img: "",
+			},
+			{
+				text: "Every weekend",
+				img: "",
+			},
+		],
+	},
 ];
