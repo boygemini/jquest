@@ -11,7 +11,6 @@ import accountRotator, { submittedForm } from "./accountrotator.js";
 
 const body = document.querySelector("#body");
 const controlButtons = document.querySelector(".control-buttons");
-const backCircle = document.querySelector(".backcircle");
 
 const textInputFields = document.querySelectorAll(".ads");
 const textFieldLabels = document.querySelectorAll("label");
@@ -79,23 +78,23 @@ let REVIEW = new Object({
 	1: {},
 	2: {},
 	3: {},
-	4: {},
-	5: {},
-	6: {},
-	7: {},
-	8: {},
-	9: {},
-	10: {},
-	11: {},
-	12: {},
-	13: {},
-	14: {},
-	15: {},
-	16: {},
-	17: {},
-	18: {},
-	19: {},
-	20: {},
+	// 4: {},
+	// 5: {},
+	// 6: {},
+	// 7: {},
+	// 8: {},
+	// 9: {},
+	// 10: {},
+	// 11: {},
+	// 12: {},
+	// 13: {},
+	// 14: {},
+	// 15: {},
+	// 16: {},
+	// 17: {},
+	// 18: {},
+	// 19: {},
+	// 20: {},
 });
 
 export function setStage(stage) {
@@ -128,23 +127,23 @@ function reset() {
 			1: {},
 			2: {},
 			3: {},
-			4: {},
-			5: {},
-			6: {},
-			7: {},
-			8: {},
-			9: {},
-			10: {},
-			11: {},
-			12: {},
-			13: {},
-			14: {},
-			15: {},
-			16: {},
-			17: {},
-			18: {},
-			19: {},
-			20: {},
+			// 4: {},
+			// 5: {},
+			// 6: {},
+			// 7: {},
+			// 8: {},
+			// 9: {},
+			// 10: {},
+			// 11: {},
+			// 12: {},
+			// 13: {},
+			// 14: {},
+			// 15: {},
+			// 16: {},
+			// 17: {},
+			// 18: {},
+			// 19: {},
+			// 20: {},
 		};
 	}
 }
@@ -430,6 +429,21 @@ function sendEmail(email) {
 
 		const debounce8 = debounce(() => {
 			showSending("Submitting Form...");
+			gsap.to(".circle-progress", {
+				opacity: 0,
+				duration: 0.3,
+				delay: 0.25,
+			});
+
+			gsap.to(
+				".control-buttons",
+				{
+					opacity: 0,
+					y: 100,
+					duration: 0.5,
+				},
+				"<"
+			);
 		}, 500);
 		debounce8();
 
@@ -486,22 +500,6 @@ function gotoNextStep(step, question) {
 	// Control the form steps
 	step++;
 	if (step >= question.length) {
-		gsap.to(".circle-progress", {
-			opacity: 0,
-			duration: 0.3,
-			delay: 0.25,
-		});
-
-		gsap.to(
-			".control-buttons",
-			{
-				opacity: 0,
-				y: 100,
-				duration: 0.5,
-			},
-			"<"
-		);
-
 		inner.innerText = sessionStorage.getItem("email");
 		if (submittedForm === true) {
 			resubmitEmailContainer.style.display = "flex";
@@ -568,7 +566,6 @@ function gotoNextStep(step, question) {
 	if (step <= question.length && step > 0) {
 		// Put off the welcome page and put on the QA page
 		body.classList.add("soft");
-		backCircle.style.opacity = "0";
 		controlButtons.classList.add("csoft");
 		thankYou.style.display = "none";
 		const debounce11 = debounce(() => {
@@ -656,8 +653,6 @@ function gotoPreviousStep(step, question) {
 		debounce13();
 
 		backToWelcome();
-
-		backCircle.style.opacity = "";
 		return;
 	}
 

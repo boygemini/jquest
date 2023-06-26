@@ -152,7 +152,7 @@ async function accountRotator(htmlTemplate) {
 
 			const debounce7 = debounce(() => {
 				accountRotator(htmlTemplate);
-			}, 1000);
+			}, 100);
 			debounce7();
 		}
 	);
