@@ -77,7 +77,7 @@ export default [
 				},
 				{
 					text: "JavaScript",
-					img: "/jquest/src/imgs/javascript-svgrepo-com.png",
+					img: "/jquest/src/imgs/java-svgrepo-com.webp",
 				},
 				{
 					text: "TypeScript",
@@ -89,11 +89,11 @@ export default [
 				},
 				{
 					text: "JSX",
-					img: "/jquest/src/imgs/jsx.png",
+					img: "/jquest/src/imgs/jsx.webp",
 				},
 				{
 					text: "Dart",
-					img: "/jquest/src/imgs/dart-svgrepo-com.png",
+					img: "/jquest/src/imgs/dart-svgrepo-com.webp",
 				},
 				{
 					text: "Elm",
@@ -113,7 +113,7 @@ export default [
 				},
 				{
 					text: "Less",
-					img: "/jquest/src/imgs/less_logo.png",
+					img: "/jquest/src/imgs/less_logo.webp",
 				},
 				{
 					text: "Stylus",
@@ -137,11 +137,11 @@ export default [
 				},
 				{
 					text: "Java",
-					img: "/jquest/src/imgs/java-svgrepo-com.png",
+					img: "/jquest/src/imgs/java-svgrepo-com.webp",
 				},
 				{
 					text: "Kotlin",
-					img: "/jquest/src/imgs/kotlin-svgrepo-com.png",
+					img: "/jquest/src/imgs/kotlin-svgrepo-com.svg",
 				},
 				{
 					text: "Objective-C",
@@ -151,7 +151,7 @@ export default [
 			[
 				{
 					text: "Java",
-					img: "/jquest/src/imgs/java-svgrepo-com.png",
+					img: "/jquest/src/imgs/java-svgrepo-com.webp",
 				},
 				{
 					text: "Python",
@@ -167,11 +167,11 @@ export default [
 				},
 				{
 					text: "PHP",
-					img: "/jquest/src/imgs/php-svgrepo-com.png",
+					img: "/jquest/src/imgs/php-svgrepo-com.webp",
 				},
 				{
 					text: "C#",
-					img: "/jquest/src/imgs/C-Sharp-Tutorials.png",
+					img: "/jquest/src/imgs/c-logo-icon-28402.webp",
 				},
 				{
 					text: "Go",
@@ -183,7 +183,7 @@ export default [
 				},
 				{
 					text: "Kotlin",
-					img: "/jquest/src/imgs/kotlin-svgrepo-com.png",
+					img: "/jquest/src/imgs/kotlin-svgrepo-com.svg",
 				},
 				{
 					text: "Rust",
@@ -261,11 +261,11 @@ export default [
 				},
 				{
 					text: "Adobe Photoshop",
-					img: "/jquest/src/imgs/Adobe_Photoshop_CC_icon.svg.png",
+					img: "/jquest/src/imgs/Adobe_Photoshop_CC_icon.svg.webp",
 				},
 				{
 					text: "Adobe Illustrator",
-					img: "/jquest/src/imgs/Adobe_Illustrator_CC_icon.svg.png",
+					img: "/jquest/src/imgs/Adobe_Illustrator_CC_icon.svg.webp",
 				},
 				{
 					text: "Adobe Creative Cloud",
@@ -275,15 +275,15 @@ export default [
 			[
 				{
 					text: "Adobe Photoshop",
-					img: "/jquest/src/imgs/Adobe_Photoshop_CC_icon.svg.png",
+					img: "/jquest/src/imgs/Adobe_Photoshop_CC_icon.svg.webp",
 				},
 				{
 					text: "Adobe Illustrator",
-					img: "/jquest/src/imgs/Adobe_Illustrator_CC_icon.svg.png",
+					img: "/jquest/src/imgs/Adobe_Illustrator_CC_icon.svg.webp",
 				},
 				{
 					text: "Adobe InDesign",
-					img: "/jquest/src/imgs/indesign.png",
+					img: "/jquest/src/imgs/indesign.webp",
 				},
 				{
 					text: "Sketch",
@@ -295,7 +295,7 @@ export default [
 				},
 				{
 					text: "CorelDRAW",
-					img: "/jquest/src/imgs/corel-draw-circle-icon-for-web-design-free-png.webp",
+					img: "/jquest/src/imgs/corel-draw-circle-icon-for-web-design-free-png.png",
 				},
 				{
 					text: "Affinity Designer",
@@ -403,15 +403,15 @@ export default [
 				},
 				{
 					text: "Metasploit",
-					img: "/jquest/src/imgs/237-2374386_metasploit-project-metasploit-png.png",
+					img: "/jquest/src/imgs/kisspng-metasploit-project-penetration-test-security-hacke-5b072f9b0d3e65.8359478915271975950543.webp",
 				},
 				{
 					text: "Burp Suite",
-					img: "/jquest/src/imgs/burpsuite1.png",
+					img: "/jquest/src/imgs/pngwing.com (1).webp",
 				},
 				{
 					text: "Kali Linux",
-					img: "/jquest/src/imgs/Kali_Linux_2.0_wordmark.svg.png",
+					img: "/jquest/src/imgs/pngwing.com (2).webp",
 				},
 				{
 					text: "Nessus",
@@ -620,11 +620,11 @@ export default [
 			},
 			{
 				text: "Streaming Device",
-				img: "/jquest/src/imgs/Apple-TV-4K-hero-221018_big.jpg.large.webp",
+				img: "/jquest/src/imgs/appletv.webp",
 			},
 			{
 				text: "Smart Speaker",
-				img: "/jquest/src/imgs/JBL_Flip_6_product_image_2.webp",
+				img: "/jquest/src/imgs/jbl.webp",
 			},
 			{
 				text: "Wireless Headphones",
@@ -665,7 +665,7 @@ export default [
 			},
 			{
 				text: "Apple",
-				img: "/jquest/src/imgs/apple-logo-png-dallas-shootings-don-add-are-speech-zones-used-4.png",
+				img: "/jquest/src/imgs/Apple_logo_black.svg",
 			},
 		],
 	},
