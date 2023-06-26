@@ -286,14 +286,6 @@ function debounce25(func, time) {
 	id25 = setTimeout(func, time);
 }
 
-// accountRotator();
-/**
- * Disable Left/Right Arrow buttons when the change email container is focused on
- */
-// inner.onfocus = () => {
-// 	window.removeEce
-// }
-
 /**
  * Focus the client on the email change field
  */
@@ -315,22 +307,22 @@ let REVIEW = new Object({
 	2: {},
 	3: {},
 	4: {},
-	// 5: {},
-	// 6: {},
-	// 7: {},
-	// 8: {},
-	// 9: {},
-	// 10: {},
-	// 11: {},
-	// 12: {},
-	// 13: {},
-	// 14: {},
-	// 15: {},
-	// 16: {},
-	// 17: {},
-	// 18: {},
-	// 19: {},
-	// 20: {},
+	5: {},
+	6: {},
+	7: {},
+	8: {},
+	9: {},
+	10: {},
+	11: {},
+	12: {},
+	13: {},
+	14: {},
+	15: {},
+	16: {},
+	17: {},
+	18: {},
+	19: {},
+	20: {},
 });
 
 export function setStage(stage) {
@@ -364,22 +356,22 @@ function reset() {
 			2: {},
 			3: {},
 			4: {},
-			// 5: {},
-			// 6: {},
-			// 7: {},
-			// 8: {},
-			// 9: {},
-			// 10: {},
-			// 11: {},
-			// 12: {},
-			// 13: {},
-			// 14: {},
-			// 15: {},
-			// 16: {},
-			// 17: {},
-			// 18: {},
-			// 19: {},
-			// 20: {},
+			5: {},
+			6: {},
+			7: {},
+			8: {},
+			9: {},
+			10: {},
+			11: {},
+			12: {},
+			13: {},
+			14: {},
+			15: {},
+			16: {},
+			17: {},
+			18: {},
+			19: {},
+			20: {},
 		};
 	}
 }
@@ -400,13 +392,6 @@ function reset() {
 						"1px solid #2260ff";
 					e.target.offsetParent.firstElementChild.classList += " move-up";
 				}
-
-				// if (e.target.classList.value.includes("ads")) {
-				// 	inner.contentEditable = true;
-				// 	window.removeEventListener("keydown", keydownHandler, {
-				// 		capture: false,
-				// 	});
-				// }
 			});
 		});
 	});
@@ -441,7 +426,6 @@ export function animateErrorMessage(
 	REMOVE_ERROR_CLASS
 ) {
 	// Turns the email field bg color to red
-	userEmail.classList.add("empty-email-field");
 	errorText.innerText = ERROR_MESSAGE;
 	const errorMessageNodeWidth = errorText.scrollWidth + 30;
 
@@ -694,6 +678,7 @@ function gotoNextStep(step, question) {
 
 		// Show Error Message if the email field is empty
 		if (emailIsEmpty) {
+			userEmail.classList.add("empty-email-field");
 			animateErrorMessage(
 				3000,
 				600,
@@ -708,6 +693,7 @@ function gotoNextStep(step, question) {
 		// Proceed to validate user's email
 		if (!emailIsEmpty) {
 			if (!validateEmail(userEmail.value.trim(), step)) {
+				userEmail.classList.add("empty-email-field");
 				return;
 			}
 			// validateEmail(userEmail, step);

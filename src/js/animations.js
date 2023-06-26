@@ -1,9 +1,8 @@
 "use strict";
 import Questions from "./questions.js";
 
-// function welcomeAnimation() {
-
-// }
+const pagePreloader = document.querySelector(".sitepreloader");
+const loader = document.querySelector(".loadd");
 
 let deviceScreenWidth = screen.width;
 const animate = gsap.timeline({
@@ -13,55 +12,74 @@ const animate = gsap.timeline({
 	},
 });
 
+let count = 0;
+let timer = setInterval(() => {
+	count++;
+	loader.style.width = `${count}%`;
+}, 1);
+
 window.onload = () => {
-	window.scrollTo(0, 0);
-	animate.fromTo(
-		".q-heading",
-		{
-			y: 200,
-		},
-		{
-			opacity: 1,
-			y: 0,
-			duration: 1.2,
-		}
-	);
+	loader.style.width = "100%";
+	clearInterval(timer);
 
-	animate.fromTo(
-		".q-subtext",
-		{
-			y: 100,
-		},
-		{
-			opacity: 1,
-			y: 0,
-		},
-		"<25%"
-	);
+	setTimeout(() => {
+		pagePreloader.style.opacity = 0;
+		setTimeout(() => {
+			pagePreloader.style.display = "none";
+		}, 200);
 
-	animate.fromTo(
-		".field-container",
-		{
-			y: 100,
-		},
-		{
-			opacity: 1,
-			y: 0,
-		},
-		"<25%"
-	);
+		window.scrollTo(0, 0);
 
-	animate.fromTo(
-		".control-buttons",
-		{
-			y: 100,
-		},
-		{
-			opacity: 1,
-			y: 0,
-		},
-		"<"
-	);
+		setTimeout(() => {
+			animate.fromTo(
+				".q-heading",
+				{
+					y: 200,
+				},
+				{
+					opacity: 1,
+					y: 0,
+					duration: 1.2,
+				}
+			);
+
+			animate.fromTo(
+				".q-subtext",
+				{
+					y: 100,
+				},
+				{
+					opacity: 1,
+					y: 0,
+				},
+				"<25%"
+			);
+
+			animate.fromTo(
+				".field-container",
+				{
+					y: 100,
+				},
+				{
+					opacity: 1,
+					y: 0,
+				},
+				"<25%"
+			);
+
+			animate.fromTo(
+				".control-buttons",
+				{
+					y: 100,
+				},
+				{
+					opacity: 1,
+					y: 0,
+				},
+				"<"
+			);
+		}, 210);
+	}, 500);
 };
 
 export function goingOutOfWelcome() {
