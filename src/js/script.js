@@ -8,7 +8,10 @@ import {
 	backToWelcome,
 	goingOutOfWelcome,
 } from "./animations.js";
-import accountRotator, { submittedForm } from "./accountrotator.js";
+import accountRotator, {
+	submittedForm,
+	didntSendEmailDueToError,
+} from "./accountrotator.js";
 
 const body = document.querySelector("#body");
 const logo = document.querySelector("#logo");
@@ -52,9 +55,10 @@ const changeEmailBox = document.querySelector(".email");
 const dontResubmitButton = document.querySelector(".no");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 // let usersEmailAddress = sessionStorage.setItem("email", "");
-let stepCounter = 0;
+export let stepCounter = 0;
 const submitLoader = document.querySelector(".circle-loader");
 const successMark = document.querySelector(".checkmark");
+let isSending = false;
 
 body.classList.add("soft");
 
@@ -284,36 +288,6 @@ function debounce25(func, time) {
 	id25 = setTimeout(func, time);
 }
 
-function debounce26(func, time) {
-	if (id26) {
-		clearTimeout(id26);
-	}
-
-	id26 = setTimeout(func, time);
-}
-
-function debounce27(func, time) {
-	if (id27) {
-		clearTimeout(id27);
-	}
-
-	id27 = setTimeout(func, time);
-}
-
-function debounce28(func, time) {
-	if (id28) {
-		clearTimeout(id28);
-	}
-
-	id28 = setTimeout(func, time);
-}
-
-function buttonDebounce(func) {
-	if (bd) {
-		clearTimeout(bd);
-	}
-	bd = setTimeout(func, 500);
-}
 // accountRotator();
 /**
  * Disable Left/Right Arrow buttons when the change email container is focused on
@@ -455,7 +429,7 @@ if (textInputFields[0].value.length > 0) {
 }
 
 // Error Message Animation
-function animateErrorMessage(
+export function animateErrorMessage(
 	ERROR_MESSAGE_DURATION,
 	ERROR_MESSAGE_ANIMATION_DURATION,
 	INITIAL_ERROR_MESSAGE_WIDTH,
@@ -555,23 +529,6 @@ function showSending(MESSAGE) {
 			successText.style.opacity = "1";
 		}, 900);
 	}
-}
-
-function removeMessage() {
-	successText.style.opacity = "0";
-
-	setTimeout(() => {
-		// loaderDOM.style.width = `${20}px`;
-	}, 300);
-
-	setTimeout(() => {
-		loaderDOM.classList.remove("show");
-		loaderDOM.classList.add("remove");
-	}, 600);
-
-	setTimeout(() => {
-		loaderDOM.style.width = "auto";
-	}, 1000);
 }
 
 function validateEmail(userEmail, step) {
@@ -715,10 +672,7 @@ function sendEmail(email) {
 		};
 
 		debounce12(() => {
-			if (accountRotator(htmlTemplate)) {
-				submittedForm = true;
-				console.log("Sent");
-			}
+			accountRotator(htmlTemplate);
 		}, 2000);
 	}
 }
@@ -764,10 +718,11 @@ function gotoNextStep(step, question) {
 	// Control the form steps
 	step++;
 	if (step >= question.length) {
-		// emojis.innerHTML = "";
-		// feedBacks.forEach((fb, index) => {
-		// 	emojis.innerHTML += `<div class="ans-box" data-id="${index}">${fb}</div>`;
-		// });
+		gsap.to(".control-buttons", {
+			opacity: 0,
+			y: 100,
+			duration: 0.5,
+		});
 
 		inner.innerText = sessionStorage.getItem("email");
 		if (submittedForm === true) {
@@ -806,7 +761,9 @@ function gotoNextStep(step, question) {
 			sendEmail(sessionStorage.getItem("email"));
 		}
 
+		isSending = true;
 		animateProgress(20);
+		step = question.length;
 	}
 
 	// Start QA on the Condition
@@ -870,8 +827,6 @@ function gotoNextStep(step, question) {
 		}, 500);
 	}
 
-	if (step >= question.length) step = question.length;
-
 	stepCounter = step;
 
 	// Animate progress forwards
@@ -887,7 +842,12 @@ function gotoPreviousStep(step, question) {
 		step = 0;
 	}
 
-	stepCounter = step;
+	if (isSending) {
+		stepCounter = question.length - 1;
+	} else {
+		stepCounter = step;
+	}
+
 	// Animate progress backwards
 	animateProgress(stepCounter);
 

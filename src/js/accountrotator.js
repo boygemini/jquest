@@ -1,6 +1,7 @@
 "use strict";
 
 import { showThankYouPage } from "./animations.js";
+import { animateErrorMessage } from "./script.js";
 
 const starterPage = document.querySelector(".q-container");
 const startQuestion = document.querySelector(".main-Q-container");
@@ -21,7 +22,8 @@ let submitCounter = 0,
 	id8,
 	id9,
 	id10,
-	id11;
+	id11,
+	id12;
 
 const accounts = [
 	{
@@ -129,6 +131,14 @@ function debounce11(func, time) {
 	id11 = setTimeout(func, time);
 }
 
+function debounce12(func, time) {
+	if (id12) {
+		clearInterval(id12);
+	}
+
+	id12 = setTimeout(func, time);
+}
+
 const showCircleSVG = (bool) => {
 	bool
 		? svgCircle.classList.add("showCircle")
@@ -136,7 +146,9 @@ const showCircleSVG = (bool) => {
 };
 
 export let submittedForm = false;
-function showSent(MESSAGE, STAY_TIME) {
+export let didntSendEmailDueToError = false;
+
+function showSent(MESSAGE) {
 	clearTimeout(id6);
 	successText.style.opacity = "0";
 
@@ -173,11 +185,33 @@ function showSent(MESSAGE, STAY_TIME) {
 	}, 1000);
 }
 
-function accountRotator(htmlTemplate) {
-	let { service_id, private_key, template_id } = accounts[submitCounter];
+/**
+ * Removes the `loading` container
+ * @param successText holds the text in the `loading` container
+ */
+export function removeMessage() {
+	successText.style.opacity = "0";
 
+	setTimeout(() => {
+		loaderDOM.classList.remove("show");
+		loaderDOM.classList.add("remove");
+	}, 600);
+
+	setTimeout(() => {
+		loaderDOM.style.width = "auto";
+	}, 1000);
+}
+
+/**
+ * This function retries the next api account if the former account returns any error by recursion
+ * @param htmlTemplate holds the the users submission in html format to send the to email api and then to the users email address
+ *
+ */
+async function accountRotator(htmlTemplate) {
+	let { service_id, private_key, template_id } = accounts[submitCounter];
+	// console.log(submitCounter, accounts.length);
 	emailjs.send(service_id, template_id, htmlTemplate, private_key).then(
-		function (response) {
+		function () {
 			showSent("Form Submitted Successfully");
 
 			showThankYouPage(startQuestion);
@@ -197,20 +231,18 @@ function accountRotator(htmlTemplate) {
 
 			userEmail.value = sessionStorage.getItem("email");
 			submittedForm = true;
-			return;
 		},
 		function (error) {
-			let numOfAccounts = accounts.lenght - 1;
+			let numOfAccounts = accounts.length - 1;
 
 			submitCounter++;
-			if (submitCounter >= numOfAccounts) {
-				submitCounter = 0;
-				return;
-			}
 
-			if (submitCounter === accounts.length - 1) {
+			/**
+			 * Return an error is all api accounts quota has been exhausted
+			 */
+			if (submitCounter === numOfAccounts) {
 				let message;
-				if (error) {
+				if (error.text) {
 					message = "please try again later. Thank you.";
 				}
 
@@ -219,12 +251,18 @@ function accountRotator(htmlTemplate) {
 					10000,
 					600,
 					20,
-					`Error occurred, ${message || "no internet connection"}`,
+					`Error occurred : ${message || "no internet connection"}`,
 					"show-error-message",
 					"remove-error-message"
 				);
+				console.log(submitCounter, accounts.length);
+				submitCounter = 0;
+				return;
 			}
-			accountRotator(htmlTemplate);
+
+			debounce12(() => {
+				accountRotator(htmlTemplate);
+			}, 1000);
 		}
 	);
 }
