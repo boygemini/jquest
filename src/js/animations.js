@@ -1,6 +1,4 @@
 "use strict";
-import Questions from "./questions.js";
-
 const pagePreloader = document.querySelector(".sitepreloader");
 const loader = document.querySelector(".loadd");
 
@@ -317,11 +315,6 @@ export function showThankYouPage() {
 			opacity: 0,
 		}
 	);
-
-	// animate.to(".control-buttons", {
-	//     opacity: 0,
-	//     y: 100,
-	// }, "<20%");
 
 	// Fadein
 	animate.fromTo(

@@ -2,7 +2,7 @@
 
 import { showThankYouPage } from "./animations.js";
 import questions from "./questions.js";
-import { animateErrorMessage, setStage } from "./script.js";
+import { animateErrorMessage, setStage, debounce } from "./script.js";
 
 const starterPage = document.querySelector(".q-container");
 const startQuestion = document.querySelector(".main-Q-container");
@@ -10,21 +10,12 @@ const thankYou = document.querySelector(".thank-you");
 const BackButton = document.querySelector(".back-button");
 const ContinueButton = document.getElementById("continue");
 const userEmail = document.getElementById("email");
-const svgCircle = document.getElementById("circle");
 const submitLoader = document.querySelector(".circle-loader");
 const successMark = document.querySelector(".checkmark");
 const loaderDOM = document.querySelector(".loader");
 const successText = document.querySelector(".sent-message");
 
-let usersEmailAddress, id6;
-let submitCounter = 0,
-	id14,
-	id13,
-	id8,
-	id9,
-	id10,
-	id11,
-	id12;
+let submitCounter = 0;
 
 const accounts = [
 	{
@@ -84,100 +75,45 @@ const accounts = [
 	},
 ];
 
-function debounce13(func, time) {
-	if (id13) {
-		clearTimeout(id13);
-	}
-
-	id13 = setTimeout(func, time);
-}
-
-function debounce14(func, time) {
-	if (id14) {
-		clearTimeout(id14);
-	}
-
-	id14 = setTimeout(func, time);
-}
-
-function debounce8(func, time) {
-	if (id8) {
-		clearTimeout(id8);
-	}
-
-	id8 = setTimeout(func, time);
-}
-
-function debounce9(func, time) {
-	if (id9) {
-		clearTimeout(id9);
-	}
-
-	id9 = setTimeout(func, time);
-}
-
-function debounce10(func, time) {
-	if (id10) {
-		clearTimeout(id10);
-	}
-
-	id10 = setTimeout(func, time);
-}
-
-function debounce11(func, time) {
-	if (id11) {
-		clearTimeout(id11);
-	}
-
-	id11 = setTimeout(func, time);
-}
-
-function debounce12(func, time) {
-	if (id12) {
-		clearInterval(id12);
-	}
-
-	id12 = setTimeout(func, time);
-}
-
 export let submittedForm = false;
 export let didntSendEmailDueToError = false;
 
 export function showSent(MESSAGE) {
-	clearTimeout(id6);
 	successText.style.opacity = "0";
 
 	setTimeout(() => {
 		successText.innerText = MESSAGE;
 		successText.style.display = "none";
 		loaderDOM.style.justifyContent = "center";
-		// loaderDOM.style.backgroundColor = "#11bd05";
-		// loaderDOM.style.width = `${successText.scrollWidth + 50}px`;
 
 		submitLoader.classList.add("load-complete");
 		loaderDOM.style.backgroundColor = "#11bd05";
 		loaderDOM.style.width = `${submitLoader.scrollWidth + 50}px`;
 	}, 200);
 
-	debounce8(() => {
+	const debounce1 = debounce(() => {
 		successMark.style.display = "flex";
 		successText.style.display = "none";
 	}, 300);
+	debounce1();
 
-	debounce9(() => {
+	const debounce2 = debounce(() => {
 		successText.style.opacity = "0";
 
-		debounce10(() => {
+		const debounce3 = debounce(() => {
 			loaderDOM.style.width = `${submitLoader.scrollWidth + 50}px`;
 		}, 300);
+		debounce3();
 
-		debounce11(() => {
+		const debounce4 = debounce(() => {
 			loaderDOM.classList.remove("show");
 			loaderDOM.classList.add("remove");
 			submitLoader.classList.remove("load-complete");
 			successMark.style.display = "none";
 		}, 600);
+		debounce4();
 	}, 1000);
+	debounce2();
 }
 
 /**
@@ -204,24 +140,26 @@ export function removeMessage() {
  */
 async function accountRotator(htmlTemplate) {
 	let { service_id, private_key, template_id } = accounts[submitCounter];
-	// console.log(submitCounter, accounts.length);
+
 	emailjs.send(service_id, template_id, htmlTemplate, private_key).then(
 		function () {
 			showSent("Form Submitted Successfully");
 
 			showThankYouPage(startQuestion);
 
-			debounce13(() => {
+			const debounce5 = debounce(() => {
 				ContinueButton.style.display = "none";
 				BackButton.classList.add("widen");
 			}, 400);
+			debounce5();
 
-			debounce14(() => {
+			const debounce6 = debounce(() => {
 				thankYou.style.display = "flex";
 				starterPage.style.display = "none";
 				startQuestion.style.display = "none";
 				body.classList.add("blurbody");
 			}, 600);
+			debounce6();
 
 			userEmail.value = sessionStorage.getItem("email");
 			submittedForm = true;
@@ -269,9 +207,10 @@ async function accountRotator(htmlTemplate) {
 				return;
 			}
 
-			debounce12(() => {
+			const debounce7 = debounce(() => {
 				accountRotator(htmlTemplate);
 			}, 1000);
+			debounce7();
 		}
 	);
 }

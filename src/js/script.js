@@ -1,6 +1,6 @@
 "use strict";
 
-import Questions, { feedBacks } from "./questions.js";
+import Questions from "./questions.js";
 import {
 	backToForm,
 	continueDuringSurvey,
@@ -10,16 +10,8 @@ import {
 import accountRotator, { submittedForm } from "./accountrotator.js";
 
 const body = document.querySelector("#body");
-const logo = document.querySelector("#logo");
-const html = document.getElementsByTagName("html");
 const controlButtons = document.querySelector(".control-buttons");
-const pTicle = document.querySelector(".particles-js-canvas-el");
 const backCircle = document.querySelector(".backcircle");
-const emailTextField = document.querySelector(".field-container");
-const introText = document.querySelector(".introtext");
-const rule = document.querySelector(".selection-rule");
-const emailSent = document.querySelector(".email-sent");
-const starBoy = document.querySelector(".big-thankyou");
 
 const textInputFields = document.querySelectorAll(".ads");
 const textFieldLabels = document.querySelectorAll("label");
@@ -27,7 +19,6 @@ const selectionChoice = document.querySelector(".selection-rule");
 const ContinueButton = document.getElementById("continue");
 const BackButton = document.querySelector(".back-button");
 const ChangeEmailButton = document.getElementById("changeemail");
-const svgCircle = document.getElementById("circle");
 const progressSVG = document.querySelector(".progress");
 const progress = document.querySelector(".percentage");
 const currentStage = document.querySelector(".current-stage");
@@ -35,7 +26,6 @@ const errorMessage = document.querySelector(".error-message");
 const loaderDOM = document.querySelector(".loader");
 const changeEmailContainer = document.querySelector(".change-email");
 const resubmitEmailContainer = document.querySelector(".resubmitmodal");
-const emailBox = document.getElementById("emailchange");
 const editfield = document.getElementById("edit");
 const cancel = document.querySelectorAll(".cancel");
 const changeEmail = document.querySelectorAll(".saveemail");
@@ -45,245 +35,28 @@ const errorText = document.querySelector(".error-text");
 const starterPage = document.querySelector(".q-container");
 const startQuestion = document.querySelector(".main-Q-container");
 const thankYou = document.querySelector(".thank-you");
-const emojis = document.querySelector(".emojis");
 const userEmail = document.getElementById("email");
 const changeEmailBox = document.querySelector(".email");
 const dontResubmitButton = document.querySelector(".no");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
-const svggradient = document.getElementById("gradient");
 
-let stepCounter = 0;
 const submitLoader = document.querySelector(".circle-loader");
-const successMark = document.querySelector(".checkmark");
-let isSending = false;
-let otfp = false;
+let otfp = false; // If user is on the completion page
 
 body.classList.add("soft");
 
-let id1,
-	id2,
-	id3,
-	id4,
-	id5,
-	id6,
-	id7,
-	id8,
-	id9,
-	id10,
-	id11,
-	id12,
-	id13,
-	id14,
-	id15,
-	id16,
-	id17,
-	id18,
-	id19,
-	id20,
-	id21,
-	id22,
-	id23,
-	id24,
-	id25,
-	bd;
+export function debounce(func, time) {
+	let id;
 
-function debounce1(func, time) {
-	if (id1) {
-		clearTimeout(id1);
-	}
+	return function (...args) {
+		if (id) {
+			clearTimeout(id);
+		}
 
-	id1 = setTimeout(func, time);
-}
-
-function debounce2(func, time) {
-	if (id2) {
-		clearTimeout(id2);
-	}
-
-	id2 = setTimeout(func, time);
-}
-
-function debounce3(func, time) {
-	if (id3) {
-		clearTimeout(id3);
-	}
-
-	id3 = setTimeout(func, time);
-}
-
-function debounce4(func, time) {
-	if (id4) {
-		clearTimeout(id4);
-	}
-
-	id4 = setTimeout(func, time);
-}
-
-function debounce5(func, time) {
-	if (id5) {
-		clearTimeout(id5);
-	}
-
-	id5 = setTimeout(func, time);
-}
-
-function debounce6(func, time) {
-	if (id6) {
-		clearTimeout(id6);
-	}
-
-	id6 = setTimeout(func, time);
-}
-
-function debounce7(func, time) {
-	if (id7) {
-		clearTimeout(id7);
-	}
-
-	id7 = setTimeout(func, time);
-}
-
-function debounce8(func, time) {
-	if (id8) {
-		clearTimeout(id8);
-	}
-
-	id8 = setTimeout(func, time);
-}
-
-function debounce9(func, time) {
-	if (id9) {
-		clearTimeout(id9);
-	}
-
-	id9 = setTimeout(func, time);
-}
-
-function debounce10(func, time) {
-	if (id10) {
-		clearTimeout(id10);
-	}
-
-	id10 = setTimeout(func, time);
-}
-
-function debounce11(func, time) {
-	if (id11) {
-		clearTimeout(id11);
-	}
-
-	id11 = setTimeout(func, time);
-}
-
-function debounce12(func, time) {
-	if (id12) {
-		clearTimeout(id12);
-	}
-
-	id12 = setTimeout(func, time);
-}
-
-function debounce13(func, time) {
-	if (id13) {
-		clearTimeout(id13);
-	}
-
-	id13 = setTimeout(func, time);
-}
-
-/////////
-function debounce14(func, time) {
-	if (id14) {
-		clearTimeout(id14);
-	}
-
-	id14 = setTimeout(func, time);
-}
-
-function debounce15(func, time) {
-	if (id15) {
-		clearTimeout(id15);
-	}
-
-	id15 = setTimeout(func, time);
-}
-
-function debounce16(func, time) {
-	if (id16) {
-		clearTimeout(id16);
-	}
-
-	id16 = setTimeout(func, time);
-}
-
-function debounce17(func, time) {
-	if (id17) {
-		clearTimeout(id17);
-	}
-
-	id17 = setTimeout(func, time);
-}
-
-function debounce18(func, time) {
-	if (id18) {
-		clearTimeout(id18);
-	}
-
-	id18 = setTimeout(func, time);
-}
-function debounce19(func, time) {
-	if (id19) {
-		clearTimeout(id19);
-	}
-
-	id19 = setTimeout(func, time);
-}
-
-function debounce20(func, time) {
-	if (id20) {
-		clearTimeout(id20);
-	}
-
-	id20 = setTimeout(func, time);
-}
-
-function debounce21(func, time) {
-	if (id21) {
-		clearTimeout(id21);
-	}
-
-	id21 = setTimeout(func, time);
-}
-
-function debounce22(func, time) {
-	if (id22) {
-		clearTimeout(id22);
-	}
-
-	id22 = setTimeout(func, time);
-}
-
-function debounce23(func, time) {
-	if (id23) {
-		clearTimeout(id23);
-	}
-
-	id23 = setTimeout(func, time);
-}
-function debounce24(func, time) {
-	if (id24) {
-		clearTimeout(id24);
-	}
-
-	id24 = setTimeout(func, time);
-}
-
-function debounce25(func, time) {
-	if (id25) {
-		clearTimeout(id25);
-	}
-
-	id25 = setTimeout(func, time);
+		id = setTimeout(() => {
+			func.apply(this, args);
+		}, time);
+	};
 }
 
 /**
@@ -446,7 +219,7 @@ export function animateErrorMessage(
 	}
 
 	// After 300 millisecs set the Error Message container width to its full width
-	debounce1(() => {
+	const debounce1 = debounce(() => {
 		if (window.screen.availWidth >= 1024) {
 			errorMessage.style.width = errorMessageNodeWidth + "px";
 			return;
@@ -454,14 +227,16 @@ export function animateErrorMessage(
 
 		errorMessage.style.width = "100%";
 	}, ERROR_MESSAGE_ANIMATION_DURATION / 2);
+	debounce1();
 
 	// After 600 millisecs make the error message text obvious
-	debounce2(() => {
+	const debounce2 = debounce(() => {
 		errorText.style.opacity = "1";
 	}, ERROR_MESSAGE_ANIMATION_DURATION);
+	debounce2();
 
 	// After 3secs Remove the Error Message
-	debounce3(() => {
+	const debounce3 = debounce(() => {
 		let errorMessageClassLists = ["show-error-message", "show-reset-message"];
 
 		if (window.screen.availWidth >= 1024) {
@@ -470,16 +245,18 @@ export function animateErrorMessage(
 
 		errorText.style.opacity = "0";
 
-		debounce4(() => {
+		const debounce4 = debounce(() => {
 			for (let className of errorMessageClassLists) {
 				errorMessage.classList.remove(className);
 			}
 			errorMessage.classList.add(REMOVE_ERROR_CLASS);
 		}, ERROR_MESSAGE_ANIMATION_DURATION / 2);
+		debounce4();
 	}, ERROR_MESSAGE_DURATION);
+	debounce3();
 
 	// After 3+ millsecs reset the Error Message container and text container
-	debounce5(() => {
+	const debounce5 = debounce(() => {
 		if (window.screen.availWidth >= 1024) {
 			errorMessage.style.width = "auto";
 		}
@@ -488,9 +265,9 @@ export function animateErrorMessage(
 			errorMessage.style.width = "100%";
 		}
 
-		// errorText.innerText = "";
 		userEmail.classList.remove("empty-email-field");
 	}, ERROR_MESSAGE_DURATION + ERROR_MESSAGE_ANIMATION_DURATION);
+	debounce5();
 }
 
 function showSending(MESSAGE) {
@@ -498,23 +275,26 @@ function showSending(MESSAGE) {
 
 	successText.innerText = MESSAGE;
 	loaderDOM.style.width = submitLoader.scrollWidth + 50 + "px";
+
 	// Remove the reove-error-message and add show-error-message class to show the error message
 	loaderDOM.classList.remove("remove");
 	loaderDOM.classList.add("show");
 	loaderDOM.style.backgroundColor = "orange";
 
 	if (screen.width > 767) {
-		debounce6(() => {
+		const debounce6 = debounce(() => {
 			successText.style.display = "flex";
 			loaderDOM.style.justifyContent = "flex-start";
 			loaderDOM.style.width =
 				submitLoader.scrollWidth + successText.scrollWidth + 50 + "px";
 		}, 700);
+		debounce6();
 
 		// After 600 millisecs make the error message text obvious
-		debounce7(() => {
+		const debounce7 = debounce(() => {
 			successText.style.opacity = "1";
 		}, 900);
+		debounce7();
 	}
 }
 
@@ -569,7 +349,6 @@ function sendEmail(email) {
 	if (filled.length === 0) {
 		let file = Object.values(REVIEW);
 		let nArr = [];
-		let result = document.querySelector(".result");
 
 		for (let i in file) {
 			if (i === "2" || i === "8" || i === "9") {
@@ -649,10 +428,10 @@ function sendEmail(email) {
 						</body>
 						</html>`;
 
-		// gsap.to(".circle-progress", { opacity: 0, duration: 0.5, delay: 0.5 });
-		debounce6(() => {
+		const debounce8 = debounce(() => {
 			showSending("Submitting Form...");
 		}, 500);
+		debounce8();
 
 		let htmlTemplate = {
 			my_html: html,
@@ -660,16 +439,16 @@ function sendEmail(email) {
 			reply_to: "gbadebojubril@gmail.com",
 		};
 
-		debounce12(() => {
+		const debounce9 = debounce(() => {
 			accountRotator(htmlTemplate);
 		}, 2000);
+		debounce9();
 	}
 }
 
 function gotoNextStep(step, question) {
 	const answersField = document.querySelector(".answer-field");
 	const questionElement = document.querySelector(".Question");
-	let noq = question.length;
 
 	// Proceed to QA if email address field is filled
 	if (step === 0) {
@@ -696,7 +475,7 @@ function gotoNextStep(step, question) {
 				userEmail.classList.add("empty-email-field");
 				return;
 			}
-			// validateEmail(userEmail, step);
+
 			goingOutOfWelcome();
 
 			// Save the user's email address to the local storage
@@ -709,7 +488,7 @@ function gotoNextStep(step, question) {
 	if (step >= question.length) {
 		gsap.to(".circle-progress", {
 			opacity: 0,
-			duration: 0.5,
+			duration: 0.3,
 			delay: 0.25,
 		});
 
@@ -766,9 +545,10 @@ function gotoNextStep(step, question) {
 					"<"
 				);
 
-				debounce15(() => {
+				const debounce10 = debounce(() => {
 					resubmitEmailContainer.style.display = "none";
 				}, 400);
+				debounce10();
 
 				step = step - 1;
 				setStage(step);
@@ -779,7 +559,6 @@ function gotoNextStep(step, question) {
 			sendEmail(sessionStorage.getItem("email"));
 		}
 
-		isSending = true;
 		animateProgress(20);
 		step = question.length;
 	}
@@ -788,21 +567,18 @@ function gotoNextStep(step, question) {
 
 	if (step <= question.length && step > 0) {
 		// Put off the welcome page and put on the QA page
-		// body.style.backgroundColor = "#ffffffdd";
-		// body.classList.add("soft");
 		body.classList.add("soft");
 		backCircle.style.opacity = "0";
 		controlButtons.classList.add("csoft");
 		thankYou.style.display = "none";
-		debounce16(() => {
+		const debounce11 = debounce(() => {
 			ContinueButton.children[0].innerText = "Continue";
 			ContinueButton.style.display = "flex";
 			BackButton.style.display = "flex";
 			ContinueButton.classList.remove("widen");
 			BackButton.classList.remove("widen");
-			// startQuestion.style.display = "flex";
-			// starterPage.style.display = "none";
 		}, 500);
+		debounce11();
 
 		try {
 			ChangeEmailButton.style.display = "none";
@@ -830,7 +606,7 @@ function gotoNextStep(step, question) {
 			continueDuringSurvey(questionElement, answersField);
 		}
 
-		debounce17(() => {
+		const debounce12 = debounce(() => {
 			if (question[step]) {
 				// Display Question
 				questionElement.innerHTML =
@@ -841,6 +617,7 @@ function gotoNextStep(step, question) {
 				displayAnswersInteractively(answersField, step, question);
 			}
 		}, 500);
+		debounce12();
 	}
 
 	setStage(step);
@@ -869,13 +646,14 @@ function gotoPreviousStep(step, question) {
 	if (step <= 0) {
 		thankYou.style.display = "none";
 
-		debounce18(() => {
+		const debounce13 = debounce(() => {
 			BackButton.style.display = "none";
 			ContinueButton.classList.add("widen");
 			controlButtons.classList.remove("csoft");
 			startQuestion.style.display = "none";
 			starterPage.style.display = "flex";
 		}, 500);
+		debounce13();
 
 		backToWelcome();
 
@@ -1038,8 +816,6 @@ function displayAnswersInteractively(answersField, step, question) {
 					break;
 			}
 
-			// answersField.innerHTML += `<div class="ans-box" ></div>`;
-
 			switch (step) {
 				case 1:
 				case 9:
@@ -1134,14 +910,11 @@ function displayAnswersInteractively(answersField, step, question) {
 
 const addCheckAnimationForImgTextBox = (checkerDir, containerDir) => {
 	let checker = checkerDir;
-	let container = containerDir;
 	checker.classList.add("checked2");
-	// container.classList.toggle("border");
 };
 
 const removeCheckAnimationForImgTextBox = (checkerDir, containerDir) => {
 	let checker = checkerDir;
-	let container = containerDir;
 	checker.classList.remove("checked2");
 };
 
@@ -1435,12 +1208,6 @@ function addAnswerToPersonObject(
 changeEmailContainer.style.display = "none";
 resubmitEmailContainer.style.display = "none";
 
-// dontResubmitButton.onclick = () => {
-// 	console.log("Hey");
-// 	debounce19(() => gotoNextStep(stepCounter, Questions), 100);
-
-// };
-
 inner.onfocus = () => {
 	const inemail = document.querySelector(".email");
 	inemail.style.overflow = "scroll";
@@ -1517,10 +1284,11 @@ changeEmail.forEach((x) => {
 			duration: 0.3,
 		});
 
-		debounce20(() => {
+		const debounce14 = debounce(() => {
 			changeEmailContainer.style.display = "none";
 			resubmitEmailContainer.style.display = "none";
 		}, 300);
+		debounce14();
 	};
 });
 
@@ -1550,10 +1318,11 @@ cancel.forEach((c) => {
 			"<"
 		);
 
-		debounce21(() => {
+		const debounce15 = debounce(() => {
 			changeEmailContainer.style.display = "none";
 			resubmitEmailContainer.style.display = "none";
 		}, 300);
+		debounce15();
 
 		if (e.target.classList.value.includes("c2")) {
 			setStage(currentFormStage() - 1);
@@ -1563,24 +1332,34 @@ cancel.forEach((c) => {
 
 // Continue button
 ContinueButton.addEventListener("click", (e) => {
-	debounce22(() => gotoNextStep(currentFormStage(), Questions), 100);
+	const debounce16 = debounce(
+		() => gotoNextStep(currentFormStage(), Questions),
+		100
+	);
+	debounce16();
 });
 
 BackButton.addEventListener("click", (e) => {
-	debounce23(() => gotoPreviousStep(currentFormStage(), Questions), 200);
+	const debounce17 = debounce(
+		() => gotoPreviousStep(currentFormStage(), Questions),
+		200
+	);
+	debounce17();
 });
 
 // Continue to Next Step On Press Enter
 window.addEventListener("keydown", (e) => {
-	debounce24(() => {
+	const debounce18 = debounce(() => {
 		keydownHandler(e);
 	}, 200);
+	debounce18();
 });
 
 window.addEventListener("keydown", (e) => {
-	debounce25(() => {
+	const debounce19 = debounce(() => {
 		enterKeyPressHandler(e);
 	}, 200);
+	debounce19();
 });
 
 function keydownHandler(e) {
@@ -1618,4 +1397,3 @@ function enterKeyPressHandler(e) {
 }
 
 animateProgress(0);
-export default REVIEW;
