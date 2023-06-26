@@ -1,10 +1,5 @@
 const accounts = [
 	{
-		service_id: "service_tiasju5",
-		private_key: "NqngqYKOhNbJ0aN0t",
-		template_id: "template_fxfuxe5",
-	},
-	{
 		service_id: "service_n4tb1ha",
 		private_key: "553cr3LqBwR3V1yHi",
 		template_id: "template_sro3gse",
@@ -98,6 +93,11 @@ const accounts = [
 		service_id: "service_0n58hvk",
 		private_key: "004VCw-TaPOcRfEiI",
 		template_id: "template_s3sri3p",
+	},
+	{
+		service_id: "service_bbjt4ip",
+		private_key: "zncj5FWpUVyiIhmzt",
+		template_id: "template_c3d209n",
 	},
 ];
 
