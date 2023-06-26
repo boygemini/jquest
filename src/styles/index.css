@@ -40,22 +40,9 @@
 	opacity: 0;
 }
 
-.showCircle {
-	transform: scale(1) !important;
-	-webkit-transform: scale(1) !important;
-	-moz-transform: scale(1) !important;
-	-ms-transform: scale(1) !important;
-	-o-transform: scale(1) !important;
-}
 
 .progress {
 	translate: rotate(90, 100, 100);
-	transform: all 2s linear forwards;
-	-webkit-animation: progress 5s linear forwards;
-	-webkit-transform: rotate(90, 100, 100);
-	-moz-transform: rotate(90, 100, 100);
-	-ms-transform: rotate(90, 100, 100);
-	-o-transform: rotate(90, 100, 100);
 }
 
 .percentage {
@@ -326,17 +313,8 @@ html {
 	justify-self: flex-end;
 }
 
-.progress {
-	stroke: #f2c744 !important;
-	background-image: linear-gradient(310deg,
-			#f2c745 0%,
-			#f3c144 33%,
-			#f3bc44 48%,
-			#f4b643 58%,
-			#f4b043 67%,
-			#f3aa44 76%,
-			#f3a444 84%,
-			#f29e45 100%) !important;
+.progresscomplete{
+
 }
 
 .back-button {
@@ -407,7 +385,7 @@ html {
 .ans-box,
 .two-ans,
 .two-ans-logo-disp,
-.textt , .checker, .text-checker, .tools-ans-checker, .bare-ans p, body{
+.textt , .checker, .text-checker, .tools-ans-checker, .bare-ans p{
 	transition: all .3s ease-in-out !important;
 	-webkit-transition: all .3s ease-in-out !important;
 	-moz-transition: all .3s ease-in-out !important;
@@ -469,7 +447,7 @@ html {
 	overflow: hidden;
 	width: 20px;
 	background-color: #ff0000f0;
-	box-shadow: 0px 20px 20px -10px rgba(37, 43, 48, 0.24);
+	/* box-shadow: 0px 20px 20px -10px rgba(37, 43, 48, 0.24); */
 }
 
 .remove-reset-message {
@@ -484,7 +462,7 @@ html {
 	overflow: hidden;
 	width: 20px;
 	background-color: #0000ffec;
-	box-shadow: 0px 20px 20px -10px rgba(37, 43, 48, 0.24);
+	/* box-shadow: 0px 20px 20px -10px rgba(37, 43, 48, 0.24); */
 }
 
 .loader {
@@ -521,7 +499,7 @@ html {
 	opacity: 1;
 	top: 6rem;
 	color: rgb(245, 245, 245);
-	box-shadow: 0px 20px 20px -10px rgba(23, 2, 43, 0.328);
+	/* box-shadow: 0px 20px 20px -10px rgba(37, 43, 48, 0.24); */
 }
 
 .remove {
@@ -1524,11 +1502,6 @@ footer {
 		-moz-border-radius: 100%;
 		-ms-border-radius: 100%;
 		-o-border-radius: 100%;
-		transform: scale(0);
-		-webkit-transform: scale(0);
-		-moz-transform: scale(0);
-		-ms-transform: scale(0);
-		-o-transform: scale(0);
 		position: absolute;
 		background-color: white;
 		z-index: 100;
@@ -2000,11 +1973,6 @@ footer {
 		-moz-border-radius: 100%;
 		-ms-border-radius: 100%;
 		-o-border-radius: 100%;
-		transform: scale(0);
-		-webkit-transform: scale(0);
-		-moz-transform: scale(0);
-		-ms-transform: scale(0);
-		-o-transform: scale(0);
 	}
 
 	.progress {

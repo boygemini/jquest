@@ -2,16 +2,12 @@
 
 import Questions, { feedBacks } from "./questions.js";
 import {
-	showThankYouPage,
 	backToForm,
 	continueDuringSurvey,
 	backToWelcome,
 	goingOutOfWelcome,
 } from "./animations.js";
-import accountRotator, {
-	submittedForm,
-	didntSendEmailDueToError,
-} from "./accountrotator.js";
+import accountRotator, { submittedForm } from "./accountrotator.js";
 
 const body = document.querySelector("#body");
 const logo = document.querySelector("#logo");
@@ -54,11 +50,13 @@ const userEmail = document.getElementById("email");
 const changeEmailBox = document.querySelector(".email");
 const dontResubmitButton = document.querySelector(".no");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
-// let usersEmailAddress = sessionStorage.setItem("email", "");
+const svggradient = document.getElementById("gradient");
+
 export let stepCounter = 0;
 const submitLoader = document.querySelector(".circle-loader");
 const successMark = document.querySelector(".checkmark");
 let isSending = false;
+let otfp = false;
 
 body.classList.add("soft");
 
@@ -301,15 +299,9 @@ function debounce25(func, time) {
  */
 changeEmailBox.addEventListener("click", (e) => {
 	editfield.focus();
+	editfield.contentEditable = true;
 });
 
-const showCircleSVG = (bool) => {
-	bool
-		? svgCircle.classList.add("showCircle")
-		: svgCircle.classList.remove("showCircle");
-};
-
-showCircleSVG(false);
 ContinueButton.classList.add("widen");
 
 if (window.screen.availWidth <= 480) {
@@ -323,22 +315,22 @@ let REVIEW = new Object({
 	2: {},
 	3: {},
 	4: {},
-	// 5: {},
-	// 6: {},
-	// 7: {},
-	// 8: {},
-	// 9: {},
-	// 10: {},
-	// 11: {},
-	// 12: {},
-	// 13: {},
-	// 14: {},
-	// 15: {},
-	// 16: {},
-	// 17: {},
-	// 18: {},
-	// 19: {},
-	// 20: {},
+	5: {},
+	6: {},
+	7: {},
+	8: {},
+	9: {},
+	10: {},
+	11: {},
+	12: {},
+	13: {},
+	14: {},
+	15: {},
+	16: {},
+	17: {},
+	18: {},
+	19: {},
+	20: {},
 });
 
 function reset() {
@@ -361,22 +353,22 @@ function reset() {
 			2: {},
 			3: {},
 			4: {},
-			// 5: {},
-			// 6: {},
-			// 7: {},
-			// 8: {},
-			// 9: {},
-			// 10: {},
-			// 11: {},
-			// 12: {},
-			// 13: {},
-			// 14: {},
-			// 15: {},
-			// 16: {},
-			// 17: {},
-			// 18: {},
-			// 19: {},
-			// 20: {},
+			5: {},
+			6: {},
+			7: {},
+			8: {},
+			9: {},
+			10: {},
+			11: {},
+			12: {},
+			13: {},
+			14: {},
+			15: {},
+			16: {},
+			17: {},
+			18: {},
+			19: {},
+			20: {},
 		};
 	}
 }
@@ -398,12 +390,12 @@ function reset() {
 					e.target.offsetParent.firstElementChild.classList += " move-up";
 				}
 
-				if (e.target.classList.value.includes("ads")) {
-					inner.contentEditable = true;
-					window.removeEventListener("keydown", keydownHandler, {
-						capture: false,
-					});
-				}
+				// if (e.target.classList.value.includes("ads")) {
+				// 	inner.contentEditable = true;
+				// 	window.removeEventListener("keydown", keydownHandler, {
+				// 		capture: false,
+				// 	});
+				// }
 			});
 		});
 	});
@@ -565,7 +557,7 @@ function animateProgress(step) {
 	let completedPercentage = Math.floor((filled.length / totalQuestions) * 100);
 	let svgPercentage = Math.floor((completedPercentage / 100) * 502);
 
-	progressSVG.style.transition = "1s";
+	progressSVG.style.transition = ".5s";
 	progressSVG.style.strokeDashoffset = 502 - svgPercentage;
 	progress.innerHTML = `${completedPercentage}%`;
 
@@ -662,8 +654,10 @@ function sendEmail(email) {
 						</body>
 						</html>`;
 
-		gsap.to(".circle-progress", { opacity: 0, duration: 0.25 });
-		showSending("Submitting Form...");
+		// gsap.to(".circle-progress", { opacity: 0, duration: 0.5, delay: 0.5 });
+		debounce6(() => {
+			showSending("Submitting Form...");
+		}, 500);
 
 		let htmlTemplate = {
 			my_html: html,
@@ -684,8 +678,6 @@ function gotoNextStep(step, question) {
 
 	// Proceed to QA if email address field is filled
 	if (step === 0) {
-		showCircleSVG(false);
-
 		// Save User's email is inputed
 		let emailIsEmpty = userEmail.value.trim().length === 0;
 
@@ -718,11 +710,21 @@ function gotoNextStep(step, question) {
 	// Control the form steps
 	step++;
 	if (step >= question.length) {
-		gsap.to(".control-buttons", {
+		gsap.to(".circle-progress", {
 			opacity: 0,
-			y: 100,
 			duration: 0.5,
+			delay: 0.25,
 		});
+
+		gsap.to(
+			".control-buttons",
+			{
+				opacity: 0,
+				y: 100,
+				duration: 0.5,
+			},
+			"<"
+		);
 
 		inner.innerText = sessionStorage.getItem("email");
 		if (submittedForm === true) {
@@ -749,9 +751,20 @@ function gotoNextStep(step, question) {
 						duration: 0.3,
 					}
 				);
+
+				gsap.to(
+					".control-buttons",
+					{
+						opacity: 1,
+						y: 0,
+					},
+					"<50%"
+				);
+
 				debounce15(() => {
 					resubmitEmailContainer.style.display = "none";
 				}, 400);
+
 				step = step - 1;
 				stepCounter = step;
 			};
@@ -768,7 +781,7 @@ function gotoNextStep(step, question) {
 
 	// Start QA on the Condition
 
-	if (step <= question.length - 1 && step > 0) {
+	if (step <= question.length && step > 0) {
 		// Put off the welcome page and put on the QA page
 		// body.style.backgroundColor = "#ffffffdd";
 		// body.classList.add("soft");
@@ -785,8 +798,6 @@ function gotoNextStep(step, question) {
 			// startQuestion.style.display = "flex";
 			// starterPage.style.display = "none";
 		}, 500);
-
-		showCircleSVG(true);
 
 		try {
 			ChangeEmailButton.style.display = "none";
@@ -841,13 +852,7 @@ function gotoPreviousStep(step, question) {
 	if (step <= 0) {
 		step = 0;
 	}
-
-	if (isSending) {
-		stepCounter = question.length - 1;
-	} else {
-		stepCounter = step;
-	}
-
+	stepCounter = step;
 	// Animate progress backwards
 	animateProgress(stepCounter);
 
@@ -870,7 +875,6 @@ function gotoPreviousStep(step, question) {
 		backToWelcome();
 
 		backCircle.style.opacity = "";
-		showCircleSVG(false);
 		return;
 	}
 
@@ -885,7 +889,6 @@ function gotoPreviousStep(step, question) {
 			BackButton.classList.remove("widen");
 			ContinueButton.classList.remove("widen");
 		}, 500);
-		showCircleSVG(true);
 
 		setTimeout(() => {
 			// Display Question
@@ -1246,96 +1249,42 @@ function markAndSaveSelections(bool, answers, step) {
 		selectionChoice.innerText = "Please select only one.";
 		answers.forEach((ans) => {
 			ans.addEventListener("click", (e) => {
-				let pickedAnswer = [
-					e.target,
-					e.target.parentElement,
-					e.target.parentElement.parentElement,
-					e.target.parentElement.parentElement.parentElement,
-				];
+				let pickedAnswer = e.target; // To get the ans ID and text
 
-				for (let i in pickedAnswer) {
-					try {
-						if (
-							(pickedAnswer[i].classList.value.includes("text-imgbox") &&
-								pickedAnswer[i].children[0].classList.value.includes(
-									"checked2"
-								)) ||
-							(pickedAnswer[i].classList.value.includes("textonlybox") &&
-								pickedAnswer[i].children[0].classList.value.includes(
-									"text-checked"
-								)) ||
-							(pickedAnswer[i].classList.value.includes("bare-ans") &&
-								pickedAnswer[i].children[0].classList.value.includes(
-									"opacity"
-								)) ||
-							(pickedAnswer[i].classList.value.includes("two-ans") &&
-								pickedAnswer[i].children[0].classList.value.includes(
-									"tools-ans-checked"
-								))
-						) {
-							removeClass(e);
-							removeAnswerToPersonObject(pickedAnswer[i].dataset.id, step);
-							break;
-						}
-					} catch (error) {}
+				answers.forEach((ans) => {
+					if (ans.classList.value.includes("text-imgbox")) {
+						removeCheckAnimationForImgTextBox(ans.children[0], ans);
+						return;
+					}
 
-					try {
-						if (
-							(pickedAnswer[i].classList.value.includes("bare-ans") &&
-								!pickedAnswer[i].children[0].classList.value.includes(
-									"opacity"
-								)) ||
-							(pickedAnswer[i].classList.value.includes("textonlybox") &&
-								!pickedAnswer[i].children[0].classList.value.includes(
-									"text-checked"
-								)) ||
-							(pickedAnswer[i].classList.value.includes("text-imgbox") &&
-								!pickedAnswer[i].children[0].classList.value.includes(
-									"checked2"
-								)) ||
-							(pickedAnswer[i].classList.value.includes("two-ans") &&
-								!pickedAnswer[i].children[0].classList.value.includes(
-									"tools-ans-checked"
-								))
-						) {
-							answers.forEach((ans) => {
-								pickedAnswer = e.target;
-								if (ans.classList.value.includes("text-imgbox")) {
-									removeCheckAnimationForImgTextBox(ans.children[0], ans);
-									return;
-								}
+					if (ans.classList.value.includes("textonlybox")) {
+						removeCheckAnimationForTextBoxOnly(ans.children[0], ans);
+						return;
+					}
 
-								if (ans.classList.value.includes("textonlybox")) {
-									removeCheckAnimationForTextBoxOnly(ans.children[0], ans);
-									return;
-								}
+					if (ans.classList.value.includes("bare-ans")) {
+						removeCheckAnimationForIconAndText(ans.children[0], ans);
+					}
 
-								if (ans.classList.value.includes("bare-ans")) {
-									removeCheckAnimationForIconAndText(ans.children[0], ans);
-									return;
-								}
+					if (ans.classList.value.includes("two-ans")) {
+						removeCheckAnimationForTwoAns(ans.children[0], ans);
+					}
+					// ans.classList.remove("border");
+				});
 
-								if (ans.classList.value.includes("two-ans")) {
-									removeCheckAnimationForTwoAns(ans.children[0], ans);
-								}
-							});
+				addClass(e);
 
-							addClass(e);
-
-							if (step === 1) {
-								// Reset the user's object when their primarey area of expertise has been changed.
-								reset();
-							}
-
-							addAnswerToPersonObject(
-								bool,
-								pickedAnswer.dataset.id,
-								pickedAnswer.dataset.answer,
-								step
-							);
-						}
-					} catch (error) {}
+				if (step === 1) {
+					// Reset the user's object when their primarey area of expertise has been changed.
+					reset();
 				}
+
+				addAnswerToPersonObject(
+					bool,
+					pickedAnswer.dataset.id,
+					pickedAnswer.dataset.answer,
+					step
+				);
 			});
 		});
 	}
@@ -1481,14 +1430,17 @@ function addAnswerToPersonObject(
 changeEmailContainer.style.display = "none";
 resubmitEmailContainer.style.display = "none";
 
-dontResubmitButton.onclick = () => {
-	debounce19(() => gotoNextStep(stepCounter, Questions), 100);
-};
+// dontResubmitButton.onclick = () => {
+// 	console.log("Hey");
+// 	debounce19(() => gotoNextStep(stepCounter, Questions), 100);
+
+// };
 
 inner.onfocus = () => {
 	const inemail = document.querySelector(".email");
 	inemail.style.overflow = "scroll";
 	inner.classList.remove("turndot", "turndot");
+	inner.contentEditable = true;
 	otfp = true;
 };
 
@@ -1579,6 +1531,12 @@ cancel.forEach((c) => {
 			duration: 0.3,
 		});
 
+		gsap.to(".control-buttons", {
+			opacity: 1,
+			y: 0,
+			duration: 0.5,
+		});
+
 		debounce21(() => {
 			changeEmailContainer.style.display = "none";
 			resubmitEmailContainer.style.display = "none";
@@ -1612,11 +1570,19 @@ window.addEventListener("keydown", (e) => {
 	}, 200);
 });
 
-let otfp = false;
 function keydownHandler(e) {
-	if (otfp) return;
+	if (otfp === true) {
+		return;
+	}
 
-	if (stepCounter <= Object.values(REVIEW).length + 1 && stepCounter > 0) {
+	if (stepCounter === Object.values(REVIEW).length + 1) {
+		if (e.key === "ArrowLeft") {
+			gotoPreviousStep(stepCounter, Questions);
+		}
+		return;
+	}
+
+	if (stepCounter <= Object.values(REVIEW).length && stepCounter > 0) {
 		if (e.key === "ArrowRight") {
 			gotoNextStep(stepCounter, Questions);
 		}

@@ -304,14 +304,6 @@ export function showThankYouPage() {
 	//     y: 100,
 	// }, "<20%");
 
-	animate.to(
-		".circle-progress",
-		{
-			opacity: 0,
-		},
-		"<50%"
-	);
-
 	// Fadein
 	animate.fromTo(
 		".thank-you",

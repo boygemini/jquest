@@ -139,16 +139,10 @@ function debounce12(func, time) {
 	id12 = setTimeout(func, time);
 }
 
-const showCircleSVG = (bool) => {
-	bool
-		? svgCircle.classList.add("showCircle")
-		: svgCircle.classList.remove("showCircle");
-};
-
 export let submittedForm = false;
 export let didntSendEmailDueToError = false;
 
-function showSent(MESSAGE) {
+export function showSent(MESSAGE) {
 	clearTimeout(id6);
 	successText.style.opacity = "0";
 
@@ -219,7 +213,6 @@ async function accountRotator(htmlTemplate) {
 			debounce13(() => {
 				ContinueButton.style.display = "none";
 				BackButton.classList.add("widen");
-				showCircleSVG(false);
 			}, 400);
 
 			debounce14(() => {

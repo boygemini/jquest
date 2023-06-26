@@ -104,7 +104,26 @@
 				fill="none"
 				stroke-dasharray="502"
 				stroke-dashoffset="502"
-				transform="rotate(-90, 100, 100)"></circle>
+				transform="rotate(-90, 100, 100)"
+				style="stroke: url(#gradient)"></circle>
+			<defs>
+				<linearGradient
+					id="gradient"
+					x1="0%"
+					y1="0%"
+					x2="100%"
+					y2="100%"
+					gradientTransform="rotate(310)">
+					<stop offset="0%" style="stop-color: #f2c745" />
+					<stop offset="33%" style="stop-color: #f3c144" />
+					<stop offset="48%" style="stop-color: #f3bc44" />
+					<stop offset="58%" style="stop-color: #f4b643" />
+					<stop offset="67%" style="stop-color: #f4b043" />
+					<stop offset="76%" style="stop-color: #f3aa44" />
+					<stop offset="84%" style="stop-color: #f3a444" />
+					<stop offset="100%" style="stop-color: #f29e45" />
+				</linearGradient>
+			</defs>
 			<text class="percentage" x="100" y="110" text-anchor="middle" fill="#555">
 				0%
 			</text>
@@ -115,6 +134,7 @@
 				text-anchor="middle"
 				fill="#555"></text>
 		</svg>
+
 		<div class="q-container">
 			<article class="question introtext">
 				<h1 class="q-heading" id="q-heading">
