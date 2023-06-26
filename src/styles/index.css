@@ -26,7 +26,8 @@
 	position: absolute;
 	top: 2rem;
 	right: 2rem;
-	box-shadow: 0px 0px 0px 5px blueviolet;
+	/* box-shadow: 0px 0px 0px 5px blueviolet !important; */
+	border: 1px solid #344754;
 	border-radius: 100%;
 	-webkit-border-radius: 100%;
 	-moz-border-radius: 100%;
@@ -384,6 +385,7 @@ html {
 .tools-ans-checker,
 .ans-box,
 .two-ans,
+.backcircle,
 .two-ans-logo-disp,
 .textt , .checker, .text-checker, .tools-ans-checker, .bare-ans p{
 	transition: all .3s ease-in-out !important;
@@ -1493,21 +1495,23 @@ footer {
 	}
 
 	#circle {
-		width: 110px;
-		height: 110px;
-		box-shadow: 0px 0px 20px -15px rgb(9, 9, 9),
-			0px 0px 20px -15px rgba(14, 3, 39, 0.535);
-		border-radius: 100%;
-		-webkit-border-radius: 100%;
-		-moz-border-radius: 100%;
-		-ms-border-radius: 100%;
-		-o-border-radius: 100%;
-		position: absolute;
-		background-color: white;
-		z-index: 100;
-		top: 20px;
-		right: 20px;
-	}
+			width: 110px;
+			height: 110px;
+			/*box-shadow: 0px 0px 20px -15px rgb(9, 9, 9),			0px 0px 20px -15px rgba(14, 3, 39, 0.535);
+			*/border-radius: 100%;
+			-webkit-border-radius: 100%;
+			-moz-border-radius: 100%;
+			-ms-border-radius: 100%;
+			-o-border-radius: 100%;
+			position: absolute;
+			background-color: rgba(255, 255, 255, 0.505);
+			z-index: 100;
+			top: 20px;
+			right: 20px;
+			border: 1px dashed #2261ff45;
+
+}
+
 
 	.percentage {
 		font-size: 47px !important;
@@ -1966,8 +1970,8 @@ footer {
 	#circle {
 		width: 120px;
 		height: 120px;
-		box-shadow: 0px 0px 30px -20px rgb(9, 9, 9),
-			0px 0px 30px -15px rgba(14, 3, 39, 0.535);
+		/* box-shadow: 0px 0px 30px -20px rgb(9, 9, 9),
+			0px 0px 30px -15px rgba(14, 3, 39, 0.535); */
 		border-radius: 100%;
 		-webkit-border-radius: 100%;
 		-moz-border-radius: 100%;
@@ -2207,7 +2211,7 @@ footer {
 	#circle {
 		width: 170px;
 		height: 170px;
-		box-shadow: 0px 0px 5px -1px #344754;
+		/* box-shadow: 0px 0px 5px -1px #344754; */
 		/* background-color: rgba(255, 255, 255, 0.688); */
 		/* background-color: #34475480; */
 	}
@@ -2447,7 +2451,7 @@ footer {
 	#circle {
 		width: 200px;
 		height: 200px;
-		box-shadow: 0px 0px 5px -1px #344754;
+		/* box-shadow: 0px 0px 5px -1px #344754; */
 		/* background-color: rgba(255, 255, 255, 0.688); */
 		/* background-color: #34475480; */
 	}

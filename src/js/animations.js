@@ -14,6 +14,7 @@ const animate = gsap.timeline({
 });
 
 window.onload = () => {
+	window.scrollTo(0, 0);
 	animate.fromTo(
 		".q-heading",
 		{

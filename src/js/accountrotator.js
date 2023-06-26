@@ -1,7 +1,8 @@
 "use strict";
 
 import { showThankYouPage } from "./animations.js";
-import { animateErrorMessage } from "./script.js";
+import questions from "./questions.js";
+import { animateErrorMessage, setStage } from "./script.js";
 
 const starterPage = document.querySelector(".q-container");
 const startQuestion = document.querySelector(".main-Q-container");
@@ -239,6 +240,20 @@ async function accountRotator(htmlTemplate) {
 					message = "please try again later. Thank you.";
 				}
 
+				gsap.to(".control-buttons", {
+					opacity: 1,
+					y: 0,
+					duration: 0.5,
+				});
+
+				gsap.to(
+					".circle-progress",
+					{
+						opacity: 1,
+					},
+					"<"
+				);
+
 				removeMessage();
 				animateErrorMessage(
 					10000,
@@ -248,7 +263,8 @@ async function accountRotator(htmlTemplate) {
 					"show-error-message",
 					"remove-error-message"
 				);
-				console.log(submitCounter, accounts.length);
+
+				setStage(questions.length - 1);
 				submitCounter = 0;
 				return;
 			}

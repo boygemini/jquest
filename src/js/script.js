@@ -52,7 +52,7 @@ const dontResubmitButton = document.querySelector(".no");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 const svggradient = document.getElementById("gradient");
 
-export let stepCounter = 0;
+let stepCounter = 0;
 const submitLoader = document.querySelector(".circle-loader");
 const successMark = document.querySelector(".checkmark");
 let isSending = false;
@@ -315,23 +315,34 @@ let REVIEW = new Object({
 	2: {},
 	3: {},
 	4: {},
-	5: {},
-	6: {},
-	7: {},
-	8: {},
-	9: {},
-	10: {},
-	11: {},
-	12: {},
-	13: {},
-	14: {},
-	15: {},
-	16: {},
-	17: {},
-	18: {},
-	19: {},
-	20: {},
+	// 5: {},
+	// 6: {},
+	// 7: {},
+	// 8: {},
+	// 9: {},
+	// 10: {},
+	// 11: {},
+	// 12: {},
+	// 13: {},
+	// 14: {},
+	// 15: {},
+	// 16: {},
+	// 17: {},
+	// 18: {},
+	// 19: {},
+	// 20: {},
 });
+
+export function setStage(stage) {
+	sessionStorage.setItem("form-stage", stage.toString());
+}
+
+setStage(0);
+
+export function currentFormStage() {
+	let stage = parseInt(sessionStorage.getItem("form-stage"));
+	return stage;
+}
 
 function reset() {
 	let filled = Object.entries(REVIEW)
@@ -353,22 +364,22 @@ function reset() {
 			2: {},
 			3: {},
 			4: {},
-			5: {},
-			6: {},
-			7: {},
-			8: {},
-			9: {},
-			10: {},
-			11: {},
-			12: {},
-			13: {},
-			14: {},
-			15: {},
-			16: {},
-			17: {},
-			18: {},
-			19: {},
-			20: {},
+			// 5: {},
+			// 6: {},
+			// 7: {},
+			// 8: {},
+			// 9: {},
+			// 10: {},
+			// 11: {},
+			// 12: {},
+			// 13: {},
+			// 14: {},
+			// 15: {},
+			// 16: {},
+			// 17: {},
+			// 18: {},
+			// 19: {},
+			// 20: {},
 		};
 	}
 }
@@ -761,12 +772,20 @@ function gotoNextStep(step, question) {
 					"<50%"
 				);
 
+				gsap.to(
+					".circle-progress",
+					{
+						opacity: 1,
+					},
+					"<"
+				);
+
 				debounce15(() => {
 					resubmitEmailContainer.style.display = "none";
 				}, 400);
 
 				step = step - 1;
-				stepCounter = step;
+				setStage(step);
 			};
 		}
 
@@ -838,10 +857,10 @@ function gotoNextStep(step, question) {
 		}, 500);
 	}
 
-	stepCounter = step;
+	setStage(step);
 
 	// Animate progress forwards
-	animateProgress(stepCounter);
+	animateProgress(currentFormStage());
 }
 
 function gotoPreviousStep(step, question) {
@@ -852,9 +871,9 @@ function gotoPreviousStep(step, question) {
 	if (step <= 0) {
 		step = 0;
 	}
-	stepCounter = step;
+	setStage(step);
 	// Animate progress backwards
-	animateProgress(stepCounter);
+	animateProgress(currentFormStage());
 
 	if (step === parseInt(Object.keys(REVIEW).length)) {
 		backToForm(startQuestion, questionElement, answersField);
@@ -1537,24 +1556,32 @@ cancel.forEach((c) => {
 			duration: 0.5,
 		});
 
+		gsap.to(
+			".circle-progress",
+			{
+				opacity: 1,
+			},
+			"<"
+		);
+
 		debounce21(() => {
 			changeEmailContainer.style.display = "none";
 			resubmitEmailContainer.style.display = "none";
 		}, 300);
 
 		if (e.target.classList.value.includes("c2")) {
-			stepCounter -= 1;
+			setStage(currentFormStage() - 1);
 		}
 	};
 });
 
 // Continue button
 ContinueButton.addEventListener("click", (e) => {
-	debounce22(() => gotoNextStep(stepCounter, Questions), 100);
+	debounce22(() => gotoNextStep(currentFormStage(), Questions), 100);
 });
 
 BackButton.addEventListener("click", (e) => {
-	debounce23(() => gotoPreviousStep(stepCounter, Questions), 200);
+	debounce23(() => gotoPreviousStep(currentFormStage(), Questions), 200);
 });
 
 // Continue to Next Step On Press Enter
@@ -1575,28 +1602,31 @@ function keydownHandler(e) {
 		return;
 	}
 
-	if (stepCounter === Object.values(REVIEW).length + 1) {
+	if (currentFormStage() === Object.values(REVIEW).length + 1) {
 		if (e.key === "ArrowLeft") {
-			gotoPreviousStep(stepCounter, Questions);
+			gotoPreviousStep(currentFormStage(), Questions);
 		}
 		return;
 	}
 
-	if (stepCounter <= Object.values(REVIEW).length && stepCounter > 0) {
+	if (
+		currentFormStage() <= Object.values(REVIEW).length &&
+		currentFormStage() > 0
+	) {
 		if (e.key === "ArrowRight") {
-			gotoNextStep(stepCounter, Questions);
+			gotoNextStep(currentFormStage(), Questions);
 		}
 
 		if (e.key === "ArrowLeft") {
-			gotoPreviousStep(stepCounter, Questions);
+			gotoPreviousStep(currentFormStage(), Questions);
 		}
 	}
 }
 
 function enterKeyPressHandler(e) {
-	if (stepCounter < Object.values(REVIEW).length + 1) {
+	if (currentFormStage() < Object.values(REVIEW).length + 1) {
 		if (e.key === "Enter") {
-			gotoNextStep(stepCounter, Questions);
+			gotoNextStep(currentFormStage(), Questions);
 		}
 	}
 }
