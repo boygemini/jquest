@@ -38,6 +38,7 @@ const userEmail = document.getElementById("email");
 const changeEmailBox = document.querySelector(".email");
 const dontResubmitButton = document.querySelector(".no");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+const buttons = document.querySelectorAll(".btnn");
 
 const submitLoader = document.querySelector(".circle-loader");
 let otfp = false; // If user is on the completion page
@@ -59,6 +60,13 @@ export function debounce(func, time) {
 		}, time);
 	};
 }
+
+export const disableButtons = (bool) => {
+	buttons.forEach((btn) => {
+		if (bool) btn.disabled = true;
+		if (!bool) btn.disabled = false;
+	});
+};
 
 /**
  * Focus the client on the email change field
@@ -83,23 +91,23 @@ let USERS_FILE = new Object({
 	1: {},
 	2: {},
 	3: {},
-	4: {},
-	5: {},
-	6: {},
-	7: {},
-	8: {},
-	9: {},
-	10: {},
-	11: {},
-	12: {},
-	13: {},
-	14: {},
-	15: {},
-	16: {},
-	17: {},
-	18: {},
-	19: {},
-	20: {},
+	// 4: {},
+	// 5: {},
+	// 6: {},
+	// 7: {},
+	// 8: {},
+	// 9: {},
+	// 10: {},
+	// 11: {},
+	// 12: {},
+	// 13: {},
+	// 14: {},
+	// 15: {},
+	// 16: {},
+	// 17: {},
+	// 18: {},
+	// 19: {},
+	// 20: {},
 });
 
 // Function to save the users progress in the browsers session storage
@@ -138,23 +146,23 @@ function reset() {
 			1: {},
 			2: {},
 			3: {},
-			4: {},
-			5: {},
-			6: {},
-			7: {},
-			8: {},
-			9: {},
-			10: {},
-			11: {},
-			12: {},
-			13: {},
-			14: {},
-			15: {},
-			16: {},
-			17: {},
-			18: {},
-			19: {},
-			20: {},
+			// 4: {},
+			// 5: {},
+			// 6: {},
+			// 7: {},
+			// 8: {},
+			// 9: {},
+			// 10: {},
+			// 11: {},
+			// 12: {},
+			// 13: {},
+			// 14: {},
+			// 15: {},
+			// 16: {},
+			// 17: {},
+			// 18: {},
+			// 19: {},
+			// 20: {},
 		};
 	}
 }
@@ -489,21 +497,7 @@ function sendEmail(email) {
 
 		const debounce8 = debounce(() => {
 			showSending("Submitting Form...");
-			gsap.to(".circle-progress", {
-				opacity: 0,
-				duration: 0.3,
-				delay: 0.25,
-			});
-
-			gsap.to(
-				".control-buttons",
-				{
-					opacity: 0,
-					y: 100,
-					duration: 0.5,
-				},
-				"<"
-			);
+			disableButtons(true); // Disable buttons while form is submitting
 		}, 500);
 		debounce8();
 

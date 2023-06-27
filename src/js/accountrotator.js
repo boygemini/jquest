@@ -2,7 +2,12 @@
 
 import { showThankYouPage } from "./animations.js";
 import questions from "./questions.js";
-import { animateErrorMessage, setStage, debounce } from "./script.js";
+import {
+	animateErrorMessage,
+	setStage,
+	debounce,
+	disableButtons,
+} from "./script.js";
 import accounts from "./config.js";
 
 const starterPage = document.querySelector(".q-container");
@@ -86,6 +91,7 @@ export function removeMessage() {
  * This function retries the next API account if the former account returns any error by recursion
  * @param htmlTemplate Holds the user's submission in HTML format to send it to the email API and then to the user's email address
  */
+
 async function accountRotator(htmlTemplate) {
 	let { service_id, private_key, template_id } = accounts[submitCounter];
 
@@ -118,6 +124,7 @@ async function accountRotator(htmlTemplate) {
 			// Set the value of the userEmail field to the saved email from sessionStorage
 			userEmail.value = sessionStorage.getItem("email");
 			submittedForm = true; // Set the submittedForm flag to true
+			disableButtons(false); // Enable the buttons after sucessful submission
 		},
 		function (error) {
 			// Handle email sending error
@@ -162,6 +169,7 @@ async function accountRotator(htmlTemplate) {
 
 				setStage(questions.length - 1); // Set the stage to the last question
 				submitCounter = 0; // Reset the submitCounter
+				disableButtons(false); // Enable the buttons after sucessful submission
 				return;
 			}
 
@@ -172,6 +180,8 @@ async function accountRotator(htmlTemplate) {
 			debounce7();
 		}
 	);
+
+	// Reset for another request
 }
 
 export default accountRotator;

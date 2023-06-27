@@ -316,6 +316,23 @@ export function showThankYouPage() {
 		}
 	);
 
+	animate.to(
+		".control-buttons",
+		{
+			opacity: 0,
+			y: 100,
+		},
+		"<20%"
+	);
+
+	animate.to(
+		".circle-progress",
+		{
+			opacity: 0,
+		},
+		"<"
+	);
+
 	// Fadein
 	animate.fromTo(
 		".thank-you",
