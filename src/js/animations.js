@@ -1,4 +1,5 @@
 "use strict";
+
 const pagePreloader = document.querySelector(".sitepreloader");
 const loader = document.querySelector(".loadd");
 

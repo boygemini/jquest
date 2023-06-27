@@ -235,6 +235,10 @@ export function animateErrorMessage(
 	}
 	errorMessage.classList.add(SHOW_ERROR_CLASS);
 
+	if (window.screen.availWidth <= 1024) {
+		gsap.to(".circle-progress", { opacity: 0, duration: 0.3 });
+	}
+
 	// Set the Error Message Container width to 20px
 	if (window.screen.availWidth >= 1024) {
 		errorMessage.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
@@ -286,6 +290,10 @@ export function animateErrorMessage(
 			errorMessage.classList.add(REMOVE_ERROR_CLASS);
 		}, ERROR_MESSAGE_ANIMATION_DURATION / 2);
 		debounce4();
+
+		if (window.screen.availWidth) {
+			gsap.to(".circle-progress", { opacity: 1, duration: 0.3 });
+		}
 	}, ERROR_MESSAGE_DURATION);
 	debounce3();
 
@@ -441,13 +449,36 @@ function sendEmail(email) {
 
 		// This are the boxes holding each questions and answers to be displayed in html format in the users email
 		for (let i = 1; i <= nArr.length; i++) {
-			xa += `<div id="test" style="background-color: blueviolet; padding: 10px 15px; border-radius:10px; width:auto; margin-top:30px">
-						<h1 style="font-family: 'Merriweather', sans-serif; font-weight:800; font-size: 1.1rem; letter-spacing:.5px; padding: 0px; border-radius: 5px; width: auto;color:white; ">${see(
-							i
-						)}</h1>
-						<p class="ra" style="color: #161b22; font-size:1rem; box-shadow:0px 20px 20px 10px black; background-color: white; padding:10px; border-radius:4px; font-family: 'Open Sans', sans-serif; font-weight: 800; margin-top:15px">${
-							nArr[i - 1]
-						}</p>
+			xa += `<div id="test"
+						style="background-color: #344854;
+						padding: 15px;
+						border-radius:5px;
+						width:auto;
+						max-width:650px;
+						text-align:left !important;
+						margin-top:30px">
+							<h1
+							style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+							font-weight:400;
+							font-size: 1rem;
+							letter-spacing:.3px;
+							padding: 0px;
+							border-radius: 5px;
+							width: auto;
+							text-align:left !important;
+							color:whitesmoke; ">${see(i)}</h1>
+							<p class="ra"
+							style="color:#344654;
+							font-size:0.9rem;
+							padding:10px;
+							background-color: #f2c744;
+							border-radius:4px;
+							border: 2px solid #f2c744;
+							font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+							font-weight: 600;
+							text-align:left !important;
+							margin-top:15px  !important"
+							margin-bottom:0  !important>${nArr[i - 1]}</p>
 					</div>`;
 		}
 
@@ -462,32 +493,89 @@ function sendEmail(email) {
 							<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&display=swap" rel="stylesheet">
 
 							<style>
+							*{
+								padding:0;
+								margin:0;
+								box-sizing:border-box;
+							}
 								body {
 									font-family: 'Open Sans',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
 								}
 
 								@media only screen and (max-width:600px){
-									#body{padding:5px;background-color:red;}
+									#body{}
+								}
+
+								.end{
+									padding:7px 10px;
+									border-radius:3px;
+									background-color:#344654
+									color:  #f2c744;
 								}
 							</style>
 						</head>
-						<body id="body" style="
-						font-family: 'Open Sans',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-						margin: 0; padding: 0px; background-color: #FAF4FD; border-radius:10px;  font-size: 14px; line-height: 1.6; color: #333333;">
+						<body
+						id="body"
+						style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+						margin: 0;
+						border-radius:0px;
+						font-size: 14px;
+						line-height: 1.6;
+						padding:0 !important;
+						color: #333333;">
 
-							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<table
+							width="100%"
+							border="0"
+							cellspacing="0"
+							cellpadding="0" align="center">
 
-								<tr>
-									<td align="center" valign="top" style="">
-										<table width="100%" border="0" cellspacing="00" cellpadding="00" style="width:100%; max-width:650px; border-collapse: seperate;
-							border-spacing: 10px; margin: 0 auto; background-color: #FAF4FD; border-radius:10px">
-											<tr style="border-radius:10px" style="width:100%; padding:10px">
-												<td align="start" valign="top" style="width:100%; padding:10px" >
-												<h1>🎉 Hurray!</h1>
-												<p style="font-size:.9rem">Below are your answers to each Questions asked</p>
-													${xa}
-												</td>
-											</tr>
+								<tr align="center">
+									<td
+									align="center"
+									valign="top"
+									style="">
+										<table
+										align="center"
+										width="100%"
+										border="0"
+										cellspacing="00"
+										cellpadding="00"
+										style="width:100%;
+										max-width:900px;
+										border-collapse: seperate;
+										border-spacing: 0px;
+										margin: auto;
+										display:flex;
+										justify-content:center;
+										background-color: white;
+										padding-bottom:10px">
+										<tbody align="center"
+											style="width:100% !important;
+											padding:0px">
+												<tr
+												align="center"
+												style="width:100% !important;
+												padding:0px">
+													<td
+													align="start"
+													valign="top"
+													style="width:100%;
+													padding:0px;
+													color:white; ">
+													<h1
+														style="color:#344854;
+														text-align:left !important;">🎉 Hurray!</h1>
+													<p
+													style="
+													font-size:.9rem;
+													margin-top:15px;
+													color:#344854;
+													text-align:left !important;">Below are your answers to each Questions asked</p>
+														${xa}
+													</td>
+												</tr>
+											</tbody>
 										</table>
 									</td>
 								</tr>
@@ -1302,7 +1390,7 @@ function moreThanOneSelectionIsPermitted(step) {
 	}
 }
 
-// Handling user click on options
+// Handling user click one options
 function handleAnswers(step) {
 	// Get all answer boxes
 	const answers = document.querySelectorAll(".ans-box");

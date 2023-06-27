@@ -59,8 +59,8 @@ body {
 	flex-direction: column;
 	row-gap: 50px;
 	padding: 20px;
-	overflow-x: hidden;
-	background-color: #ffffff29 !important;
+	overflow-x: hidden !important;
+	background-color: #ffffff29 !important
 }
 
 .blurbody{
@@ -91,6 +91,7 @@ html {
 	background-size: cover !important;
 	background-repeat: no-repeat !important;
 	background-attachment: fixed !important;
+	overflow-x: hidden !important;
 }
 
 
@@ -555,7 +556,7 @@ footer {}
 	-o-border-radius: 3px;
 	box-shadow: 0px 20px 20px -10px rgba(23, 2, 43, 0.328);
 	border: none;
-	margin: 0px;
+	margin: 0;
 }
 
 .sbackend {
@@ -1182,6 +1183,10 @@ footer {}
 		font-size: 2rem;
 	}
 
+	.qnumbering{
+		display: none !important;
+	}
+
 	.q-subtext {
 		font-size: 0.9em;
 		text-align: left;
@@ -1321,7 +1326,7 @@ footer {}
 	}
 
 	.img-ans-text {
-		line-height: 19px !important;
+		line-height: 25px !important;
 
 	}
 
@@ -1638,7 +1643,6 @@ footer {}
 
 	.end {
 		margin-left: 0px;
-		margin-top: 5px;
 	}
 
 }
@@ -2077,7 +2081,6 @@ footer {}
 
 	.end {
 		margin-left: 0px;
-		margin-top: 5px;
 	}
 }
 
@@ -2316,7 +2319,6 @@ footer {}
 
 	.end {
 		margin-left: 0px;
-		margin-top: 5px;
 	}
 }
 
@@ -2523,7 +2525,6 @@ footer {}
 
 	.end {
 		margin-left: 0px;
-		margin-top: 5px;
 	}
 
 	.soft {
