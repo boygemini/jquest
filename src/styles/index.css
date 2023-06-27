@@ -511,19 +511,18 @@ footer {}
 }
 
 .qnumbering {
-	color: #2260ff;
+	color: #2261fff3;
 	padding-bottom: 10px;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-ms-border-radius: 5px;
-	-o-border-radius: 5px;
-	width: auto;
-	display: flex;
-	justify-self: flex-start;
-	align-self: flex-start;
 	font-size: 1rem !important;
 	font-family: "open sans";
+}
+
+@media screen and (max-width: 767px) {
+	.qnumbering {
+	color: #2261ffc8;
+	font-size: 0.8rem !important;
+	font-family: "open sans";
+}
 }
 
 .selection-rule {

@@ -148,11 +148,11 @@ async function accountRotator(htmlTemplate) {
 					"<"
 				);
 
-				removeMessage(); // Remove the success message
+				removeMessage(); // Remove the success/loading message
 
 				// Display error message using animateErrorMessage function
 				animateErrorMessage(
-					10000,
+					8000,
 					600,
 					20,
 					`Error occurred : ${message || "no internet connection"}`,
