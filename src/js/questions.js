@@ -661,11 +661,11 @@ export default [
 		answers: [
 			{
 				text: "Windows",
-				img: "/jquest/src/imgs/microsoft-windows-22-logo.png",
+				img: "/jquest/src/imgs/microsoft-windows-22-logo-svgrepo-com.svg",
 			},
 			{
 				text: "Apple",
-				img: "/jquest/src/imgs/Apple_logo_black.svg",
+				img: "/jquest/src/imgs/apple-black-logo-svgrepo-com.svg",
 			},
 		],
 	},
