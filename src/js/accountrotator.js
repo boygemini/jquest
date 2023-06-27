@@ -18,8 +18,8 @@ const successText = document.querySelector(".sent-message");
 
 let submitCounter = 0;
 
-export let submittedForm = false;
-export let didntSendEmailDueToError = false;
+export let submittedForm = false; // Variable to track whether the form has been submitted or not
+export let didntSendEmailDueToError = false; // Variable to track if the email couldn't be sent due to an error
 
 export function showSent(MESSAGE) {
 	successText.style.opacity = "0";
@@ -34,20 +34,24 @@ export function showSent(MESSAGE) {
 		loaderDOM.style.width = `${submitLoader.scrollWidth + 50}px`;
 	}, 200);
 
+	// Display the success mark after a debounce of 300 milliseconds
 	const debounce1 = debounce(() => {
 		successMark.style.display = "flex";
 		successText.style.display = "none";
 	}, 300);
 	debounce1();
 
+	// Hide the success text after a debounce of 1000 milliseconds
 	const debounce2 = debounce(() => {
 		successText.style.opacity = "0";
 
+		// Adjust the width of the loader DOM element after a debounce of 300 milliseconds
 		const debounce3 = debounce(() => {
 			loaderDOM.style.width = `${submitLoader.scrollWidth + 50}px`;
 		}, 300);
 		debounce3();
 
+		// Remove classes and hide elements related to the loader after a debounce of 600 milliseconds
 		const debounce4 = debounce(() => {
 			loaderDOM.classList.remove("show");
 			loaderDOM.classList.add("remove");
@@ -66,30 +70,37 @@ export function showSent(MESSAGE) {
 export function removeMessage() {
 	successText.style.opacity = "0";
 
+	// Remove the "show" class and add the "remove" class to the loaderDOM element after a timeout of 600 milliseconds
 	setTimeout(() => {
 		loaderDOM.classList.remove("show");
 		loaderDOM.classList.add("remove");
 	}, 600);
 
+	// Set the width of the loaderDOM element to "auto" after a timeout of 1000 milliseconds
 	setTimeout(() => {
 		loaderDOM.style.width = "auto";
 	}, 1000);
 }
 
 /**
- * This function retries the next api account if the former account returns any error by recursion
- * @param htmlTemplate holds the the users submission in html format to send the to email api and then to the users email address
- *
+ * This function retries the next API account if the former account returns any error by recursion
+ * @param htmlTemplate Holds the user's submission in HTML format to send it to the email API and then to the user's email address
  */
 async function accountRotator(htmlTemplate) {
 	let { service_id, private_key, template_id } = accounts[submitCounter];
 
+	// Send the email using emailjs library
 	emailjs.send(service_id, template_id, htmlTemplate, private_key).then(
 		function () {
+			// Handle successful form submission
+
+			// Display the "Form Submitted Successfully" message
 			showSent("Form Submitted Successfully");
 
+			// Show the thank you page and perform related animations
 			showThankYouPage(startQuestion);
 
+			// Delayed actions using debouncing
 			const debounce5 = debounce(() => {
 				ContinueButton.style.display = "none";
 				BackButton.classList.add("widen");
@@ -104,23 +115,25 @@ async function accountRotator(htmlTemplate) {
 			}, 600);
 			debounce6();
 
+			// Set the value of the userEmail field to the saved email from sessionStorage
 			userEmail.value = sessionStorage.getItem("email");
-			submittedForm = true;
+			submittedForm = true; // Set the submittedForm flag to true
 		},
 		function (error) {
+			// Handle email sending error
+
 			let numOfAccounts = accounts.length - 1;
 
 			submitCounter++;
 
-			/**
-			 * Return an error is all api accounts quota has been exhausted
-			 */
+			// Return an error if all API accounts' quota has been exhausted
 			if (submitCounter === numOfAccounts) {
 				let message;
 				if (error.text) {
 					message = "please try again later. Thank you.";
 				}
 
+				// Perform animations and display error message
 				gsap.to(".control-buttons", {
 					opacity: 1,
 					y: 0,
@@ -135,7 +148,9 @@ async function accountRotator(htmlTemplate) {
 					"<"
 				);
 
-				removeMessage();
+				removeMessage(); // Remove the success message
+
+				// Display error message using animateErrorMessage function
 				animateErrorMessage(
 					10000,
 					600,
@@ -145,11 +160,12 @@ async function accountRotator(htmlTemplate) {
 					"remove-error-message"
 				);
 
-				setStage(questions.length - 1);
-				submitCounter = 0;
+				setStage(questions.length - 1); // Set the stage to the last question
+				submitCounter = 0; // Reset the submitCounter
 				return;
 			}
 
+			// Retry with the next API account after a debounce of 100 milliseconds
 			const debounce7 = debounce(() => {
 				accountRotator(htmlTemplate);
 			}, 100);

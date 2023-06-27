@@ -60,6 +60,7 @@ body {
 	row-gap: 50px;
 	padding: 20px;
 	overflow-x: hidden;
+	background-color: #ffffff29 !important;
 }
 
 .blurbody{
@@ -504,11 +505,26 @@ footer {}
 	text-align: left;
 	line-height: 1.5;
 	letter-spacing: 1.5px;
-	font-family: "Roboto", serif;
-	font-weight: 400;
+	font-family: "Lato", serif !important;
+	/* font-weight: 600 !important; */
+	color: #131b20;
 }
 
-.qnumbering {}
+.qnumbering {
+	color: #2260ff;
+	padding-bottom: 10px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+	width: auto;
+	display: flex;
+	justify-self: flex-start;
+	align-self: flex-start;
+	font-size: 1rem !important;
+	font-family: "open sans";
+}
 
 .selection-rule {
 	color: #000000b6;
@@ -1295,7 +1311,10 @@ footer {}
 	}
 
 	.Question {
-		font-size: 25px;
+		font-size: 1.5rem;
+		/* font-weight: 700;
+		font-family: "Nunito";
+		color: #344754; */
 	}
 
 	.bare-ans {
@@ -1362,8 +1381,7 @@ footer {}
 	}
 
 	.box-text {
-		font-size: 14px !important;
-
+		font-size: 0.95rem !important;
 	}
 
 	.continue-btn,
@@ -1399,9 +1417,6 @@ footer {}
 
 	.text-checked {
 		border: 1px solid white !important;
-
-		/* box-shadow: 5px 5px 10px -1px rgba(7, 0, 12, 0.445),
-			-5px -5px 10px -1px #faf4fd42; */
 	}
 
 	.back-button {
@@ -1416,8 +1431,7 @@ footer {}
 	#circle {
 			width: 110px;
 			height: 110px;
-			/*box-shadow: 0px 0px 20px -15px rgb(9, 9, 9),			0px 0px 20px -15px rgba(14, 3, 39, 0.535);
-			*/border-radius: 100%;
+			border-radius: 100%;
 			-webkit-border-radius: 100%;
 			-moz-border-radius: 100%;
 			-ms-border-radius: 100%;
