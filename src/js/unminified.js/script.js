@@ -1625,40 +1625,60 @@ cancel.forEach((c) => {
 	};
 });
 
+// Debounce functions for the back button, continue button, left and right keys
+// The functions are created seperately because somehow the functions supposed to be called by the buttons gets called the number of times
+// user clicked on the button or pressed key instead of running just once.
+let fk, fy, ckdb, bkdb;
+function enterKeyDebounce(func, time) {
+	clearTimeout(fk);
+	fk = setTimeout(func, time);
+}
+
+function leftnRightkeyDebounce(func, time) {
+	clearTimeout(fy);
+	fy = setTimeout(func, time);
+}
+
+function continueButtonDebounce(func, time) {
+	clearTimeout(ckdb);
+	ckdb = setTimeout(func, time);
+}
+
+function backButtonDebounce(func, time) {
+	clearTimeout(bkdb);
+	bkdb = setTimeout(func, time);
+}
+
 // Continue button
 ContinueButton.addEventListener("click", (e) => {
 	// Run the progressing animation
-	const debounce16 = debounce(
+	continueButtonDebounce(
 		() => gotoNextStep(currentFormStage(), Questions),
-		100
+		200
 	);
-	debounce16();
 });
 
 // Back button
 BackButton.addEventListener("click", (e) => {
 	// Run the progressing animation
-	const debounce17 = debounce(
+	backButtonDebounce(
 		() => gotoPreviousStep(currentFormStage(), Questions),
 		200
 	);
-	debounce17();
 });
 
 // Continue to Next Step On Press Enter
 window.addEventListener("keydown", (e) => {
-	const debounce18 = debounce(() => {
+	leftnRightkeyDebounce(() => {
 		keydownHandler(e);
-	}, 200);
-	debounce18();
+	}, 400);
 });
 
 // Continue to Next Step On Left or Right key press
 window.addEventListener("keydown", (e) => {
-	const debounce19 = debounce(() => {
+	enterKeyDebounce(() => {
 		enterKeyPressHandler(e);
-	}, 200);
-	debounce19();
+	}, 400);
 });
 
 // Arrow Key press handler

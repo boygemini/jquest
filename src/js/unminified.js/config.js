@@ -1,8 +1,13 @@
 const accounts = [
 	{
-		service_id: "service_n4tb1ha",
-		private_key: "553cr3LqBwR3V1yHi",
-		template_id: "template_sro3gse",
+		service_id: "service_2vu73ge",
+		private_key: "HT4PV_9sLmyrm-R7-",
+		template_id: "template_d7l2z48",
+	},
+	{
+		service_id: "service_7l55dy6",
+		private_key: "xepfLNhHXP4hWnNzB",
+		template_id: "template_uctj5ca",
 	},
 	{
 		service_id: "service_eh22glb",

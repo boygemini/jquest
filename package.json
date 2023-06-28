@@ -6,6 +6,7 @@
 		"typed.js": "^2.0.16"
 	},
 	"scripts": {
+		"minify:JS": "uglifyjs ./src/js/accountrotator.js -c -m -o ./src/js/unminified.js/accountrotator.min.js",
 		"minify:JSFolder": "uglifyjs-folder ./src/js/unminified.js -eo ./src/js/minified.js"
 	},
 	"devDependencies": {
