@@ -469,10 +469,21 @@ function sendEmail(email) {
 							<p class="ra"
 							style="color:#344654;
 							font-size:0.9rem;
-							padding:10px;
+							padding:15px;
 							background-color: #f2c744;
+							background: linear-gradient(
+								310deg,
+								#f2c745 0%,
+								#f3c144 33%,
+								#f3bc44 48%,
+								#f4b643 58%,
+								#f4b043 67%,
+								#f3aa44 76%,
+								#f3a444 84%,
+								#f29e45 100%
+							);
+							border:none;
 							border-radius:4px;
-							border: 2px solid #f2c744;
 							font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 							font-weight: 600;
 							text-align:left !important;
