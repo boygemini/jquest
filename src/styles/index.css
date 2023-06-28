@@ -233,9 +233,9 @@ html {
 	color: #344754;
 	font-weight: 800 !important;
 	border-radius: 5px;
-	background-color: rgba(255, 255, 255, 0.446);
-	backdrop-filter: blur(5px);
-	-webkit-backdrop-filter: blur(5px);
+	/* background-color: rgba(255, 255, 255, 0.446); */
+	/* backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px); */
 }
 
 .empty-email-field {
@@ -266,10 +266,15 @@ html {
 }
 
 .move-up {
-	font-size: 13px;
+	font-size: .7rem !important;
 	color: #2260ff;
 	top: 0%;
 	background-color: white;
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-o-border-radius: 2px;
 }
 
 .continue-btn,
