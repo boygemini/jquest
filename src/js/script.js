@@ -291,7 +291,7 @@ export function animateErrorMessage(
 		debounce4();
 
 		if (window.screen.availWidth) {
-			gsap.to(".circle-progress", { opacity: 1, duration: 0.3 });
+			gsap.to(".circle-progress", { opacity: 1, duration: 0.3, delay: 0.6 });
 		}
 	}, ERROR_MESSAGE_DURATION);
 	debounce3();
