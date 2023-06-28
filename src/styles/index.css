@@ -262,6 +262,7 @@ html {
 	left: 0;
 	padding: 2px 7px;
 	z-index: 1;
+	font-size: .9rem !important;
 }
 
 .move-up {

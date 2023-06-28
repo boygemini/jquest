@@ -1,14 +1,14 @@
 "use strict";
 
-import { showThankYouPage } from "./minified.js/animations.min.js";
-import questions from "./minified.js/questions.min.js";
+import { showThankYouPage } from "./animations.js";
+import questions from "./questions.js";
 import {
 	animateErrorMessage,
 	setStage,
 	debounce,
 	disableButtons,
 } from "./script.js";
-import accounts from "./minified.js/config.min.js";
+import accounts from "./config.js";
 
 const starterPage = document.querySelector(".q-container");
 const startQuestion = document.querySelector(".main-Q-container");
