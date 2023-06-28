@@ -1,8 +1,15 @@
 {
-  "dependencies": {
-    "animate.css": "^4.1.1",
-    "particles.js": "^2.0.0",
-    "particlesjs": "^2.2.3",
-    "typed.js": "^2.0.16"
-  }
+	"dependencies": {
+		"animate.css": "^4.1.1",
+		"particles.js": "^2.0.0",
+		"particlesjs": "^2.2.3",
+		"typed.js": "^2.0.16"
+	},
+	"scripts": {
+		"minify:JSFolder": "uglifyjs-folder ./src/js/unminified.js -eo ./src/js/minified.js"
+	},
+	"devDependencies": {
+		"uglify-js": "^3.17.4",
+		"uglifyjs-folder": "^3.3.0"
+	}
 }

@@ -183,7 +183,8 @@ function reset() {
 
 				if (e.target.nodeName === "INPUT") {
 					// If the event target is an input, apply styling changes
-					e.target.offsetParent.children[1].style.border = "1px solid #2260ff";
+					e.target.offsetParent.children[1].style.borderBottom =
+						"1px solid #2260ff";
 					e.target.offsetParent.firstElementChild.classList += " move-up";
 				}
 			});
@@ -199,7 +200,7 @@ function reset() {
 					if (e.target.value.trim().length === 0) {
 						// If the input value is empty, remove styling changes
 						e.target.offsetParent.firstElementChild.classList.remove("move-up");
-						e.target.offsetParent.children[1].style.border = "";
+						e.target.offsetParent.children[1].style.borderBottom = "";
 					}
 				} catch (error) {}
 			}
@@ -210,7 +211,7 @@ function reset() {
 // Apply initial styling changes if the first text input field has a value
 if (textInputFields[0].value.length > 0) {
 	textInputFields[0].offsetParent.firstElementChild.classList += " move-up";
-	textInputFields[0].offsetParent.children[1].style.border =
+	textInputFields[0].offsetParent.children[1].style.borderBottom =
 		"1px solid #2260ff";
 }
 
