@@ -133,6 +133,25 @@ async function accountRotator(htmlTemplate) {
 
 			submitCounter++;
 
+			if (error.status === 412) {
+				removeMessage(); // Remove the success/loading message
+
+				// Display error message using animateErrorMessage function
+				animateErrorMessage(
+					8000,
+					600,
+					20,
+					`Error occurred : Your email address appears to be invalid, please check and resubmit form`,
+					"show-error-message",
+					"remove-error-message"
+				);
+
+				setStage(questions.length - 1); // Set the stage to the last question
+				submitCounter = 0; // Reset the submitCounter
+				disableButtons(false);
+				return;
+			}
+
 			// Return an error if all API accounts' quota has been exhausted
 			if (submitCounter === numOfAccounts) {
 				let message;

@@ -55,8 +55,45 @@
 		<p>Loading, please wait...</p>
 	</div>
 	<body id="body">
-		<h1 class="logo" id="logo">JQuest</h1>
-
+		<h1 class="logo" id="logo">
+			JQuest
+			<span class="menu-button-container mod"
+				><img
+					class="menu-button mod"
+					id="menu-button"
+					src="src/imgs/menu-svgrepo-com (2).svg"
+					alt=""
+					srcset=""
+			/></span>
+		</h1>
+		<div class="menu mod">
+			<div class="menu-header mod">
+				<h1 class="menu-heading mod">Menu</h1>
+				<div class="menu-cancel">
+					<img src="src/imgs/arrow-left-5-svgrepo-com.svg" alt="" />
+				</div>
+			</div>
+			<div class="menulist mod">
+				<div class="menu-child home mod">
+					<img
+						class="menu-button mod"
+						id="menu-button"
+						src="src/imgs/home-alt-svgrepo-com (1).svg"
+						alt=""
+						srcset="" />
+					<p class="mod">Home</p>
+				</div>
+				<div class="menu-child change mod">
+					<img
+						class="menu-button mod"
+						id="menu-button"
+						src="src/imgs/at-symbol-svgrepo-com (2).svg"
+						alt=""
+						srcset="" />
+					<p class="mod">Change email</p>
+				</div>
+			</div>
+		</div>
 		<svg id="circle" class="circle-progress" viewBox="0 0 200 200">
 			<circle
 				id="circlePath"
@@ -170,24 +207,41 @@
 			</div>
 		</div>
 
-		<div class="change-email">
-			<div class="change-top">
-				<p>Change Email</p>
+		<div class="change-email mod">
+			<div class="change-top mod">
+				<p class="mod">Change Email</p>
 				<div class="cancel"></div>
 			</div>
 			<button type="submit" class="saveemail">
 				Save email and resubmit form
 			</button>
 		</div>
-		<div class="result"></div>
-		<div class="resubmitmodal">
-			<div class="change-top">
-				<p>Do you want to resubmit the form?</p>
+
+		<div class="resubmitmodal mod">
+			<div class="change-top mod">
+				<p class="mod">Do you want to resubmit the form?</p>
 				<div class="cancel c2"></div>
 			</div>
 			<div class="resubmit">
 				<button type="submit" class="no">Nope</button>
 				<button type="submit" class="saveemail">Yes, resubmit</button>
+			</div>
+		</div>
+
+		<div class="changeemailmodal mod">
+			<div class="change-top mod">
+				<p class="mod">Change Email</p>
+				<div class="changecancel"></div>
+			</div>
+			<input
+				class="mod"
+				name=""
+				type="email"
+				placeholder="example@mail.com"
+				id="changemyemail"
+				autocomplete="off" />
+			<div class="resubmit">
+				<button type="submit" class="change savemynewemail">Save Email</button>
 			</div>
 		</div>
 

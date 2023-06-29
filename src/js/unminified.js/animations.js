@@ -1,4 +1,6 @@
 "use strict";
+import questions from "./questions.js";
+import { currentFormStage, debounce } from "./script.js";
 
 const pagePreloader = document.querySelector(".sitepreloader");
 const loader = document.querySelector(".loadd");
@@ -150,12 +152,28 @@ export function goingOutOfWelcome() {
 
 export function backToWelcome() {
 	/** Sliding out the Question at the start */
-	animate.to(".main-Q-container", {
-		x: deviceScreenWidth,
-		opacity: 0,
-		duration: 0.45,
-		ease: "power1.in",
-	});
+
+	if (currentFormStage() === parseInt(questions.length)) {
+		animate.to(".thank-you", {
+			opacity: 0,
+			duration: 0.25,
+			ease: "power1.in",
+		});
+		document.getElementById("body").classList.remove("blurbody");
+	}
+
+	if (currentFormStage() < parseInt(questions.length)) {
+		animate.to(".main-Q-container", {
+			x: deviceScreenWidth,
+			opacity: 0,
+			duration: 0.45,
+			ease: "power1.in",
+		});
+
+		debounce(() => {
+			document.querySelector(".main-Q-container").style.display = "none";
+		}, 450)();
+	}
 
 	animate.fromTo(
 		".control-buttons",

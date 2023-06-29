@@ -11,7 +11,6 @@ import accountRotator, { submittedForm } from "./accountrotator.js";
 
 const body = document.querySelector("#body");
 const controlButtons = document.querySelector(".control-buttons");
-
 const textInputFields = document.querySelectorAll(".ads");
 const textFieldLabels = document.querySelectorAll("label");
 const selectionChoice = document.querySelector(".selection-rule");
@@ -39,6 +38,17 @@ const changeEmailBox = document.querySelector(".email");
 const dontResubmitButton = document.querySelector(".no");
 const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 const buttons = document.querySelectorAll(".btnn");
+const menuContainer = document.querySelector(".menu");
+const menuCancelButton = document.querySelector(".menu-cancel");
+const menuChildren = document.querySelectorAll(".menu-child");
+const homeButton = document.querySelector(".home");
+const menuChangeEmailButton = document.querySelector(".change");
+const menuButton = document.querySelector(".menu-button-container");
+const saveNewEmailModal = document.querySelector(".changeemailmodal");
+const saveNewEmailButton = document.querySelector(".savemynewemail");
+const changeEmailCancelButton = document.querySelector(".changecancel");
+const saveNewEmailField = document.querySelector("#changemyemail");
+const allModalsAndMenu = document.querySelectorAll(".mod");
 
 const submitLoader = document.querySelector(".circle-loader");
 let otfp = false; // If user is on the completion page
@@ -214,6 +224,211 @@ if (textInputFields[0].value.length > 0) {
 		"1px solid #2260ff";
 }
 
+// Menu
+function openMenu() {
+	// Open the menu
+	menuContainer.style.display = "flex";
+	gsap.fromTo(
+		menuContainer,
+		{
+			x: -100,
+			opacity: 0,
+		},
+		{
+			x: 0,
+			opacity: 1,
+			duration: 0.8,
+			ease: "power4.out",
+		}
+	);
+
+	menuChildren.forEach((menu) => {
+		gsap.fromTo(
+			menu,
+			{
+				x: -100,
+				opacity: 0,
+			},
+			{
+				x: 0,
+				opacity: 1,
+				duration: 0.15,
+			},
+			"<20%"
+		);
+	});
+}
+
+function closeMenu() {
+	// Close the menu
+
+	menuChildren.forEach((menu) => {
+		if (menu.classList.value.includes("home")) {
+			gsap.fromTo(
+				menu,
+				{
+					x: 0,
+					opacity: 1,
+				},
+				{
+					x: -100,
+					opacity: 0,
+					duration: 0.25,
+				}
+			);
+		}
+
+		if (!menu.classList.value.includes("home")) {
+			gsap.fromTo(
+				menu,
+				{
+					x: 0,
+					opacity: 1,
+				},
+				{
+					x: -100,
+					opacity: 0,
+					duration: 0.25,
+				},
+				"<25%"
+			);
+		}
+	});
+
+	gsap.fromTo(
+		menuContainer,
+		{
+			x: 0,
+			opacity: 1,
+		},
+		{
+			x: -100,
+			opacity: 0,
+			duration: 0.5,
+			ease: "power4.out",
+		},
+		">"
+	);
+
+	debounce(() => {
+		menuContainer.style.display = "none";
+	}, 800)();
+}
+
+// Function to show the change email modal
+function showChangeEmailModal() {
+	closeMenu();
+	saveNewEmailModal.style.display = "flex";
+
+	gsap.to(saveNewEmailModal, {
+		opacity: 1,
+		duration: 0.3,
+	});
+}
+
+// Function to validate and save a new user email
+function validateAndSaveNewUserEmail() {
+	let email = saveNewEmailField.value.trim();
+
+	if (emailRegex.test(email)) {
+		sessionStorage.setItem("email", email);
+		saveNewEmailField.classList.remove("empty-email-field");
+		closeModal();
+		userEmail.focus();
+		userEmail.value = email;
+	}
+
+	if (!emailRegex.test(email)) {
+		saveNewEmailField.classList.add("empty-email-field");
+		animateErrorMessage(
+			3000,
+			600,
+			20,
+			"Please enter a valid email address.",
+			"show-error-message",
+			"remove-error-message"
+		);
+	}
+}
+
+// Function to go back to the home page
+function goHome() {
+	closeMenu();
+	backToWelcome();
+	debounce(() => {
+		starterPage.style.display = "flex";
+		ContinueButton.classList.add("widen");
+		ContinueButton.style.display = "flex";
+		BackButton.style.display = "none";
+		setStage(0);
+	}, 500)();
+}
+
+// Function to close the modal
+function closeModal() {
+	gsap.to(changeEmailContainer, {
+		opacity: 0,
+		duration: 0.25,
+	});
+
+	gsap.to(resubmitEmailContainer, {
+		opacity: 0,
+		duration: 0.25,
+	});
+
+	gsap.to(saveNewEmailModal, {
+		opacity: 0,
+		duration: 0.25,
+	});
+
+	window.addEventListener("keydown", entkeydownHandler);
+	window.addEventListener("keydown", lrkeydownHandler);
+
+	// Delayed function to hide the changeEmailContainer and resubmitEmailContainer after the animations finish
+	debounce(() => {
+		changeEmailContainer.style.display = "none";
+		resubmitEmailContainer.style.display = "none";
+		saveNewEmailModal.style.display = "none";
+	}, 250)();
+}
+
+// Event listener for the home button click
+homeButton.onclick = () => goHome();
+
+// Event listener for the change email cancel button click
+changeEmailCancelButton.onclick = () => closeModal();
+
+// Event listener for the menu change email button click
+menuChangeEmailButton.onclick = () => showChangeEmailModal();
+
+// Event listener for the menu cancel button click
+menuCancelButton.onclick = () => closeMenu();
+
+// Event listener for the menu button click
+menuButton.onclick = () => openMenu();
+
+// Event listener for the save new email button click
+saveNewEmailButton.onclick = () => validateAndSaveNewUserEmail();
+
+// Event listener for the keydown event on the save new email field
+saveNewEmailField.onkeydown = (e) => {
+	if (e.key === "Enter") {
+		window.removeEventListener("keydown", entkeydownHandler);
+		validateAndSaveNewUserEmail();
+	}
+
+	if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+		window.removeEventListener("keydown", lrkeydownHandler);
+	}
+};
+
+// Event listener for the window click
+window.onclick = (e) => {
+	if (!e.target.classList.value.includes("mod")) {
+		closeMenu();
+	}
+};
+
 // Error Message Animation
 export function animateErrorMessage(
 	ERROR_MESSAGE_DURATION,
@@ -234,7 +449,7 @@ export function animateErrorMessage(
 	}
 	errorMessage.classList.add(SHOW_ERROR_CLASS);
 
-	if (window.screen.availWidth <= 1024) {
+	if (window.screen.availWidth <= 1024 && currentFormStage() > 0) {
 		gsap.to(".circle-progress", { opacity: 0, duration: 0.3 });
 	}
 
@@ -290,7 +505,7 @@ export function animateErrorMessage(
 		}, ERROR_MESSAGE_ANIMATION_DURATION / 2);
 		debounce4();
 
-		if (window.screen.availWidth) {
+		if (window.screen.availWidth <= 1024 && currentFormStage() > 0) {
 			gsap.to(".circle-progress", { opacity: 1, duration: 0.3, delay: 0.6 });
 		}
 	}, ERROR_MESSAGE_DURATION);
@@ -595,6 +810,8 @@ function sendEmail(email) {
 
 		const debounce8 = debounce(() => {
 			showSending("Submitting Form...");
+			if (window.screen.availWidth <= 415)
+				gsap.to(".circle-progress", { opacity: 0, duration: 0.25 });
 			disableButtons(true); // Disable buttons while form is submitting
 		}, 500);
 		debounce8();
@@ -1586,37 +1803,7 @@ changeEmail.forEach((x) => {
 cancel.forEach((c) => {
 	c.onclick = (e) => {
 		// Animations to hide the changeEmailContainer and resubmitEmailContainer
-		gsap.to(changeEmailContainer, {
-			opacity: 0,
-			duration: 0.3,
-		});
-
-		gsap.to(resubmitEmailContainer, {
-			opacity: 0,
-			duration: 0.3,
-		});
-
-		// Animation to show the control buttons and circle progress
-		gsap.to(".control-buttons", {
-			opacity: 1,
-			y: 0,
-			duration: 0.5,
-		});
-
-		gsap.to(
-			".circle-progress",
-			{
-				opacity: 1,
-			},
-			"<"
-		);
-
-		// Delayed function to hide the changeEmailContainer and resubmitEmailContainer after the animations finish
-		const debounce15 = debounce(() => {
-			changeEmailContainer.style.display = "none";
-			resubmitEmailContainer.style.display = "none";
-		}, 300);
-		debounce15();
+		closeModal();
 
 		if (e.target.classList.value.includes("c2")) {
 			// Revert form stage to the current stage because it has been incremented already when the continue button was clicked
@@ -1654,7 +1841,7 @@ ContinueButton.addEventListener("click", (e) => {
 	// Run the progressing animation
 	continueButtonDebounce(
 		() => gotoNextStep(currentFormStage(), Questions),
-		200
+		400
 	);
 });
 
@@ -1663,23 +1850,27 @@ BackButton.addEventListener("click", (e) => {
 	// Run the progressing animation
 	backButtonDebounce(
 		() => gotoPreviousStep(currentFormStage(), Questions),
-		200
+		400
 	);
 });
 
+// Continue to Next Step On Left or Right key press
+window.addEventListener("keydown", lrkeydownHandler);
+
 // Continue to Next Step On Press Enter
-window.addEventListener("keydown", (e) => {
+window.addEventListener("keydown", entkeydownHandler);
+
+function lrkeydownHandler(e) {
 	leftnRightkeyDebounce(() => {
 		keydownHandler(e);
 	}, 400);
-});
+}
 
-// Continue to Next Step On Left or Right key press
-window.addEventListener("keydown", (e) => {
+function entkeydownHandler(e) {
 	enterKeyDebounce(() => {
 		enterKeyPressHandler(e);
 	}, 400);
-});
+}
 
 // Arrow Key press handler
 function keydownHandler(e) {
