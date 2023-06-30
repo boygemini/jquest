@@ -77,7 +77,7 @@ export default [
 				},
 				{
 					text: "JavaScript",
-					img: "/jquest/src/imgs/java-svgrepo-com.webp",
+					img: "/jquest/src/imgs/javascript.svg",
 				},
 				{
 					text: "TypeScript",

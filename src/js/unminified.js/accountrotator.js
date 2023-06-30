@@ -7,6 +7,8 @@ import {
 	setStage,
 	debounce,
 	disableButtons,
+	lrkeydownHandler,
+	entkeydownHandler,
 } from "./script.js";
 import accounts from "./config.js";
 
@@ -92,13 +94,41 @@ export function removeMessage() {
  * @param htmlTemplate Holds the user's submission in HTML format to send it to the email API and then to the user's email address
  */
 
+let successfulSubmit = false;
 async function accountRotator(htmlTemplate) {
 	let { service_id, private_key, template_id } = accounts[submitCounter];
+
+	// Show a timed out error message after 100s
+	// debounce(() => {
+	// 	if (!successfulSubmit) {
+	// 		removeMessage(); // Remove the success/loading message
+
+	// 		// Display error message using animateErrorMessage function
+	// 		animateErrorMessage(
+	// 			8000,
+	// 			600,
+	// 			20,
+	// 			`Timed Out : Please check your internet connection and try again. Thank you.`,
+	// 			"show-error-message",
+	// 			"remove-error-message"
+	// 		);
+
+	// 		setStage(questions.length - 1); // Set the stage to the last question
+	// 		submitCounter = 0; // Reset the submitCounter
+	// 		disableButtons(false);
+	// 		return;
+	// 	}
+
+	// 	if (successfulSubmit) {
+	// 		return;
+	// 	}
+	// }, 1000)();
 
 	// Send the email using emailjs library
 	emailjs.send(service_id, template_id, htmlTemplate, private_key).then(
 		function () {
 			// Handle successful form submission
+			successfulSubmit = true;
 
 			// Display the "Form Submitted Successfully" message
 			showSent("Form Submitted Successfully");
@@ -110,6 +140,7 @@ async function accountRotator(htmlTemplate) {
 			const debounce5 = debounce(() => {
 				ContinueButton.style.display = "none";
 				BackButton.classList.add("widen");
+				BackButton.style.display = "flex";
 			}, 400);
 			debounce5();
 
@@ -125,6 +156,8 @@ async function accountRotator(htmlTemplate) {
 			userEmail.value = sessionStorage.getItem("email");
 			submittedForm = true; // Set the submittedForm flag to true
 			disableButtons(false); // Enable the buttons after sucessful submission
+			window.addEventListener("keydown", lrkeydownHandler);
+			window.addEventListener("keydown", entkeydownHandler);
 		},
 		function (error) {
 			// Handle email sending error

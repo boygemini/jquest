@@ -14,8 +14,8 @@ const controlButtons = document.querySelector(".control-buttons");
 const textInputFields = document.querySelectorAll(".ads");
 const textFieldLabels = document.querySelectorAll("label");
 const selectionChoice = document.querySelector(".selection-rule");
-const ContinueButton = document.getElementById("continue");
-const BackButton = document.querySelector(".back-button");
+export const ContinueButton = document.getElementById("continue");
+export const BackButton = document.querySelector(".back-button");
 const ChangeEmailButton = document.getElementById("changeemail");
 const progressSVG = document.querySelector(".progress");
 const progress = document.querySelector(".percentage");
@@ -360,8 +360,9 @@ function goHome() {
 		ContinueButton.classList.add("widen");
 		ContinueButton.style.display = "flex";
 		BackButton.style.display = "none";
+		body.classList.remove("blurbody");
 		setStage(0);
-	}, 500)();
+	}, 450)();
 }
 
 // Function to close the modal
@@ -810,8 +811,13 @@ function sendEmail(email) {
 
 		const debounce8 = debounce(() => {
 			showSending("Submitting Form...");
+
+			// If device's screen width is less than 415px fade out the progress circle svg
 			if (window.screen.availWidth <= 415)
 				gsap.to(".circle-progress", { opacity: 0, duration: 0.25 });
+
+			window.removeEventListener("keydown", lrkeydownHandler);
+			window.removeEventListener("keydown", entkeydownHandler);
 			disableButtons(true); // Disable buttons while form is submitting
 		}, 500);
 		debounce8();
@@ -1034,11 +1040,17 @@ function gotoPreviousStep(step, question) {
 	// If the user is at the thank you page and clicks to go back, the animation is displayed and the page's blur class is removed
 	if (step === parseInt(Object.keys(USERS_FILE).length)) {
 		backToForm(startQuestion, questionElement, answersField);
+		controlButtons.style.display = "flex";
+		body.classList.remove("blurbody");
+	}
+
+	if (currentFormStage() === 0) {
+		controlButtons.style.display = "flex";
 		body.classList.remove("blurbody");
 	}
 
 	// If the user is back at the home page
-	if (step <= 0) {
+	if (step <= 0 || currentFormStage() === 0) {
 		thankYou.style.display = "none";
 
 		// Debounce function to delay execution of the animation
@@ -1336,7 +1348,8 @@ const removeCheckAnimationForImgTextBox = (checkerDir) => {
 	checker.classList.remove("checked2");
 };
 
-// This function adds the "text-checked" class to the text-only box checker and the "textcontainer-checked" class to the container to display the check animation
+// This function adds the "text-checked" class to the text-only box checker and the "textcontainer-checked"
+// class to the container to display the check animation
 const addCheckAnimationForTextBoxOnly = (checkDir, containerDir) => {
 	let checker = checkDir;
 	let container = containerDir;
@@ -1344,7 +1357,8 @@ const addCheckAnimationForTextBoxOnly = (checkDir, containerDir) => {
 	container.classList.add("textcontainer-checked");
 };
 
-// This function removes the "text-checked" class from the text-only box checker and the "textcontainer-checked" class from the container to hide the check animation
+// This function removes the "text-checked" class from the text-only box checker and the "textcontainer-checked"
+// class from the container to hide the check animation
 const removeCheckAnimationForTextBoxOnly = (checkDir, containerDir) => {
 	let checker = checkDir;
 	let container = containerDir;
@@ -1352,7 +1366,8 @@ const removeCheckAnimationForTextBoxOnly = (checkDir, containerDir) => {
 	container.classList.remove("textcontainer-checked");
 };
 
-// This function adds the "opacity" class to the icon and text box checker and the "tools-ans-checked" class to the container to display the check animation
+// This function adds the "opacity" class to the icon and text box checker and the "tools-ans-checked"
+// class to the container to display the check animation
 const addCheckAnimationForIconAndText = (checkDir, containerDir) => {
 	let checker = checkDir;
 	let container = containerDir;
@@ -1360,7 +1375,8 @@ const addCheckAnimationForIconAndText = (checkDir, containerDir) => {
 	container.classList.add("tools-ans-checked");
 };
 
-// This function removes the "opacity" class from the icon and text box checker and the "tools-ans-checked" class from the container to hide the check animation
+// This function removes the "opacity" class from the icon and text box checker and the "tools-ans-checked"
+// class from the container to hide the check animation
 const removeCheckAnimationForIconAndText = (checkDir, containerDir) => {
 	let checker = checkDir;
 	let container = containerDir;
@@ -1368,7 +1384,8 @@ const removeCheckAnimationForIconAndText = (checkDir, containerDir) => {
 	container.classList.remove("tools-ans-checked");
 };
 
-// This function adds the "opacity" class to the two-ans box checker and the "two-ans-container-checked" class to the container to display the check animation
+// This function adds the "opacity" class to the two-ans box checker and the "two-ans-container-checked"
+// class to the container to display the check animation
 const addCheckAnimationForTwoAns = (checkDir, containerDir) => {
 	let checker = checkDir;
 	let container = containerDir;
@@ -1376,7 +1393,8 @@ const addCheckAnimationForTwoAns = (checkDir, containerDir) => {
 	container.classList.add("two-ans-container-checked");
 };
 
-// This function removes the "opacity" class from the two-ans box checker and the "two-ans-container-checked" class from the container to hide the check animation
+// This function removes the "opacity" class from the two-ans box checker and the "two-ans-container-checked"
+// class from the container to hide the check animation
 const removeCheckAnimationForTwoAns = (checkDir, containerDir) => {
 	let checker = checkDir;
 	let container = containerDir;
@@ -1860,13 +1878,13 @@ window.addEventListener("keydown", lrkeydownHandler);
 // Continue to Next Step On Press Enter
 window.addEventListener("keydown", entkeydownHandler);
 
-function lrkeydownHandler(e) {
+export function lrkeydownHandler(e) {
 	leftnRightkeyDebounce(() => {
 		keydownHandler(e);
 	}, 400);
 }
 
-function entkeydownHandler(e) {
+export function entkeydownHandler(e) {
 	enterKeyDebounce(() => {
 		enterKeyPressHandler(e);
 	}, 400);
@@ -1888,7 +1906,8 @@ function keydownHandler(e) {
 		return;
 	}
 
-	//  Only allow both arrow key press functions when the user is not on the home page and not on the completion page
+	//  Only allow both arrow key press functions when the user
+	// is not on the home page and not on the completion page
 	if (
 		currentFormStage() <= Object.values(USERS_FILE).length &&
 		currentFormStage() > 0
@@ -1905,7 +1924,8 @@ function keydownHandler(e) {
 
 // Enter Key press handler
 function enterKeyPressHandler(e) {
-	// Stop the enter key from pressing if user is on the completion page in other to allow user to use it while editting the change email field
+	// Stop the enter key from pressing if user is on the completion page
+	// in other to allow user to use it while editting the change email field
 	if (currentFormStage() < Object.values(USERS_FILE).length + 1) {
 		if (e.key === "Enter") {
 			gotoNextStep(currentFormStage(), Questions);

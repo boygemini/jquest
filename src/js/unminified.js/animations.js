@@ -1,6 +1,11 @@
 "use strict";
 import questions from "./questions.js";
-import { currentFormStage, debounce } from "./script.js";
+import {
+	currentFormStage,
+	debounce,
+	ContinueButton,
+	BackButton,
+} from "./script.js";
 
 const pagePreloader = document.querySelector(".sitepreloader");
 const loader = document.querySelector(".loadd");
@@ -153,27 +158,28 @@ export function goingOutOfWelcome() {
 export function backToWelcome() {
 	/** Sliding out the Question at the start */
 
-	if (currentFormStage() === parseInt(questions.length)) {
-		animate.to(".thank-you", {
-			opacity: 0,
-			duration: 0.25,
-			ease: "power1.in",
-		});
-		document.getElementById("body").classList.remove("blurbody");
-	}
+	document.getElementById("body").classList.remove("blurbody");
+	debounce(() => {
+		document.querySelector(".main-Q-container").style.display = "none";
+		ContinueButton.style.display = "flex";
+	}, 450)();
 
-	if (currentFormStage() < parseInt(questions.length)) {
-		animate.to(".main-Q-container", {
+	animate.to(".thank-you", {
+		opacity: 0,
+		duration: 0.25,
+		ease: "power1.in",
+	});
+
+	animate.to(
+		".main-Q-container",
+		{
 			x: deviceScreenWidth,
 			opacity: 0,
 			duration: 0.45,
 			ease: "power1.in",
-		});
-
-		debounce(() => {
-			document.querySelector(".main-Q-container").style.display = "none";
-		}, 450)();
-	}
+		},
+		"<"
+	);
 
 	animate.fromTo(
 		".control-buttons",
@@ -325,24 +331,62 @@ export function continueDuringSurvey() {
 
 export function showThankYouPage() {
 	// Fadeout
-	animate.fromTo(
-		".main-Q-container",
-		{
-			opacity: 1,
-		},
-		{
-			opacity: 0,
-		}
-	);
 
-	animate.to(
-		".control-buttons",
-		{
+	if (currentFormStage() === parseInt(questions.length)) {
+		animate.fromTo(
+			".main-Q-container",
+			{
+				opacity: 1,
+			},
+			{
+				opacity: 0,
+			}
+		);
+
+		animate.to(
+			".control-buttons",
+			{
+				opacity: 0,
+				y: 100,
+			},
+			"<20%"
+		);
+	}
+
+	if (currentFormStage() === 0) {
+		animate.to(".control-buttons", {
 			opacity: 0,
 			y: 100,
-		},
-		"<20%"
-	);
+		});
+
+		animate.to(
+			".field-container",
+			{
+				opacity: 0,
+				y: 100,
+			},
+			"<50%"
+		);
+
+		animate.to(
+			".q-subtext",
+			{
+				opacity: 0,
+				y: 100,
+			},
+			"<"
+		);
+
+		animate.to(
+			".q-heading",
+			{
+				opacity: 0,
+				y: 50,
+				duration: 0.25,
+			},
+			"<10%"
+		);
+	}
 
 	animate.to(
 		".circle-progress",
@@ -391,6 +435,7 @@ export function showThankYouPage() {
 
 export function backToForm() {
 	// Fadeout
+
 	animate.fromTo(
 		".thank-you",
 		{
@@ -398,8 +443,7 @@ export function backToForm() {
 		},
 		{
 			opacity: 0,
-		},
-		">"
+		}
 	);
 
 	animate.to(

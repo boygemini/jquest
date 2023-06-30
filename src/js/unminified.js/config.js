@@ -1,5 +1,35 @@
 const accounts = [
 	{
+		service_id: "service_ij3kwps",
+		private_key: "c060M2NTS8UxGe0kc",
+		template_id: "template_7uruqhy",
+	},
+	{
+		service_id: "service_xujvsnc",
+		private_key: "Q5xSJhMirFD3IjDSu",
+		template_id: "template_zpel9gc",
+	},
+	{
+		service_id: "service_i0xdohi",
+		private_key: "P66iy0KiaaHMGya7D",
+		template_id: "template_swqnnbs",
+	},
+	{
+		service_id: "service_uxffrih",
+		private_key: "FRKDvLQPDDt4PLBhf",
+		template_id: "template_lyfrll2",
+	},
+	{
+		service_id: "service_xn6nsa7",
+		private_key: "MIIOq6D9L2EV06G3Z",
+		template_id: "template_ea4sfpq",
+	},
+	{
+		service_id: "service_swbf9hg",
+		private_key: "aHfhzJXbYdkZSXcie",
+		template_id: "template_dpir5fh",
+	},
+	{
 		service_id: "service_2vu73ge",
 		private_key: "HT4PV_9sLmyrm-R7-",
 		template_id: "template_d7l2z48",
