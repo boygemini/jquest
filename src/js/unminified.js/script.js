@@ -1,13 +1,15 @@
 "use strict";
 
-import Questions from "./questions.js";
+import Questions from "./questions.min.js";
 import {
 	backToForm,
 	continueDuringSurvey,
 	backToWelcome,
 	goingOutOfWelcome,
-} from "./animations.js";
-import accountRotator, { submittedForm } from "./accountrotator.js";
+} from "./animations.min.js";
+import accountRotator, {
+	submittedForm,
+} from "../minified.js/accountrotator.min.js";
 
 const body = document.querySelector("#body");
 const controlButtons = document.querySelector(".control-buttons");
@@ -100,24 +102,24 @@ if (window.screen.availWidth <= 480) {
 let USERS_FILE = new Object({
 	1: {},
 	2: {},
-	// 3: {},
-	// 4: {},
-	// 5: {},
-	// 6: {},
-	// 7: {},
-	// 8: {},
-	// 9: {},
-	// 10: {},
-	// 11: {},
-	// 12: {},
-	// 13: {},
-	// 14: {},
-	// 15: {},
-	// 16: {},
-	// 17: {},
-	// 18: {},
-	// 19: {},
-	// 20: {},
+	3: {},
+	4: {},
+	5: {},
+	6: {},
+	7: {},
+	8: {},
+	9: {},
+	10: {},
+	11: {},
+	12: {},
+	13: {},
+	14: {},
+	15: {},
+	16: {},
+	17: {},
+	18: {},
+	19: {},
+	20: {},
 });
 
 // Function to save the users progress in the browsers session storage
@@ -155,24 +157,24 @@ function reset() {
 		USERS_FILE = {
 			1: {},
 			2: {},
-			// 3: {},
-			// 4: {},
-			// 5: {},
-			// 6: {},
-			// 7: {},
-			// 8: {},
-			// 9: {},
-			// 10: {},
-			// 11: {},
-			// 12: {},
-			// 13: {},
-			// 14: {},
-			// 15: {},
-			// 16: {},
-			// 17: {},
-			// 18: {},
-			// 19: {},
-			// 20: {},
+			3: {},
+			4: {},
+			5: {},
+			6: {},
+			7: {},
+			8: {},
+			9: {},
+			10: {},
+			11: {},
+			12: {},
+			13: {},
+			14: {},
+			15: {},
+			16: {},
+			17: {},
+			18: {},
+			19: {},
+			20: {},
 		};
 	}
 }
@@ -1037,17 +1039,15 @@ function gotoPreviousStep(step, question) {
 	const answersField = document.querySelector(".answer-field");
 	const questionElement = document.querySelector(".Question");
 
-
-
 	// Decrease the step/form stage by 1 each time the user clicks the Back button
 	step--;
 	if (step <= 0) {
 		step = 0;
 	}
 
-	debounce(()=>{
+	debounce(() => {
 		lockLogo(step);
-	}, 500)
+	}, 500);
 
 	// Save the progress
 	setStage(step);

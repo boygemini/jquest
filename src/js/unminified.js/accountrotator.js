@@ -1,7 +1,7 @@
 "use strict";
 
-import { showThankYouPage } from "./animations.js";
-import questions from "./questions.js";
+import { showThankYouPage } from "./animations.min.js";
+import questions from "./questions.min.js";
 import {
 	animateErrorMessage,
 	setStage,
@@ -9,8 +9,8 @@ import {
 	disableButtons,
 	lrkeydownHandler,
 	entkeydownHandler,
-} from "./script.js";
-import accounts from "./config.js";
+} from "../minified.js/script.min.js";
+import accounts from "./config.min.js";
 
 const starterPage = document.querySelector(".q-container");
 const startQuestion = document.querySelector(".main-Q-container");
