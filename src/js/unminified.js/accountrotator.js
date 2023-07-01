@@ -94,45 +94,83 @@ export function removeMessage() {
  * @param htmlTemplate Holds the user's submission in HTML format to send it to the email API and then to the user's email address
  */
 
+let successfulSubmit = false;
+let timedOut = false;
 async function accountRotator(htmlTemplate) {
 	let { service_id, private_key, template_id } = accounts[submitCounter];
+
+	// Show a timed out error message after 100s
+	let timeFrame = setTimeout(() => {
+		if (!successfulSubmit) {
+			timedOut = true;
+			removeMessage(); // Remove the success/loading message
+
+			// Display error message using animateErrorMessage function
+			animateErrorMessage(
+				8000,
+				600,
+				20,
+				`Timed Out : Please check your internet connection and try again. Thank you.`,
+				"show-error-message",
+				"remove-error-message"
+			);
+
+			setStage(questions.length - 1); // Set the stage to the last question
+			submitCounter = 0; // Reset the submitCounter
+			disableButtons(false);
+			return;
+		}
+
+		if (successfulSubmit) {
+			timedOut = false;
+			return;
+		}
+	}, 100000);
 
 	// Send the email using emailjs library
 	emailjs.send(service_id, template_id, htmlTemplate, private_key).then(
 		function () {
 			// Handle successful form submission
 
-			// Display the "Form Submitted Successfully" message
-			showSent("Form Submitted Successfully");
+			if (timedOut === false) {
+				successfulSubmit = true; // Indicates that EmailJS returned something
+				clearTimeout(timeFrame); // Stop the timeout error Message from showing
 
-			// Show the thank you page and perform related animations
-			showThankYouPage(startQuestion);
+				// Display the "Form Submitted Successfully" message
+				showSent("Form Submitted Successfully");
 
-			// Delayed actions using debouncing
-			const debounce5 = debounce(() => {
-				ContinueButton.style.display = "none";
-				BackButton.classList.add("widen");
-				BackButton.style.display = "flex";
-			}, 400);
-			debounce5();
+				// Show the thank you page and perform related animations
+				showThankYouPage(startQuestion);
 
-			const debounce6 = debounce(() => {
-				thankYou.style.display = "flex";
-				starterPage.style.display = "none";
-				startQuestion.style.display = "none";
-				body.classList.add("blurbody");
-			}, 600);
-			debounce6();
+				// Delayed actions using debouncing
+				const debounce5 = debounce(() => {
+					ContinueButton.style.display = "none";
+					BackButton.classList.add("widen");
+					BackButton.style.display = "flex";
+				}, 400);
+				debounce5();
 
-			// Set the value of the userEmail field to the saved email from sessionStorage
-			userEmail.value = sessionStorage.getItem("email");
-			submittedForm = true; // Set the submittedForm flag to true
-			disableButtons(false); // Enable the buttons after sucessful submission
-			window.addEventListener("keydown", lrkeydownHandler);
-			window.addEventListener("keydown", entkeydownHandler);
+				const debounce6 = debounce(() => {
+					thankYou.style.display = "flex";
+					starterPage.style.display = "none";
+					startQuestion.style.display = "none";
+					body.classList.add("blurbody");
+				}, 600);
+				debounce6();
+
+				// Set the value of the userEmail field to the saved email from sessionStorage
+				userEmail.value = sessionStorage.getItem("email");
+				submittedForm = true; // Set the submittedForm flag to true
+				disableButtons(false); // Enable the buttons after sucessful submission
+				window.addEventListener("keydown", lrkeydownHandler);
+				window.addEventListener("keydown", entkeydownHandler);
+				successfulSubmit = false; // Resets it for another submission attempt
+			}
 		},
 		function (error) {
 			// Handle email sending error
+			successfulSubmit = true; // Indicates that EmailJS returned something
+			clearTimeout(timeFrame); // Stop the timeout error Message from showing
 
 			let numOfAccounts = accounts.length - 1;
 
@@ -194,6 +232,7 @@ async function accountRotator(htmlTemplate) {
 				setStage(questions.length - 1); // Set the stage to the last question
 				submitCounter = 0; // Reset the submitCounter
 				disableButtons(false); // Enable the buttons after sucessful submission
+				successfulSubmit = false; // Resets it for another submission attempt
 				return;
 			}
 

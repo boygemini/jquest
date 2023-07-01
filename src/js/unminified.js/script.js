@@ -100,24 +100,24 @@ if (window.screen.availWidth <= 480) {
 let USERS_FILE = new Object({
 	1: {},
 	2: {},
-	3: {},
-	4: {},
-	5: {},
-	6: {},
-	7: {},
-	8: {},
-	9: {},
-	10: {},
-	11: {},
-	12: {},
-	13: {},
-	14: {},
-	15: {},
-	16: {},
-	17: {},
-	18: {},
-	19: {},
-	20: {},
+	// 3: {},
+	// 4: {},
+	// 5: {},
+	// 6: {},
+	// 7: {},
+	// 8: {},
+	// 9: {},
+	// 10: {},
+	// 11: {},
+	// 12: {},
+	// 13: {},
+	// 14: {},
+	// 15: {},
+	// 16: {},
+	// 17: {},
+	// 18: {},
+	// 19: {},
+	// 20: {},
 });
 
 // Function to save the users progress in the browsers session storage
@@ -155,24 +155,24 @@ function reset() {
 		USERS_FILE = {
 			1: {},
 			2: {},
-			3: {},
-			4: {},
-			5: {},
-			6: {},
-			7: {},
-			8: {},
-			9: {},
-			10: {},
-			11: {},
-			12: {},
-			13: {},
-			14: {},
-			15: {},
-			16: {},
-			17: {},
-			18: {},
-			19: {},
-			20: {},
+			// 3: {},
+			// 4: {},
+			// 5: {},
+			// 6: {},
+			// 7: {},
+			// 8: {},
+			// 9: {},
+			// 10: {},
+			// 11: {},
+			// 12: {},
+			// 13: {},
+			// 14: {},
+			// 15: {},
+			// 16: {},
+			// 17: {},
+			// 18: {},
+			// 19: {},
+			// 20: {},
 		};
 	}
 }
@@ -552,7 +552,7 @@ function showSending(MESSAGE) {
 	loaderDOM.style.backgroundColor = "orange";
 
 	// Perform additional animations and adjustments for screens wider than 767px
-	if (screen.width > 767) {
+	if (screen.width > 1024) {
 		// Use debouncing to delay the execution of certain actions
 
 		// Debounce function to adjust the layout after a delay
@@ -837,6 +837,18 @@ function sendEmail(email) {
 	}
 }
 
+// Display the logo as fixed if the user is at the home page devices screen is less that 768 px
+function lockLogo(step) {
+	if (step === 0 && window.screen.availWidth <= 767) {
+		document.querySelector(".logo").style.position = "fixed";
+	}
+
+	if (step > 0 && window.screen.availWidth <= 767) {
+		document.querySelector(".logo").style.position = "relative";
+	}
+}
+lockLogo(0);
+
 // Function to proceed to the next of the form
 function gotoNextStep(step, question) {
 	const answersField = document.querySelector(".answer-field");
@@ -878,7 +890,7 @@ function gotoNextStep(step, question) {
 
 	// Control the form steps
 	step++;
-
+	lockLogo(step);
 	// If user is still filling the form
 	if (step >= question.length) {
 		inner.innerText = sessionStorage.getItem("email");
@@ -1025,11 +1037,17 @@ function gotoPreviousStep(step, question) {
 	const answersField = document.querySelector(".answer-field");
 	const questionElement = document.querySelector(".Question");
 
+
+
 	// Decrease the step/form stage by 1 each time the user clicks the Back button
 	step--;
 	if (step <= 0) {
 		step = 0;
 	}
+
+	debounce(()=>{
+		lockLogo(step);
+	}, 500)
 
 	// Save the progress
 	setStage(step);
