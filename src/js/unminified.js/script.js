@@ -7,9 +7,7 @@ import {
 	backToWelcome,
 	goingOutOfWelcome,
 } from "./animations.min.js";
-import accountRotator, {
-	submittedForm,
-} from "../minified.js/accountrotator.min.js";
+import accountRotator, { submittedForm } from "./accountrotator.min.js";
 
 const body = document.querySelector("#body");
 const controlButtons = document.querySelector(".control-buttons");
@@ -79,6 +77,18 @@ export const disableButtons = (bool) => {
 		if (!bool) btn.disabled = false;
 	});
 };
+
+// Display the logo as fixed if the user is at the home page devices screen is less that 768 px
+function lockLogo(step) {
+	if (step === 0 && window.screen.availWidth <= 767) {
+		document.querySelector(".logo").style.position = "fixed";
+	}
+
+	if (step > 0 && window.screen.availWidth <= 767) {
+		document.querySelector(".logo").style.position = "relative";
+	}
+}
+lockLogo(0);
 
 /**
  * Focus the client on the email change field
@@ -364,6 +374,7 @@ function goHome() {
 		BackButton.style.display = "none";
 		body.classList.remove("blurbody");
 		setStage(0);
+		lockLogo(0);
 	}, 450)();
 }
 
@@ -838,18 +849,6 @@ function sendEmail(email) {
 		debounce9();
 	}
 }
-
-// Display the logo as fixed if the user is at the home page devices screen is less that 768 px
-function lockLogo(step) {
-	if (step === 0 && window.screen.availWidth <= 767) {
-		document.querySelector(".logo").style.position = "fixed";
-	}
-
-	if (step > 0 && window.screen.availWidth <= 767) {
-		document.querySelector(".logo").style.position = "relative";
-	}
-}
-lockLogo(0);
 
 // Function to proceed to the next of the form
 function gotoNextStep(step, question) {
