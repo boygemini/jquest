@@ -1,7 +1,7 @@
 "use strict";
 
-import { showThankYouPage } from "./animations.js";
-import questions from "./questions.js";
+import { showThankYouPage } from "./animations.min.js";
+import questions from "./questions.min.js";
 import {
 	animateErrorMessage,
 	setStage,
@@ -9,8 +9,8 @@ import {
 	disableButtons,
 	lrkeydownHandler,
 	entkeydownHandler,
-} from "./script.js";
-import accounts from "./config.js";
+} from "./script.min.js";
+import accounts from "./config.min.js";
 
 const starterPage = document.querySelector(".q-container");
 const startQuestion = document.querySelector(".main-Q-container");
@@ -38,7 +38,7 @@ export function showSent(MESSAGE) {
 
 		submitLoader.classList.add("load-complete");
 		loaderDOM.style.backgroundColor = "#11bd05";
-		loaderDOM.style.width = `${submitLoader.scrollWidth + 50}px`;
+		loaderDOM.style.width = `${submitLoader.scrollWidth + 65}px`;
 	}, 200);
 
 	// Display the success mark after a debounce of 300 milliseconds
@@ -54,7 +54,7 @@ export function showSent(MESSAGE) {
 
 		// Adjust the width of the loader DOM element after a debounce of 300 milliseconds
 		const debounce3 = debounce(() => {
-			loaderDOM.style.width = `${submitLoader.scrollWidth + 50}px`;
+			loaderDOM.style.width = `${submitLoader.scrollWidth + 65}px`;
 		}, 300);
 		debounce3();
 
@@ -181,7 +181,7 @@ async function accountRotator(htmlTemplate) {
 
 				// Display error message using animateErrorMessage function
 				animateErrorMessage(
-					8000,
+					6000,
 					600,
 					20,
 					`Error occurred : Your email address appears to be invalid, please check and resubmit form`,
@@ -221,7 +221,7 @@ async function accountRotator(htmlTemplate) {
 
 				// Display error message using animateErrorMessage function
 				animateErrorMessage(
-					8000,
+					6000,
 					600,
 					20,
 					`Error occurred : ${message || "no internet connection"}`,

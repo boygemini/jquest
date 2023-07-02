@@ -2381,6 +2381,10 @@ html {
 		margin: auto;
 		border: 0;
 	}
+	.error-text {
+		text-align: center !important;
+		width: 100% !important;
+	}
 	.error-text,
 	.sent-message {
 		opacity: 0;

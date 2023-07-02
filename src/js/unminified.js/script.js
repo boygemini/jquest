@@ -454,7 +454,7 @@ export function animateErrorMessage(
 ) {
 	// Turns the email field bg color to red
 	errorText.innerText = ERROR_MESSAGE;
-	const errorMessageNodeWidth = errorText.scrollWidth + 30;
+	const errorMessageNodeWidth = errorText.scrollWidth + 40;
 
 	// Remove the reove-error-message and add show-error-message class to show the error message
 	let showErrorName = ["remove-error-message", "remove-reset-message"];
