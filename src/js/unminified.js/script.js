@@ -541,6 +541,9 @@ export function animateErrorMessage(
 
 function closeErrorMessage() {
 	errorMessage.classList.value = "error-message remove-error-message";
+	debounce(() => {
+		gsap.to(".circle-progress", { opacity: 1, duration: 0.3 });
+	}, 200)();
 }
 
 errorMessageCanceler.onclick = () => closeErrorMessage();
