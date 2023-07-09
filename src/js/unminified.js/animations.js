@@ -1,11 +1,11 @@
 "use strict";
-import questions from "./questions.js";
+import questions from "./questions.min.js";
 import {
 	currentFormStage,
 	debounce,
 	ContinueButton,
 	BackButton,
-} from "./script.js";
+} from "./script.min.js";
 
 const pagePreloader = document.querySelector(".sitepreloader");
 const loader = document.querySelector(".loadd");
@@ -332,7 +332,10 @@ export function continueDuringSurvey() {
 export function showThankYouPage() {
 	// Fadeout
 
-	if (currentFormStage() === parseInt(questions.length)) {
+	if (
+		currentFormStage() <= parseInt(questions.length) &&
+		currentFormStage() > 0
+	) {
 		animate.fromTo(
 			".main-Q-container",
 			{

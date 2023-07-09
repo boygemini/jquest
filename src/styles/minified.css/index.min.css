@@ -544,6 +544,7 @@ html {
 .sitepreloader,
 .textt,
 .checker,
+.error-cancel,
 .text-checker,
 .tools-ans-checker,
 .bare-ans p {
@@ -573,6 +574,13 @@ html {
 	align-items: center;
 	column-gap: 15px;
 }
+.error-cancel {
+	width: 1.9rem !important;
+	height: 1.9rem !important;
+	cursor: pointer;
+	opacity: 0 !important;
+	display: none;
+}
 .error-text {
 	opacity: 0;
 }
@@ -592,6 +600,16 @@ html {
 	top: 1rem;
 	opacity: 0;
 	background-color: orange;
+}
+.show-error-message .error-cancel,
+.show-reset-message .error-cancel {
+	opacity: 1 !important;
+	transition-delay: 0.7s !important;
+}
+.remove-error-message .error-cancel,
+.remove-reset-message .error-cancel {
+	opacity: 0 !important;
+	transition-delay: 0s !important;
 }
 .show-error-message {
 	top: 6rem;
@@ -1220,6 +1238,9 @@ html {
 		min-height: 100vh !important;
 		background-attachment: fixed;
 	}
+	.error-cancel {
+		display: flex;
+	}
 	.logo {
 		position: relative;
 		height: auto;
@@ -1650,6 +1671,12 @@ html {
 		width: 100%;
 		background-color: white;
 	}
+
+	.error-message {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 }
 @media screen and (min-width: 500px) {
 	.ans-with-2options {
@@ -1813,6 +1840,17 @@ html {
 		position: relative !important;
 		height: 100% !important;
 	}
+
+	.error-message {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.error-cancel {
+		display: flex;
+	}
+
 	.menu-child {
 		width: 100%;
 		background-color: white;

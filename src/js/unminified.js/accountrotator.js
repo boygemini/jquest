@@ -9,6 +9,7 @@ import {
 	disableButtons,
 	lrkeydownHandler,
 	entkeydownHandler,
+	currentFormStage,
 } from "./script.min.js";
 import accounts from "./config.min.js";
 
@@ -187,9 +188,9 @@ async function accountRotator(htmlTemplate) {
 					`Error occurred : Your email address appears to be invalid, please check and resubmit form`,
 					"show-error-message",
 					"remove-error-message"
-				);
+				); // Set the stage to the last question
 
-				setStage(questions.length - 1); // Set the stage to the last question
+				if (currentFormStage() !== 0) setStage(questions.length - 1);
 				submitCounter = 0; // Reset the submitCounter
 				disableButtons(false);
 				return;
@@ -229,7 +230,7 @@ async function accountRotator(htmlTemplate) {
 					"remove-error-message"
 				);
 
-				setStage(questions.length - 1); // Set the stage to the last question
+				if (currentFormStage() !== 0) setStage(questions.length - 1);
 				submitCounter = 0; // Reset the submitCounter
 				disableButtons(false); // Enable the buttons after sucessful submission
 				successfulSubmit = false; // Resets it for another submission attempt

@@ -48,7 +48,7 @@ const saveNewEmailModal = document.querySelector(".changeemailmodal");
 const saveNewEmailButton = document.querySelector(".savemynewemail");
 const changeEmailCancelButton = document.querySelector(".changecancel");
 const saveNewEmailField = document.querySelector("#changemyemail");
-const allModalsAndMenu = document.querySelectorAll(".mod");
+const errorMessageCanceler = document.querySelector(".error-cancel");
 
 const submitLoader = document.querySelector(".circle-loader");
 let otfp = false; // If user is on the completion page
@@ -330,6 +330,8 @@ function closeMenu() {
 // Function to show the change email modal
 function showChangeEmailModal() {
 	closeMenu();
+	window.removeEventListener("keydown", entkeydownHandler);
+
 	saveNewEmailModal.style.display = "flex";
 
 	gsap.to(saveNewEmailModal, {
@@ -395,9 +397,6 @@ function closeModal() {
 		duration: 0.25,
 	});
 
-	window.addEventListener("keydown", entkeydownHandler);
-	window.addEventListener("keydown", lrkeydownHandler);
-
 	// Delayed function to hide the changeEmailContainer and resubmitEmailContainer after the animations finish
 	debounce(() => {
 		changeEmailContainer.style.display = "none";
@@ -427,12 +426,11 @@ saveNewEmailButton.onclick = () => validateAndSaveNewUserEmail();
 // Event listener for the keydown event on the save new email field
 saveNewEmailField.onkeydown = (e) => {
 	if (e.key === "Enter") {
-		window.removeEventListener("keydown", entkeydownHandler);
 		validateAndSaveNewUserEmail();
-	}
-
-	if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-		window.removeEventListener("keydown", lrkeydownHandler);
+		debounce(() => {
+			window.addEventListener("keydown", entkeydownHandler);
+			window.addEventListener("keydown", lrkeydownHandler);
+		}, 200)();
 	}
 };
 
@@ -540,6 +538,12 @@ export function animateErrorMessage(
 	}, ERROR_MESSAGE_DURATION + ERROR_MESSAGE_ANIMATION_DURATION);
 	debounce5();
 }
+
+function closeErrorMessage() {
+	errorMessage.classList.value = "error-message remove-error-message";
+}
+
+errorMessageCanceler.onclick = () => closeErrorMessage();
 
 // Function to show indicate that the form is making a submit request
 /**
