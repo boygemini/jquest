@@ -442,6 +442,12 @@ window.onclick = (e) => {
 };
 
 // Error Message Animation
+let dbe;
+
+function debounceError(func, time) {
+	clearTimeout(dbe);
+	dbe = setTimeout(func, time);
+}
 export function animateErrorMessage(
 	ERROR_MESSAGE_DURATION,
 	ERROR_MESSAGE_ANIMATION_DURATION,
@@ -491,56 +497,59 @@ export function animateErrorMessage(
 	}, ERROR_MESSAGE_ANIMATION_DURATION);
 	debounce2();
 
-	// After 3secs Remove the Error Message
-	const debounce3 = debounce(() => {
-		// The error message classlist
-		let errorMessageClassLists = ["show-error-message", "show-reset-message"];
+	debounceError(() => {
+		// After 3secs Remove the Error Message
+		const debounce3 = debounce(() => {
+			// The error message classlist
+			let errorMessageClassLists = ["show-error-message", "show-reset-message"];
 
-		// if the client's screen is >= 1024, the error messageDOM would first resize to about
-		// 20px before expanding to its full width
-		if (window.screen.availWidth >= 1024) {
-			errorMessage.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
-		}
-
-		// The error text is originally set to 0 opacity
-		errorText.style.opacity = "0";
-
-		const debounce4 = debounce(() => {
-			// if any of the classes in the array about at < showErrorName >
-			// is present in the error messageDOM classlist, it should be removed
-			for (let className of errorMessageClassLists) {
-				errorMessage.classList.remove(className);
+			// if the client's screen is >= 1024, the error messageDOM would first resize to about
+			// 20px before expanding to its full width
+			if (window.screen.availWidth >= 1024) {
+				errorMessage.style.width = `${INITIAL_ERROR_MESSAGE_WIDTH}px`;
 			}
 
-			// Add the new classist for the new error to be displayed
-			errorMessage.classList.add(REMOVE_ERROR_CLASS);
-		}, ERROR_MESSAGE_ANIMATION_DURATION / 2);
-		debounce4();
+			// The error text is originally set to 0 opacity
+			errorText.style.opacity = "0";
 
-		if (window.screen.availWidth <= 1024 && currentFormStage() > 0) {
-			gsap.to(".circle-progress", { opacity: 1, duration: 0.3, delay: 0.6 });
-		}
+			debounce(() => {
+				// if any of the classes in the array about at < showErrorName >
+				// is present in the error messageDOM classlist, it should be removed
+				for (let className of errorMessageClassLists) {
+					errorMessage.classList.remove(className);
+				}
+
+				// Add the new classist for the new error to be displayed
+				errorMessage.classList.add(REMOVE_ERROR_CLASS);
+			}, ERROR_MESSAGE_ANIMATION_DURATION / 2)();
+
+			if (window.screen.availWidth <= 1024 && currentFormStage() > 0) {
+				gsap.to(".circle-progress", { opacity: 1, duration: 0.3, delay: 0.6 });
+			}
+		}, 0);
+		debounce3();
+
+		// After 3+ millsecs reset the Error Message container and text container
+		const debounce5 = debounce(() => {
+			if (window.screen.availWidth >= 1024) {
+				errorMessage.style.width = "auto";
+			}
+
+			if (window.screen.availWidth < 1024) {
+				errorMessage.style.width = "100%";
+			}
+
+			// Reverts the email field's color back to normal
+			userEmail.classList.remove("empty-email-field");
+		}, ERROR_MESSAGE_DURATION + ERROR_MESSAGE_ANIMATION_DURATION);
+		debounce5();
 	}, ERROR_MESSAGE_DURATION);
-	debounce3();
-
-	// After 3+ millsecs reset the Error Message container and text container
-	const debounce5 = debounce(() => {
-		if (window.screen.availWidth >= 1024) {
-			errorMessage.style.width = "auto";
-		}
-
-		if (window.screen.availWidth < 1024) {
-			errorMessage.style.width = "100%";
-		}
-
-		// Reverts the email field's color back to normal
-		userEmail.classList.remove("empty-email-field");
-	}, ERROR_MESSAGE_DURATION + ERROR_MESSAGE_ANIMATION_DURATION);
-	debounce5();
 }
 
 function closeErrorMessage() {
+	clearTimeout(dbe);
 	errorMessage.classList.value = "error-message remove-error-message";
+	userEmail.classList.remove("empty-email-field");
 	debounce(() => {
 		gsap.to(".circle-progress", { opacity: 1, duration: 0.3 });
 	}, 200)();
