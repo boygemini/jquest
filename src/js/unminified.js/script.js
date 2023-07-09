@@ -448,6 +448,7 @@ function debounceError(func, time) {
 	clearTimeout(dbe);
 	dbe = setTimeout(func, time);
 }
+
 export function animateErrorMessage(
 	ERROR_MESSAGE_DURATION,
 	ERROR_MESSAGE_ANIMATION_DURATION,
@@ -550,6 +551,8 @@ function closeErrorMessage() {
 	clearTimeout(dbe);
 	errorMessage.classList.value = "error-message remove-error-message";
 	userEmail.classList.remove("empty-email-field");
+	errorText.style.opacity = "0";
+	gsap.to(".circle-progress", { opacity: 0, duration: 0.3 });
 	debounce(() => {
 		gsap.to(".circle-progress", { opacity: 1, duration: 0.3 });
 	}, 200)();
