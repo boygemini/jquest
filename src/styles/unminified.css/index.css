@@ -8,6 +8,17 @@
 	margin: 0;
 	font-family: "Open Sans", sans-serif;
 	outline: 0;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+
+	/* Set line height for readability */
+	line-height: 1.5;
+
+	/* Adjust letter spacing (kerning) */
+	letter-spacing: 0.05em;
 }
 :root {
 	--buttonheight: 200px;
@@ -323,7 +334,7 @@ html {
 	width: 40px;
 	height: 40px;
 	background-color: whitesmoke;
-	background-image: url(/jquest/src/imgs/close.png);
+	background-image: url(/src/styles/close.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 50%;
@@ -2636,7 +2647,7 @@ html {
 	width: 40px;
 	height: 40px;
 	background-color: whitesmoke;
-	background-image: url(/jquest/src/imgs/close.png);
+	background-image: url(./src/imgs/close.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 50%;
