@@ -8,7 +8,7 @@
 	margin: 0;
 	font-family: "Open Sans", sans-serif;
 	outline: 0;
-		font-synthesis: none;
+	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -334,7 +334,7 @@ html {
 	width: 40px;
 	height: 40px;
 	background-color: whitesmoke;
-	background-image: url(/jquest/src/imgs/close.png);
+	background-image: url(./src/imgs/close.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 50%;
@@ -2685,7 +2685,7 @@ html {
 	width: 40px;
 	height: 40px;
 	background-color: whitesmoke;
-	background-image: url(/jquest/src/imgs/close.png);
+	background-image: url(./src/imgs/close.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 50%;
