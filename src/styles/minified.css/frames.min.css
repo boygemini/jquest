@@ -21,13 +21,13 @@
 .image-container2 {
 	width: 100%;
 	height: 100%;
-	background-image: url("./src/imgs/JBL_Flip_6_product_image_2.webp");
+	background-image: url("/src/imgs/JBL_Flip_6_product_image_2.webp");
 	position: relative;
 }
 .image-container {
 	width: 100%;
 	height: 85%;
-	background-image: url("./src/imgs/use2.webp");
+	background-image: url("/src/imgs/use2.webp");
 }
 .checker {
 	width: 50px;
