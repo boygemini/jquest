@@ -20,6 +20,26 @@
 	/* Adjust letter spacing (kerning) */
 	letter-spacing: 0.05em;
 }
+
+*::-webkit-scrollbar {
+	height: 100%;
+	width: 2px;
+	background-color: #f5f5f5;
+}
+
+*::-webkit-scrollbar-thumb {
+	width: 2px;
+	background-color: #111111;
+}
+
+*::-webkit-scrollbar-track {
+	width: 2px;
+}
+
+html,
+body {
+	overflow-x: none;
+}
 :root {
 	--buttonheight: 200px;
 }
